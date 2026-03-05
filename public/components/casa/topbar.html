@@ -1,0 +1,111 @@
+<!-- Topbar (Casa Histórica - Pearl/Gold Theme - High Contrast) -->
+<div class="topbar-global topbar-main footer-fusion-casa !fixed">
+    <div
+        class="topbar-container relative z-10 w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
+        <!-- Left: Branding & Back -->
+        <div class="flex items-center gap-4">
+            <a aria-label="Volver al Inicio"
+                class="util-btn group !bg-transparent !border-none !text-slate-900 hover:!text-accent-gold"
+                data-i18n-tooltip="tooltip_back_home" data-tooltip="Volver al Inicio" href="index.html">
+                <span
+                    class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+            </a>
+            <a class="topbar-brand group" href="casa-historica/1.0index.html">
+                <img alt="Logo" class="h-10 md:h-12 w-auto brightness-0" data-i18n-alt="logo"
+                    src="recursos/images/tapi-logo.svg" />
+                <div class="flex flex-col leading-none">
+                    <span
+                        class="font-black text-2xl md:text-3xl tracking-tight uppercase bg-clip-text text-transparent bg-gradient-to-r from-accent-gold via-slate-800 to-accent-gold animate-text-fusion"
+                        data-i18n="casa_histrica_title">CASA HISTÓRICA</span>
+                </div>
+            </a>
+        </div>
+        <!-- Right: Utilities -->
+        <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end text-slate-900">
+            <!-- Selector de Museo -->
+            <a aria-label="Ir a Museo de Tanques" class="util-btn group hover:text-accent-gold transition-colors"
+                data-i18n-tooltip="tooltip_goto_tanques" data-tooltip="Ir a Museo de Tanques"
+                href="museo-tanques/1.0index.html">
+                <span
+                    class="material-symbols-outlined group-hover:scale-110 transition-transform">precision_manufacturing</span>
+            </a>
+            <div class="util-divider border-slate-900/10"></div>
+            <button aria-label="Buscar" class="util-btn search-toggle hover:text-accent-gold transition-colors"
+                data-i18n-tooltip="tooltip_search" data-tooltip="Búsqueda Global" onclick="window.handleSearch()"><span
+                    class="material-symbols-outlined">search</span></button>
+            <div class="util-divider border-slate-900/10"></div>
+            <button aria-label="Cambiar Idioma" class="util-btn lang-toggle hover:text-accent-gold transition-colors"
+                data-i18n-tooltip="tooltip_lang" data-tooltip="Cambiar Idioma" onclick="window.handleLang()">
+                <span class="flag-es font-bold text-xs tracking-widest uppercase">
+                    <span class="lang-short">ES</span><span class="lang-full">PAÑOL</span>
+                </span>
+                <span class="flag-en hidden font-bold text-xs tracking-widest uppercase">
+                    <span class="lang-short">EN</span><span class="lang-full">GLISH</span>
+                </span>
+                <span class="flag-ec hidden font-bold text-xs tracking-widest uppercase">
+                    <span class="lang-short">KI</span><span class="lang-full">CHWA</span>
+                </span>
+            </button>
+            <div class="util-divider border-slate-900/10"></div>
+            <button aria-label="Modo Día/Noche" class="util-btn theme-toggle hover:text-accent-gold transition-colors"
+                data-i18n-tooltip="tooltip_theme" data-tooltip="Modo Día / Noche" onclick="window.toggleTheme()"><span
+                    class="material-symbols-outlined">light_mode</span></button>
+            <div class="util-divider border-slate-900/10"></div>
+            <button aria-label="Música de Ambiente"
+                class="util-btn bg-music-toggle playing text-slate-900 hover:text-accent-gold transition-colors"
+                data-i18n-tooltip="tooltip_music" data-tooltip="Música de Ambiente"
+                onclick="window.toggleBackgroundMusic()"><span id="bg-music-icon"></span></button>
+            <div class="util-divider border-slate-900/10"></div>
+            <div class="relative">
+                <a aria-label="Perfil de Usuario" class="util-btn hover:text-accent-gold transition-colors"
+                    data-i18n-tooltip="tooltip_profile" data-tooltip="Mi Perfil" id="user-profile-btn"
+                    href="javascript:void(0)" onclick="AuthManager.handleUserButtonClick()">
+                    <span class="material-symbols-outlined">account_circle</span>
+                </a>
+
+                <!-- User Dropdown Menu (Remains dark for premium feel) -->
+                <div id="user-dropdown"
+                    class="absolute right-0 top-full mt-2 w-64 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-xl shadow-2xl overflow-hidden hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                    <div class="px-4 py-4 border-b border-slate-800 bg-slate-800/20">
+                        <div class="flex items-center gap-3">
+                            <div id="dropdown-user-img"
+                                class="size-10 rounded-full border border-accent-gold/30 overflow-hidden bg-slate-800 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-accent-gold">account_circle</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="dropdown-user-name" class="text-sm font-medium text-white truncate">Agente
+                                    TAPI</span>
+                                <span id="dropdown-user-email"
+                                    class="text-xs text-slate-400 truncate font-mono">usuario@ejemplo.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-2 text-slate-300">
+                        <a href="perfil.html"
+                            class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-slate-800/50 transition-colors group">
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">person</span>
+                            <span data-i18n="ver_perfil">Ver mi Perfil</span>
+                        </a>
+                        <a href="mis-logros.html"
+                            class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-slate-800/50 transition-colors group">
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">military_tech</span>
+                            <span data-i18n="mis_logros">Mis Logros</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-slate-800 py-2">
+                        <button id="logout-btn" onclick="AuthManager.logout()"
+                            class="flex items-center w-full gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-950/30 transition-colors text-left group">
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">logout</span>
+                            <span data-i18n="cerrar_sesion">Cerrar Sesión</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Animated Breathing Border (Casa Theme Pearl/Gold) -->
+    <div class="header-fusion-border-casa"></div>
+</div>

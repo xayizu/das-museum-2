@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Complejo Museístico Dual</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00329e", // Pantone 286 C equivalent
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1523",
+                        "surface": "#ffffff",
+                        "surface-dark": "#1a202c",
+                        "secondary": "#5e6d8d",
+                        "metallic": "#9ca3af",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .metallic-gradient {
+            background: linear-gradient(135deg, #f0f1f5 0%, #ffffff 50%, #dadee7 100%);
+        }
+
+        .sponsor-logo {
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .sponsor-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            color: #00329e;
+        }
+
+        .group:hover .sponsor-icon {
+            color: #00329e;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light text-slate-900 font-display antialiased overflow-x-hidden">
+    <div class="relative flex flex-col min-h-screen w-full">
+        <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-[#dadee7] shadow-sm">
+            <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-20">
+                    <button
+                        class="flex items-center justify-center p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                        <span class="ml-2 font-bold hidden sm:block">Tanques</span>
+                    </button>
+                    <div class="flex items-center gap-3">
+                        <div class="size-10 bg-primary text-white rounded-lg flex items-center justify-center">
+                            <span class="material-symbols-outlined">museum</span>
+                        </div>
+                        <h1 class="text-primary text-xl font-black tracking-tight hidden md:block">MUSEUM COMPLEX</h1>
+                    </div>
+                    <button
+                        class="flex items-center justify-center p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors">
+                        <span class="mr-2 font-bold hidden sm:block">Casa Histórica</span>
+                        <span class="material-symbols-outlined text-3xl">menu_open</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow">
+            <section class="relative w-full h-auto min-h-[600px] flex flex-col md:flex-row overflow-hidden">
+                <div class="relative w-full md:w-1/2 h-[400px] md:h-auto group cursor-pointer overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Antique military tank in museum"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBBWIS4ErHtQZ9vhujIYGYw78ioMmU1WdElr_SFVqHMKdWESbMnpOcnifq0Koryxyo8zyv8wj7BLc_NP16aeTLwYXwnJ0YzAnOMmoGcKUy29x87LcBllhIsetTvqpMNCTWOuKmBs4D7h9P3LY9qp6ObvAcqvvZmvvr0IqtroxbgdmIPUp4hXSXxjCaletxAk3Lkc02HPLXLTff7sGupI8Sg3agEJjPmMGVjJYVd120XtBmjnatZCwQ1lLOnf4z-itHqgFS1Qb7wUlN");'>
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-slate-900/60 group-hover:bg-slate-900/50 transition-colors flex items-center justify-center">
+                        <div class="text-center p-6">
+                            <span class="material-symbols-outlined text-white text-6xl mb-4">military_tech</span>
+                            <h2 class="text-white text-4xl font-black tracking-tight uppercase">Pabellón de Tanques</h2>
+                            <button
+                                class="mt-6 px-6 py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-primary hover:text-white transition-colors">Explorar
+                                Historia Militar</button>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="relative w-full md:w-1/2 h-[400px] md:h-auto group cursor-pointer overflow-hidden border-t-4 border-white md:border-t-0 md:border-l-4">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="Colonial architecture historic mansion interior"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDvb3rsweK4q4raSVD_3KE1UoWmSNF1PrUuON05xnS4tlF3aFVb0b8zRQq_NBVm_JylWoHfg0E69AGtPrnlpfJ9PYrev7GCSFaM_9Duoa5sv4a2UWeCloG0Fno5KRnpMQDnlf_xHSOeFDej1X3z4M0aa8oanOYJWRZq64RMj8O2hZlt3iM5tz7u26yyOEyNxBfbd1K6bPo4-Ikd-y-BIaZMVH08bRJSP13UVRZQpqCgM0aPH85VkV5qvqCfWpBJda4P1ccWAGs5S5Ln");'>
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-primary/70 group-hover:bg-primary/60 transition-colors flex items-center justify-center">
+                        <div class="text-center p-6">
+                            <span class="material-symbols-outlined text-white text-6xl mb-4">gavel</span>
+                            <h2 class="text-white text-4xl font-black tracking-tight uppercase">Casa Histórica</h2>
+                            <button
+                                class="mt-6 px-6 py-3 bg-white text-primary font-bold rounded-lg hover:bg-slate-900 hover:text-white transition-colors">Descubrir
+                                Vida Colonial</button>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-[90%] md:w-auto">
+                    <div
+                        class="bg-white/95 backdrop-blur-md p-6 md:p-8 rounded-xl shadow-2xl border border-white/50 text-center max-w-lg mx-auto">
+                        <h1 class="text-slate-900 text-3xl md:text-4xl font-black leading-tight tracking-tight mb-2">
+                            Dos Experiencias,<br />Una Entrada Única
+                        </h1>
+                        <p class="text-secondary text-base md:text-lg font-medium">
+                            Explora la ingeniería de combate y la elegancia colonial en un solo recorrido.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <section class="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-12 items-start">
+                    <div class="w-full md:w-1/3">
+                        <div class="bg-primary/5 inline-block p-2 rounded-lg mb-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">school</span>
+                        </div>
+                        <h2 class="text-slate-900 text-3xl md:text-4xl font-black leading-tight mb-4">
+                            Impacto Educativo
+                        </h2>
+                        <p class="text-secondary text-lg mb-8">
+                            Nuestras exhibiciones están diseñadas para fomentar el aprendizaje técnico e histórico,
+                            ofreciendo una inmersión profunda para estudiantes y entusiastas.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 rounded-lg bg-white border border-[#dadee7] shadow-sm">
+                                <p class="text-secondary text-sm font-bold uppercase tracking-wider">Visitantes Anuales
+                                </p>
+                                <p class="text-slate-900 text-3xl font-black mt-1">150k+</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white border border-[#dadee7] shadow-sm">
+                                <p class="text-secondary text-sm font-bold uppercase tracking-wider">Años de Historia
+                                </p>
+                                <p class="text-slate-900 text-3xl font-black mt-1">200+</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white border border-[#dadee7] shadow-sm">
+                                <p class="text-secondary text-sm font-bold uppercase tracking-wider">Artefactos</p>
+                                <p class="text-slate-900 text-3xl font-black mt-1">4.5k</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-white border border-[#dadee7] shadow-sm">
+                                <p class="text-secondary text-sm font-bold uppercase tracking-wider">Talleres</p>
+                                <p class="text-slate-900 text-3xl font-black mt-1">350</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-[#dadee7] bg-white p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">history_edu</span>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-900 text-lg font-bold mb-2">Historia Viva</h3>
+                                <p class="text-secondary text-sm leading-relaxed">Inmersión total en eventos históricos
+                                    clave a través de recreaciones y guías expertos.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-[#dadee7] bg-white p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">precision_manufacturing</span>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-900 text-lg font-bold mb-2">Tecnología Militar</h3>
+                                <p class="text-secondary text-sm leading-relaxed">Análisis detallado de la evolución de
+                                    la ingeniería de combate y mecánica pesada.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-[#dadee7] bg-white p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">architecture</span>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-900 text-lg font-bold mb-2">Arquitectura</h3>
+                                <p class="text-secondary text-sm leading-relaxed">Estudio de la preservación del
+                                    patrimonio y estilos arquitectónicos coloniales.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-[#dadee7] bg-white p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">science</span>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-900 text-lg font-bold mb-2">Ciencia Aplicada</h3>
+                                <p class="text-secondary text-sm leading-relaxed">Laboratorios interactivos sobre
+                                    balística, conservación y restauración.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-[#dadee7] bg-white p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">group</span>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-900 text-lg font-bold mb-2">Visitas Escolares</h3>
+                                <p class="text-secondary text-sm leading-relaxed">Programas curriculares adaptados para
+                                    distintos niveles educativos.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col gap-4 rounded-xl border border-[#dadee7] bg-white p-6 hover:shadow-lg transition-shadow">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">headphones</span>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-900 text-lg font-bold mb-2">Audio Guias</h3>
+                                <p class="text-secondary text-sm leading-relaxed">Narrativas envolventes disponibles en
+                                    8 idiomas diferentes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-gradient-to-br from-[#f0f1f5] to-white py-16 md:py-24 border-t border-[#dadee7]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-slate-900 text-3xl md:text-4xl font-black tracking-tight mb-4">Entradas y
+                            Visitas Combinadas</h2>
+                        <p class="text-secondary text-lg max-w-2xl mx-auto">Elija el pase que mejor se adapte a su
+                            experiencia. Recomendamos la entrada combinada para una visita completa.</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div
+                            class="flex flex-col p-8 bg-white rounded-2xl shadow-sm border border-[#dadee7] hover:border-primary/50 transition-colors">
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Acceso Simple</h3>
+                            <div class="flex items-baseline mb-6">
+                                <span class="text-4xl font-black text-slate-900">$10</span>
+                                <span class="text-secondary ml-2 font-medium">/ persona</span>
+                            </div>
+                            <p class="text-secondary text-sm mb-6">Acceso a elegir entre el Pabellón de Tanques o la
+                                Casa Histórica.</p>
+                            <button
+                                class="w-full py-3 px-4 bg-[#f0f1f5] text-slate-900 font-bold rounded-lg hover:bg-[#e0e2e9] transition-colors mb-6">
+                                Comprar Entrada
+                            </button>
+                            <ul class="space-y-3 flex-1">
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-green-600 mr-3 text-lg">check_circle</span>
+                                    Acceso a 1 Museo
+                                </li>
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-green-600 mr-3 text-lg">check_circle</span>
+                                    Mapa Digital Básico
+                                </li>
+                                <li class="flex items-center text-sm text-slate-400">
+                                    <span class="material-symbols-outlined text-slate-300 mr-3 text-lg">cancel</span>
+                                    Sin Audio Guía
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="flex flex-col p-8 bg-white rounded-2xl shadow-xl border-2 border-primary relative transform md:-translate-y-4 z-10">
+                            <div
+                                class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                                MÁS POPULAR
+                            </div>
+                            <h3 class="text-lg font-bold text-primary mb-2">Visita Combinada</h3>
+                            <div class="flex items-baseline mb-6">
+                                <span class="text-5xl font-black text-slate-900">$18</span>
+                                <span class="text-secondary ml-2 font-medium">/ persona</span>
+                            </div>
+                            <p class="text-secondary text-sm mb-6">La experiencia completa. Acceso ilimitado a ambos
+                                complejos.</p>
+                            <button
+                                class="w-full py-3 px-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30 mb-6">
+                                Comprar Mejor Valor
+                            </button>
+                            <ul class="space-y-3 flex-1">
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-primary mr-3 text-lg">check_circle</span>
+                                    Acceso a Ambos Museos
+                                </li>
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-primary mr-3 text-lg">check_circle</span>
+                                    Audio Guía Premium
+                                </li>
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-primary mr-3 text-lg">check_circle</span>
+                                    Mapa Impreso Exclusivo
+                                </li>
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-primary mr-3 text-lg">check_circle</span>
+                                    Acceso Prioritario
+                                </li>
+                            </ul>
+                        </div>
+                        <div
+                            class="flex flex-col p-8 bg-white rounded-2xl shadow-sm border border-[#dadee7] hover:border-primary/50 transition-colors">
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Estudiantes &amp; Grupos</h3>
+                            <div class="flex items-baseline mb-6">
+                                <span class="text-4xl font-black text-slate-900">$8</span>
+                                <span class="text-secondary ml-2 font-medium">/ persona</span>
+                            </div>
+                            <p class="text-secondary text-sm mb-6">Precio especial para instituciones educativas y
+                                grupos +10.</p>
+                            <button
+                                class="w-full py-3 px-4 bg-[#f0f1f5] text-slate-900 font-bold rounded-lg hover:bg-[#e0e2e9] transition-colors mb-6">
+                                Contactar Ventas
+                            </button>
+                            <ul class="space-y-3 flex-1">
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-green-600 mr-3 text-lg">check_circle</span>
+                                    Acceso Coordinado
+                                </li>
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-green-600 mr-3 text-lg">check_circle</span>
+                                    Guía Privado
+                                </li>
+                                <li class="flex items-center text-sm text-slate-900">
+                                    <span
+                                        class="material-symbols-outlined text-green-600 mr-3 text-lg">check_circle</span>
+                                    Material Didáctico
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="w-full bg-slate-900 text-white relative border-t border-slate-700">
+                <div class="flex flex-col md:flex-row w-full min-h-[600px]">
+                    <div
+                        class="w-full md:w-1/2 bg-slate-800 p-8 md:p-12 lg:p-16 border-b md:border-b-0 md:border-r border-slate-700 flex flex-col">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="material-symbols-outlined text-primary text-4xl">military_tech</span>
+                            <h2 class="text-3xl font-black tracking-tight uppercase">Ases del Blindaje</h2>
+                        </div>
+                        <p class="text-slate-400 mb-8 max-w-md">Líderes estratégicos en nuestras simulaciones de combate
+                            de tanques. Precisión y táctica militar.</p>
+                        <div class="flex-grow space-y-4">
+                            <div
+                                class="flex items-center justify-between p-4 bg-primary rounded-lg transform hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-2xl font-black text-white/40">01</span>
+                                    <div>
+                                        <p class="font-bold text-white text-lg">Comandante Steel</p>
+                                        <span class="text-xs text-blue-200 uppercase font-bold tracking-wider">División
+                                            Pesada</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-2xl font-black text-white">12,450</span>
+                                    <span class="text-xs text-blue-200 uppercase">Puntos</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors border border-slate-600">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-500">02</span>
+                                    <div>
+                                        <p class="font-bold text-white">Iron Track</p>
+                                        <span class="text-xs text-slate-400 uppercase">Reconocimiento</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">10,200</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors border border-slate-600">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-500">03</span>
+                                    <div>
+                                        <p class="font-bold text-white">Panzer Ace</p>
+                                        <span class="text-xs text-slate-400 uppercase">Artillería</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">9,850</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors border border-slate-600">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-500">04</span>
+                                    <div>
+                                        <p class="font-bold text-white">Blitz Driver</p>
+                                        <span class="text-xs text-slate-400 uppercase">Velocidad</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">9,100</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-700/50 rounded-lg hover:bg-slate-700 transition-colors border border-slate-600">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-500">05</span>
+                                    <div>
+                                        <p class="font-bold text-white">Vanguardia 7</p>
+                                        <span class="text-xs text-slate-400 uppercase">Táctica</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">8,750</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="mt-8 w-full py-3 border border-slate-600 rounded-lg text-slate-300 hover:text-white hover:border-white transition-colors font-bold uppercase tracking-wider text-sm">
+                            Ver Ranking Completo
+                        </button>
+                    </div>
+                    <div class="w-full md:w-1/2 bg-slate-900 p-8 md:p-12 lg:p-16 flex flex-col">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="material-symbols-outlined text-white text-4xl">history_edu</span>
+                            <h2 class="text-3xl font-black tracking-tight uppercase">Guardianes de la Historia</h2>
+                        </div>
+                        <p class="text-slate-400 mb-8 max-w-md">Expertos en patrimonio y trivia histórica. Los mayores
+                            conocedores de nuestro legado colonial.</p>
+                        <div class="flex-grow space-y-4">
+                            <div
+                                class="flex items-center justify-between p-4 bg-primary rounded-lg transform hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-2xl font-black text-white/40">01</span>
+                                    <div>
+                                        <p class="font-bold text-white text-lg">Scholar Ana</p>
+                                        <span
+                                            class="text-xs text-blue-200 uppercase font-bold tracking-wider">Investigadora</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-2xl font-black text-white">150</span>
+                                    <span class="text-xs text-blue-200 uppercase">Aciertos</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-slate-750 border border-slate-700 hover:border-slate-500 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-600">02</span>
+                                    <div>
+                                        <p class="font-bold text-white">History Buff</p>
+                                        <span class="text-xs text-slate-400 uppercase">Coleccionista</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">142</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-slate-750 border border-slate-700 hover:border-slate-500 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-600">03</span>
+                                    <div>
+                                        <p class="font-bold text-white">Curator Max</p>
+                                        <span class="text-xs text-slate-400 uppercase">Restauración</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">138</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-slate-750 border border-slate-700 hover:border-slate-500 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-600">04</span>
+                                    <div>
+                                        <p class="font-bold text-white">Lady Archive</p>
+                                        <span class="text-xs text-slate-400 uppercase">Documentación</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">125</span>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between p-4 bg-slate-800 rounded-lg hover:bg-slate-750 border border-slate-700 hover:border-slate-500 transition-colors">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-xl font-bold text-slate-600">05</span>
+                                    <div>
+                                        <p class="font-bold text-white">Old Soul</p>
+                                        <span class="text-xs text-slate-400 uppercase">Genealogía</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-xl font-bold text-metallic">119</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="mt-8 w-full py-3 border border-slate-700 rounded-lg text-slate-400 hover:text-white hover:border-white transition-colors font-bold uppercase tracking-wider text-sm">
+                            Unirse al Desafío
+                        </button>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-white py-16 border-t border-[#dadee7]">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-10">
+                        <h2 class="text-primary text-2xl md:text-3xl font-black tracking-tight mb-2">
+                            Nuestros Aliados Estratégicos
+                        </h2>
+                        <div class="w-16 h-1 bg-primary/20 mx-auto rounded-full"></div>
+                    </div>
+                    <div
+                        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 items-center justify-items-center opacity-90">
+                        <div class="group cursor-pointer transition-all duration-300 transform hover:-translate-y-1">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-400 group-hover:text-primary transition-colors duration-300">account_balance</span>
+                        </div>
+                        <div class="group cursor-pointer transition-all duration-300 transform hover:-translate-y-1">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-400 group-hover:text-primary transition-colors duration-300">apartment</span>
+                        </div>
+                        <div class="group cursor-pointer transition-all duration-300 transform hover:-translate-y-1">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-400 group-hover:text-primary transition-colors duration-300">foundation</span>
+                        </div>
+                        <div class="group cursor-pointer transition-all duration-300 transform hover:-translate-y-1">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-400 group-hover:text-primary transition-colors duration-300">corporate_fare</span>
+                        </div>
+                        <div class="group cursor-pointer transition-all duration-300 transform hover:-translate-y-1">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-400 group-hover:text-primary transition-colors duration-300">local_library</span>
+                        </div>
+                        <div class="group cursor-pointer transition-all duration-300 transform hover:-translate-y-1">
+                            <span
+                                class="material-symbols-outlined text-6xl text-slate-400 group-hover:text-primary transition-colors duration-300">museum</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-background-dark text-white pt-16 pb-8 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                    <div class="col-span-1 lg:col-span-1">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white text-sm">museum</span>
+                            </div>
+                            <span class="font-bold text-lg tracking-tight">MUSEUM COMPLEX</span>
+                        </div>
+                        <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                            <div class="flex justify-between items-center mb-2 border-b border-slate-700 pb-2">
+                                <span class="text-slate-400 text-xs uppercase font-bold">Visitas Hoy</span>
+                                <span class="text-green-400 font-mono font-bold">342</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-400 text-xs uppercase font-bold">Total Año</span>
+                                <span class="text-white font-mono font-bold">150,420</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-primary">Explorar</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a class="hover:text-white transition-colors" href="#">Exhibiciones Actuales</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Colección de Tanques</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Historia de la Casa</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Eventos Especiales</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-primary">Visita</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a class="hover:text-white transition-colors" href="#">Horarios y Precios</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Cómo Llegar</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Accesibilidad</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold mb-4 text-primary">Boletín</h4>
+                        <p class="text-slate-400 text-sm mb-4">Recibe noticias sobre nuevas exhibiciones y eventos
+                            exclusivos.</p>
+                        <form class="flex flex-col gap-2">
+                            <input
+                                class="bg-slate-800 border-slate-700 text-white text-sm rounded-lg focus:ring-primary focus:border-primary w-full p-2.5"
+                                placeholder="Tu correo electrónico" type="email" />
+                            <button
+                                class="bg-primary text-white text-sm font-bold py-2.5 px-4 rounded-lg hover:bg-primary/90 transition-colors"
+                                type="button">
+                                Suscribirse
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-slate-500 text-sm">© 2023 Museum Complex. Todos los derechos reservados.</p>
+                    <div class="flex gap-6 text-sm text-slate-500">
+                        <a class="hover:text-white transition-colors" href="#">Privacidad</a>
+                        <a class="hover:text-white transition-colors" href="#">Términos</a>
+                        <a class="hover:text-white transition-colors" href="#">Cookies</a>
+                    </div>
+                    <div class="flex gap-4">
+                        <a class="text-slate-400 hover:text-white transition-colors" href="#"><span
+                                class="material-symbols-outlined">public</span></a>
+                        <a class="text-slate-400 hover:text-white transition-colors" href="#"><span
+                                class="material-symbols-outlined">share</span></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

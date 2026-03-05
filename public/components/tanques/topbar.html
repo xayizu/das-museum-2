@@ -1,0 +1,168 @@
+<!-- Topbar (Museo de Tanques - Blue/White Theme) -->
+<div class="topbar-global topbar-main footer-fusion-tanks !fixed">
+    <div
+        class="topbar-container relative z-10 w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
+        <!-- Left: Branding & Back -->
+        <div class="w-full md:w-auto flex items-center justify-center md:justify-start relative mb-2 md:mb-0">
+            <!-- Menú Lateral (Hamburguesa) -->
+            <button aria-label="Abrir Menú"
+                class="absolute left-0 md:relative md:left-auto util-btn group !bg-transparent !border-none md:mr-4"
+                onclick="window.toggleLeftMenu()">
+                <span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">menu</span>
+            </button>
+            <a class="topbar-brand" href="museo-tanques/1.0index.html">
+                <img alt="Logo" class="h-10 md:h-12 w-auto invert brightness-200" data-i18n-alt="logo"
+                    src="recursos/images/museo-tanques/template/tanque.svg" />
+                <div class="flex flex-col leading-none">
+                    <span
+                        class="font-black text-2xl md:text-3xl tracking-tight uppercase bg-clip-text text-transparent bg-gradient-to-r from-primary via-white to-primary animate-text-fusion"
+                        data-i18n="museo_de_tanques_title">MUSEO DE TANQUES</span>
+                </div>
+            </a>
+        </div>
+        <!-- Right: Utilities -->
+        <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end">
+            <!-- Volver al Inicio -->
+            <a aria-label="Volver al Inicio" class="util-btn group" data-i18n-tooltip="tooltip_back_home"
+                data-tooltip="Volver al Inicio" href="index.html">
+                <span
+                    class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+            </a>
+            <div class="util-divider"></div>
+
+            <!-- Selector de Museo -->
+            <a aria-label="Ir a Casa Histórica" class="util-btn group" data-i18n-tooltip="tooltip_goto_casa"
+                data-tooltip="Ir a Casa Histórica" href="casa-historica/1.0index.html">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform">castle</span>
+            </a>
+            <div class="util-divider"></div>
+            <button aria-label="Buscar" class="util-btn search-toggle" data-i18n-tooltip="tooltip_search"
+                data-tooltip="Búsqueda Global" onclick="window.handleSearch()"><span
+                    class="material-symbols-outlined">search</span></button>
+            <div class="util-divider"></div>
+            <button aria-label="Cambiar Idioma" class="util-btn lang-toggle" data-i18n-tooltip="tooltip_lang"
+                data-tooltip="Cambiar Idioma" onclick="window.handleLang()">
+                <span class="flag-es font-bold text-xs tracking-widest uppercase">
+                    <span class="lang-short">ES</span><span class="lang-full">PAÑOL</span>
+                </span>
+                <span class="flag-en hidden font-bold text-xs tracking-widest uppercase">
+                    <span class="lang-short">EN</span><span class="lang-full">GLISH</span>
+                </span>
+                <span class="flag-ec hidden font-bold text-xs tracking-widest uppercase">
+                    <span class="lang-short">KI</span><span class="lang-full">CHWA</span>
+                </span>
+            </button>
+            <div class="util-divider"></div>
+            <button aria-label="Modo Día/Noche" class="util-btn theme-toggle" data-i18n-tooltip="tooltip_theme"
+                data-tooltip="Modo Día / Noche" onclick="window.toggleTheme()"><span
+                    class="material-symbols-outlined">light_mode</span></button>
+            <div class="util-divider"></div>
+            <button aria-label="Música de Ambiente" class="util-btn bg-music-toggle playing"
+                data-i18n-tooltip="tooltip_music" data-tooltip="Música de Ambiente"
+                onclick="window.toggleBackgroundMusic()"><span id="bg-music-icon"></span></button>
+            <div class="util-divider"></div>
+            <div class="relative">
+                <a aria-label="Perfil de Usuario" class="util-btn" data-i18n-tooltip="tooltip_profile"
+                    data-tooltip="Mi Perfil" id="user-profile-btn" href="javascript:void(0)"
+                    onclick="AuthManager.handleUserButtonClick()">
+                    <span class="material-symbols-outlined">account_circle</span>
+                </a>
+
+                <!-- User Dropdown Menu -->
+                <div id="user-dropdown"
+                    class="absolute right-0 top-full mt-2 w-64 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-xl shadow-2xl overflow-hidden hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                    <!-- ... (Auth Dropdown content same as index.html) ... -->
+                    <div class="px-4 py-4 border-b border-slate-800 bg-slate-800/20">
+                        <div class="flex items-center gap-3">
+                            <div id="dropdown-user-img"
+                                class="size-10 rounded-full border border-primary/30 overflow-hidden bg-slate-800 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary">account_circle</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="dropdown-user-name" class="text-sm font-medium text-white truncate">Agente
+                                    TAPI</span>
+                                <span id="dropdown-user-email"
+                                    class="text-xs text-slate-400 truncate font-mono">usuario@ejemplo.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-2">
+                        <a href="perfil.html"
+                            class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">person</span>
+                            <span data-i18n="ver_perfil">Ver mi Perfil</span>
+                        </a>
+                        <a href="mis-logros.html"
+                            class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">military_tech</span>
+                            <span data-i18n="mis_logros">Mis Logros</span>
+                        </a>
+                    </div>
+                    <div class="border-t border-slate-800 py-2">
+                        <button id="logout-btn" onclick="AuthManager.logout()"
+                            class="flex items-center w-full gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-950/30 transition-colors text-left group">
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">logout</span>
+                            <span data-i18n="cerrar_sesion">Cerrar Sesión</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Animated Breathing Border (Tank Theme Blue/White) -->
+    <div class="header-fusion-border-tanks"></div>
+</div>
+
+<!-- Search Modal -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] hidden items-start justify-center pt-32 opacity-0 transition-opacity duration-300"
+    id="global-search-modal">
+    <!-- ... (Search modal content) ... -->
+    <div class="bg-surface-dark dark:bg-slate-900 border border-white/10 dark:border-slate-700 w-full max-w-2xl p-6 shadow-2xl rounded-xl transform scale-95 transition-transform duration-300"
+        id="search-modal-content">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-white dark:text-slate-100 font-bold text-lg flex items-center gap-2"
+                data-i18n="search_bsqueda_global">
+                <span class="material-symbols-outlined">search</span>
+                Búsqueda Tanques
+            </h3>
+            <button
+                class="text-gray-400 hover:text-white dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
+                onclick="closeSearch()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="relative">
+            <input
+                class="w-full bg-black/50 dark:bg-slate-800 border border-white/20 dark:border-slate-600 rounded-lg px-4 py-4 text-white dark:text-slate-100 focus:outline-none focus:border-primary dark:focus:border-blue-500 text-lg"
+                data-i18n-placeholder="escribe_para_buscar_contenidos_en_esta" id="global-search-input"
+                onkeyup="if(event.key === 'Enter') executeSearch()" placeholder="Escribe para buscar contenidos..."
+                type="text" />
+            <button
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md text-sm font-bold uppercase tracking-wider transition-colors"
+                data-i18n="buscar" onclick="executeSearch()">Buscar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Auth Modal -->
+<div class="fixed inset-0 bg-black/80 backdrop-blur-md z-[210] hidden items-center justify-center opacity-0 transition-opacity duration-300"
+    id="auth-modal">
+    <!-- Same Auth structure as index.html -->
+    <div class="bg-slate-900/90 border border-white/10 w-full max-w-md p-8 shadow-2xl rounded-2xl transform scale-95 transition-all duration-300 relative"
+        id="auth-modal-content">
+        <button class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+            onclick="AuthManager.hideModal()">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <div id="auth-form-view">
+            <div class="text-center mb-8">
+                <h3 id="auth-title" class="text-2xl font-black text-white uppercase tracking-tight"
+                    data-i18n="auth_iniciar_sesin">Iniciar Sesión</h3>
+            </div>
+            <!-- ... form content removed for brevity but same as index ... -->
+        </div>
+    </div>
+</div>

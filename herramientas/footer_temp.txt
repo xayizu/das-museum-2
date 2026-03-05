@@ -1,0 +1,288 @@
+﻿
+>     <footer 
+class="bg-[#05080f] pt-20 
+border-t border-white/5">
+          <div 
+class="max-w-[1400px] mx-auto 
+px-6 pb-20">
+              <div class="grid 
+grid-cols-1 md:grid-cols-4 
+gap-12 mb-20">
+                  <!-- Branding 
+-->
+                  <div 
+class="col-span-1 md:col-span-1">
+                      <div 
+class="flex items-center gap-2 
+text-white mb-8">
+                          <span 
+class="material-symbols-outlined 
+text-3xl text-primary">military_t
+ech</span>
+                          <span 
+class="font-black text-lg 
+tracking-tight uppercase">MUSEO 
+DE TANQUES</span>
+                      </div>
+                      <p 
+class="text-gray-500 text-sm 
+leading-relaxed mb-8">
+                          
+Preservando la historia del 
+combate blindado para las 
+futuras generaciones. Una 
+experiencia
+                          
+educativa inmersiva Ãºnica en el 
+mundo.
+                      </p>
+                      <div 
+class="flex gap-4">
+                          <a 
+href="#"
+                              
+class="size-10 rounded-full 
+bg-white/5 flex items-center 
+justify-center text-gray-400 
+hover:bg-primary 
+hover:text-white transition-all">
+                              
+<span 
+class="material-symbols-outlined 
+text-sm">public</span>
+                          </a>
+                          <a 
+href="#"
+                              
+class="size-10 rounded-full 
+bg-white/5 flex items-center 
+justify-center text-gray-400 
+hover:bg-primary 
+hover:text-white transition-all">
+                              
+<span 
+class="material-symbols-outlined 
+text-sm">photo_camera</span>
+                          </a>
+                      </div>
+                  </div>
+  
+                  <!-- Links -->
+                  <div>
+                      <h4
+                          
+class="text-white text-xs 
+font-bold uppercase 
+tracking-widest mb-8 border-l-2 
+border-primary pl-3">
+                          
+Explora</h4>
+                      <ul 
+class="flex flex-col gap-4 
+text-gray-400 text-sm">
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">Tour Virtual 
+360Â°</a></li>
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">GalerÃa de 
+Tanques</a></li>
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">Exhibiciones 
+Temporales</a>
+                          </li>
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">Calendario de 
+Eventos</a></li>
+                      </ul>
+                  </div>
+  
+                  <!-- Links -->
+                  <div>
+                      <h4
+                          
+class="text-white text-xs 
+font-bold uppercase 
+tracking-widest mb-8 border-l-2 
+border-primary pl-3">
+                          
+InformaciÃ³n</h4>
+                      <ul 
+class="flex flex-col gap-4 
+text-gray-400 text-sm">
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">Horarios y 
+Precios</a></li>
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">CÃ³mo 
+llegar</a></li>
+                          <li><a 
+href="#" 
+class="hover:text-primary 
+transition-colors">Grupos 
+Escolares</a></li>
+                          <li><a 
+href="#" 
+class="hover:text-primary transit
+ion-colors">Accesibilidad</a></li
+>
+                          <li><a 
+href="preguntas.html" 
+class="hover:text-primary 
+transition-colors">Preguntas
+                                 
+ Frecuentes</a></li>
+                          <li><a 
+href="donaciones.html" 
+class="hover:text-primary 
+transition-colors">Donaciones</a>
+                          </li>
+                      </ul>
+                  </div>
+  
+                  <!-- Contact 
+-->
+                  <div>
+                      <h4
+                          
+class="text-white text-xs 
+font-bold uppercase 
+tracking-widest mb-8 border-l-2 
+border-primary pl-3">
+                          
+Contacto</h4>
+                      <ul 
+class="flex flex-col gap-6 
+text-gray-400 text-sm">
+                          <li 
+class="flex items-start gap-3">
+                              
+<span 
+class="material-symbols-outlined 
+text-primary">location_on</span>
+                              
+<span>Av. del EjÃ©rcito 
+1945,<br>Ciudad Capital, CP 
+28000</span>
+                          </li>
+                          <li 
+class="flex items-center gap-3">
+                              
+<span 
+class="material-symbols-outlined 
+text-primary">call</span>
+                              
+<span>+34 91 5555 4188</span>
+                          </li>
+                          <li 
+class="flex items-center gap-3">
+                              
+<span 
+class="material-symbols-outlined 
+text-primary">mail</span>
+                              
+<span
+                                 
+ class="hover:text-primary 
+cursor-pointer transition-colors"
+>contacto@museotanques.com</span>
+                          </li>
+                      </ul>
+  
+                  </div>
+              </div>
+  
+              <!-- Stats Bar -->
+              <div
+                  
+class="border-t border-white/10 
+pt-8 flex flex-col md:flex-row 
+justify-between items-center 
+bg-white/5 p-6 rounded-xl">
+                  <div 
+class="flex items-center gap-4 
+mb-4 md:mb-0">
+                      <div 
+class="size-2 rounded-full 
+bg-green-500 
+animate-pulse"></div>
+                      <span 
+class="text-white font-bold 
+text-xs uppercase 
+tracking-widest">Registro de
+                          
+Operaciones</span>
+                  </div>
+                  <div 
+class="flex gap-12">
+                      <div 
+class="text-right">
+                          <span 
+class="block text-[10px] 
+text-gray-500 uppercase 
+tracking-widest">VehÃculos</span>
+                          <span 
+class="block text-xl font-mono 
+font-bold 
+text-white">2,845</span>
+                      </div>
+                      <div 
+class="text-right">
+                          <span 
+class="block text-[10px] 
+text-gray-500 uppercase 
+tracking-widest">Total 
+Marchas</span>
+                          <span 
+class="block text-xl font-mono 
+font-bold text-white">1,029,<span
+                                 
+ class="text-primary">482</span><
+/span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Copyright -->
+          <div class="bg-black 
+py-4 border-t border-white/5">
+              <div
+                  
+class="max-w-[1400px] mx-auto 
+px-6 flex justify-between 
+items-center text-[10px] 
+text-gray-600 uppercase">
+                  <p>Â© 2026 
+Museo de Tanques. Todos los 
+derechos reservados.</p>
+                  <div 
+class="flex gap-6">
+                      <a 
+href="#" 
+class="hover:text-white">PolÃ
+tica de Privacidad</a>
+                      <a 
+href="#" class="hover:text-white"
+>TÃ©rminos de Uso</a>
+                  </div>
+              </div>
+          </div>
+      </footer>
+  
+  </body>
+  
+  </html>
+
+

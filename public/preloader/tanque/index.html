@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  PRELOADER — MUSEO DE TANQUES BLINDADOS  (Tanque SVG Animado)           ║
+  ║  Archivo  : preloader/tanque/index.html                                 ║
+  ║  Estilos  : preloader/tanque/style.css                                  ║
+  ║  Uso      : Incrustado via <iframe> en public/index.html (lado izq.)    ║
+  ║                                                                         ║
+  ║  PALETA DE COLORES PRINCIPAL:                                           ║
+  ║    Verde casco   #4b5e40 / #5d7252 / #3e4d35                           ║
+  ║    Negro sombra  #1f2615 / #111111                                      ║
+  ║    Oruga         #1a1e16 / #3e4d35                                      ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cargando - Museo de Tanques Blindados de Riobamba</title>
+    <!-- Hoja de estilos local: animaciones CSS, clases de rotación y polvo -->
+    <link href="style.css" rel="stylesheet" />
+    <!-- Tipografías militares: Share Tech Mono (HUD/datos) + Black Ops One (títulos) -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Black+Ops+One&amp;display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- SUELO / FONDO -->
+        <div class="suelo"></div>
+        <div class="radar-lines"></div>
+        <div class="tank-container">
+            <!-- SVG TANK START -->
+            <!-- Adjusted viewBox to prevent clipping: Wider (650) for flash, Taller (350) for bounce -->
+            <svg id="tank-svg" style="overflow: visible;" version="1.1" viewbox="70 0 680 340" xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- ═══════════════════════════════════════════════════════════
+                     ★  ÍNDICE DE GRUPOS SVG  ★
+                     Usa Ctrl+F con el ID para saltar a cada sección.
+                     ═══════════════════════════════════════════════════════════
+
+                     0. DEFS GLOBALES  ..................  <defs> (filters + gradients)
+                        • desenfoquePolvo  — Blur suave  (stdDev 4)  para nubes de polvo
+                        • desenfoqueFuego  — Blur fino   (stdDev 2.5) para destellos
+                        • desenfoqueHumo   — Blur fuerte (stdDev 8)  para escape diesel
+                        • gradienteCasco   — Verde militar (top claro → base → sombra)
+                        • gradienteOruga   — Negro metalizado (oscuro → negro profundo)
+                        • gradienteRueda   — Radial verde → negro (efecto volumen)
+                        • gradienteInferior— Panza del chasis (verde → negro profundo)
+
+                     1. POLVO (Dust)  ...................  ID: GrupoPolvoSvg
+                        Partículas borrosas animadas detrás de las orugas.
+                        NOTA: Renderizado AL FRENTE (al final del SVG) para superponerse.
+
+                     2. TORRETA (Turret)  ...............  ID: PosicionadorTorreta
+                        Posicionador raíz de toda la cabeza del tanque.
+                        2.1  Cuello oscilante  ..........  ID: GrupoCuelloTorreta
+                        2.2  Torreta principal  ..........  ID: TorretaOscilante
+                             2.2.1  Cañón principal  .....  ID: GrupoCanon
+                             2.2.2  Forma de la torreta   ID: TurretShape
+                             2.2.3  Escarapela tricolor    ID: GrupoEscarapela
+                             2.2.4  Bidón de combustible   ID: EstanteBidon
+                             2.2.5  Lanzadores de humo     ID: LanzadoresHumo
+                             2.2.6  Cúpula del comandante  ID: CupulaComandante
+                             2.2.7  Ametralladora  ..........  ID: EnsamblajeAmetralladora
+                             2.2.8  Antena con bandera  ...  ID: EnsamblajeAntena
+
+                     3. CHASIS (Hull)  ..................  ID: Casco
+                        3.1  Rueda de repuesto  .........  ID: GrupoRuedaRepuesto
+                        3.2  Cuerpo del chasis  ..........  ID: GrupoCuerpoCasco / HullBody
+                        3.3  Escape lateral (3 bocas)    [sin ID, grupo anónimo]
+                        3.4  Línea de faldón  ............  ID: GrupoLineaGuardabarros
+                        3.5  Guardabarros trasero  .......  ID: GrupoGuardabarrosTrasero
+                        3.6  Guardabarros delantero (×2)   ID: GrupoGuardabarrosDelantero
+
+                     4. SUSPENSIÓN Y TREN DE RODAJE  ....  ID: GrupoSuspension
+                        4.1  Panza del chasis  ...........  ID: GrupoInferiorCasco / HullUnderside
+                        4.2  Conjunto ruedas + orugas  ...  ID: OrugasYRuedas
+                             • Rueda motriz  (derecha, elevada)   translate(348, 205)
+                             • Rodillos de retorno  (×4 superiores, inclinados)
+                             • Rueda tensora (izquierda)  translate(64, 216)
+                             • Ruedas de carretera  (×5)  translate(106…298, 230)
+                             • Oruga / Track path  .........  ID: GrupoOruga
+                     ═══════════════════════════════════════════════════════════ -->
+                <!-- ─────────────────────────────────────────────────────────
+                     0. DEFS GLOBALES — Filtros SVG y Gradientes de color
+                     ───────────────────────────────────────────────────────── -->
+                <defs>
+                    <!-- Blur suave: nubes de polvo y partículas de tierra -->
+                    <filter height="200%" id="desenfoquePolvo" width="200%" x="-50%" y="-50%">
+                        <fegaussianblur in="SourceGraphic" stddeviation="10"></fegaussianblur>
+                    </filter>
+                    <!-- Blur fino: núcleo de fuego y destellos del cañón -->
+                    <filter height="200%" id="desenfoqueFuego" width="200%" x="-50%" y="-50%">
+                        <fegaussianblur in="SourceGraphic" stddeviation="2.5"></fegaussianblur>
+                    </filter>
+                    <!-- Blur fuerte: humo diesel del tubo de escape -->
+                    <filter height="400%" id="desenfoqueHumo" width="400%" x="-100%" y="-100%">
+                        <fegaussianblur in="SourceGraphic" stddeviation="8"></fegaussianblur>
+                    </filter>
+                    <!-- Filtro para redondear esquinas sin engrosar el trazo -->
+                    <filter id="suavizarEsquinas">
+                        <fegaussianblur in="SourceGraphic" stddeviation="2"></fegaussianblur>
+                        <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                            result="gooey"></fecolormatrix>
+                    </filter>
+                </defs>
+                <!-- ======================================================================== -->
+                <!-- Grupo maestro: traslada todo el tanque en el canvas SVG -->
+                <!-- ★ Para reposicionar el tanque completo: cambia translate(X, Y) aquí -->
+                <g id="TanqueMaestro" transform="translate(140, 60)">
+
+                    <!-- ─────────────────────────────────────────────────────
+                         DEFS LOCALES — Gradientes del grupo TanqueMaestro
+                         ───────────────────────────────────────────────────── -->
+                    <defs>
+                        <!-- Casco / Torreta: verde militar degradado de arriba a abajo -->
+                        <lineargradient id="gradienteCasco" x1="0%" x2="0%" y1="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#5d7252;stop-opacity:1"></stop> <!-- Claro -->
+                            <stop offset="50%" style="stop-color:#4b5e40;stop-opacity:1"></stop> <!-- Medio -->
+                            <stop offset="100%" style="stop-color:#35442b;stop-opacity:1"></stop><!-- Sombra -->
+                        </lineargradient>
+                        <!-- Oruga: negro metalizado (banda de acero) -->
+                        <lineargradient id="gradienteOruga" x1="0%" x2="0%" y1="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1"></stop>
+                            <stop offset="100%" style="stop-color:#111;stop-opacity:1"></stop>
+                        </lineargradient>
+                        <!-- Ruedas: radial verde → negro (volumen esférico) -->
+                        <radialgradient cx="50%" cy="50%" fx="50%" fy="50%" id="gradienteRueda" r="50%">
+                            <stop offset="40%" style="stop-color:#4b5e40;stop-opacity:1"></stop>
+                            <stop offset="100%" style="stop-color:#000;stop-opacity:1"></stop>
+                        </radialgradient>
+                        <!-- Panza del chasis: verde claro (techo) → negro sombra (base) -->
+                        <lineargradient id="gradienteInferior" x1="0%" x2="0%" y1="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#4b5e40;stop-opacity:1"></stop>
+                            <stop offset="40%" style="stop-color:#2a3320;stop-opacity:1"></stop>
+                            <stop offset="100%" style="stop-color:#111;stop-opacity:1"></stop>
+                        </lineargradient>
+                    </defs>
+                    <!-- ======================================================================== -->
+                    <!-- ======================================================================== -->
+                    <!-- 2. GRUPO TORRETA (Turret Positioner) -->
+                    <!-- ======================================================================== -->
+                    <!-- ======================================================================== -->
+                    <!-- 
+                        ★ CONTROL 2 - TORRETA COMPLETA (HEAD) ★
+                        - Posicion: translate(X, Y) -> Mueve TODA la cabeza (Torre + Cañon + Cuello).
+                    -->
+                    <!-- GRUPO DE POSICION (Lo que editas tú) -->
+                    <g id="PosicionadorTorreta" transform="translate(155, 185)">
+                        <!-- GRUPO DE ANIMACION (Lo que se mueve solo) -->
+                        <g id="GrupoTorreta">
+                            <!-- 2.1 CUELLO OSCILANTE (Neck) -->
+                            <!-- Ondulaciones detalladas para el "cuello" -->
+                            <!-- CUELLO DE LA TORRETA (Configurable) -->
+                            <!-- 
+                                ★ CONFIGURACION CUELLO:
+                                - Posición: Edita 'translate(X, Y)'.
+                                - Tamaño: Edita 'scale(S)'.
+                                - Rotación: Edita 'rotate(GRADOS)'.
+                            -->
+                            <g id="GrupoCuelloTorreta" transform="translate(0, -10) scale(1) rotate(0)">
+                                <path d="M-60,15 
+                                   L-50,-29 
+                                   L10,-55 
+                                   L 55,-25  
+                                   L65,-20 
+                                   L80, 20                                    
+                                   Z" fill="#3e4d35" id="CuelloTorreta" stroke="#1f2615" stroke-width="1"></path>
+                            </g>
+                            <!-- 2.2 PARTE SUPERIOR OSCILANTE (Turret Main) -->
+                            <g id="TorretaOscilante" transform="translate(0, -20)">
+                                <!-- Cuerpo de la Torreta Principal Fundida - Refinamiento de la forma de la "Nuca" -->
+                                <!-- ★ MOVER EL CAÑÓN: edita translate(X, Y) en GrupoCanonPos aquí abajo ★ -->
+                                <!-- GrupoCanonPos NO tiene animación CSS → el transform HTML funciona normal -->
+                                <g id="GrupoCanonPos" style="--barrel-len: 210px;" transform="translate(40, -25)">
+                                    <!-- GrupoCanon: SOLO maneja el retroceso (delta ±50px). NO editar posición aquí -->
+                                    <g id="GrupoCanon">
+                                        <!-- 4. CAÑÓN PRINCIPAL (Tubo) — renderizado PRIMERO = queda DETRÁS -->
+                                        <!-- x=90 es el inicio, x=300 es el final (90 + barrel-len 210px) -->
+                                        <!-- Izquierda: y -8 a 8 = 16px | Derecha: y -5 a 5 = 10px (afina hacia la punta) -->
+                                        <g id="ParteTuboPrincipal" transform="translate(-78, -06) scale(1.3)">
+                                            <path fill="url(#gradienteCasco)" stroke="#1f2615" stroke-width="1"
+                                                d="M90,-8 L250,-5 L250,5 L90,8 Z"></path>
+                                            <!-- Texto en el cañón -->
+                                            <text fill="#DCDCDC" font-family="'Black Ops One', cursive" font-size="10"
+                                                opacity="1" style="letter-spacing: -1px;" text-anchor="middle" x="170"
+                                                y="3">11
+                                                BCB " GALÁPAGOS "</text>
+                                        </g>
+
+                                        <!-- 2. BASE DEL CAÑÓN (Sección gruesa) — renderizada DESPUÉS = queda ENCIMA -->
+                                        <g id="ParteBaseCanon" transform="translate(-25, 0) scale(1.3)">
+                                            <rect fill="url(#gradienteCasco)" height="20" stroke="#1f2615" width="40"
+                                                x="14" y="-20"></rect>
+                                        </g>
+                                        <g id="ParteBaseCanon" transform="translate(-25, 0) scale(1.3)">
+                                            <rect fill="url(#gradienteCasco)" height="5" stroke="#1f2615" width="20"
+                                                x="20" y="-10"></rect>
+                                        </g>
+                                        <!-- GRUPO PUNTA DE CAÑÓN (Se mueve automáticamente con el largo) -->
+                                        <g id="EnsamblajePuntaCanon"
+                                            style="transform: translateX(calc(90px + var(--barrel-len)))">
+                                            <!-- 5. FRENO DE BOCA Y FLASH (Controles en Grupo Interior) -->
+                                            <!-- PUEDES EDITAR LA POSICIÓN RELATIVA DE LA PUNTA AQUI: -->
+                                            <g id="ParteFrenoBoca" transform="translate(-54, -06) scale(0.8)">
+                                                <!-- Freno de Boca (Geometría Exacta) -->
+                                                <g transform="translate(0, 0)">
+                                                    <!-- Collarín Escalonado -->
+                                                    <path d="M0,-8 L5,-8 L5,-9 L10,-9 L10,9 L5,9 L5,8 L0,8 Z"
+                                                        fill="url(#gradienteCasco)" stroke="#1f2615" stroke-width="1">
+                                                    </path>
+                                                    <!-- Cuerpo Principal (Campana y Cono - "Achatada") -->
+                                                    <path d="M10,-9 
+                                                       Q20,-9 26,-17
+                                                       L30,-17
+                                                       L43,-3
+                                                       L43,3
+                                                       L30,17
+                                                       L26,17
+                                                       Q20,9 10,9 
+                                                       Z" fill="url(#gradienteCasco)" stroke="#1f2615"
+                                                        stroke-width="1.5"></path>
+                                                    <!-- GRUPO VENTANA Y CONO (EDITABLES INDIVIDUALMENTE) -->
+                                                    <!-- 1. VENTANA TRAPEZOIDAL -->
+                                                    <!-- 
+                                                    ★ CONFIGURAR VENTANA:
+                                                    - Mover: translate(X, Y)
+                                                    - Escalar: scale(S)
+                                                    - Rotar EJE PROPIO: rotate(GRADOS, 35, 0) <--- El 35,0 es el centro
+                                                -->
+                                                    <g id="VentanaFrenoBoca"
+                                                        transform="translate(-5, 0) scale(0.9) rotate(180, 35, 0)">
+                                                        <path d="M26,-14 L44,-5 L44,5 L26,14 Q24,0 26,-14 Z" fill="none"
+                                                            opacity="0.4" stroke="#2a3025" stroke-width="1"></path>
+                                                    </g>
+                                                    <!-- 2. CONO NEGRO DE LA BOCA -->
+                                                    <!-- 
+                                                    ★ CONFIGURAR CONO NEGRO:
+                                                    - Mover: translate(X, Y)
+                                                    - Escalar: scale(S)
+                                                    - Rotar EJE PROPIO: rotate(GRADOS, 35, 0) <--- El 35,0 es el centro
+                                                -->
+                                                    <g id="ConoNegroBoca"
+                                                        transform="translate(-7, 0) scale(0.9) rotate(180, 35, 0)">
+                                                        <path d="M28,-12 
+                                                           L42,-5 
+                                                           L42,5 
+                                                           L28,12 
+                                                           L27,0 
+                                                           Z" fill="#1a1a1a" stroke="#000" stroke-width="1"></path>
+                                                    </g>
+                                                    <!-- Detalles -->
+                                                    <rect fill="#111" height="4" rx="2" stroke="#3e4d35"
+                                                        stroke-width=" 0.5" width="6" x="11" y="-2"></rect>
+                                                </g>
+                                                <!-- DESTELLO DE DISPARO (Posición relativa: 50px desde la punta) -->
+                                                <g id="PosicionadorFogonazo" transform="translate(60, 0)">
+                                                    <!-- EXPLOSIÓN MEJORADA: Humo + Fuego difuminado -->
+                                                    <g id="GrupoFogonazo" opacity="0">
+                                                        <!-- 1. Nube de Humo del Cañón (Reemplaza al círculo blanco, usa filtro dustBlur) -->
+                                                        <g class="muzzle-smoke" filter="url(#desenfoquePolvo)">
+                                                            <!-- Mezcla de humos tierra y grises -->
+                                                            <circle cx="0" cy="0" fill="#8B7355" opacity="0.9" r="12">
+                                                            </circle>
+                                                            <circle cx="12" cy="-6" fill="#cfd8dc" opacity="0.9" r="14">
+                                                            </circle>
+                                                            <circle cx="-5" cy="8" fill="#705b45" opacity="0.9" r="12">
+                                                            </circle>
+                                                            <circle cx="8" cy="8" fill="#bbb" opacity="0.8" r="11">
+                                                            </circle>
+                                                            <circle cx="15" cy="0" fill="#8B7355" opacity="0.6" r="13">
+                                                            </circle>
+                                                        </g>
+                                                        <!-- 2. Núcleo de Fuego (Difuminado suave) -->
+                                                        <g class="muzzle-fire" filter="url(#desenfoqueFuego)">
+                                                            <!-- Fogonazo central intenso -->
+                                                            <circle cx="0" cy="0" fill="#fff" r="10"></circle>
+                                                            <!-- Llamas irregulares - Más orgánicas -->
+                                                            <path d="M0,0 L60,-12 L20,-5 L70,0 L20,5 L60,12 Z"
+                                                                fill="#ffd700"></path>
+                                                            <path d="M0,0 L40,-25 L10,-8 L50,5 L10,8 L40,25 Z"
+                                                                fill="#ff4500"></path>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <!-- ↑ fin GrupoCanon (animación retroceso) -->
+                                </g>
+                                <!-- ↑ fin GrupoCanonPos (posicionamiento — editable desde HTML) -->
+
+                                <!-- Cuerpo de la Torreta Principal Fundida - Refinamiento de la forma de la "Nuca" -->
+                                <!-- Forma extendida y específica tipo AMX-13 (Referencia exacta) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.2 FORMA DE LA CABEZA DEL TANQUE (Body) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                    GUIA RAPIDA PARA EDITAR LA FORMA :
+                                    (Edita los numeros dentro de d="..." abajo)
+                                    
+                                         M -115, -10  <!-- 1. Inicio: Parte trasera inferior (cerca del cuello) -->
+                                L -115, -55 <!-- 2. Pared trasera: Sube recto hacia arriba -->
+                                L 40, -55 <!-- 3. Techo: Línea larga hacia adelante (hasta la mitad) -->
+                                L 100, -10 <!-- 4. Frente Superior: Baja en diagonal hacia la nariz -->
+                                L 65, 15 <!-- 5. Barbilla: Baja hacia adentro (debajo del cañón) -->
+                                Q 30, 15 0, 10 <!-- 6. Panza Delantera: Curva suave debajo de la torreta -->
+                                Q -40, 8 -80, 0 <!-- 7. Panza Trasera: Curva suave hacia atrás -->
+                                L -100, -5 <!-- 8. Ajuste trasero: Pequeña línea hacia el inicio -->
+                                L -115, -10" /&gt;<!-- 9. Cierre: Vuelve al punto 1 para cerrar la forma -->
+                                --&gt;
+                                <path d="
+                                          M -115, -10 
+                                          L -115, -49
+                                          L -105, -55  
+                                          L 20, -55    
+                                          Q 40, -34 65, -10                                         
+                                          L 35, -15
+                                          Q 10, -35 0, -35
+                                          Q -05, -35 -30, -0
+                                          L -55, 0
+                                          L -105, -05
+                                          L -115, -10" fill="url(#gradienteCasco)" id="TurretShape" stroke="#1f2615"
+                                    stroke-linejoin="round" stroke-width="2"></path>
+                                <!-- AGARRADERA DE LA NUCA (Metal Handle) -->
+                                <!-- 
+                                     ★ CONFIGURAR AGARRADERA:
+                                     - Posicion: translate(X, Y)
+                                     - Escala: scale(S)
+                                 -->
+                                <g id="AgarraderaNuca" transform="translate(-115, -30) scale(1)">
+                                    <!-- Barra doblada (Perfil D) -->
+                                    <!-- Sale de la pared (-115) hacia la izquierda -->
+                                    <path d="M0,-12 L-8,-8 L-8,8 L0,12" fill="none" stroke="#1f2615"
+                                        stroke-linecap="round" stroke-width="2.5"></path>
+                                    <!-- Sombra interior para volumen -->
+                                    <path d="M0,-12 L-8,-8 L-8,8 L0,12" fill="none" opacity="0.5" stroke="#5d7252"
+                                        stroke-linecap="round" stroke-width="1"></path>
+                                    <!-- Puntos de soldadura/unión -->
+                                    <circle cx="0" cy="-12" fill="#1f2615" r="1.5"></circle>
+                                    <circle cx="0" cy="12" fill="#1f2615" r="1.5"></circle>
+                                </g>
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.3 ESCARAPELA TRICOLOR (Roundel) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                    ★ CONFIGURACION:
+                                    - Posición: Edita 'translate(X, Y)'. (X=Horizontal, Y=Vertical)
+                                    - Tamaño: Edita 'scale(S)'. (Ej. scale(1.2) para agrandar)
+                                -->
+                                <g id="GrupoEscarapela" transform="translate(-86, -30) scale(1.3)">
+                                    <circle cx="0" cy="0" fill="#FFD700" r="10" stroke="none"></circle>
+                                    <circle cx="0" cy="0" fill="#0033A0" r="6.6" stroke="none"></circle>
+                                    <circle cx="0" cy="0" fill="#DA291C" r="3.3" stroke="none"></circle>
+                                </g>
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.4 ESTANTE DE BIDÓN LATERAL (Jerry Can) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                    ★ CONFIGURACION:
+                                    - Posición: Edita 'translate(X, Y)'.
+                                    - Tamaño: Edita 'scale(S)'.
+                                    - Rotación: Edita 'rotate(GRADOS, 12.5, 15)'.
+                                -->
+                                <g id="EstanteBidon" transform="translate(-45, -45) scale(1) rotate(40, 12.5, 15)">
+                                    <!-- 1. EL TANQUE DE COMBUSTIBLE (Gris Oscuro) -->
+                                    <g id="JerryCanBody" transform="translate(0, 0)">
+                                        <!-- Cuerpo Principal -->
+                                        <rect fill="#2a2a2a" height="32" rx="2" ry="2" stroke="#000" stroke-width="1"
+                                            width="25" x="0" y="0"></rect>
+                                        <!-- Detalles del Relieve (La X clásica hundida) -->
+                                        <path d="M4,4 L21,28 M21,4 L4,28" opacity="0.5" stroke="#1a1a1a"
+                                            stroke-width="2"></path>
+                                        <!-- Marco del relieve -->
+                                        <rect fill="none" height="26" opacity="0.5" rx="2" stroke="#1a1a1a"
+                                            stroke-width="1" width="19" x="3" y="3"></rect>
+                                        <!-- ASA ÚNICA (Estilo Gancho Simple - Referencia exacta) -->
+                                        <!-- ASA ÚNICA (Estilo Gancho Simple - Solo mitad izquierda) -->
+                                        <g transform="translate(0, -6)">
+                                            <!-- Estructura del asa (Corta) -->
+                                            <!-- Base del asa (Gruesa) -->
+                                            <path d="M4,6 L4,2 Q4,0 6,0 L13,0 Q15,0 15,2 L15,6" fill="none"
+                                                stroke="#252525" stroke-linecap="round" stroke-width="4.5"></path>
+                                            <!-- Borde interno (Definición del hueco) -->
+                                            <path d="M4,6 L4,2 Q4,0 6,0 L13,0 Q15,0 15,2 L15,6" fill="none"
+                                                stroke="#2a2a2a" stroke-linecap="round" stroke-width="2.5"></path>
+                                            <!-- Detalle de luz superior -->
+                                            <path d="M6,-1 L13,-1" fill="none" opacity="0.6" stroke="#3e3e3e"
+                                                stroke-width="0.8"></path>
+                                            <!-- Tapa (Tapón cuadrado lateral) -->
+                                            <!-- Mantenida en su posición original a la derecha -->
+                                            <g transform="translate(20, 3) rotate(-10)">
+                                                <rect fill="#151515" height="4" rx="1" stroke="#000" stroke-width="0.5"
+                                                    width="6" x="-2" y="-2"></rect>
+                                                <rect fill="#333" height="4" width="2" x="-1" y="-2"></rect>
+                                            </g>
+                                        </g>
+                                    </g>
+                                    <!-- 2. ESTRUCTURA DE SOPORTE METALICA (Color Verde Tanque - Forma de T) -->
+                                    <g id="SoporteMetalicoGreen">
+                                        <!-- Bandeja Inferior (Base) -->
+                                        <path d="M-1,25 L-1,33 L26,33 L26,25" fill="#4b5e40" stroke="#1f2615"
+                                            stroke-width="1.5"></path>
+                                        <!-- LA FORMA DE "T" (Correas metálicas) -->
+                                        <!-- Barra Vertical (El palo de la T) -->
+                                        <rect fill="#4b5e40" height="28" stroke="#1f2615" stroke-width="1" width="4"
+                                            x="10.5" y="5"></rect>
+                                        <!-- Barra Horizontal (El techo de la T) -->
+                                        <rect fill="#4b5e40" height="4" stroke="#1f2615" stroke-width="1" width="27"
+                                            x="-1" y="8"></rect>
+                                        <!-- Remaches / Tornillos en la estructura -->
+                                        <circle cx="12.5" cy="10" fill="#1f2615" r="1"></circle>
+                                        <circle cx="12.5" cy="30" fill="#1f2615" r="1"></circle>
+                                        <circle cx="0" cy="10" fill="#1f2615" r="1"></circle>
+                                        <circle cx="25" cy="10" fill="#1f2615" r="1"></circle>
+                                    </g>
+                                </g>
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.5 LANZADORES DE HUMO (Smoke Launchers) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                    ★ CONFIGURACION:
+                                    - Posición: 'translate(X, Y)' -> (25, -18) está debajo de la antena.
+                                    - Tamaño: 'scale(1.7)' -> Más grandes.
+                                    - Rotación: 'rotate(130)' -> Ángulo de disparo.
+                                -->
+                                <g id="LanzadoresHumo" transform="translate(10, -18) rotate(130) scale(1.7)">
+                                    <!-- Lanzador Superior -->
+                                    <g transform="translate(0, -9)">
+                                        <!-- Cuerpo del Tubo -->
+                                        <rect fill="#4b5e40" height="6" stroke="#1f2615" stroke-width="0.5" width="14"
+                                            x="0" y="0"></rect>
+                                        <!-- Brillo/Sombreado cilíndrico -->
+                                        <rect fill="#6b8e50" height="1" opacity="0.4" width="14" x="0" y="1"></rect>
+                                        <!-- Luz -->
+                                        <rect fill="#1f2615" height="2" opacity="0.3" width="14" x="0" y="4"></rect>
+                                        <!-- Sombra -->
+                                        <!-- Tapa/Anillo Inferior -->
+                                        <rect fill="#3e4d35" height="7" rx="0.5" stroke="#1f2615" stroke-width="0.5"
+                                            width="4" x="11" y="-0.5"></rect>
+                                        <!-- Boca oscura -->
+                                        <rect fill="#111" height="5" width="1" x="-1" y="0.5"></rect>
+                                    </g>
+                                    <!-- Lanzador Inferior -->
+                                    <g transform="translate(4, 0)">
+                                        <!-- Cuerpo del Tubo -->
+                                        <rect fill="#4b5e40" height="6" stroke="#1f2615" stroke-width="0.5" width="14"
+                                            x="0" y="0"></rect>
+                                        <!-- Brillo/Sombreado cilíndrico -->
+                                        <rect fill="#6b8e50" height="1" opacity="0.4" width="14" x="0" y="1"></rect>
+                                        <rect fill="#1f2615" height="2" opacity="0.3" width="14" x="0" y="4"></rect>
+                                        <!-- Tapa/Anillo Inferior -->
+                                        <rect fill="#3e4d35" height="7" rx="0.5" stroke="#1f2615" stroke-width="0.5"
+                                            width="4" x="11" y="-0.5"></rect>
+                                        <!-- Boca oscura -->
+                                        <rect fill="#111" height="5" width="1" x="-1" y="0.5"></rect>
+                                    </g>
+                                </g>
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.6 GRUPO DE CÚPULA DEL COMANDANTE (Cupola) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                    ★ CONFIGURACION:
+                                    - Posición: Edita 'translate(X, Y)'. (X=Horizontal, Y=Vertical)
+                                    - Tamaño: Edita 'scale(S)'. (Ej. scale(1.2) para agrandar)
+                                -->
+                                <g id="CupulaComandante" transform="translate(-15, -56) scale(1.3)">
+                                    <!-- Domo base (Forma suave) -->
+                                    <path d="M-25,0 Q0,-15 25,0 Z" fill="url(#gradienteCasco)" stroke="#1f2615"
+                                        stroke-width="2"></path>
+                                    <!-- Estructura Rectangular de la Escotilla ("La Puerta") -->
+                                    <rect fill="#4b5e40" height="8" rx="2" stroke="#1f2615" width="40" x="-20" y="-8">
+                                    </rect>
+                                    <!-- Ranuras de Visión (Centradas verticalmente) -->
+                                    <rect fill="#111" height="3" width="8" x="-15" y="-5.5"></rect>
+                                    <rect fill="#111" height="3" width="8" x="-4" y="-5.5"></rect>
+                                    <rect fill="#111" height="3" width="8" x="7" y="-5.5"></rect>
+                                    <!-- ★ PEQUEÑO DOMO ENCIMA DE LA ESCOTILLA ★ -->
+                                    <g transform="translate(-0, -8)">
+                                        <!-- Domo pequeño (Más alto y mismo color que la base) -->
+                                        <path d="M-19,0 Q0,-19 19,0 Z" fill="#4b5e40" stroke="#1f2615"
+                                            stroke-width="1.5"></path>
+                                        <!-- Detalle/Tapa del domo pequeño -->
+                                        <rect fill="#1a1a1a" height="3" width="12" x="-6" y="-10"></rect>
+                                    </g>
+                                    <!-- COMANDANTE (Soldier Profile) -->
+                                    <!-- COMANDANTE (Soldier Profile) -->
+                                    <!-- 
+                                        ★ CONTROL DEL COMANDANTE ★
+                                        - GRUPO PRINCIPAL: 'Comandante' -> Mueve todo el soldado.
+                                        - PARTES INDIVIDUALES: 'SoldadoCuerpo', 'SoldadoCabeza', etc. -> Edita sus 'transform' para moverlas por separado.
+                                    -->
+                                    <!-- EL COMANDANTE HA SIDO OCULTADO POR PETICIÓN 
+                                    <g id="Comandante" transform="translate(-1, -8) scale(1.6) rotate(-10)">
+                                        ... (1. TORSO) ...
+                                        <g id="SoldadoCuerpo" transform="translate(0, 0) rotate(10)">
+                                            <path d="M-8,0 L8,0 L6,-18 L-6,-18 Z" fill="#4b5e40" stroke="#1f2615"
+                                                stroke-width="1"></path>
+                                        </g>
+                                        ... (2. CHALECO) ...
+                                        <g id="SoldadoChaleco" transform="translate(0, 0) rotate(10)">
+                                            <path d="M-6,0 L6,0 L5,-12 L-5,-10 Z" fill="#2e3b26"></path>
+                                            <rect fill="#1a1a1a" height="6" rx="1" width="8" x="-2" y="-10"></rect>
+                                        </g>
+                                        ... (3. CABEZA) ...
+                                        <g id="SoldadoCabeza" transform="translate(2, -22) rotate(10)">
+                                            <rect fill="#d7ccc8" height="4" width="6" x="-3" y="0"></rect>
+                                            <path d="M-4,-6 L-4,0 L4,0 L4,-4 Q4,-8 0,-8 Z" fill="#d7ccc8"></path>
+                                            <path d="M4,-4 L6,-3 L4,-1" fill="#d7ccc8"></path> 
+                                            <rect fill="#111" height="3" width="4" x="2" y="-6"></rect> 
+                                            <g id="SoldadoCasco" transform="translate(-0, -02) rotate(-06)">
+                                                <path d="M-7,-4 Q-9,-12 0,-12 Q7,-12 7,-5 L7,-3 L-7,-3 Z" fill="#4b5e40"
+                                                    stroke="#1f2615" stroke-width="1"></path>
+                                                <rect fill="#2e3b26" height="4" rx="1" width="6" x="-5" y="-4"></rect>
+                                                <circle cx="-2" cy="-2" fill="#111" r="1.5"></circle>
+                                                <path d="M-3,-3 L3,1" stroke="#111" stroke-width="0.5"></path>
+                                            </g>
+                                        </g>
+                                        ... (4. BRAZOS) ...
+                                        <g id="SoldadoBrazos" transform="translate(0, 0) rotate(0)">
+                                            <path d="M-02,-16 Q-09,-05 13,-06" fill="none" stroke="#4b5e40"
+                                                stroke-linecap="round" stroke-width="4.5"></path>
+                                            <circle cx="15" cy="-07" fill="#333" r="2.5"></circle> 
+                                        </g>
+                                    </g> 
+                                    -->
+                                </g>
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.7 AMETRALLADORA (MachineGun) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                <!-- 
+                                    ★ CONTROL 2.2.7 - AMETRALLADORA ★
+                                    - Posicion: translate(X, Y) -> Mueve el arma sobre el techo.
+                                    - Escala:   scale(S)        -> Cambia el tamaño del arma.
+                                    - Rotacion: rotate(GRADOS)  -> Gira el soporte sobre su eje.
+                                -->
+                                <g id="EnsamblajeAmetralladora" transform="translate(10, -70) scale(1.8) rotate(0)">
+                                    <!-- 1. BASE / SOPORTE (MOUNT) -->
+                                    <g id="SoporteAmetralladora" transform="translate(13, 1.5)">
+                                        <!-- Base del soporte (Pilar cuadrado) -->
+                                        <rect fill="#4b5e40" height="12" stroke="#1f2615" stroke-width="0.8" width="4"
+                                            x="-2" y="0"></rect>
+                                        <!-- Cabezal giratorio / Horquilla -->
+                                        <path d="M-2,0 L2,0 L3,-6 L-3,-6 Z" fill="#3e4d35" stroke="#1f2615"
+                                            stroke-width="0.8"></path>
+                                        <!-- Soporte de munición (Placa lateral) -->
+                                        <rect fill="#2a3025" height="6" stroke="#111" stroke-width="0.5" width="2" x="2"
+                                            y="-5"></rect>
+                                    </g>
+                                    <!-- 2. ARMA (MACHINE GUN) - Estilo HK21 / MG con Culata de Madera -->
+                                    <g id="ElArma" transform="translate(06, -13) scale(0.8) rotate(0)">
+                                        <!-- 1. CULATA DE MADERA (Wooden Stock) -->
+                                        <!--
+                                            ★ CONFIGURACION CULATA:
+                                            - Posicion: translate(X, Y)
+                                            - Escala: scale(S)
+                                            - Rotacion: rotate(GRADOS)
+                                        -->
+                                        <!-- Forma ergonómica tipo "clubfoot" o culata fija de ametralladora -->
+                                        <g id="CulataMadera" transform="translate(0, -02) scale(1) rotate(0)">
+                                            <path d="M-14,-5 L-24,-5 Q-28,-5 -28,0 L-28,4 Q-28,8 -24,6 L-14,3 Z"
+                                                fill="#5D4037" stroke="#3E2723" stroke-width="0.5"></path>
+                                            <!-- Vetas de la madera -->
+                                            <path d="M-24,-2 L-18,-3 M-26,2 L-20,1" opacity="0.5" stroke="#3E2723"
+                                                stroke-width="0.5"></path>
+                                            <!-- Placa trasera (Buttpad) -->
+                                            <path d="M-28,-1 L-29,-1 L-29,5 L-28,5" fill="#111" stroke="none">
+                                            </path>
+                                        </g>
+                                        <!-- 2. RECIBIDOR (Cuerpo Central - Estilo HK cuadrado) -->
+                                        <g id="CuerpoArma">
+                                            <!-- Bloque Principal -->
+                                            <rect fill="#1a1a1a" height="8" stroke="#000" stroke-width="0.5" width="22"
+                                                x="-14" y="-6"></rect>
+                                            <!-- Riel Superior (Picatinny rail simulado) -->
+                                            <rect fill="#111" height="1.5" width="20" x="-14" y="-7.5"></rect>
+                                            <line stroke="#333" stroke-dasharray="1,1" stroke-width="0.5" x1="-14"
+                                                x2="6" y1="-7" y2="-7"></line>
+                                            <!-- Detalle lateral (Hendidura) -->
+                                            <rect fill="#222" height="2" rx="0.5" stroke="#000" stroke-width="0.2"
+                                                width="14" x="-10" y="-4"></rect>
+                                            <!-- Gatillo y Guardamonte (Trigger Group) -->
+                                            <path d="M-6,2 L-6,6 Q-3,6 -2,2" fill="none" stroke="#666"
+                                                stroke-width="0.8"></path>
+                                            <!-- Empuñadura de Pistola (Pistol Grip) - Ergonómica -->
+                                            <path d="M-8,2 L-11,9 L-7,9 L-4,2 Z" fill="#1f1f1f" stroke="#000"
+                                                stroke-width="0.5"></path>
+                                            <line stroke="#333" stroke-width="0.5" x1="-10" x2="-8" y1="3" y2="8">
+                                            </line>
+                                            <!-- Textura grip -->
+                                        </g>
+                                        <!-- 3. GUARDAMANOS (Handguard - El "triángulo" delantero) -->
+                                        <g id="Guardamanos" transform="translate(8, -1)">
+                                            <!-- Forma angulada característica -->
+                                            <path d="M0,-5 L12,-5 L12,2 L8,4 L0,2 Z" fill="#222" stroke="#000"
+                                                stroke-width="0.5"></path>
+                                            <!-- Ranuras de ventilación (Gills) -->
+                                            <path d="M2,-3 L10,-3 M2,-1 L10,-1 M3,1 L9,1" stroke="#444"
+                                                stroke-width="0.6"></path>
+                                        </g>
+                                        <!-- 4. CAÑÓN (Barrel Assembly) -->
+                                        <g id="EnsamblajeCanon">
+                                            <!-- Tubo del cañón -->
+                                            <rect fill="#151515" height="2" stroke="#000" stroke-width="0.5" width="28"
+                                                x="20" y="-5"></rect>
+                                            <!-- Base del cañón (Unión) -->
+                                            <rect fill="#1a1a1a" height="4" width="12" x="8" y="-6"></rect>
+                                            <!-- Mira Delantera (Front Sight) - Plegable -->
+                                            <path d="M42,-5 L42,-9 L43,-9 L44,-5 Z" fill="#111"></path>
+                                            <circle cx="43" cy="-8" fill="#fff" opacity="0.5" r="0.5"></circle>
+                                            <!-- Punto de mira -->
+                                            <!-- Flash Hider (Bocacha) - Estilo jaula -->
+                                            <g transform="translate(48, -5)">
+                                                <rect fill="#111" height="3" rx="0.5" width="5" x="0" y="-0.5">
+                                                </rect>
+                                                <line stroke="#333" stroke-width="0.5" x1="1" x2="1" y1="-0.5" y2="2.5">
+                                                </line>
+                                                <line stroke="#333" stroke-width="0.5" x1="3" x2="3" y1="-0.5" y2="2.5">
+                                                </line>
+                                                <!-- FOGONAZO DE AMETRALLADORA (Muzzle Flash) -->
+                                                <g class="mg-fire-anim" id="MGMuzzleFlash" opacity="1"
+                                                    transform="translate(06, 1)">
+                                                    <!-- Destello irregular -->
+                                                    <path d="M0,0 L15,-3 L5,0 L15,3 Z" fill="#FFD700"></path>
+                                                    <path d="M0,0 L8,-1 L8,1 Z" fill="#FFF" opacity="0.8"></path>
+                                                    <circle cx="0" cy="0" fill="#FFA500" filter="url(#desenfoqueFuego)"
+                                                        opacity="0.6" r="2"></circle>
+                                                </g>
+                                            </g>
+                                        </g>
+                                        <!-- 5. ASA DE TRANSPORTE (Carry Handle) -->
+                                        <!-- Asa curva sobre el cañón -->
+                                        <g id="AsaTransporte" transform="translate(-05, -6) rotate(0)">
+                                            <!-- Brazo del asa -->
+                                            <path d="M2,0 L2,-5" stroke="#111" stroke-width="1.5"></path>
+                                            <!-- Mango texturizado (Horizontal) -->
+                                            <rect fill="#1f1f1f" height="2" rx="1" stroke="#000" stroke-width="0.5"
+                                                width="10" x="0" y="-7"></rect>
+                                            <!-- Rayas del mango -->
+                                            <path d="M1,-7 L1,-5 M3,-7 L3,-5 M5,-7 L5,-5 M7,-7 L7,-5 M9,-7 L9,-5"
+                                                stroke="#333" stroke-width="0.5"></path>
+                                        </g>
+                                        <!-- 6. BIPODE (Bipod) - Plegado hacia adelante bajo el cañón -->
+                                        <g id="Bipode" transform="translate(35, -2)">
+                                            <!-- Base articulada -->
+                                            <circle cx="0" cy="-0.5" fill="#222" r="1.5"></circle>
+                                            <!-- Patas plegadas (Dos líneas juntas) -->
+                                            <path d="M0,0 L12,1" stroke="#111" stroke-linecap="round"
+                                                stroke-width="1.5"></path>
+                                            <path d="M0,0 L12,2.5" stroke="#111" stroke-linecap="round"
+                                                stroke-width="1.5"></path>
+                                            <!-- Pies del bípode -->
+                                            <path d="M12,1 L13,0 M12,2.5 L13,3.5" stroke="#111" stroke-width="1">
+                                            </path>
+                                        </g>
+                                        <!-- 7. CAJA DE MUNICIÓN (Ammo Box) - Colgando -->
+                                        <g transform="translate(2, 2) scale(1.1)">
+                                            <rect fill="#4e342e" height="9" rx="1" stroke="#1f2615" stroke-width="0.5"
+                                                width="10" x="0" y="0"></rect>
+                                            <!-- Caja oscura (tipo plástico o metal oscuro) -->
+                                            <rect fill="#2a2a2a" height="9" rx="1" stroke="#000" stroke-width="0.5"
+                                                width="10" x="0" y="0"></rect>
+                                            <!-- Relieve circular (Tambor) -->
+                                            <circle cx="5" cy="4.5" fill="none" opacity="0.5" r="3" stroke="#111"
+                                                stroke-width="0.5"></circle>
+                                            <!-- Cinta de balas visible entrando al arma -->
+                                            <!-- Clase añadida para animación -->
+                                            <path class="mg-ammo-belt" d="M2,0 L2,-4 Q4,-6 8,-6" fill="none"
+                                                stroke="#d4af37" stroke-dasharray="2,2" stroke-width="1.2"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 2.2.8 GRUPO DE ANTENA (Antenna) -->
+                                <!-- ======================================================================== -->
+                                <!-- ======================================================================== -->
+                                <!-- 
+                                    ★ 1. POSICION DE TODA LA ANTENA (Base + Varilla + Bandera):
+                                    Edita transform="translate(X, Y) rotate(deg, 0, -5)" en la línea de abajo.
+                                    - translate(X, Y): Mueve la antena.
+                                    - rotate(deg, 0, -5): Rota la antena (cambia 'deg' por los grados que quieras).
+                                -->
+                                <g id="EnsamblajeAntena" transform="translate(30, -5) rotate(-0, 0, -5)">
+                                    <!-- BASE DE LA ANTENA (Estructura fija) -->
+                                    <g id="BaseAntena">
+                                        <rect fill="#222" height="15" rx="1" width="8" x="-4" y="-5"></rect>
+                                        <rect fill="#111" height="10" width="4" x="-2" y="-8"></rect>
+                                    </g>
+                                    <!-- VARILLA Y BANDERA -->
+                                    <g transform="translate(0, -8) scale(1.2)">
+                                        <!-- Grupo para animación de ondulación -->
+                                        <g id="MovimientoAntena">
+                                            <!-- 
+                                                ★ 2. FORMA DE LA VARILLA:
+                                                Edita el atributo 'd'.
+                                                M0,0     = Inicio en la base.
+                                                Q5,-50   = Punto de control de la curva (cuanto se dobla).
+                                                -25,-140 = Punto final de la punta (coordenada absoluta).
+                                            -->
+                                            <path d="M0,0 Q5,-40 -75,-130" fill="none" id="VarillaAntena" stroke="#111"
+                                                stroke-width="1.5"></path>
+                                            <!-- 
+                                                ★ 3. BANDERA (Configuración):
+                                                - Posición: 'translate(-25, -140)' (Debe coincidir con el punto final de la varilla).
+                                                - Rotación: Cambia 'rotate(0)' por grados (ej. rotate(45)).
+                                                - Tamaño: Cambia 'scale(1)' (ej. scale(1.5) mas grande, scale(0.8) mas chica).
+                                            -->
+                                            <g id="BanderaAntena"
+                                                transform="translate(-75, -130) rotate(-55) scale(1.5)">
+                                                <!-- Dibujo de la bandera (Triangulo apuntando izquierda) -->
+                                                <!-- Coordenadas relativas a la punta de la antena (0,0) -->
+                                                <path d="M0,0 L-25,-5 L-2,10 Z" fill="#003366" stroke="#111"
+                                                    stroke-width="0.5"></path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                    <!-- CHASIS (Cuerpo) -->
+                    <!-- ======================================================================== -->
+                    <!-- ======================================================================== -->
+                    <!-- 3. GRUPO CHASIS (Hull) -->
+                    <!-- ======================================================================== -->
+                    <!-- ======================================================================== -->
+                    <!-- 
+                        ★ CONTROL 3 - CHASIS (HULL) ★
+                        - Posicion: translate(X, Y) -> Mueve todo el cuerpo del tanque.
+                        - Escala:   scale(S)        -> Cambia el tamaño del chasis.
+                        - Rotacion: rotate(GRADOS)  -> Inclina el chasis.
+                    -->
+                    <g id="Casco" transform="translate(0, 0) scale(1,1) rotate(0)">
+                        <!-- 3.1 RUEDA DE REPUESTO (Spare Wheel) -->
+                        <!-- 
+                             ★ CONTROL RUEDA REPUESTO:
+                             Posición: translate(X, Y)
+                             Rotación: rotate(GRADOS)
+                        -->
+                        <g id="GrupoRuedaRepuesto" transform="translate(310, 168) rotate(22) scale(1)">
+                            <!-- Neumático -->
+                            <rect fill="#2a2a2a" height="12" rx="5" stroke="#111" stroke-width="1.5" width="45" x="0"
+                                y="0"></rect>
+                            <!-- Detalle del Rin -->
+                            <!-- <rect x="12" y="2" width="21" height="8" rx="2" fill="#4b5e40" opacity="0.8" /> -->
+                            <!-- Soporte -->
+                            <!-- <rect x="20" y="-2" width="5" height="16" rx="1" fill="#3e4d35" stroke="#111"
+                                stroke-width="1" /> -->
+                            <!-- Perno -->
+                            <!-- <circle cx="22.5" cy="6" r="1.5" fill="#111" /> -->
+                        </g>
+                        <!-- Chasis Principal - Perfil más bajo, parte superior más plana -->
+                        <!-- CONTROL INDIVIDUAL DEL CUERPO (HULL) -->
+                        <!-- 3.2 CUERPO CHASIS (Hull Body) -->
+                        <g id="GrupoCuerpoCasco" transform="translate(0, 0) scale(1) rotate(0)">
+                            <path d="M38,185 
+                                   L38,185 
+                                   L230,180 
+                                   L230,170 
+                                   L300,170 
+                                   L340,186 
+                                   L340,200 
+                                   L340,200 
+                                   L38,210 Z" fill="url(#gradienteCasco)" id="HullBody" stroke="#1f2615"
+                                stroke-linejoin="round" stroke-width="2"></path>
+                        </g>
+                        <!-- Escape Lateral / Sistema de Silenciador (Prominente en Ref) -->
+                        <!-- Tubo largo con perforaciones de escudo térmico -->
+                        <!-- Escape Lateral / Sistema de Silenciador (Estilo Referencia Oxidada) -->
+                        <!-- Escape Lateral / Sistema de Silenciador (Cuerpo Verde, Interior Café) -->
+                        <!-- Escape Lateral / Sistema de Silenciador (Integrado sin marco) -->
+                        <!-- 
+                            ★ CONFIGURACION ESCAPE:
+                            - Mover: Edita 'translate(X, Y)'. (X=Horizontal, Y=Vertical).
+                            - Tamaño: Edita 'scale(X, Y)'. 
+                                      scale(0.85, 1) = 85% de ancho, 100% de alto (Más corto).
+                        -->
+                        <!-- Línea de Guardabarros/Faldón -->
+                        <!-- 3.4 GUARDABARROS Y FALDONES (Fenders) -->
+
+                        <!-- Guardabarros Delantero y Trasero -->
+                        <!-- CONTROL GUARDABARROS TRASERO (Izquierda) -->
+                        <!-- rotate(GRADOS, 30, 205) -> El 30, 205 es el CENTRO del guardabarros trasero -->
+                        <g id="GrupoGuardabarrosTrasero" transform="translate(-32, -195) scale(2) rotate(0, 30, 205)">
+                            <path d="M22,195 Q19,208 35,215 L35,195 Z" fill="url(#gradienteCasco)" stroke="#1f2615"
+                                stroke-width="1"></path>
+                            <!-- LUZ ROJA TRASERA (Detail Ref) -->
+                        </g>
+                        <g id="LuzRojaTrasera" transform="translate(5, 202) scale(2) rotate(0)">
+                            <!-- Base metálica -->
+                            <rect fill="#333" height="6" stroke="#111" stroke-width="0.5" width="3" x="0" y="0">
+                            </rect>
+                            <!-- Lente Roja (Ovalada) -->
+                            <ellipse cx="0" cy="3" fill="#d32f2f" rx="1.5" ry="2.5" stroke="#8b0000" stroke-width="0.5">
+                            </ellipse>
+                            </ellipse>
+                            <!-- Brillo en la lente -->
+                            <ellipse cx="-0.5" cy="2.5" fill="#ffcdd2" opacity="0.6" rx="0.5" ry="1"></ellipse>
+                        </g>
+                        <!-- CONTROL GUARDABARROS DELANTERO (Derecha) -->
+                        <!-- rotate(GRADOS, 380, 205) -> El 380, 205 es el CENTRO del guardabarros delantero -->
+                        <g id="GrupoGuardabarrosDelantero"
+                            transform="translate(-365, -206) scale(2) rotate(270, 380, 205)">
+                            <path d="M385,192 Q386,210 375,215 L375,192 Z" fill="url(#gradienteCasco)" stroke="#1f2615"
+                                stroke-width="1"></path>
+                            <!-- LUZ DELANTERA CON REJILLA (Detail Ref) -->
+                            <!-- Ajustado para estar SOBRE el guardabarros -->
+                            <!-- LUZ DELANTERA CON REJILLA (Detail Ref) -->
+                            <!-- Ajustado para apuntar a la DERECHA (Rotado 90 en el sistema del guardabarros) -->
+                            <g id="LuzDelanteraConRejilla" transform="translate(393, 182) rotate(90) scale(0.6)">
+                                <!-- 2. CARCASA DEL FOCO (Original) -->
+                                <g>
+                                    <!-- Cuerpo Cónico -->
+                                    <path d="M-10,-5 L4,-7 L5,0 L4,7 L-10,5 Q-12,0 -10,-5 Z" fill="#4b5e40"
+                                        stroke="#1f2615" stroke-width="1.5"></path>
+                                    <!-- Parte trasera -->
+                                    <path d="M-10,-5 Q-13,0 -10,5" fill="#3e4d35" stroke="#1f2615" stroke-width="1">
+                                    </path>
+                                </g>
+                                <!-- 3. LENTE (Amarilla - Original) -->
+                                <ellipse cx="4.5" cy="0" fill="#fdd835" rx="1.5" ry="6.5" stroke="#fbc02d"
+                                    stroke-width="0.5"></ellipse>
+                                <!-- Brillo -->
+                                <ellipse cx="4.5" cy="-3" fill="#fff" opacity="0.5" rx="0.8" ry="2"></ellipse>
+                                <!-- 4. REJILLA PROTECTORA DE LENTE (Jaula interna - Original) -->
+                                <g fill="none" id="JaulaFoco" transform="translate(5, 0)" stroke="#1a1a1a"
+                                    stroke-width="0.8">
+                                    <path d="M0,-8 Q3,-4 3,0 Q3,4 0,8" stroke-width="1.2"></path>
+                                    <path d="M1,-7 Q4,0 1,7"></path>
+                                    <path d="M-1,-6 Q1,0 -1,6" opacity="0.7"></path>
+                                    <path d="M0,-8 L-4,-6" stroke-width="1.2"></path>
+                                    <path d="M0,8 L-4,6" stroke-width="1.2"></path>
+                                    <path d="M3,0 L-4,0" stroke-width="1"></path>
+                                </g>
+                                <!-- 5. NUEVA PROTECCIÓN CONTRA GOLPES (Externa) -->
+                                <g id="ProteccionMetalica" transform="translate(00, 0)">
+                                    <!-- Estructura Principal: Arco que sale de la base y cubre el frente -->
+                                    <!-- Base trasera (x=-6, y=14) -> Sube curva -> Frente (x=14) -> Base delantera (x=14, y=14) -->
+                                    <path d="M-6,14 L-6,-2 Q-6,-11 4,-11 L10,-11 Q14,-11 14,-6 L14,14" fill="none"
+                                        stroke="#252f1f" stroke-linecap="round" stroke-width="2.5"></path>
+                                    <!-- Refuerzos Horizontales (Laterales) -->
+                                    <path d="M-6,-2 L14,-2" stroke="#252f1f" stroke-width="1.5"></path>
+                                    <path d="M-6,6 L14,6" stroke="#252f1f" stroke-width="1.5"></path>
+                                    <!-- Refuerzo Frontal Vertical (Protección principal) -->
+                                    <line stroke="#2f3e25" stroke-width="2" x1="14" x2="14" y1="-6" y2="14"></line>
+                                    <!-- Pernos de anclaje al guardabarros -->
+                                    <circle cx="-6" cy="14" fill="#111" r="1.8"></circle>
+                                    <circle cx="14" cy="14" fill="#111" r="1.8"></circle>
+                                </g>
+                            </g>
+                        </g>
+                        <!-- CONTROL GUARDABARROS DELANTERO (Derecha) -->
+                        <!-- rotate(GRADOS, 380, 205) -> El 380, 205 es el CENTRO del guardabarros delantero -->
+                        <g id="GrupoGuardabarrosDelantero"
+                            transform="translate(-741, -193) scale(2) rotate(90, 380, 205)">
+                            <!-- Diseño invertido para apuntar a la izquierda -->
+                            <path d="M375,195 Q374,210 385,215 L385,195 Z" fill="url(#gradienteCasco)" stroke="#1f2615"
+                                stroke-width="1"></path>
+                        </g>
+                        <!-- 3.3 ESCAPE LATERAL (Exhaust) -->
+                        <!-- scale(1,1): coordenadas ya horneadas con factor X×0.9 / Y×1.5 del original -->
+                        <!-- Así los círculos son perfectamente redondos sin ningún transform adicional -->
+                        <g transform="translate(95, 189 ) scale(1, 1) rotate(-02)">
+                            <!-- Apertura 1 (Izquierda) - esquinas sup. suavizadas, coordenadas horneadas -->
+                            <path d="M0,16.5 Q0,1.5 4.5,1.5 L36,1.5 Q40.5,1.5 40.5,9 L40.5,16.5 Z" fill="#1a1a1a"
+                                stroke="none"></path>
+                            <!-- Boca del escape: CÍRCULO PERFECTO (sin distorsión, scale=1) -->
+                            <circle cx="12" cy="9" r="5.5" fill="#4e342e" stroke="#3e2723" stroke-width="0.8">
+                            </circle>
+                            <circle cx="12" cy="9" r="3" fill="#111111" stroke="none"></circle>
+                            <!-- Tubo café de borde a borde -->
+                            <line stroke="#3e2723" stroke-width="6" x1="17" x2="40.5" y1="9" y2="9"></line>
+                            <!-- Apertura 2 (Centro) - esquinas suavizadas -->
+                            <path d="M45,16.5 Q45,1.5 49.5,1.5 L85.5,1.5 Q90,1.5 90,9 L90,16.5 Z" fill="#1a1a1a"
+                                stroke="none"></path>
+                            <!-- Tubo café de borde a borde -->
+                            <line stroke="#3e2723" stroke-width="6" x1="45" x2="90" y1="9" y2="9"></line>
+                            <!-- Apertura 3 (Derecha) - esquinas suavizadas -->
+                            <path d="M94.5,16.5 Q94.5,1.5 99,1.5 L130.5,1.5 Q135,1.5 135,9 L135,16.5 Z" fill="#1a1a1a"
+                                stroke="none"></path>
+                            <!-- Tubo café de borde a borde -->
+                            <line stroke="#3e2723" stroke-width="6" x1="94.5" x2="135" y1="9" y2="9"></line>
+                            <!-- HUMO DE ESCAPE (posición horneada: cx=14, cy=9) -->
+                            <g filter="url(#desenfoquePolvo)" id="HumoEscape">
+                                <circle class="exhaust-smoke-particle es1" cx="14" cy="9" fill="#222" r="8">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es2" cx="14" cy="9" fill="#555" r="10">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es3" cx="14" cy="9" fill="#111" r="7">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es4" cx="14" cy="9" fill="#444" r="9">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es5" cx="14" cy="9" fill="#000" r="8">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es6" cx="14" cy="9" fill="#666" r="11">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es7" cx="14" cy="9" fill="#333" r="7">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es8" cx="14" cy="9" fill="#222" r="9">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es9" cx="14" cy="9" fill="#1a1a1a" r="6">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es10" cx="14" cy="9" fill="#555" r="10">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es11" cx="14" cy="9" fill="#444" r="8">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es12" cx="14" cy="9" fill="#1a1a1a" r="7">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es13" cx="14" cy="9" fill="#2a2a2a" r="9">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es14" cx="14" cy="9" fill="#333" r="6">
+                                </circle>
+                                <circle class="exhaust-smoke-particle es15" cx="14" cy="9" fill="#1a1a1a" r="7">
+                                </circle>
+                            </g>
+                        </g>
+                    </g>
+                    <!-- ======================================================================== -->
+                    <!-- 4. SUSPENSIÓN Y ORUGAS -->
+                    <!-- ======================================================================== -->
+                    <g id="GrupoSuspension">
+                        <!-- 4.1 Fondo del Chasis (Underside) -->
+                        <!-- CONTROL DEL FONDO DEL CHASIS (PANZA) -->
+                        <!-- 
+                            ★ CONTROL:
+                            - Mover: translate(X, Y)
+                            - Escalar (Ancho, Alto): scale(SX, SY) -> Ej: scale(1.1, 0.9)
+                            - Rotar: rotate(Grados)
+                        -->
+                        <g id="GrupoInferiorCasco" transform="translate(-22, 20) scale(1, 1) rotate(0)">
+                            <path d="M60,187 L392,174 L422,190 L422,220 L360,245 L110,245  L60,235Z"
+                                fill="url(#gradienteInferior)" id="HullUnderside" stroke="#1f2615" stroke-width="2">
+                            </path>
+                        </g>
+                        <!-- Amortiguadores (Visibles sobre las ruedas) -->
+                        <!-- Topes de suspensión -->
+                        <!-- CONTROL DE SUSPENSIÓN (TOPES) 
+                        <g id="SuspensionStopsGroup" transform="translate(0, 20) scale(1)">
+                            <circle cx="93" cy="195" r="4" fill="#2a3025" />
+                            <circle cx="141" cy="195" r="4" fill="#2a3025" />
+                            <circle cx="189" cy="195" r="4" fill="#2a3025" />
+                            <circle cx="237" cy="195" r="4" fill="#2a3025" />
+                            <circle cx="285" cy="195" r="4" fill="#2a3025" />
+                        </g>-->
+                        <!-- 
+                            ★ 4.2 CONTROL DE ORUGAS Y RUEDAS (TREN DE RODAJE) ★
+                            Edita el transform="..." de abajo para mover o cambiar tamaño:
+                            - translate(X, Y): Mueve todo el conjunto (Rueda motriz, rodillos, ruedas y orugas).
+                            - scale(S): Cambia el tamaño de todo el conjunto.
+                        -->
+                        <g id="OrugasYRuedas" transform="translate(-40, -14) scale(1.2)">
+                            <!-- 2. Rueda Motriz (Delantera/Derecha) - Estilo AMX Refinado (MOVIDO AQUÍ) -->
+                            <!-- Ajusta scale(0.92) para cambiar el tamaño -->
+                            <g transform="translate(349, 205) scale(0.92)">
+                                <g class="wheel-spin">
+                                    <!-- 1. Anillo de Engranaje Exterior y Dientes -->
+                                    <circle cx="0" cy="0" fill="none" r="21" stroke="#111" stroke-width="2">
+                                    </circle>
+                                    <!-- Protuberancias de los dientes -->
+                                    <path d="M0,0 m-22,0 a22,22 0 1,0 44,0 a22,22 0 1,0 -44,0" fill="none" stroke="#000"
+                                        stroke-dasharray="2, 8.4" stroke-linecap="square" stroke-width="4"></path>
+                                    <!-- 2. Cuerpo Principal de la Rueda -->
+                                    <circle cx="0" cy="0" fill="#4a5540" r="19" stroke="#1a1a1a" stroke-width="1">
+                                    </circle>
+                                    <!-- 3. Anillo de Agujeros/Ranuras Rectangulares -->
+                                    <!-- Usando un trazo discontinuo para crear el aspecto de 'radios' -->
+                                    <circle cx="0" cy="0" fill="none" r="13" stroke="#1a1a1a" stroke-dasharray="4, 2.8"
+                                        stroke-width="6"></circle>
+                                    <!-- 4. Detalle Interno del Eje (La forma irregular) -->
+                                    <circle cx="0" cy="0" fill="#3e4d35" r="8" stroke="#111" stroke-width="1">
+                                    </circle>
+                                    <!-- Forma Compleja de la Tapa del Eje (Aspecto de Trébol/Lóbulos) -->
+                                    <path d="M-3,-5 L3,-5 L5,0 L3,5 L-3,5 L-5,0 Z" fill="#2a3025"></path>
+                                    <!-- 5. Pernos del Eje (3 en triángulo o 6 en anillo) -->
+                                    <g fill="#111">
+                                        <circle cx="0" cy="-3" r="1"></circle>
+                                        <circle cx="2.5" cy="1.5" r="1"></circle>
+                                        <circle cx="-2.5" cy="1.5" r="1"></circle>
+                                    </g>
+                                </g>
+                            </g>
+                            <!-- TRACKS PATH MOVED TO END -->
+                            <!-- RODILLOS DE RETORNO (4 Visibles, girando con perno) -->
+                            <g id="RodillosRetorno">
+                                <!-- Definición de Rodillo -->
+                                <defs>
+                                    <g id="DefRodilloRetorno">
+                                        <circle cx="0" cy="0" fill="#4a5540" r="7" stroke="#111" stroke-width="1">
+                                        </circle>
+                                        <circle cx="0" cy="0" fill="#2a3025" r="2"></circle>
+                                        <!-- Perno descentrado para visibilidad de movimiento -->
+                                        <circle cx="0" cy="-4" fill="#111" r="1.5"></circle>
+                                    </g>
+                                </defs>
+                                <g transform="translate(130, 200)">
+                                    <use class="wheel-spin" href="#DefRodilloRetorno"></use>
+                                </g>
+                                <g transform="translate(178, 199)">
+                                    <use class="wheel-spin" href="#DefRodilloRetorno"></use>
+                                </g>
+                                <g transform="translate(226, 197)">
+                                    <use class="wheel-spin" href="#DefRodilloRetorno"></use>
+                                </g>
+                                <g transform="translate(274, 195)">
+                                    <use class="wheel-spin" href="#DefRodilloRetorno"></use>
+                                </g>
+                            </g>
+                            <!-- GRUPO DE RUEDAS -->
+                            <g id="Ruedas">
+                                <!-- Rueda Tensora (Trasera/Izquierda) - Grande, con agujeros -->
+                                <!-- Ajusta scale(0.92) para cambiar el tamaño -->
+                                <g transform="translate(63, 216) scale(0.92)">
+                                    <g class="wheel-spin">
+                                        <circle cx="0" cy="0" fill="url(#gradienteRueda)" r="20" stroke="#1a1a1a"
+                                            stroke-width="2"></circle>
+                                        <circle cx="0" cy="0" fill="#2a3025" r="5"></circle> <!-- Eje -->
+                                        <!-- 6 Agujeros Grandes -->
+                                        <circle cx="0" cy="12" fill="#111" r="3.5"></circle>
+                                        <circle cx="0" cy="-12" fill="#111" r="3.5"></circle>
+                                        <circle cx="10" cy="6" fill="#111" r="3.5"></circle>
+                                        <circle cx="-10" cy="6" fill="#111" r="3.5"></circle>
+                                        <circle cx="10" cy="-6" fill="#111" r="3.5"></circle>
+                                        <circle cx="-10" cy="-6" fill="#111" r="3.5"></circle>
+                                    </g>
+                                </g>
+                                <!-- Ruedas de Carretera (5 Grandes) - Cóncavas -->
+                                <!-- Usando un path para el efecto cóncavo -->
+                                <defs>
+                                    <g id="DefRuedaCarretera">
+                                        <circle cx="0" cy="0" fill="url(#gradienteRueda)" r="22" stroke="#1a1a1a"
+                                            stroke-width="2"></circle>
+                                        <circle cx="0" cy="0" fill="none" r="16" stroke="#3e4d35" stroke-width="4">
+                                        </circle>
+                                        <!-- Anillo de Pernos / Tornillos -->
+                                        <g fill="#1a1a1a">
+                                            <circle cx="0" cy="-11" r="1.5"></circle>
+                                            <circle cx="9.5" cy="-5.5" r="1.5"></circle>
+                                            <circle cx="9.5" cy="5.5" r="1.5"></circle>
+                                            <circle cx="0" cy="11" r="1.5"></circle>
+                                            <circle cx="-9.5" cy="5.5" r="1.5"></circle>
+                                            <circle cx="-9.5" cy="-5.5" r="1.5"></circle>
+                                        </g>
+                                        <!-- Borde interno -->
+                                        <circle cx="0" cy="0" fill="#2a3025" r="6" stroke="#111"></circle>
+                                        <!-- Tapa del Eje -->
+                                        <circle cx="0" cy="0" fill="#111" r="2"></circle> <!-- Tuerca -->
+                                    </g>
+                                </defs>
+                                <!-- Ajusta scale(0.92) para cambiar el tamaño de las ruedas inferiores -->
+                                <g transform="translate(106, 230) scale(0.92)">
+                                    <use class="wheel-spin" href="#DefRuedaCarretera"></use>
+                                </g>
+                                <g transform="translate(154, 230) scale(0.92)">
+                                    <use class="wheel-spin" href="#DefRuedaCarretera"></use>
+                                </g>
+                                <g transform="translate(202, 230) scale(0.92)">
+                                    <use class="wheel-spin" href="#DefRuedaCarretera"></use>
+                                </g>
+                                <g transform="translate(250, 230) scale(0.92)">
+                                    <use class="wheel-spin" href="#DefRuedaCarretera"></use>
+                                </g>
+                                <g transform="translate(298, 230) scale(0.92)">
+                                    <use class="wheel-spin" href="#DefRuedaCarretera"></use>
+                                </g>
+                            </g>
+                            <!-- ─────────────────────────────────────────────
+                                 4.2b  ORUGA / TRACK PATH   ID: GrupoOruga
+                                 ─────────────────────────────────────────────
+                                 Renderizado SOBRE las ruedas para que los dientes
+                                 se superpongan correctamente al girar.
+
+                                 GEOMETRÍA ACTUAL DEL CONTORNO:
+                                 ┌─ Rueda tensora (izq)  center=(64, 216)  r≈20
+                                 │  Rueda motriz  (der)  center=(348,205)  r≈20
+                                 │  (motriz 11px más alta → top diagonal)
+                                 │
+                                 │  M 57,193   ← Punto inicial: tangente sup. rueda tensora
+                                 │  L 348,181  ← Tramo SUPERIOR DIAGONAL (sube hac. derecha)
+                                 │  A 24 24 … 360,226 ← Arco ~150° (12→5h) rueda motriz
+                                 │  L 298,250  ← Tramo tensado diagonal a última rod. carret.
+                                 │  L 95,250   ← Tramo INFERIOR horizontal (bajo 5 ruedas)
+                                 │  L 50,236   ← Rampa de salida hacia rueda tensora
+                                 └─ A 24 24 … 57,193  ← Arco rueda tensora (cierre)
+
+                                 CAPAS DE LA ORUGA (de abajo a arriba):
+                                   1. Dientes (stroke-dasharray 4,11 / stroke-width 14)
+                                   2. Banda metálica sólida base (stroke-width 10)
+                                   3. Almohadillas de goma (stroke-dasharray 10,5 / sw 3)
+                                   4. Pernos de unión plateados (stroke-dasharray 1,14)
+                                 ───────────────────────────────────────────── -->
+                            <g id="GrupoOruga">
+                                <!-- CAPA 1 · Dientes guía (Guide Horns)
+                                     Escala ligeramente reducida en Y (0.92) para quedar
+                                     en el interior de la banda metálica. -->
+                                <g transform="translate(200, 221) scale(0.99, 0.92) translate(-200, -221)">
+                                    <path class="track-anim"
+                                        d="M57,193 L348,181 A 24 24 0 0 1 360,226 L298,250 L95,250 L50,236 A 24 24 0 0 1 57,193 Z"
+                                        fill="none" filter="url(#suavizarEsquinas)" stroke="#1a1e16"
+                                        stroke-dasharray="4, 11" stroke-width="14">
+                                    </path>
+                                </g>
+                                <!-- CAPA 2 · Banda metálica sólida (cuerpo de la oruga) -->
+                                <path
+                                    d="M57,193 L348,181 A 24 24 0 0 1 360,226 L298,250 L95,250 L50,236 A 24 24 0 0 1 57,193 Z"
+                                    fill="none" stroke="#1a1e16" stroke-width="10"></path>
+                                <!-- CAPA 3 · Almohadillas de goma (rubber pads) -->
+                                <path class="track-anim"
+                                    d="M57,193 L348,181 A 24 24 0 0 1 360,226 L298,250 L95,250 L50,236 A 24 24 0 0 1 57,193 Z"
+                                    fill="none" stroke="#3e4d35" stroke-dasharray="10, 5" stroke-width="3"></path>
+                                <!-- CAPA 4 · Pernos de unión plateados (track pins)
+                                     stroke-dashoffset="3" desplaza el patrón para que
+                                     los puntos caigan en los huecos entre almohadillas. -->
+                                <path class="track-anim"
+                                    d="M57,193 L348,181 A 24 24 0 0 1 360,226 L298,250 L95,250 L50,236 A 24 24 0 0 1 57,193 Z"
+                                    fill="none" stroke="#888" stroke-dasharray="1, 14" stroke-dashoffset="3"
+                                    stroke-linecap="round" stroke-width="2"></path>
+                            </g>
+                        </g>
+                    </g>
+
+
+                    <!-- ─────────────────────────────────────────────────────────
+                     1. POLVO DE IMPACTO (Dust Cloud)   ID: GrupoPolvoSvg
+                     ─────────────────────────────────────────────────────────
+                     Renderizado AL FINAL del SVG para quedar encima de todo.
+                     Múltiples círculos con filtro blur crean la nube de polvo.
+                     Animados en CSS con la clase .svg-dust  (d1…d12).
+                     Posicionado detrás/debajo de las orugas traseras.
+                     ───────────────────────────────────────────────────────── -->
+                    <!-- ═══════════════════════════════════════════════════════
+                     SISTEMA DE POLVO PROFESIONAL v2 (3 capas)
+                     Ahora dentro de TanqueMaestro (Y=60)
+                     Fondo de oruga real: 346 (Abs) -> 286 (Relativo)
+                     ═══════════════════════════════════════════════════════ -->
+
+                    <!-- CAPA 1 — Tierra gruesa -->
+                    <g id="PolvoCapaSuelo" filter="url(#desenfoquePolvo)" transform="translate(127, 286)">
+                        <circle class="svg-dust d1" cx="0" cy="0" fill="#a07845" r="10"></circle>
+                        <circle class="svg-dust d2" cx="-8" cy="3" fill="#8b6432" r="13"></circle>
+                        <circle class="svg-dust d3" cx="5" cy="-4" fill="#c9a96e" r="9"></circle>
+                        <circle class="svg-dust d4" cx="-15" cy="5" fill="#6b4e2a" r="15"></circle>
+                        <circle class="svg-dust d5" cx="10" cy="6" fill="#b8955a" r="11"></circle>
+                        <circle class="svg-dust d6" cx="-5" cy="-2" fill="#8b6432" r="8"></circle>
+                    </g>
+
+                    <!-- CAPA 2 — Nube media -->
+                    <g id="PolvoCapaMedia" filter="url(#desenfoquePolvo)" transform="translate(113, 266)">
+                        <circle class="svg-dust d7" cx="0" cy="0" fill="#c4a87a" r="9"></circle>
+                        <circle class="svg-dust d8" cx="-10" cy="-5" fill="#d4b896" r="12"></circle>
+                        <circle class="svg-dust d9" cx="8" cy="3" fill="#a07845" r="8"></circle>
+                        <circle class="svg-dust d10" cx="-18" cy="-8" fill="#c9a96e" r="11"></circle>
+                        <circle class="svg-dust d11" cx="4" cy="-10" fill="#b8955a" r="9"></circle>
+                    </g>
+
+                    <!-- CAPA 3 — Partículas finas -->
+                    <g id="PolvoCapaAlta" filter="url(#desenfoquePolvo)" transform="translate(103, 246)">
+                        <circle class="svg-dust-air da1" cx="0" cy="0" fill="#d4c4a0" r="6"></circle>
+                        <circle class="svg-dust-air da2" cx="-12" cy="-6" fill="#c9b882" r="8"></circle>
+                        <circle class="svg-dust-air da3" cx="6" cy="-4" fill="#e0d0a8" r="5"></circle>
+                        <circle class="svg-dust-air da4" cx="-20" cy="-10" fill="#c4af78" r="7"></circle>
+                        <circle class="svg-dust-air da5" cx="10" cy="-8" fill="#d4c4a0" r="6"></circle>
+                    </g>
+
+                    <!-- ─── RUEDAS ADICIONALES ─── -->
+
+                    <!-- RUEDA 2 x≈193 -->
+                    <g filter="url(#desenfoquePolvo)" transform="translate(193, 286)">
+                        <circle class="svg-dust d3" cx="0" cy="0" fill="#a07845" r="8" style="animation-delay:0.15s">
+                        </circle>
+                        <circle class="svg-dust d5" cx="-7" cy="4" fill="#c9a96e" r="10" style="animation-delay:0.55s">
+                        </circle>
+                        <circle class="svg-dust d1" cx="4" cy="-3" fill="#8b6432" r="7" style="animation-delay:0.85s">
+                        </circle>
+                        <circle class="svg-dust d9" cx="-4" cy="-6" fill="#b8955a" r="8"
+                            style="animation-delay:0.3s; animation-name:svg-dust-puff"></circle>
+                    </g>
+                    <g filter="url(#desenfoquePolvo)" transform="translate(183, 266)">
+                        <circle class="svg-dust-air da3" cx="0" cy="0" fill="#d4c4a0" r="5"
+                            style="animation-delay:0.2s">
+                        </circle>
+                        <circle class="svg-dust-air da1" cx="-10" cy="-5" fill="#c9b882" r="6"
+                            style="animation-delay:0.75s"></circle>
+                    </g>
+
+                    <!-- RUEDA 3 x≈258 -->
+                    <g filter="url(#desenfoquePolvo)" transform="translate(258, 286)">
+                        <circle class="svg-dust d2" cx="0" cy="0" fill="#b8955a" r="7" style="animation-delay:0.4s">
+                        </circle>
+                        <circle class="svg-dust d4" cx="-6" cy="3" fill="#c9a96e" r="9" style="animation-delay:0.9s">
+                        </circle>
+                        <circle class="svg-dust d6" cx="5" cy="-4" fill="#a07845" r="7" style="animation-delay:0.1s">
+                        </circle>
+                    </g>
+                    <g filter="url(#desenfoquePolvo)" transform="translate(248, 266)">
+                        <circle class="svg-dust-air da2" cx="0" cy="0" fill="#e0d0a8" r="4"
+                            style="animation-delay:0.35s">
+                        </circle>
+                    </g>
+
+                    <!-- RUEDA 4 x≈323 -->
+                    <g filter="url(#desenfoquePolvo)" transform="translate(323, 286)">
+                        <circle class="svg-dust d1" cx="0" cy="0" fill="#c9a96e" r="6" style="animation-delay:0.6s">
+                        </circle>
+                        <circle class="svg-dust d5" cx="-5" cy="3" fill="#b8955a" r="8" style="animation-delay:0.2s">
+                        </circle>
+                    </g>
+                    <g filter="url(#desenfoquePolvo)" transform="translate(314, 266)">
+                        <circle class="svg-dust-air da5" cx="0" cy="0" fill="#d4c4a0" r="4"
+                            style="animation-delay:0.45s">
+                        </circle>
+                    </g>
+
+                    <!-- RUEDA 5 (delantera) x≈388 -->
+                    <g filter="url(#desenfoquePolvo)" transform="translate(388, 286)">
+                        <circle class="svg-dust d3" cx="0" cy="0" fill="#c9a96e" r="5" style="animation-delay:0.35s">
+                        </circle>
+                    </g>
+                    <g filter="url(#desenfoquePolvo)" transform="translate(380, 266)">
+                        <circle class="svg-dust-air da3" cx="0" cy="0" fill="#e0d0a8" r="3"
+                            style="animation-delay:0.5s">
+                        </circle>
+                    </g>
+                </g>
+            </svg>
+            <!-- ═══════════════════ SVG TANK END ═══════════════════ -->
+        </div>
+    </div>
+    <!-- Script de internacionalización (i18n): gestiona traducciones ES/EN/KI -->
+    <script defer="True" src="../..\js/i18n.js"></script>
+</body>
+
+</html>

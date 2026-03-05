@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Audios | MUSEO DE TANQUES</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Estilos específicos del proyecto -->
+    <script src="../js/config.js"></script>
+    <link href="../css/main.css" rel="stylesheet" />
+
+    <!-- Scripts de Funcionalidad -->
+    <script defer src="../js/i18n.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/components-loader.js"></script>
+
+    <!-- Supabase integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase/client.js"></script>
+    <script src="../js/supabase/auth.js"></script>
+    <script src="../js/supabase/stats.js"></script>
+    <script src="../js/supabase/ui-bridge.js"></script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
+    data-root="../">
+
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <div data-include="tanques/sidebar"></div>
+    <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
+    <div data-include="tanques/topbar"></div>
+
+    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
+    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
+        <div class="max-w-[1200px] mx-auto py-12">
+
+            <header class="mb-12 pb-6">
+                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
+                    data-i18n="audios">Audios</h1>
+                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
+                    MUSEO DE TANQUES</p>
+            </header>
+
+            <!-- ESPACIO PARA EL CONTENIDO -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="audios">Audios</h2>
+                    <p class="text-gray-400">Audios de motores, combates y entrevistas.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER CARGADO DINÁMICAMENTE -->
+    <div data-include="tanques/footer"></div>
+
+    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
+    <script>
+        window.addEventListener('componentsReady', () => {
+            setTimeout(() => {
+                if (window.StatsManager) {
+                    window.StatsManager.updateUI();
+                    window.StatsManager.subscribeRealtime();
+                }
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>

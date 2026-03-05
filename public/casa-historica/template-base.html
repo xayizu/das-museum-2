@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Página Base | MUSEOS TAPI</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Estilos específicos del proyecto -->
+    <script src="../js/config.js"></script>
+    <link href="../css/main.css" rel="stylesheet" />
+
+    <!-- Scripts de Funcionalidad -->
+    <script defer src="../js/i18n.js"></script>
+    <script defer src="../js/main.js"></script>
+    <script defer src="../js/components-loader.js"></script>
+
+    <!-- Supabase integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase/client.js"></script>
+    <script src="../js/supabase/auth.js"></script>
+    <script src="../js/supabase/stats.js"></script>
+    <script src="../js/supabase/ui-bridge.js"></script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
+    data-root="../">
+
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Casa - Historical Theme) -->
+    <div data-include="casa/topbar"></div>
+
+    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
+    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow pt-[100px] md:pt-[60px] px-6">
+        <div class="max-w-[1200px] mx-auto py-12">
+
+            <header class="mb-16 border-b border-accent-gold/10 pb-8 relative group">
+                <!-- Breathing Animation Border -->
+                <div class="absolute bottom-[-1px] left-0 w-full h-[3px] breathing-pearl-gold animate-breathing"></div>
+
+                <h1 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-slate-900 mb-3 bg-clip-text text-transparent bg-gradient-to-b from-slate-900 to-slate-700"
+                    data-i18n="titulo_pagina">PÁGINA BASE</h1>
+                <div class="flex items-center gap-4">
+                    <div class="h-[1px] w-12 bg-accent-gold animate-pulse"></div>
+                    <p class="uppercase tracking-[0.3em] text-[10px] font-black text-accent-gold"
+                        data-i18n="casa_histrica_title">
+                        CASA HISTÓRICA</p>
+                </div>
+            </header>
+
+            <!-- ESPACIO PARA EL CONTENIDO -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
+                    <h2 class="text-xl font-bold text-accent-gold mb-4" data-i18n="detalle_seccion">Sección de Contenido
+                    </h2>
+                    <p class="text-gray-400">Esta página utiliza el sistema de componentes dinámicos de la Casa
+                        Histórica con efectos de respiración en Perla y Oro.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER CARGADO DINÁMICAMENTE -->
+    <div data-include="casa/footer"></div>
+
+    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
+    <script>
+        // Sincronizar estadísticas una vez que los componentes (footer con sus IDs) están listos
+        window.addEventListener('componentsReady', () => {
+            console.log('📦 Componentes listos en Subpágina. Sincronizando estadísticas...');
+
+            // Pequeño retardo para asegurar que Supabase (client.js) haya terminado de asignar window.sb
+            setTimeout(() => {
+                if (window.StatsManager) {
+                    // Actualizar UI inmediatamente
+                    window.StatsManager.updateUI();
+                    // Suscribirse a cambios en tiempo real
+                    window.StatsManager.subscribeRealtime();
+                }
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>

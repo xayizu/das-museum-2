@@ -1,0 +1,1665 @@
+﻿<!DOCTYPE html>
+
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MUSEOS TAPI | Complejo Museístico de Tanques y Casa Histórica</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Bienvenido al Complejo Museístico MUSEOS TAPI. Explora la historia militar en nuestro Museo de Tanques y la elegancia de la Casa Histórica. Tour virtual, galería y más.">
+    <meta name="keywords"
+        content="Museo de Tanques, Casa Histórica, Museos TAPI, Historia Militar, Tour Virtual, Ecuador, Cultura, Blindados">
+    <link rel="canonical" href="https://www.museostapi.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.museostapi.com/">
+    <meta property="og:title" content="MUSEOS TAPI | Complejo Museístico Dual">
+    <meta property="og:description"
+        content="Explora la historia militar y arquitectónica en una experiencia digital única.">
+    <meta property="og:image" content="https://www.museostapi.com/recursos/images/index/whatsappicon.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.museostapi.com/">
+    <meta property="twitter:title" content="MUSEOS TAPI | Complejo Museístico Dual">
+    <meta property="twitter:description"
+        content="Explora la historia militar y arquitectónica en una experiencia digital única.">
+    <meta property="twitter:image" content="https://www.museostapi.com/recursos/images/index/whatsappicon.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;family=Share+Tech+Mono&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/config.js"></script>
+    <link href="css/main.css" rel="stylesheet" />
+    <script defer src="js/i18n.js"></script>
+    <script defer src="js/main.js"></script>
+
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+    <!-- 
+        ========================================================================
+        ? ÍNDICE DE EDICIÓN (ESTRUCTURA HTML) ?
+        ========================================================================
+        Usa "Ctrl + F" para buscar el número del grupo (Ej: "6.1")
+        
+        1. CABECERA Y METADATOS (Head & CSS) (En la etiqueta <head>)
+        2. CAPAS OSCURAS (Overlays)
+        3. MENÚS LATERALES (Sidebars)
+            3.1 Menú Izquierdo (Museo de Tanques)
+            3.2 Menú Derecho (Casa Histórica)
+        4. BARRA SUPERIOR ESTRUCTURADA (Topbar Global)
+        5. MODAL DE BÚSQUEDA (Search Screen)
+        6. CONTENIDO PRINCIPAL DIVIDIDO (Main Split Area)
+            6.1 Sección Izquierda (Hero Tanques)
+            6.2 Botones Centrales (Portal Gateway)
+            6.3 Sección Derecha (Hero Casa Histórica)
+        7. ALIADOS ESTRATÉGICOS (Pre-Footer Sponsors)
+        8. PIE DE PÁGINA (Footer Global)
+        9. SCRIPTS GLOBALES (Initialization)
+        ========================================================================
+    -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 2. CAPAS OSCURAS (Overlays) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()">
+    </div>
+    <div class="overlay fixed inset-0 z-[90]" id="right-overlay" onclick="toggleRightMenu()">
+    </div>
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 3. MENÚS LATERALES (Sidebars) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 3.1 Menú Izquierdo (Museo de Tanques) -->
+    <!-- ======================================================================== -->
+    <aside
+        class="fixed top-0 left-0 h-full w-[75vw] max-w-80 bg-military-dark border-r border-white/10 z-[100] flex flex-col pt-10 transition-transform duration-400"
+        id="left-sidebar">
+        <div class="px-8 pb-8 flex items-center justify-between border-b border-white/10">
+            <div class="flex items-center gap-3">
+                <img src="recursos/images/museo-tanques/template/tanque.svg" alt="Tanque"
+                    class="h-10 w-auto invert brightness-200">
+                <div class="flex flex-col">
+                    <span class="text-xs font-black uppercase tracking-[0.2em] text-gray-400" data-i18n="museo_de">Museo
+                        de</span>
+                    <span class="text-2xl font-black uppercase text-white tracking-tighter"
+                        data-i18n="tanques">Tanques</span>
+                </div>
+            </div>
+            <button class="text-gray-400 hover:text-white transition-colors" onclick="toggleLeftMenu()">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+        </div>
+        <nav class="flex-1 px-8 py-6 flex flex-col gap-2 overflow-y-auto custom-scrollbar">
+            <!-- 1. INICIO -->
+            <a class="group flex items-center gap-4 text-gray-300 hover:text-primary transition-colors py-2"
+                href="museo-tanques/1.0index.html">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+                <span class="font-bold text-base capitalize tracking-wider" data-i18n="inicio_menu">Inicio</span>
+            </a>
+
+            <!-- 2. TOUR VIRTUAL -->
+            <a class="group flex items-center gap-4 text-gray-300 hover:text-primary transition-colors py-2"
+                href="museo-tanques/2.0tour.html">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform">360</span>
+                <span class="font-bold text-base capitalize tracking-wider" data-i18n="tour_virtual">Tour Virtual</span>
+            </a>
+
+            <!-- 3. MUSEO (Padre) wrapper -->
+            <div>
+                <div class="menu-parent" onclick="toggleSubMenu('museo-submenu', this)">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined">museum</span>
+                        <span class="font-bold text-base capitalize tracking-wider" data-i18n="museo_menu">Museo</span>
+                    </div>
+                    <span class="material-symbols-outlined chevron">expand_more</span>
+                </div>
+
+                <div class="menu-content" id="museo-submenu">
+                    <div class="menu-inner">
+                        <a class="menu-child" href="museo-tanques/3.1nosotros.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="nosotros">Nosotros</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/3.2mision.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="mision_vision">Misión y Visión</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/3.3video.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="video_institucional">Video Institucional</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/3.4historia.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="historia">Historia</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/3.5mensaje.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="mensaje_comando">Mensaje Comando</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/3.6noticias.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="noticias">Noticias</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/3.7mapa.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="mapa">Mapa</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. GALERIA (Padre) wrapper -->
+            <div>
+                <div class="menu-parent" onclick="toggleSubMenu('galeria-submenu', this)">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined">collections</span>
+                        <span class="font-bold text-base capitalize tracking-wider" data-i18n="galera">Galería</span>
+                    </div>
+                    <span class="material-symbols-outlined chevron">expand_more</span>
+                </div>
+
+                <div class="menu-content" id="galeria-submenu">
+                    <div class="menu-inner">
+                        <a class="menu-child" href="museo-tanques/4.1hangar.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="hangar">Hangar</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/4.2fotos.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="fotos">Fotos</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/4.3videos.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="videos">Videos</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/4.4audios.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="audios">Audios</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/4.5modelos3d.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="modelos_3d">Modelos
+                                3D</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/4.6biblioteca.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="biblioteca">Biblioteca</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. CONTACTOS (Padre) wrapper -->
+            <div>
+                <div class="menu-parent" onclick="toggleSubMenu('contactos-submenu', this)">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined">contact_support</span>
+                        <span class="font-bold text-base capitalize tracking-wider"
+                            data-i18n="contactos">Contactos</span>
+                    </div>
+                    <span class="material-symbols-outlined chevron">expand_more</span>
+                </div>
+
+                <div class="menu-content" id="contactos-submenu">
+                    <div class="menu-inner">
+                        <a class="menu-child" href="museo-tanques/5.1ubicacion.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="ubicacion">Ubicación</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/5.2horarios.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="horarios">Horarios</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/5.3sugerencias.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="sugerencias">Sugerencias</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/5.4preguntas.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="preguntas_frecuentes_menu">Preguntas Frecuentes</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. SERVICIOS (Padre) wrapper -->
+            <div>
+                <div class="menu-parent" onclick="toggleSubMenu('servicios-submenu', this)">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined">construction</span>
+                        <span class="font-bold text-base capitalize tracking-wider"
+                            data-i18n="servicios">Servicios</span>
+                    </div>
+                    <span class="material-symbols-outlined chevron">expand_more</span>
+                </div>
+
+                <div class="menu-content" id="servicios-submenu">
+                    <div class="menu-inner">
+                        <a class="menu-child" href="museo-tanques/6.1reservar.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="reservar_visita">Reservar Visita</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/6.2protocolo.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="protocolo">Protocolo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. JUEGOS DE GUERRA (Padre) wrapper -->
+            <div>
+                <div class="menu-parent" onclick="toggleSubMenu('juegos-submenu', this)">
+                    <div class="flex items-center gap-4">
+                        <span class="material-symbols-outlined">videogame_asset</span>
+                        <span class="font-bold text-base capitalize tracking-wider" data-i18n="juegos_guerra">Juegos de
+                            Guerra</span>
+                    </div>
+                    <span class="material-symbols-outlined chevron">expand_more</span>
+                </div>
+
+                <div class="menu-content" id="juegos-submenu">
+                    <div class="menu-inner">
+                        <a class="menu-child" href="museo-tanques/7.1misiones.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="misiones_trivias">Misiones (Trivias)</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/7.2ranking.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="ranking_global">Ránking Global</span>
+                        </a>
+                        <a class="menu-child" href="museo-tanques/7.3tutorial.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="tutorial">Tutorial</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="px-8 py-6 border-t border-white/10 mt-auto">
+            <a class="w-full block text-center bg-primary hover:bg-primary-hover text-white py-3 rounded font-black uppercase tracking-widest text-xs transition-colors"
+                data-i18n="entrar_al_museo_principal" href="museo-tanques/4.1hangar.html">
+                Entrar al Museo Principal
+            </a>
+        </div>
+    </aside>
+    <!-- ======================================================================== -->
+    <!-- 3.2 Menú Derecho (Casa Histórica) -->
+    <!-- ======================================================================== -->
+    <aside
+        class="fixed top-0 right-0 h-full w-[75vw] max-w-80 bg-archive-light border-l border-slate-200 shadow-2xl z-[100] flex flex-col pt-10 text-slate-900"
+        id="right-sidebar">
+        <div class="px-8 pb-8 flex items-center justify-between border-b border-slate-200">
+            <button class="text-slate-500 hover:text-accent-gold transition-colors" onclick="toggleRightMenu()">
+                <span class="material-symbols-outlined text-3xl">close</span>
+            </button>
+            <div class="flex flex-col text-right">
+                <span class="font-serif italic text-sm text-slate-600" data-i18n="la_casa">La Casa</span>
+                <span class="font-serif font-bold text-2xl tracking-tight text-slate-900"
+                    data-i18n="histrica">Histórica</span>
+            </div>
+        </div>
+        <nav class="flex-1 px-8 py-6 flex flex-col gap-2 text-right items-end overflow-y-auto custom-scrollbar">
+            <!-- 1. INICIO -->
+            <a class="group flex flex-row-reverse items-center justify-end gap-4 text-slate-700 hover:text-accent-gold transition-colors py-2"
+                href="casa-historica/1.0index.html">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+                <span class="font-serif font-bold text-lg capitalize tracking-wide"
+                    data-i18n="inicio_menu">Inicio</span>
+            </a>
+
+            <!-- 2. TOUR VIRTUAL -->
+            <a class="group flex flex-row-reverse items-center justify-end gap-4 text-slate-700 hover:text-accent-gold transition-colors py-2"
+                href="casa-historica/2.0tour.html">
+                <span class="material-symbols-outlined group-hover:scale-110 transition-transform">360</span>
+                <span class="font-serif font-bold text-lg capitalize tracking-wide" data-i18n="tour_virtual">Tour
+                    Virtual</span>
+            </a>
+
+            <!-- 3. MUSEO (Padre) wrapper -->
+            <div class="w-full">
+                <div class="menu-parent-right" onclick="toggleSubMenu('r-museo-submenu', this)">
+                    <span class="material-symbols-outlined chevron-right">expand_more</span>
+                    <div class="flex items-center gap-3">
+                        <span class="font-serif font-bold text-lg capitalize tracking-wide"
+                            data-i18n="museo_menu">Museo</span>
+                        <span class="material-symbols-outlined">museum</span>
+                    </div>
+                </div>
+
+                <div class="menu-content" id="r-museo-submenu">
+                    <div class="menu-inner items-end">
+                        <a class="menu-child-right" href="casa-historica/3.1nosotros.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="nosotros">Nosotros</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/3.2mision.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="mision_vision">Misión Y Vision</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/3.3video.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="video_institucional">Video Institucional</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/3.4historia.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="historia">Historia</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/3.5mensaje.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="mensaje_comando">Mensaje Comando</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/3.6noticias.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="noticias">Noticias</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/3.7mapa.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="mapa">Mapa</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. GALERIA (Padre) wrapper -->
+            <div class="w-full">
+                <div class="menu-parent-right" onclick="toggleSubMenu('r-galeria-submenu', this)">
+                    <span class="material-symbols-outlined chevron-right">expand_more</span>
+                    <div class="flex items-center gap-3">
+                        <span class="font-serif font-bold text-lg capitalize tracking-wide"
+                            data-i18n="galera">Galeria</span>
+                        <span class="material-symbols-outlined">collections</span>
+                    </div>
+                </div>
+
+                <div class="menu-content" id="r-galeria-submenu">
+                    <div class="menu-inner items-end">
+                        <a class="menu-child-right" href="casa-historica/4.1hangar.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="archivo_galeria_casa">Archivo</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/4.2fotos.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="fotos">Fotos</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/4.3videos.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="videos">Videos</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/4.4audios.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="audios">Audios</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/4.5modelos3d.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="modelos_3d">Modelos
+                                3d</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/4.6biblioteca.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="biblioteca">Biblioteca</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. CONTACTOS (Padre) wrapper -->
+            <div class="w-full">
+                <div class="menu-parent-right" onclick="toggleSubMenu('r-contactos-submenu', this)">
+                    <span class="material-symbols-outlined chevron-right">expand_more</span>
+                    <div class="flex items-center gap-3">
+                        <span class="font-serif font-bold text-lg capitalize tracking-wide"
+                            data-i18n="contactos">Contactos</span>
+                        <span class="material-symbols-outlined">contact_support</span>
+                    </div>
+                </div>
+
+                <div class="menu-content" id="r-contactos-submenu">
+                    <div class="menu-inner items-end">
+                        <a class="menu-child-right" href="casa-historica/5.1ubicacion.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="ubicacion">Ubicación</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/5.2horarios.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="horarios">Horarios</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/5.3sugerencias.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="sugerencias">Sugerencias</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/5.4preguntas.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="preguntas_frecuentes_menu">Preguntas Frecuentes</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. SERVICIOS (Padre) wrapper -->
+            <div class="w-full">
+                <div class="menu-parent-right" onclick="toggleSubMenu('r-servicios-submenu', this)">
+                    <span class="material-symbols-outlined chevron-right">expand_more</span>
+                    <div class="flex items-center gap-3">
+                        <span class="font-serif font-bold text-lg capitalize tracking-wide"
+                            data-i18n="servicios">Servicios</span>
+                        <span class="material-symbols-outlined">construction</span>
+                    </div>
+                </div>
+
+                <div class="menu-content" id="r-servicios-submenu">
+                    <div class="menu-inner items-end">
+                        <a class="menu-child-right" href="casa-historica/6.1reservar.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="reservar_visita">Reservar Visita</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/6.2protocolo.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="protocolo">Protocolo</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. JUEGOS DE GUERRA (Padre) wrapper -->
+            <div class="w-full">
+                <div class="menu-parent-right" onclick="toggleSubMenu('r-juegos-submenu', this)">
+                    <span class="material-symbols-outlined chevron-right">expand_more</span>
+                    <div class="flex items-center gap-3">
+                        <span class="font-serif font-bold text-lg capitalize tracking-wide"
+                            data-i18n="juegos_guerra">Juegos De
+                            Guerra</span>
+                        <span class="material-symbols-outlined">videogame_asset</span>
+                    </div>
+                </div>
+
+                <div class="menu-content" id="r-juegos-submenu">
+                    <div class="menu-inner items-end">
+                        <a class="menu-child-right" href="casa-historica/7.1misiones.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="misiones_trivias">Misiones (Trivias)</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/7.2ranking.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="ranking_global">Ránking Global</span>
+                        </a>
+                        <a class="menu-child-right" href="casa-historica/7.3tutorial.html">
+                            <span class="font-bold text-[13px] capitalize tracking-wider"
+                                data-i18n="tutorial">Tutorial</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="px-8 py-6 border-t border-slate-200 mt-auto">
+            <a class="w-full block text-center bg-white border border-slate-300 text-slate-900 hover:bg-slate-50 py-3 rounded font-serif font-bold tracking-widest text-sm transition-colors shadow-sm"
+                data-i18n="visitar_casona" href="casa-historica/4.1hangar.html">
+                Visitar Casona
+            </a>
+        </div>
+    </aside>
+    <div class="relative flex flex-col pt-[105px] md:pt-[70px] bg-military-dark">
+        <!-- ======================================================================== -->
+        <!-- ======================================================================== -->
+        <!-- 4. BARRA SUPERIOR ESTRUCTURADA (Topbar Global) -->
+        <!-- ======================================================================== -->
+        <!-- ======================================================================== -->
+        <div class="topbar-global topbar-main footer-fusion !fixed">
+            <div
+                class="topbar-container relative z-10 w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
+                <!-- Left: Branding -->
+                <a class="topbar-brand" href="./index.html">
+                    <img alt="Logo" class="h-10 md:h-12 w-auto invert brightness-200" data-i18n-alt="logo"
+                        src="./recursos/images/tapi-logo.svg" />
+                    <div class="flex flex-col leading-none">
+                        <span
+                            class="font-black text-2xl md:text-3xl tracking-tight uppercase bg-clip-text text-transparent bg-gradient-to-r from-primary via-white to-accent-gold animate-text-fusion"
+                            data-i18n="museos_tapi">MUSEOS TAPI</span>
+                    </div>
+                </a>
+
+
+                <!-- Right: Utilities -->
+                <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end">
+                    <button aria-label="Buscar" class="util-btn search-toggle" data-i18n-tooltip="tooltip_search"
+                        data-tooltip="Búsqueda Global" onclick="window.handleSearch()"><span
+                            class="material-symbols-outlined">search</span></button>
+                    <div class="util-divider"></div>
+                    <button aria-label="Cambiar Idioma" class="util-btn lang-toggle" data-i18n-tooltip="tooltip_lang"
+                        data-tooltip="Cambiar Idioma" onclick="window.handleLang()">
+                        <span class="flag-es font-bold text-xs tracking-widest uppercase">
+                            <span class="lang-short">ES</span><span class="lang-full">PAÑOL</span>
+                        </span>
+                        <span class="flag-en hidden font-bold text-xs tracking-widest uppercase">
+                            <span class="lang-short">EN</span><span class="lang-full">GLISH</span>
+                        </span>
+                        <span class="flag-ec hidden font-bold text-xs tracking-widest uppercase">
+                            <span class="lang-short">KI</span><span class="lang-full">CHWA</span>
+                        </span>
+                    </button>
+                    <div class="util-divider"></div>
+                    <button aria-label="Modo Día/Noche" class="util-btn theme-toggle" data-i18n-tooltip="tooltip_theme"
+                        data-tooltip="Modo Día / Noche" onclick="window.toggleTheme()"><span
+                            class="material-symbols-outlined">light_mode</span></button>
+                    <div class="util-divider"></div>
+                    <button aria-label="Música de Ambiente" class="util-btn bg-music-toggle playing"
+                        data-i18n-tooltip="tooltip_music" data-tooltip="Música de Ambiente"
+                        onclick="window.toggleBackgroundMusic()"><span id="bg-music-icon"></span></button>
+                    <div class="util-divider"></div>
+                    <div class="relative">
+                        <a aria-label="Perfil de Usuario" class="util-btn" data-i18n-tooltip="tooltip_profile"
+                            data-tooltip="Mi Perfil" id="user-profile-btn" href="javascript:void(0)"
+                            onclick="AuthManager.handleUserButtonClick()">
+                            <span class="material-symbols-outlined">account_circle</span>
+                        </a>
+
+                        <!-- User Dropdown Menu -->
+                        <div id="user-dropdown"
+                            class="absolute right-0 top-full mt-2 w-64 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-xl shadow-2xl overflow-hidden hidden opacity-0 translate-y-2 transition-all duration-300 z-50">
+                            <!-- User Info -->
+                            <div class="px-4 py-4 border-b border-slate-800 bg-slate-800/20">
+                                <div class="flex items-center gap-3">
+                                    <div id="dropdown-user-img"
+                                        class="size-10 rounded-full border border-primary/30 overflow-hidden bg-slate-800 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-primary">account_circle</span>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <span id="dropdown-user-name"
+                                            class="text-sm font-medium text-white truncate">Agente TAPI</span>
+                                        <span id="dropdown-user-email"
+                                            class="text-xs text-slate-400 truncate font-mono">usuario@ejemplo.com</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Links -->
+                            <div class="py-2">
+                                <a href="perfil.html"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">person</span>
+                                    <span data-i18n="ver_perfil">Ver mi Perfil</span>
+                                </a>
+                                <a href="mis-logros.html"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">military_tech</span>
+                                    <span data-i18n="mis_logros">Mis Logros</span>
+                                </a>
+                                <a href="configuracion.html"
+                                    class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
+                                    <span
+                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">settings</span>
+                                    <span data-i18n="configuracion">Configuración</span>
+                                </a>
+                            </div>
+
+                            <!-- Logout -->
+                            <div class="border-t border-slate-800 py-2">
+                                <button id="logout-btn" onclick="AuthManager.logout()"
+                                    class="flex items-center w-full gap-3 px-4 py-3 text-sm text-red-400 hover:bg-red-950/30 transition-colors text-left group">
+                                    <span
+                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">logout</span>
+                                    <span data-i18n="cerrar_sesion">Cerrar Sesión</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Animated Breathing Border at the bottom of the header -->
+            <div class="header-fusion-border"></div>
+        </div>
+
+    </div>
+
+
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 5. MODAL DE BÚSQUEDA (Search Screen) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <div class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] hidden items-start justify-center pt-32 opacity-0 transition-opacity duration-300"
+        id="global-search-modal">
+        <div class="bg-surface-dark dark:bg-slate-900 border border-white/10 dark:border-slate-700 w-full max-w-2xl p-6 shadow-2xl rounded-xl transform scale-95 transition-transform duration-300"
+            id="search-modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-white dark:text-slate-100 font-bold text-lg flex items-center gap-2"
+                    data-i18n="search_bsqueda_global">
+                    <span class="material-symbols-outlined">search</span>
+                    Búsqueda Global
+                </h3>
+                <button
+                    class="text-gray-400 hover:text-white dark:text-slate-500 dark:hover:text-slate-300 transition-colors"
+                    onclick="closeSearch()">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="relative">
+                <input
+                    class="w-full bg-black/50 dark:bg-slate-800 border border-white/20 dark:border-slate-600 rounded-lg px-4 py-4 text-white dark:text-slate-100 focus:outline-none focus:border-primary dark:focus:border-blue-500 text-lg"
+                    data-i18n-placeholder="escribe_para_buscar_contenidos_en_esta" id="global-search-input"
+                    onkeyup="if(event.key === 'Enter') executeSearch()"
+                    placeholder="Escribe para buscar contenidos en esta página..." type="text" />
+                <button
+                    class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary hover:bg-primary-hover text-white px-4 py-2 rounded-md text-sm font-bold uppercase tracking-wider transition-colors"
+                    data-i18n="buscar" onclick="executeSearch()">Buscar</button>
+            </div>
+            <div class="mt-4 text-sm text-gray-400 dark:text-slate-500 hidden" id="search-results-feedback"></div>
+        </div>
+    </div>
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 5.1 MODAL DE AUTENTICACIÓN (Auth Screen) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <div class="fixed inset-0 bg-black/80 backdrop-blur-md z-[210] hidden items-center justify-center opacity-0 transition-opacity duration-300"
+        id="auth-modal">
+        <div class="bg-slate-900/90 border border-white/10 w-full max-w-md p-8 shadow-2xl rounded-2xl transform scale-95 transition-all duration-300 relative"
+            id="auth-modal-content">
+
+            <!-- Close Button -->
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+                onclick="AuthManager.hideModal()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+
+            <!-- Profile Info (Visible when logged in) -->
+            <div id="auth-profile-view" class="hidden text-center">
+                <div id="profile-img-container"
+                    class="size-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4 border border-primary/30 overflow-hidden">
+                    <span class="material-symbols-outlined text-4xl text-primary">account_circle</span>
+                </div>
+                <h3 id="profile-name" class="text-2xl font-black text-white mb-1 uppercase tracking-tight">Agente
+                    TAPI</h3>
+                <p id="profile-email" class="text-sm text-gray-500 mb-6 font-mono">agente@museos.com</p>
+
+                <button
+                    class="w-full bg-red-600/20 hover:bg-red-600 text-red-500 hover:text-white py-3 rounded-xl font-bold uppercase tracking-widest text-xs transition-all border border-red-600/30"
+                    onclick="AuthManager.logout()">
+                    Cerrar Sesión
+                </button>
+            </div>
+
+            <!-- Login / Register Form (Visible when logged out) -->
+            <div id="auth-form-view">
+                <div class="text-center mb-8">
+                    <h3 id="auth-title" class="text-2xl font-black text-white uppercase tracking-tight"
+                        data-i18n="auth_iniciar_sesin">Iniciar Sesión</h3>
+                    <p id="auth-subtitle" class="text-xs text-gray-500 uppercase font-bold tracking-[0.2em] mt-2">
+                        Acceso al Complejo Museístico</p>
+                </div>
+
+                <form id="auth-form" onsubmit="AuthManager.handleFormSubmit(event)" class="space-y-4">
+                    <!-- Username (Only for Sign Up) -->
+                    <div id="field-username" class="hidden space-y-2">
+                        <label class="block text-[10px] text-gray-400 uppercase font-black tracking-widest ml-1">Nombre
+                            Completo</label>
+                        <input type="text" id="auth-username"
+                            class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-all text-sm"
+                            placeholder="Ej. Juan Pérez">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="space-y-2">
+                        <label class="block text-[10px] text-gray-400 uppercase font-black tracking-widest ml-1">Correo
+                            Electrónico</label>
+                        <input type="email" id="auth-email" required
+                            class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-all text-sm"
+                            placeholder="tu@email.com">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="space-y-2">
+                        <label
+                            class="block text-[10px] text-gray-400 uppercase font-black tracking-widest ml-1">Contraseña</label>
+                        <input type="password" id="auth-password" required
+                            class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary transition-all text-sm"
+                            placeholder="••••••••">
+                    </div>
+
+                    <button type="submit" id="auth-submit-btn"
+                        class="w-full bg-primary hover:bg-primary-hover text-white py-4 rounded-xl font-black uppercase tracking-widest text-xs transition-all shadow-[0_0_20px_rgba(0,50,160,0.3)] mt-4">
+                        Ingresar
+                    </button>
+
+                    <!-- Google Login Separator -->
+                    <div class="relative py-4">
+                        <div class="absolute inset-0 flex items-center"><span
+                                class="w-full border-t border-white/5"></span></div>
+                        <div class="relative flex justify-center text-[10px] uppercase font-bold tracking-widest">
+                            <span class="bg-slate-900 px-3 text-gray-500">O entra con</span>
+                        </div>
+                    </div>
+
+                    <!-- Google Button -->
+                    <button type="button" onclick="AuthManager.loginWithGoogle()"
+                        class="w-full bg-white hover:bg-gray-100 text-black py-4 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-3 shadow-xl">
+                        <svg class="size-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4"
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                            <path fill="#34A853"
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                            <path fill="#FBBC05"
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" />
+                            <path fill="#EA4335"
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" />
+                        </svg>
+                        Continuar con Google
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-white/5 text-center">
+                    <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-3" id="switch-text">
+                        ¿No tienes cuenta?</p>
+                    <button
+                        class="text-primary hover:text-white font-black uppercase text-[10px] tracking-widest transition-colors"
+                        id="switch-mode-btn" onclick="AuthManager.toggleMode()">
+                        Registrarse Ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <main class="flex-grow flex flex-col md:flex-row relative group/split min-h-[85vh] md:min-h-screen overflow-hidden"
+        id="hero-main">
+        <!-- ======================================================================== -->
+        <!-- 6.1 Sección Izquierda (Hero Tanques) -->
+        <!-- ======================================================================== -->
+        <section class="relative flex-1 bg-military-dark overflow-hidden group/left" id="split-left">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-black/40 z-10 pointer-events-none">
+                </div>
+                <iframe class="w-full h-full border-0 transition-transform duration-700 pointer-events-none"
+                    data-i18n-title="animacin_tanque" src="./preloader/tanque/index.html"
+                    title="Animación Tanque"></iframe>
+            </div>
+            <!-- Navigation (Top Left) -->
+            <div
+                class="absolute top-0 left-0 p-6 md:p-10 z-30 w-full flex justify-between md:justify-start items-start">
+                <button class="flex items-center gap-3 text-white hover:text-primary-light transition-colors group"
+                    onclick="toggleLeftMenu()">
+                    <div
+                        class="p-2 bg-white/10 backdrop-blur-sm rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-3xl">menu</span>
+                    </div>
+                    <div class="flex flex-col items-start px-2">
+                        <span class="uppercase tracking-[0.2em] font-black text-sm md:text-base leading-none"
+                            data-i18n="museo_de_1">Museo
+                            de</span>
+                        <span
+                            class="uppercase tracking-tighter font-black text-2xl md:text-4xl leading-none text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400"
+                            data-i18n="tanques">Tanques</span>
+                    </div>
+                </button>
+            </div>
+
+
+            <!-- Content Overlay -->
+            <div
+                class="absolute bottom-0 left-0 w-full z-20 flex flex-col justify-end p-4 pb-6 md:p-16 md:pb-16 items-start">
+                <div class="max-w-md transform transition-all duration-500 scale-75 origin-bottom-left md:scale-100">
+                    <div class="inline-block bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded mb-4 uppercase tracking-widest"
+                        data-i18n="exhibicin_actual">
+                        Exhibición Actual</div>
+                    <h2 class="text-4xl md:text-6xl font-black text-white leading-tight uppercase mb-2 text-shadow-strong"
+                        data-i18n="acero_puro">
+                        Acero <br /><span class="text-gray-400" data-i18n="puro">Puro</span>
+                    </h2>
+                    <p class="text-gray-300 text-sm md:text-base font-medium max-w-xs leading-relaxed border-l-4 border-primary pl-4"
+                        data-i18n="siente_la_fuerza_bruta_de_ms">
+                        Siente la fuerza bruta de más de 150 vehículos blindados restaurados. Una experiencia
+                        inmersiva en la ingeniería militar.
+                    </p>
+                </div>
+            </div>
+            <!-- Noise Texture Overlay -->
+            <div class="absolute inset-0 z-10 bg-grain mix-blend-overlay opacity-30 pointer-events-none"></div>
+        </section>
+        <!-- ======================================================================== -->
+        <!-- ======================================================================== -->
+        <!-- 6.2 Separador Central Draggable (VS) -->
+        <!-- ======================================================================== -->
+        <div class="absolute z-40 flex items-center justify-center pointer-events-none transition-all duration-700 ease-in-out left-0 right-0 top-1/2 -translate-y-1/2 md:left-1/2 md:top-0 md:bottom-0 md:-translate-x-1/2 md:translate-y-0 md:w-0"
+            id="vs-divider">
+            <!-- Line Desktop -->
+            <div class="hidden md:block absolute w-[1px] h-[150%] bg-white/20 backdrop-blur-md pointer-events-none">
+            </div>
+            <!-- Line Mobile -->
+            <div
+                class="block md:hidden absolute h-[1px] w-[150%] bg-white/20 backdrop-blur-md pointer-events-none shadow-[0_0_10px_rgba(0,0,0,0.5)] z-[-1]">
+            </div>
+            <!-- Decorative VS circle strictly centered -->
+            <div class="shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-black/80 backdrop-blur-md border border-white/40 text-white font-bold text-sm shadow-[0_0_20px_rgba(0,0,0,0.9)] cursor-row-resize md:cursor-col-resize z-50 pointer-events-auto touch-none hover:scale-110 active:scale-95 transition-transform duration-200"
+                data-i18n-title="arrastra_para_ajustar" id="vs-circle" title="Arrastra para ajustar">
+                VS
+            </div>
+        </div>
+        <!-- ======================================================================== -->
+        <!-- 6.3 Sección Derecha (Hero Casa Histórica) -->
+        <!-- ======================================================================== -->
+        <section class="relative flex-1 bg-archive-light overflow-hidden group/right" id="split-right">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <div class="absolute inset-0 bg-gradient-to-l from-transparent to-black/40 z-10 pointer-events-none">
+                </div>
+                <iframe class="w-full h-full border-0 transition-transform duration-700 pointer-events-none"
+                    data-i18n-title="animacin_caballo" src="./preloader/caballo/index.html"
+                    title="Animación Caballo"></iframe>
+            </div>
+            <!-- Navigation (Top Right) -->
+            <div class="absolute top-0 right-0 p-6 md:p-10 z-30 w-full flex justify-end items-start text-right">
+                <button
+                    class="flex flex-row-reverse items-center gap-3 text-slate-900 hover:text-accent-gold transition-colors group"
+                    onclick="toggleRightMenu()">
+                    <div
+                        class="p-2 bg-white/80 backdrop-blur-sm rounded-lg group-hover:bg-accent-gold group-hover:text-white transition-colors shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">menu_open</span>
+                    </div>
+                    <div class="flex flex-col items-end px-2">
+                        <span class="font-serif italic text-sm md:text-base text-slate-600 leading-none"
+                            data-i18n="la_casa_1">La
+                            Casa</span>
+                        <span class="font-serif font-bold text-2xl md:text-4xl leading-none tracking-tight"
+                            data-i18n="histrica">Histórica</span>
+                    </div>
+                </button>
+            </div>
+
+
+            <!-- Content Overlay -->
+            <div
+                class="absolute bottom-0 right-0 w-full z-20 flex flex-col justify-end p-4 pb-6 md:p-16 md:pb-16 items-end text-right">
+                <div class="max-w-md transform transition-all duration-500 scale-75 origin-bottom-right md:scale-100">
+                    <div class="inline-block bg-white/90 text-slate-800 text-xs font-bold px-3 py-1 rounded mb-4 uppercase tracking-widest shadow-sm"
+                        data-i18n="coleccin_permanente">
+                        Colección Permanente</div>
+                    <h2 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 leading-tight mb-2"
+                        data-i18n="legado_vivo">
+                        Legado <br /><span class="text-accent-gold italic font-light" data-i18n="vivo">Vivo</span>
+                    </h2>
+                    <p class="text-gray-300 text-sm md:text-base font-normal max-w-xs leading-relaxed border-r-4 border-accent-gold pr-4 p-2"
+                        data-i18n="descubre_la_intimidad_del_pasado_a">
+                        Descubre la intimidad del pasado a través de objetos cotidianos que narran 200 años de
+                        historias familiares.
+                    </p>
+                </div>
+            </div>
+            <!-- Paper Texture Overlay -->
+            <div
+                class="absolute inset-0 z-10 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] mix-blend-multiply opacity-50 pointer-events-none">
+            </div>
+        </section>
+    </main>
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 6.4 TABLERO DE MANDO (Leaderboard Fusion) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <section
+        class="relative z-40 py-20 border-t border-slate-200 dark:border-white/5 overflow-hidden transition-all duration-700">
+        <!-- Light Mode Background -->
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-white to-slate-100 dark:opacity-0 transition-opacity duration-700 pointer-events-none">
+        </div>
+        <!-- Dark Mode Background -->
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-military-dark to-[#0a0c10] opacity-0 dark:opacity-100 transition-opacity duration-700 pointer-events-none">
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+            <!-- Header with Title and Filters -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
+                <div class="flex items-center gap-5">
+                    <div
+                        class="size-16 bg-gradient-to-br from-primary to-blue-800 rounded-2xl shadow-xl shadow-primary/20 flex items-center justify-center transform -rotate-3">
+                        <span class="material-symbols-outlined text-white text-4xl">leaderboard</span>
+                    </div>
+                    <div>
+                        <h2 class="dark:text-white text-gray-900 text-4xl md:text-5xl font-black tracking-tighter uppercase leading-none transition-colors"
+                            data-i18n="tablero_de_mando">Tablero de Mando</h2>
+                        <p class="dark:text-gray-400 text-gray-500 font-medium mt-2 tracking-wide uppercase text-sm transition-colors"
+                            data-i18n="puntos_y_logros">Récords y Logros Estratégicos</p>
+                        <p class="dark:text-gray-500 text-slate-600 text-sm mt-4 max-w-lg leading-relaxed font-medium"
+                            data-i18n="desc_tablero">Demuestra tu destreza estratégica y forma parte de la élite de
+                            nuestros museos. Cada acción cuenta para escalar posiciones: ¡participa ahora y asegura
+                            tu nombre entre los mejores comandantes e investigadores!</p>
+                    </div>
+                </div>
+                <!-- Time Filters -->
+                <div
+                    class="flex p-1.5 dark:bg-white/5 bg-white/80 backdrop-blur-md rounded-xl border dark:border-white/10 border-slate-200 shadow-xl transition-colors">
+                    <button
+                        class="px-6 py-2.5 bg-primary text-white font-black rounded-lg shadow-lg text-xs uppercase tracking-widest transition-all"
+                        data-i18n="semanal">Semanal</button>
+                    <button
+                        class="px-6 py-2.5 dark:text-gray-400 text-gray-500 hover:text-gray-900 dark:hover:text-white font-bold text-xs uppercase tracking-widest transition-all"
+                        data-i18n="mensual">Mensual</button>
+                    <button
+                        class="px-6 py-2.5 dark:text-gray-400 text-gray-500 hover:text-gray-900 dark:hover:text-white font-bold text-xs uppercase tracking-widest transition-all"
+                        data-i18n="histrico">Histórico</button>
+                </div>
+            </div>
+
+            <!-- Main Leaderboard Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+
+                <!-- LEFT COLUMN: ASES DEL BLINDAJE (Tanks) -->
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="material-symbols-outlined text-primary text-4xl fill">military_tech</span>
+                        <div>
+                            <h3 class="dark:text-white text-slate-900 text-2xl font-black tracking-tight uppercase transition-colors"
+                                data-i18n="ases_del_blindaje">Ases del Blindaje</h3>
+                            <p class="dark:text-gray-500 text-slate-600 text-sm font-medium transition-colors"
+                                data-i18n="lideres_tácticos">Líderes estratégicos en combate de tanques</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Rank 1: Gold -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -inset-0.5 bg-primary rounded-xl opacity-20 group-hover:opacity-40 transition-opacity">
+                            </div>
+                            <div
+                                class="relative flex items-center justify-between p-5 bg-gradient-to-r from-primary to-blue-900 rounded-xl shadow-2xl shadow-primary/30 border border-white/10">
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="size-10 rounded-full bg-yellow-400 flex items-center justify-center text-yellow-900 font-black shadow-[0_0_15px_rgba(250,204,21,0.5)]">
+                                        1</div>
+                                    <div>
+                                        <p class="font-black text-xl text-white tracking-tight"
+                                            data-i18n="ranking_user_1">Usuario 1</p>
+                                        <span class="text-[10px] text-blue-200 uppercase font-black tracking-[0.2em]"
+                                            data-i18n="division_pesada">División Pesada</span>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-2xl font-black text-white leading-none">12,450</span>
+                                    <span class="text-[10px] text-blue-200 uppercase font-bold"
+                                        data-i18n="puntos">Puntos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rank 2: Silver -->
+                        <div
+                            class="flex items-center justify-between p-5 bg-white dark:bg-white/5 rounded-xl border border-gray-300 dark:border-white/5 hover:border-primary/30 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all group shadow-lg dark:shadow-none">
+                            <div class="flex items-center gap-5">
+                                <div
+                                    class="size-10 rounded-full bg-slate-300 flex items-center justify-center text-slate-700 font-black shadow-[0_0_10px_rgba(203,213,225,0.3)] group-hover:scale-110 transition-transform">
+                                    2</div>
+                                <div>
+                                    <p class="font-bold text-lg dark:text-gray-200 text-gray-700 transition-colors"
+                                        data-i18n="ranking_user_2">Usuario 2
+                                    </p>
+                                    <span
+                                        class="text-[10px] dark:text-gray-500 text-gray-400 uppercase font-bold tracking-widest transition-colors"
+                                        data-i18n="reconocimiento">Reconocimiento</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span
+                                    class="block text-xl font-bold dark:text-gray-300 text-gray-600 transition-colors">10,200</span>
+                            </div>
+                        </div>
+
+                        <!-- Rank 3: Bronze -->
+                        <div
+                            class="flex items-center justify-between p-5 bg-white dark:bg-white/5 rounded-xl border border-gray-300 dark:border-white/5 hover:border-primary/30 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all group shadow-lg dark:shadow-none">
+                            <div class="flex items-center gap-5">
+                                <div
+                                    class="size-10 rounded-full bg-orange-800 flex items-center justify-center text-orange-200 font-black shadow-[0_0_10px_rgba(154,52,18,0.3)] group-hover:scale-110 transition-transform">
+                                    3</div>
+                                <div>
+                                    <p class="font-bold text-lg dark:text-gray-200 text-gray-700 transition-colors"
+                                        data-i18n="ranking_user_3">Usuario 3
+                                    </p>
+                                    <span
+                                        class="text-[10px] dark:text-gray-500 text-gray-400 uppercase font-bold tracking-widest transition-colors"
+                                        data-i18n="artilleria">Artillería</span>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span
+                                    class="block text-xl font-bold dark:text-gray-300 text-gray-600 transition-colors">9,850</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between p-4 bg-white dark:bg-white/[0.02] rounded-xl border border-slate-200 dark:border-white/10 hover:border-primary/30 dark:hover:border-white/20 transition-all group shadow-sm">
+                            <div class="flex items-center gap-5">
+                                <span class="w-10 text-center font-bold text-slate-400">04</span>
+                                <p class="font-bold dark:text-gray-400 text-slate-700 transition-colors"
+                                    data-i18n="ranking_user_4">Usuario 4</p>
+                            </div>
+                            <div class="text-right">
+                                <span
+                                    class="text-lg font-bold dark:text-gray-500 text-slate-500 transition-colors">9,100</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-8 py-4 bg-primary text-white border-2 border-primary rounded-xl hover:bg-primary-hover hover:border-primary-hover transition-all font-black uppercase tracking-widest text-xs shadow-lg shadow-primary/20"
+                        data-i18n="ver_ranking_tanks">Ver Ranking Completo</button>
+                </div>
+
+                <!-- RIGHT COLUMN: GUARDIANES DE LA HISTORIA (House) -->
+                <div class="flex flex-col">
+                    <div class="flex items-center justify-end gap-4 mb-8 text-right">
+                        <div class="flex flex-col items-end">
+                            <h3 class="dark:text-white text-slate-900 text-2xl font-black tracking-tight uppercase transition-colors"
+                                data-i18n="guardianes_historia">Guardianes de la Historia</h3>
+                            <p class="dark:text-gray-500 text-slate-600 text-sm font-medium transition-colors"
+                                data-i18n="expertos_patrimonio">Expertos en patrimonio y trivia histórica</p>
+                        </div>
+                        <span class="material-symbols-outlined text-accent-gold text-4xl fill">history_edu</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Rank 1: Gold -->
+                        <div class="relative group">
+                            <div
+                                class="absolute -inset-0.5 bg-accent-gold rounded-xl opacity-20 group-hover:opacity-40 transition-opacity">
+                            </div>
+                            <div
+                                class="relative flex flex-row-reverse items-center justify-between p-5 bg-gradient-to-l from-accent-gold to-[#8a6d3b] rounded-xl shadow-2xl shadow-accent-gold/20 border border-white/10">
+                                <div class="flex flex-row-reverse items-center gap-5">
+                                    <div
+                                        class="size-10 rounded-full bg-yellow-400 flex items-center justify-center text-yellow-900 font-black shadow-[0_0_15px_rgba(250,204,21,0.5)]">
+                                        1</div>
+                                    <div class="text-right">
+                                        <p class="font-black text-xl text-white tracking-tight"
+                                            data-i18n="ranking_user_1">Usuario 1</p>
+                                        <span class="text-[10px] text-amber-100 uppercase font-black tracking-[0.2em]"
+                                            data-i18n="investigadora">Investigadora</span>
+                                    </div>
+                                </div>
+                                <div class="text-left">
+                                    <span class="block text-2xl font-black text-white leading-none">150</span>
+                                    <span class="text-[10px] text-amber-100 uppercase font-bold"
+                                        data-i18n="aciertos">Aciertos</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rank 2: Silver -->
+                        <div
+                            class="flex flex-row-reverse items-center justify-between p-5 bg-white dark:bg-white/5 rounded-xl border border-gray-300 dark:border-white/5 hover:border-accent-gold/30 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all group shadow-lg dark:shadow-none">
+                            <div class="flex flex-row-reverse items-center gap-5">
+                                <div
+                                    class="size-10 rounded-full bg-slate-300 flex items-center justify-center text-slate-700 font-black shadow-[0_0_10px_rgba(203,213,225,0.3)] group-hover:scale-110 transition-transform">
+                                    2</div>
+                                <div class="text-right">
+                                    <p class="font-bold text-lg dark:text-gray-200 text-gray-700 transition-colors"
+                                        data-i18n="ranking_user_2">Usuario 2
+                                    </p>
+                                    <span
+                                        class="text-[10px] dark:text-gray-500 text-gray-400 uppercase font-bold tracking-widest transition-colors"
+                                        data-i18n="coleccionista">Coleccionista</span>
+                                </div>
+                            </div>
+                            <div class="text-left">
+                                <span
+                                    class="block text-xl font-bold dark:text-gray-300 text-gray-600 transition-colors">142</span>
+                            </div>
+                        </div>
+
+                        <!-- Rank 3: Bronze -->
+                        <div
+                            class="flex flex-row-reverse items-center justify-between p-5 bg-white dark:bg-white/5 rounded-xl border border-gray-300 dark:border-white/5 hover:border-accent-gold/30 dark:hover:border-white/20 hover:bg-gray-50 dark:hover:bg-white/10 transition-all group shadow-lg dark:shadow-none">
+                            <div class="flex flex-row-reverse items-center gap-5">
+                                <div
+                                    class="size-10 rounded-full bg-orange-800 flex items-center justify-center text-orange-200 font-black shadow-[0_0_10px_rgba(154,52,18,0.3)] group-hover:scale-110 transition-transform">
+                                    3</div>
+                                <div class="text-right">
+                                    <p class="font-bold text-lg dark:text-gray-200 text-gray-700 transition-colors"
+                                        data-i18n="ranking_user_3">Usuario 3
+                                    </p>
+                                    <span
+                                        class="text-[10px] dark:text-gray-500 text-gray-400 uppercase font-bold tracking-widest transition-colors"
+                                        data-i18n="restauracion">Restauración</span>
+                                </div>
+                            </div>
+                            <div class="text-left">
+                                <span
+                                    class="block text-xl font-bold dark:text-gray-300 text-gray-600 transition-colors">138</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-row-reverse items-center justify-between p-4 bg-white dark:bg-white/[0.02] rounded-xl border border-slate-200 dark:border-white/10 hover:border-accent-gold/30 dark:hover:border-white/20 transition-all group shadow-sm">
+                            <div class="flex flex-row-reverse items-center gap-5">
+                                <span class="w-10 text-center font-bold text-slate-400">04</span>
+                                <p class="font-bold dark:text-gray-400 text-slate-700 transition-colors"
+                                    data-i18n="ranking_user_4">Usuario 4</p>
+                            </div>
+                            <div class="text-left">
+                                <span
+                                    class="text-lg font-bold dark:text-gray-500 text-slate-500 transition-colors">125</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="mt-8 py-4 bg-accent-gold text-white border-2 border-accent-gold rounded-xl hover:bg-[#b08d4a] hover:border-[#b08d4a] transition-all font-black uppercase tracking-widest text-xs shadow-lg shadow-accent-gold/20"
+                        data-i18n="unirse_al_desafio">Unirse al Desafío</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 7. ALIADOS ESTRATÉGICOS (Pre-Footer Sponsors) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <section
+        class="relative z-40 bg-white dark:bg-black/80 py-12 border-t border-slate-100 dark:border-white/10 transition-colors duration-500">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <h4 class="text-center dark:text-white/40 text-gray-800 text-xs font-black uppercase tracking-[0.2em] mb-8 transition-colors"
+                data-i18n="aliados_estratgicos">Aliados
+                Estratégicos</h4>
+            <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-center">
+                <!-- Sponsor 1 -->
+                <div
+                    class="h-12 md:h-16 w-28 md:w-36 border border-slate-200 dark:border-white/10 rounded-lg dark:bg-white/5 bg-slate-50 flex items-center justify-center opacity-100 dark:opacity-50 hover:opacity-100 hover:bg-white hover:border-primary/30 dark:hover:bg-white/10 transition-all cursor-pointer shadow-sm">
+                    <span
+                        class="dark:text-white/60 text-slate-500 group-hover:text-primary font-black tracking-widest uppercase transition-colors"
+                        data-i18n="logo_1">Logo 1</span>
+                </div>
+                <!-- Sponsor 2 -->
+                <div
+                    class="h-12 md:h-16 w-28 md:w-36 border border-slate-200 dark:border-white/10 rounded-lg dark:bg-white/5 bg-slate-50 flex items-center justify-center opacity-100 dark:opacity-50 hover:opacity-100 hover:bg-white hover:border-primary/30 dark:hover:bg-white/10 transition-all cursor-pointer shadow-sm group">
+                    <span
+                        class="dark:text-white/60 text-slate-500 group-hover:text-primary font-black tracking-widest uppercase transition-colors"
+                        data-i18n="logo_2">Logo 2</span>
+                </div>
+                <!-- Sponsor 3 -->
+                <div
+                    class="h-12 md:h-16 w-28 md:w-36 border border-slate-200 dark:border-white/10 rounded-lg dark:bg-white/5 bg-slate-50 flex items-center justify-center opacity-100 dark:opacity-50 hover:opacity-100 hover:bg-white hover:border-primary/30 dark:hover:bg-white/10 transition-all cursor-pointer shadow-sm group">
+                    <span
+                        class="dark:text-white/60 text-slate-500 group-hover:text-primary font-black tracking-widest uppercase transition-colors"
+                        data-i18n="logo_3">Logo 3</span>
+                </div>
+                <!-- Sponsor 4 -->
+                <div
+                    class="h-12 md:h-16 w-28 md:w-36 border border-slate-200 dark:border-white/10 rounded-lg dark:bg-white/5 bg-slate-50 flex items-center justify-center opacity-100 dark:opacity-50 hover:opacity-100 hover:bg-white hover:border-primary/30 dark:hover:bg-white/10 transition-all cursor-pointer shadow-sm group">
+                    <span
+                        class="dark:text-white/60 text-slate-500 group-hover:text-primary font-black tracking-widest uppercase transition-colors"
+                        data-i18n="logo_4">Logo 4</span>
+                </div>
+                <!-- Sponsor 5 -->
+                <div
+                    class="h-12 md:h-16 w-28 md:w-36 border border-slate-200 dark:border-white/10 rounded-lg dark:bg-white/5 bg-slate-50 flex items-center justify-center opacity-100 dark:opacity-50 hover:opacity-100 hover:bg-white hover:border-primary/30 dark:hover:bg-white/10 transition-all cursor-pointer shadow-sm group">
+                    <span
+                        class="dark:text-white/60 text-slate-500 group-hover:text-primary font-black tracking-widest uppercase transition-colors"
+                        data-i18n="logo_5">Logo 5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 8. PIE DE PÁGINA (Footer Global) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <footer class="footer-fusion relative z-50 mt-auto pt-5">
+        <!-- Animated Breathing Border at the top of the footer -->
+        <div class="footer-fusion-border"></div>
+        <div class="max-w-[1400px] mx-auto px-6 pb-4 pt-5">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-4 text-left">
+                <!-- Branding (Wider column) -->
+                <div class="col-span-1 md:col-span-4">
+                    <div class="flex items-center gap-3 text-white mb-6">
+                        <img alt="Museos TAPI Logo" class="h-12 w-auto invert" data-i18n-alt="museos_tapi_logo"
+                            src="recursos/images/tapi-logo.svg" />
+                        <div class="flex flex-col leading-none">
+                            <span
+                                class="font-black text-2xl tracking-tight uppercase bg-clip-text text-transparent bg-gradient-to-r from-primary via-white to-accent-gold animate-text-fusion"
+                                data-i18n="museos_tapi">MUSEOS
+                                TAPI</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8"
+                        data-i18n="guardamos_la_historia_de_los_tanques">
+                        Guardamos la historia de los tanques y el legado de la caballería. Una frontera donde el
+                        acero moderno se encuentra con el honor clásico.
+                    </p>
+                    <!-- Social Networks -->
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <a aria-label="Facebook" data-tooltip="Facebook"
+                            class="social-btn size-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all"
+                            href="#">
+                            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a aria-label="Instagram" data-tooltip="Instagram"
+                            class="social-btn size-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-pink-600 hover:text-white transition-all"
+                            href="#">
+                            <svg class="size-4" fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                                <rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                            </svg>
+                        </a>
+                        <a aria-label="X (Twitter)" data-tooltip="X / Twitter"
+                            class="social-btn size-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all"
+                            href="#">
+                            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a aria-label="YouTube" data-tooltip="YouTube"
+                            class="social-btn size-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-red-600 hover:text-white transition-all"
+                            href="#">
+                            <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z">
+                                </path>
+                                <path d="M10,15V9l5.2,3L10,15z"></path>
+                            </svg>
+                        </a>
+                        <a aria-label="Flickr" data-tooltip="Flickr"
+                            class="social-btn size-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-white hover:text-black transition-all group"
+                            href="#">
+                            <svg class="size-5" fill="none" viewBox="0 0 24 24">
+                                <circle class="fill-current group-hover:text-blue-500" cx="7" cy="12" r="4">
+                                </circle>
+                                <circle class="fill-current group-hover:text-pink-500" cx="17" cy="12" r="4">
+                                </circle>
+                            </svg>
+                        </a>
+                        <a aria-label="TikTok" data-tooltip="TikTok"
+                            class="social-btn size-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#000000] hover:text-white transition-all"
+                            href="#">
+                            <svg class="size-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.23-1.15 4.39-2.92 5.67-1.85 1.34-4.3 1.69-6.44 1.02-2.31-.72-4.14-2.58-4.75-4.9-.5-1.92-.12-4.04 1.02-5.63 1.12-1.55 2.89-2.45 4.81-2.58 1.52-.1 3.03.18 4.41.81V15c-1.25-.63-2.73-.78-4.09-.43-1.4.37-2.6 1.4-3.15 2.72-.51 1.25-.42 2.73.23 3.91.66 1.19 1.88 1.99 3.23 2.1 1.39.12 2.82-.24 3.86-1.11 1.05-.88 1.66-2.2 1.68-3.59.02-4.8.01-9.61.02-14.41z">
+                                </path>
+                            </svg>
+                        </a>
+
+                    </div>
+                </div>
+                <!-- Links: Museo de Tanques -->
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6 border-l-2 border-primary pl-3"
+                        data-i18n="museo_de_tanques">
+                        MUSEO DE TANQUES</h4>
+                    <ul class="flex flex-col gap-3 text-gray-400 text-sm">
+                        <li><a class="hover:text-primary transition-colors" data-i18n="inicio_menu"
+                                href="museo-tanques/1.0index.html">Inicio</a></li>
+                        <li><a class="hover:text-primary transition-colors" data-i18n="tour_virtual"
+                                href="museo-tanques/2.0tour.html">Tour Virtual</a></li>
+                        <li><a class="hover:text-primary transition-colors" data-i18n="hangar"
+                                href="museo-tanques/4.1hangar.html">Hangar</a></li>
+                        <li><a class="hover:text-primary transition-colors" data-i18n="ubicacion"
+                                href="museo-tanques/5.1ubicacion.html">Ubicación</a></li>
+                        <li><a class="hover:text-primary transition-colors" data-i18n="misiones_trivias"
+                                href="museo-tanques/7.1misiones.html">Misiones (Trivias)</a></li>
+                    </ul>
+                </div>
+                <!-- Links: Casa Histórica -->
+                <div class="col-span-1 md:col-span-2">
+                    <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6 border-l-2 border-accent-gold pl-3"
+                        data-i18n="casa_histrica">
+                        CASA HISTÓRICA</h4>
+                    <ul class="flex flex-col gap-3 text-gray-400 text-sm">
+                        <li><a class="hover:text-accent-gold transition-colors" data-i18n="inicio_menu"
+                                href="casa-historica/1.0index.html">Inicio</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" data-i18n="tour_virtual"
+                                href="casa-historica/2.0tour.html">Tour Virtual</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" data-i18n="archivo_galeria_casa"
+                                href="casa-historica/4.1hangar.html">Archivo</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" data-i18n="ubicacion"
+                                href="casa-historica/5.1ubicacion.html">Ubicación</a></li>
+                        <li><a class="hover:text-accent-gold transition-colors" data-i18n="misiones_trivias"
+                                href="casa-historica/7.1misiones.html">Misiones (Trivias)</a></li>
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div class="col-span-1 md:col-span-4">
+                    <h4 class="text-white text-xs font-bold uppercase tracking-widest mb-6 border-l-2 border-white/50 pl-3"
+                        data-i18n="contacto_nico">
+                        CONTACTO UNICO</h4>
+                    <ul class="flex flex-col gap-6 text-gray-400 text-sm">
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-white/50">location_on</span>
+                            <div class="flex flex-col">
+                                <span class="text-white font-black text-[10px] uppercase tracking-widest mb-1"
+                                    data-i18n="ubicacion">UBICACIÓN</span>
+                                <span data-i18n="direccion_footer">Avenida de los Héroes de Tapi 3656</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-white/50">call</span>
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-white font-black text-[10px] uppercase tracking-widest mb-1">TELÉFONO</span>
+                                <span data-i18n="telefono_footer">+593 099462809</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-white/50">mail</span>
+                            <div class="flex flex-col">
+                                <span
+                                    class="text-white font-black text-[10px] uppercase tracking-widest mb-1">EMAIL</span>
+                                <span class="hover:text-white cursor-pointer transition-colors"
+                                    data-i18n="email_footer">Xayiz#@gmail.com</span>
+                            </div>
+                        </li>
+                        <!-- CREDITOS -->
+                        <li class="mt-4">
+                            <span class="text-white/30 text-[10px] uppercase font-black tracking-[0.2em]"
+                                data-i18n="creditos">CREDITOS</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Stats Bar -->
+            <!-- Stats Bar: Complex Statistics -->
+            <div class="mt-2">
+                <div
+                    class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white/5 p-4 rounded-xl backdrop-blur-md border border-white/5">
+
+                    <!-- Header Status (Compact) -->
+                    <div
+                        class="flex items-center gap-4 border-b lg:border-b-0 lg:border-r border-white/10 pb-3 lg:pb-0 lg:pr-6 w-full lg:w-auto">
+                        <div
+                            class="size-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)] flex-shrink-0">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-white font-black text-[11px] uppercase tracking-widest leading-none"
+                                data-i18n="estadsticas_del_complejo">Estadísticas</span>
+                            <span class="text-[8px] text-gray-500 uppercase font-bold tracking-widest"
+                                data-i18n="registro_actualizado">En tiempo real</span>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Grid (Compact) -->
+                    <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 pl-0 lg:pl-6 w-full">
+
+                        <!-- Stat 1: Tanks -->
+                        <div class="flex items-center gap-3 group">
+                            <div
+                                class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+                            </div>
+                            <div class="min-w-0">
+                                <span
+                                    class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
+                                    data-i18n="vehculos_y_armas">Blindados</span>
+                                <span
+                                    class="text-xl font-mono font-black text-white group-hover:text-primary transition-colors">
+                                    <span class="hidden md:inline" id="stat-vehicles-full">...</span>
+                                    <span class="md:hidden" id="stat-vehicles-short">...</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Stat 2: Archive -->
+                        <div class="flex items-center gap-3 group">
+                            <div
+                                class="size-10 rounded-lg bg-accent-gold/20 flex items-center justify-center text-accent-gold group-hover:bg-accent-gold group-hover:text-white transition-all duration-300">
+                                <span class="material-symbols-outlined text-xl">account_balance</span>
+                            </div>
+                            <div class="text-left min-w-0">
+                                <span
+                                    class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
+                                    data-i18n="piezas_de_archivo">Archivo</span>
+                                <span
+                                    class="text-xl font-serif font-black text-white group-hover:text-accent-gold transition-colors">
+                                    <span class="hidden md:inline" id="stat-archives-full">...</span>
+                                    <span class="md:hidden" id="stat-archives-short">...</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Stat 3: Visitors -->
+                        <div class="flex items-center gap-4 group border-l-0 md:border-l border-white/10 md:pl-6">
+                            <div
+                                class="size-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
+                                <span class="material-symbols-outlined text-xl">groups</span>
+                            </div>
+                            <div class="min-w-0">
+                                <span
+                                    class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-1 truncate"
+                                    data-i18n="visitantes">Flujo de Visitantes</span>
+                                <div class="flex items-center gap-5">
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
+                                            data-i18n="diario">Hoy</span>
+                                        <span class="text-sm font-mono font-bold text-white">
+                                            <span class="hidden md:inline" id="stat-visitors-daily-full">...</span>
+                                            <span class="md:hidden" id="stat-visitors-daily-short">...</span>
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
+                                            data-i18n="semanal">Semana</span>
+                                        <span class="text-sm font-mono font-bold text-white">
+                                            <span class="hidden md:inline" id="stat-visitors-weekly-full">...</span>
+                                            <span class="md:hidden" id="stat-visitors-weekly-short">...</span>
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
+                                            data-i18n="mensual">Mes</span>
+                                        <span class="text-sm font-mono font-bold text-white">
+                                            <span class="hidden md:inline" id="stat-visitors-monthly-full">...</span>
+                                            <span class="md:hidden" id="stat-visitors-monthly-short">...</span>
+                                        </span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
+                                            data-i18n="total">Total</span>
+                                        <span class="text-sm font-mono font-bold text-white">
+                                            <span class="hidden md:inline" id="stat-visitors-total-full">...</span>
+                                            <span class="md:hidden" id="stat-visitors-total-short">...</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <!-- Copyright -->
+        <div class="bg-black py-4 border-t border-white/5">
+            <div
+                class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest gap-4">
+                <p data-i18n="2026_museos_tapi_todos_los_derechos">© 2026 Museos TAPI. Todos los derechos
+                    reservados.</p>
+                <div class="flex gap-6">
+                    <a class="hover:text-white transition-colors" data-i18n="poltica_de_privacidad" href="#">Política de
+                        Privacidad</a>
+                    <a class="hover:text-white transition-colors" data-i18n="trminos_de_uso" href="#">Términos de
+                        Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <!-- 9. SCRIPTS GLOBALES (Initialization) -->
+    <!-- ======================================================================== -->
+    <!-- ======================================================================== -->
+    <script defer src="js/index.js"></script>
+    <script>
+        /**
+         * Toggles the visibility of a sub-menu in the left sidebar.
+         * @param {string} id - The ID of the menu-content container.
+         * @param {HTMLElement} header - The header element (menu-parent) clicked.
+         */
+        function toggleSubMenu(id, header) {
+            const content = document.getElementById(id);
+            if (!content) return;
+
+            const isOpen = content.classList.contains('open');
+
+            // Close all other open submenus first (Accordion style)
+            document.querySelectorAll('.menu-content.open').forEach(menu => {
+                if (menu.id !== id) {
+                    menu.classList.remove('open');
+                    const parent = menu.previousElementSibling;
+                    if (parent && parent.classList.contains('menu-parent')) {
+                        parent.classList.remove('active');
+                    }
+                }
+            });
+
+            // Toggle current
+            if (isOpen) {
+                content.classList.remove('open');
+                header.classList.remove('active');
+            } else {
+                content.classList.add('open');
+                header.classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroMain = document.getElementById('hero-main');
+            const splitLeft = document.getElementById('split-left');
+            const splitRight = document.getElementById('split-right');
+            const vsDivider = document.getElementById('vs-divider');
+            const vsCircle = document.getElementById('vs-circle');
+
+            if (!heroMain || !splitLeft || !splitRight || !vsCircle || !vsDivider) return;
+
+            let isDragging = false;
+            let resetTimeout;
+
+            const startDrag = (e) => {
+                isDragging = true;
+                clearTimeout(resetTimeout);
+                document.body.style.userSelect = 'none';
+
+                // Disable transition during drag for smoothness
+                splitLeft.style.transition = 'none';
+                splitRight.style.transition = 'none';
+                vsDivider.style.transition = 'none';
+            };
+
+            const onDrag = (e) => {
+                if (!isDragging) return;
+
+                const rect = heroMain.getBoundingClientRect();
+                const isMobile = window.innerWidth < 768;
+                let percentage = 50;
+
+                if (isMobile) {
+                    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+                    let y = clientY - rect.top;
+                    percentage = Math.max(15, Math.min((y / rect.height) * 100, 85)); // Keep between 15% and 85%
+
+                    splitLeft.style.flex = `${percentage} 1 0%`;
+                    splitRight.style.flex = `${100 - percentage} 1 0%`;
+                    vsDivider.style.top = `${percentage}%`;
+                    vsDivider.style.left = ''; // Clear desktop property
+                } else {
+                    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+                    let x = clientX - rect.left;
+                    percentage = Math.max(15, Math.min((x / rect.width) * 100, 85)); // Keep between 15% and 85%
+
+                    splitLeft.style.flex = `${percentage} 1 0%`;
+                    splitRight.style.flex = `${100 - percentage} 1 0%`;
+                    vsDivider.style.left = `${percentage}%`;
+                    vsDivider.style.top = ''; // Clear mobile property
+                }
+            };
+
+            const stopDrag = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                document.body.style.userSelect = '';
+
+                // Set timeout to reset to 50% after 3 seconds
+                resetTimeout = setTimeout(() => {
+                    // Re-enable smooth transitions
+                    splitLeft.style.transition = 'flex 0.8s ease-in-out';
+                    splitRight.style.transition = 'flex 0.8s ease-in-out';
+                    vsDivider.style.transition = 'all 0.8s ease-in-out';
+
+                    // Reset inline styles
+                    splitLeft.style.flex = '';
+                    splitRight.style.flex = '';
+                    vsDivider.style.left = '';
+                    vsDivider.style.top = '';
+
+                }, 3000);
+            };
+
+            vsCircle.addEventListener('mousedown', startDrag);
+            vsCircle.addEventListener('touchstart', startDrag, { passive: false });
+
+            window.addEventListener('mousemove', onDrag);
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    onDrag(e);
+                    if (e.cancelable) e.preventDefault();
+                }
+            }, { passive: false });
+
+            window.addEventListener('mouseup', stopDrag);
+            window.addEventListener('touchend', stopDrag);
+
+            window.addEventListener('resize', () => {
+                // Remove inline styles on resize to prevent layout breaking across breakpoints
+                if (!isDragging) {
+                    splitLeft.style.flex = '';
+                    splitRight.style.flex = '';
+                    vsDivider.style.left = '';
+                    vsDivider.style.top = '';
+                }
+            });
+        });
+    </script>
+
+    <!-- ========================================== -->
+    <!-- SUPABASE & BACKEND INTEGRATION MODULES -->
+    <!-- ========================================== -->
+    <!-- 1. Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- 2. Museos TAPI - Core Modules -->
+    <script src="js/supabase/client.js"></script>
+    <script src="js/supabase/auth.js"></script>
+    <script src="js/supabase/stats.js"></script>
+    <script src="js/supabase/leaderboard.js"></script>
+
+    <!-- 3. Bridge (Initialization) -->
+    <script src="js/supabase/ui-bridge.js"></script>
+</body>
+
+</html>

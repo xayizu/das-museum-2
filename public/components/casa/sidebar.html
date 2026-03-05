@@ -1,0 +1,200 @@
+<!-- Sidebar (Casa Histórica - Gold Theme) -->
+<aside
+    class="fixed top-0 left-0 h-full w-[75vw] max-w-80 bg-military-dark border-r border-white/10 z-[100] flex flex-col pt-10 transition-transform duration-400"
+    id="left-sidebar">
+    <div class="px-8 pb-8 flex items-center justify-between border-b border-white/10">
+        <div class="flex flex-col">
+            <span class="text-xs font-black uppercase tracking-[0.2em] text-gray-400" data-i18n="casa">Casa</span>
+            <span class="text-2xl font-black uppercase text-accent-gold tracking-tighter"
+                data-i18n="historica">Histórica</span>
+        </div>
+        <button class="text-gray-400 hover:text-accent-gold transition-colors" onclick="toggleLeftMenu()">
+            <span class="material-symbols-outlined text-3xl">close</span>
+        </button>
+    </div>
+    <nav class="flex-1 px-8 py-6 flex flex-col gap-2 overflow-y-auto custom-scrollbar">
+        <!-- 1. INICIO -->
+        <a class="group flex items-center gap-4 text-gray-300 hover:text-accent-gold transition-colors py-2"
+            href="casa-historica/1.0index.html">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">home</span>
+            <span class="font-bold text-base capitalize tracking-wider" data-i18n="inicio_menu">Inicio</span>
+        </a>
+
+        <!-- 2. TOUR VIRTUAL -->
+        <a class="group flex items-center gap-4 text-gray-300 hover:text-accent-gold transition-colors py-2"
+            href="casa-historica/2.0tour.html">
+            <span class="material-symbols-outlined group-hover:scale-110 transition-transform">360</span>
+            <span class="font-bold text-base capitalize tracking-wider" data-i18n="tour_virtual">Tour Virtual</span>
+        </a>
+
+        <!-- 3. MUSEO (Padre) wrapper -->
+        <div>
+            <div class="menu-parent" onclick="toggleSubMenu('museo-submenu', this)">
+                <div class="flex items-center gap-4">
+                    <span class="material-symbols-outlined">museum</span>
+                    <span class="font-bold text-base capitalize tracking-wider" data-i18n="museo_menu">Museo</span>
+                </div>
+                <span class="material-symbols-outlined chevron">expand_more</span>
+            </div>
+
+            <div class="menu-content" id="museo-submenu">
+                <div class="menu-inner">
+                    <a class="menu-child" href="casa-historica/3.1nosotros.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="nosotros">Nosotros</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/3.2mision.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="mision_vision">Misión y
+                            Visión</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/3.3video.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="video_institucional">Video Institucional</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/3.4historia.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="historia">Historia</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/3.5mensaje.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="mensaje_comando">Mensaje Comando</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/3.6noticias.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="noticias">Noticias</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/3.7mapa.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="mapa">Mapa</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. GALERIA (Padre) wrapper -->
+        <div>
+            <div class="menu-parent" onclick="toggleSubMenu('galeria-submenu', this)">
+                <div class="flex items-center gap-4">
+                    <span class="material-symbols-outlined">collections</span>
+                    <span class="font-bold text-base capitalize tracking-wider" data-i18n="galera">Galería</span>
+                </div>
+                <span class="material-symbols-outlined chevron">expand_more</span>
+            </div>
+
+            <div class="menu-content" id="galeria-submenu">
+                <div class="menu-inner">
+                    <a class="menu-child" href="casa-historica/4.1hangar.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="hangar">Hangar</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/4.2fotos.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="fotos">Fotos</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/4.3videos.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="videos">Videos</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/4.4audios.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="audios">Audios</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/4.5modelos3d.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="modelos_3d">Modelos
+                            3D</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/4.6biblioteca.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="biblioteca">Biblioteca</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. CONTACTOS (Padre) wrapper -->
+        <div>
+            <div class="menu-parent" onclick="toggleSubMenu('contactos-submenu', this)">
+                <div class="flex items-center gap-4">
+                    <span class="material-symbols-outlined">contact_support</span>
+                    <span class="font-bold text-base capitalize tracking-wider" data-i18n="contactos">Contactos</span>
+                </div>
+                <span class="material-symbols-outlined chevron">expand_more</span>
+            </div>
+
+            <div class="menu-content" id="contactos-submenu">
+                <div class="menu-inner">
+                    <a class="menu-child" href="casa-historica/5.1ubicacion.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="ubicacion">Ubicación</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/5.2horarios.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="horarios">Horarios</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/5.3sugerencias.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="sugerencias">Sugerencias</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/5.4preguntas.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="preguntas_frecuentes_menu">Preguntas Frecuentes</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. SERVICIOS (Padre) wrapper -->
+        <div>
+            <div class="menu-parent" onclick="toggleSubMenu('servicios-submenu', this)">
+                <div class="flex items-center gap-4">
+                    <span class="material-symbols-outlined">construction</span>
+                    <span class="font-bold text-base capitalize tracking-wider" data-i18n="servicios">Servicios</span>
+                </div>
+                <span class="material-symbols-outlined chevron">expand_more</span>
+            </div>
+
+            <div class="menu-content" id="servicios-submenu">
+                <div class="menu-inner">
+                    <a class="menu-child" href="casa-historica/6.1reservar.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="reservar_visita">Reservar Visita</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/6.2protocolo.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="protocolo">Protocolo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. JUEGOS DE GUERRA (Padre) wrapper -->
+        <div>
+            <div class="menu-parent" onclick="toggleSubMenu('juegos-submenu', this)">
+                <div class="flex items-center gap-4">
+                    <span class="material-symbols-outlined">videogame_asset</span>
+                    <span class="font-bold text-base capitalize tracking-wider" data-i18n="juegos_guerra">Juegos de
+                        Guerra</span>
+                </div>
+                <span class="material-symbols-outlined chevron">expand_more</span>
+            </div>
+
+            <div class="menu-content" id="juegos-submenu">
+                <div class="menu-inner">
+                    <a class="menu-child" href="casa-historica/7.1misiones.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="misiones_trivias">Misiones (Trivias)</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/7.2ranking.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider" data-i18n="ranking_global">Ránking
+                            Global</span>
+                    </a>
+                    <a class="menu-child" href="casa-historica/7.3tutorial.html">
+                        <span class="font-bold text-[13px] capitalize tracking-wider"
+                            data-i18n="tutorial">Tutorial</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="px-8 py-6 border-t border-white/10 mt-auto">
+        <a class="w-full block text-center bg-accent-gold hover:bg-gold-600 text-white py-3 rounded font-black uppercase tracking-widest text-xs transition-colors"
+            data-i18n="entrar_al_museo_principal" href="casa-historica/4.1hangar.html">
+            Entrar al Museo Principal
+        </a>
+    </div>
+</aside>
