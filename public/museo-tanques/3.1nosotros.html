@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Nosotros | MUSEO DE TANQUES</title>
+    <title data-i18n="title_nosotros">Nosotros | MUSEO DE TANQUES</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -46,13 +46,22 @@
 
     <style>
         .metallic-gradient {
-            background: linear-gradient(135deg, #e2e8f0 0%, #ffffff 50%, #94a3b8 100%);
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #e2e8f0 100%);
+        }
+
+        .dark .metallic-gradient {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #334155 100%);
         }
 
         .steel-texture {
+            background-color: #f1f5f9;
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .dark .steel-texture {
             background-color: #0f172a;
             background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-            background-size: 24px 24px;
         }
     </style>
 
@@ -148,7 +157,8 @@
         </section>
 
         <!-- Section: Restoration -->
-        <section class="py-24 steel-texture text-white border-y border-white/5">
+        <section
+            class="py-24 steel-texture text-slate-800 dark:text-white border-y border-slate-200 dark:border-white/5">
             <div class="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
                 <div class="flex flex-col lg:flex-row gap-16 items-center">
                     <div class="lg:w-1/2 order-2 lg:order-1">
@@ -178,13 +188,13 @@
                         </p>
                         <div class="flex gap-8">
                             <div class="text-center">
-                                <p class="text-4xl font-black text-primary">12k+</p>
-                                <p class="text-xs uppercase tracking-widest text-slate-400 mt-2"
+                                <p class="text-4xl font-black text-primary" data-i18n="num_horas_valor">12k+</p>
+                                <p class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-2"
                                     data-i18n="horas_trabajo">Horas de trabajo/año</p>
                             </div>
                             <div class="text-center">
-                                <p class="text-4xl font-black text-primary">85%</p>
-                                <p class="text-xs uppercase tracking-widest text-slate-400 mt-2"
+                                <p class="text-4xl font-black text-primary" data-i18n="num_flota_valor">85%</p>
+                                <p class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 mt-2"
                                     data-i18n="flota_operativa">Flota operativa</p>
                             </div>
                         </div>
@@ -252,7 +262,8 @@
                                 data-i18n="tag_wwii">Icono WWII</div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-2">Panzer IV Ausf. G</h3>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-900 dark:text-white"
+                                data-i18n="panzer_iv_name">Panzer IV Ausf. G</h3>
                             <p class="text-slate-500 dark:text-slate-400 text-sm mb-6" data-i18n="panzer_desc">El
                                 caballo de batalla de las divisiones acorazadas alemanas, restaurado íntegramente en
                                 2018.</p>
@@ -269,7 +280,8 @@
                                 data-i18n="tag_aliado">Aliado</div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-2">M4A3E8 Sherman</h3>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-900 dark:text-white"
+                                data-i18n="m4_sherman_name">M4A3E8 Sherman</h3>
                             <p class="text-slate-500 dark:text-slate-400 text-sm mb-6" data-i18n="sherman_desc">Famoso
                                 por su versatilidad y fiabilidad. Nuestra unidad participó en la liberación de París.
                             </p>
@@ -286,7 +298,8 @@
                                 data-i18n="tag_moderno">Era Moderna</div>
                         </div>
                         <div class="p-8">
-                            <h3 class="text-2xl font-bold mb-2">Leopard 2A4</h3>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-900 dark:text-white"
+                                data-i18n="leopard_2_name">Leopard 2A4</h3>
                             <p class="text-slate-500 dark:text-slate-400 text-sm mb-6" data-i18n="leopard_desc">
                                 Tecnología de vanguardia en blindaje compuesto y sistemas de tiro computerizados.</p>
                         </div>
@@ -304,7 +317,7 @@
             <div class="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 relative z-10 text-center">
                 <h2 class="text-4xl md:text-5xl font-black mb-8 italic uppercase" data-i18n="futuro_digital_titulo">El
                     Futuro: Preservación Digital</h2>
-                <p class="text-xl text-primary/10 bg-white/90 backdrop-blur inline-block px-4 py-2 rounded mb-10 font-bold uppercase tracking-widest"
+                <p class="text-xl text-primary/10 bg-slate-100/90 dark:bg-white/90 backdrop-blur inline-block px-4 py-2 rounded mb-10 font-bold uppercase tracking-widest pointer-events-none"
                     data-i18n="horizonte_2030">Proyecto Horizonte 2030</p>
                 <div class="max-w-3xl mx-auto space-y-8">
                     <p class="text-lg leading-relaxed opacity-90" data-i18n="futuro_desc">

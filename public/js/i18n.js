@@ -222,7 +222,13 @@ const diccionario = {
         "futuro_desc": "Estamos expandiendo nuestras fronteras a través de la digitalización 3D y la Realidad Aumentada. Pronto, entusiastas de todo el mundo podrán explorar el interior de nuestras piezas más raras desde sus hogares.",
         "rv": "Realidad Virtual",
         "gemelos_digitales": "Gemelos Digitales",
-        "red_global": "Red Global"
+        "red_global": "Red Global",
+        "title_nosotros": "Nosotros | MUSEO DE TANQUES",
+        "panzer_iv_name": "Panzer IV Ausf. G",
+        "m4_sherman_name": "M4A3E8 Sherman",
+        "leopard_2_name": "Leopard 2A4",
+        "num_horas_valor": "12k+",
+        "num_flota_valor": "85%"
     },
     en: {
 
@@ -436,7 +442,13 @@ const diccionario = {
         "futuro_desc": "We are expanding our frontiers through 3D digitalization and Augmented Reality. Soon, enthusiasts from all over the world will be able to explore the interior of our rarest pieces from their homes.",
         "rv": "Virtual Reality",
         "gemelos_digitales": "Digital Twins",
-        "red_global": "Global Network"
+        "red_global": "Global Network",
+        "title_nosotros": "About Us | TANK MUSEUM",
+        "panzer_iv_name": "Panzer IV Ausf. G",
+        "m4_sherman_name": "M4A3E8 Sherman",
+        "leopard_2_name": "Leopard 2A4",
+        "num_horas_valor": "12k+",
+        "num_flota_valor": "85%"
     },
     qu: {
 
@@ -619,7 +631,46 @@ const diccionario = {
         "piezas_de_archivo": "WAKAYCHISHKA IMAKUNA",
         "direccion_footer": "Heroes of Tapi Avenue 3656",
         "telefono_footer": "+593 099462809",
-        "email_footer": "Xayiz#@gmail.com"
+        "email_footer": "Xayiz#@gmail.com",
+        "el_legado_del_acero": "ANTA KAWSAYPA RIKUCHIY",
+        "forjando_la": "Rurashpa",
+        "hero_nosotros_desc": "Awqa antawakunapa kuyuyta, awqa ruraykunapa yachayta, siglo XX wata tikrachishka runakunapa mutsurikunata riksishun.",
+        "ver_documental": "Willayta Rikuy",
+        "nuestros_origenes": "Ñukanchik Kallariykuna",
+        "origenes_titulo": "Awqa Tantachiymanta Kawsay Wakaychiyman",
+        "origenes_p1": "\"TAPI\" Awqa Antawa Rikuchikka mana shuk rikuchiklla kashka, kawsayta wakaychinapak mutsurikmari kashka. Kayka ñawpa Regimiento de Caballería Blindada No. 4 ukumantami shamun.",
+        "origenes_p2": "1974 watapi rurashka, kay rikuchikka ashtawan hatun yachana wasimanmi tikrashka. Ñukanchik rurayka mana antallatachu rikuchina kan; kay hatun ruraykunata ruraj runakunapa kawsaytamari willana kanchik.",
+        "artesanos_metal": "Anta Rurakkuna",
+        "arte_restauracion": "Alliyachiy Yachay",
+        "restauracion_p1": "Mana awqa antawakunallatachu wakaychinchik; hatun colosokunatamari kawsachinchik. Ñukanchik rurakkunaka sapa punchami rurankuna tukuy imakuna alli kachun.",
+        "horas_trabajo": "Rurana pacha/wata",
+        "flota_operativa": "Kawsak antawakuna",
+        "comunidad_educacion": "Ayllu Llapapash Yachaypash",
+        "comunidad_desc": "Yachayka ñawpa kawsayta hamutankapak ashtawan alli shami kan.",
+        "programa_escolar": "Yachana Wasi Ruray",
+        "programa_escolar_desc": "Yachana wasikunapak rikuchiykuna, imakunamanta rurashka kaytapash wiñay kawsaytapash yachankapak.",
+        "archivo_historico": "Wiñay Kawsay Wakaychiy",
+        "archivo_historico_desc": "Maskakkunapak, yachakukkunapakpash 50,000 ashtawan killkakunata, rurana pankakunatapash riksinkapak.",
+        "coleccion_permanente": "Wiñaypa Tantachiska",
+        "coleccion_desc": "150 ashtawan antawakuna, Mark IV ukumanta Leopard antawakunaman.",
+        "tag_wwii": "WWII Unancha",
+        "panzer_desc": "Alemania awqa antawakunapa hatun ruray, 2018 watapi alliyachishka.",
+        "tag_aliado": "Mashi",
+        "sherman_desc": "Tukuy ruraykunapak alli kashkamanta riksishka. París llaktata kishpichinkapak yanaparkami.",
+        "tag_moderno": "Kunan Pacha",
+        "leopard_desc": "Mushuk yachaykunawan rurashka antawa.",
+        "futuro_digital_titulo": "Shamuk Pacha: Antayachiy Wakaychiy",
+        "horizonte_2030": "Horizonte 2030 Ruray",
+        "futuro_desc": "3D ruraykunawan, Realidad Aumentada ruraykunawanpash ñukanchik saywakunata yallinchik kanchik.",
+        "rv": "Virtual Reality",
+        "gemelos_digitales": "Antayachishka Ishkanti",
+        "red_global": "Tukuy Pacha Llika",
+        "title_nosotros": "Ñukanchikmanta | AWQA ANTAWA RIKUCHIK",
+        "panzer_iv_name": "Panzer IV Ausf. G",
+        "m4_sherman_name": "M4A3E8 Sherman",
+        "leopard_2_name": "Leopard 2A4",
+        "num_horas_valor": "12k+",
+        "num_flota_valor": "85%"
     }
 };
 
