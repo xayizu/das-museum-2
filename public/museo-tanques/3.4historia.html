@@ -48,23 +48,310 @@
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
+    <main class="flex-grow pt-[110px] md:pt-[100px] px-6">
         <div class="max-w-[1200px] mx-auto py-12">
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="historia">Historia</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
-
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="historia">Historia</h2>
-                    <p class="text-gray-400">Reseña histórica del blindaje en nuestro país.</p>
+            <section class="@container mb-16">
+                <div class="relative flex min-h-[480px] md:min-h-[600px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-xl md:rounded-2xl items-center justify-center p-8 overflow-hidden border border-white/10"
+                    data-alt="Tanque histórico en exhibición"
+                    style='background-image: linear-gradient(rgba(15, 21, 35, 0.7), rgba(15, 21, 35, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkdypOn7Z8ySmujLEn6NRW5-obUUrCAiC80KElUuuhBpm8i76kK1KGIG7_eunLmzVEAhUxgCPNWnb0OwI2fZ_RDgcWpwkDDyfhr7odIwDgFp5PwInnbHiWm99DPySKZ2gLUr7cDFIegdA3i1GJfAQe3SgtdndcKn0AtlMqLBaV_8JmbggfTQ0av7fYVxzm5Qyxvzux_XmxOIqdLmYJdArc6kFV35Bvn1qXr-xiIoFPT_DZ-mB-UIci_9jFfhIxgXafLEf2BBpy4StF");'>
+                    <div class="relative z-10 flex flex-col gap-4 text-center max-w-3xl mx-auto">
+                        <h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em] uppercase"
+                            data-i18n="historia_titulo_hero">
+                            Nuestra Historia: De la Tradición a la Era Digital
+                        </h1>
+                        <p class="text-slate-300 text-base md:text-lg lg:text-xl font-normal leading-relaxed"
+                            data-i18n="historia_descripcion_hero">
+                            Descubre cómo el Museo de Tanques de Riobamba ha evolucionado desde su fundación hasta
+                            convertirse en un referente de innovación digital y preservación histórica.
+                        </p>
+                        <div class="flex items-center justify-center gap-4 mt-6">
+                            <button
+                                class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20"
+                                data-i18n="explorar_cronologia">
+                                Explorar Cronología
+                            </button>
+                            <button
+                                class="flex min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white/10 text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-white/20 transition-colors backdrop-blur-sm border border-white/20"
+                                data-i18n="tour_virtual">
+                                Tour Virtual
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <section class="mb-20">
+                <div class="flex items-center gap-4 mb-10">
+                    <div class="h-8 w-2 bg-primary rounded-full"></div>
+                    <h2 class="text-3xl font-bold leading-tight tracking-[-0.015em] text-slate-900 dark:text-white uppercase"
+                        data-i18n="linea_tiempo_titulo">
+                        Línea de Tiempo</h2>
+                </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <div
+                        class="absolute left-[27px] md:left-1/2 top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-800 transform md:-translate-x-1/2">
+                    </div>
+
+                    <!-- 1980 -->
+                    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                        <div class="hidden md:flex justify-end pr-12 items-center">
+                            <div class="text-right">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_fundacion_titulo">Fundación del Museo</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_fundacion_desc">
+                                    Inauguración de las primeras instalaciones en Riobamba con una colección inicial de
+                                    vehículos de la Segunda Guerra Mundial.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
+                            <div
+                                class="size-14 rounded-full bg-slate-100 dark:bg-slate-800 border-4 border-background-light dark:border-background-dark flex items-center justify-center text-primary shadow-lg z-10">
+                                <span class="material-symbols-outlined text-2xl">museum</span>
+                            </div>
+                        </div>
+                        <div class="pl-16 md:pl-12 flex flex-col justify-center">
+                            <span class="text-primary font-bold text-lg mb-1">1980</span>
+                            <div class="md:hidden">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_fundacion_titulo">Fundación del Museo</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_fundacion_desc">
+                                    Inauguración de las primeras instalaciones en Riobamba con una colección inicial de
+                                    vehículos de la Segunda Guerra Mundial.</p>
+                            </div>
+                            <div class="hidden md:block h-32 rounded-lg bg-cover bg-center mt-4 border border-white/5"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-Mmw3cwZHsMyrDraX2lJZAP3AtXDRttHKhslRoSUlSAQ2qc4TI8kDjvF_dLgtqklOY3xRqemLBSl9IpHIBJ1_oCYoMgUfTd6spI1MnAflIZ7peumvRRxJeduDe_JsY8SJyQQPK2YyDRUjcF7D1263Oql8cAVH1NSxglbqC1zYwKz9zmGCRiQfAXbe8w71tqpdah88nUoHIsVsPPMRSFN8teiR1eeXLzvGEzNygfWEOsQHKxhH30IbJ55W3onxdDINDtrwL566ruxW')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1995 -->
+                    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                        <div class="pl-16 md:pl-0 md:pr-12 flex flex-col justify-center items-end text-right">
+                            <span class="text-primary font-bold text-lg mb-1 md:block hidden">1995</span>
+                            <div class="hidden md:block">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_expansion_titulo">Expansión de la Colección</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_expansion_desc">
+                                    Adquisición de piezas clave de la Guerra Fría y construcción del nuevo pabellón de
+                                    blindados pesados.</p>
+                            </div>
+                            <div class="hidden md:block h-32 w-full rounded-lg bg-cover bg-center mt-4 border border-white/5"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgUySW6qRHFup7-xXlmVL60mxYojZ63hRuMRNHkt4RkCxpcisD6H1jknDHN1OzHcEHWYVaqqewJJFHv9Yy5sOtqbReayL9BE9xQuOZp5IkLaCYhGq3XCx3poKoJ9nJ20_8GdISqffd3obrRbYjTnW32vxaqq0iVmXP62B2Hw364HR5A3-XzBGi0blLGijavMJTKxCKd0FsH4fVJrfuKjE4jSQXQfqMGxHJRQDVdLIa_ZhCZsomSGcR6GWWD7ZukuBeFrikn28dsBXi')">
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
+                            <div
+                                class="size-14 rounded-full bg-slate-100 dark:bg-slate-800 border-4 border-background-light dark:border-background-dark flex items-center justify-center text-primary shadow-lg z-10">
+                                <span class="material-symbols-outlined text-2xl">library_add</span>
+                            </div>
+                        </div>
+                        <div class="pl-16 md:pl-12 flex flex-col justify-center md:hidden">
+                            <span class="text-primary font-bold text-lg mb-1">1995</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_expansion_titulo">Expansión de la Colección</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_expansion_desc">
+                                    Adquisición de piezas clave de la Guerra Fría y construcción del nuevo pabellón de
+                                    blindados pesados.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2010 -->
+                    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                        <div class="hidden md:flex justify-end pr-12 items-center">
+                            <div class="text-right">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_renovacion_titulo">Renovación de Infraestructura</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_renovacion_desc">
+                                    Modernización de las instalaciones físicas, implementación de sistemas de
+                                    conservación avanzados para los vehículos.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
+                            <div
+                                class="size-14 rounded-full bg-slate-100 dark:bg-slate-800 border-4 border-background-light dark:border-background-dark flex items-center justify-center text-primary shadow-lg z-10">
+                                <span class="material-symbols-outlined text-2xl">construction</span>
+                            </div>
+                        </div>
+                        <div class="pl-16 md:pl-12 flex flex-col justify-center">
+                            <span class="text-primary font-bold text-lg mb-1">2010</span>
+                            <div class="md:hidden">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_renovacion_titulo">Renovación de Infraestructura</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_renovacion_desc">
+                                    Modernización de las instalaciones físicas, implementación de sistemas de
+                                    conservación avanzados para los vehículos.</p>
+                            </div>
+                            <div class="hidden md:block h-32 rounded-lg bg-cover bg-center mt-4 border border-white/5"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAC_RhkB8NahG2h0u6pS3naDX83kQJLX5Q1RmgZsX6KinQEeQGEbFoF8xII4nWrNbv4ycuBO8-fHdjQYwhvqqPhE3BR3BQ8MCwlzxvbM0cNPwdDS7srLPQib-MNXsz9MDNPxqf5ay0Vb8rdqQINejUdeKNji-IKTYJdEl49Y3EXB4evmokAuff3WicsnF3IftM99G6Zv3ysuhyfIMLplMGLBle62hA98k_DlDeUeKyVU8HWDqaCra07mhSDN7rdtLhWmuYXV2Sw2hoP')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2023 -->
+                    <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="pl-16 md:pl-0 md:pr-12 flex flex-col justify-center items-end text-right">
+                            <span class="text-primary font-bold text-lg mb-1 md:block hidden">2023</span>
+                            <div class="hidden md:block">
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_transformacion_titulo">Transformación Digital</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_transformacion_desc">
+                                    Lanzamiento del Tour Virtual 3D interactivo y digitalización completa de los
+                                    archivos históricos del museo.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute left-0 md:left-1/2 top-1/2 transform -translate-y-1/2 md:-translate-x-1/2 flex items-center justify-center">
+                            <div
+                                class="size-14 rounded-full bg-primary border-4 border-background-light dark:border-background-dark flex items-center justify-center text-white shadow-lg shadow-primary/30 z-10">
+                                <span class="material-symbols-outlined text-2xl">devices</span>
+                            </div>
+                        </div>
+                        <div class="pl-16 md:pl-12 flex flex-col justify-center md:hidden">
+                            <span class="text-primary font-bold text-lg mb-1">2023</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white"
+                                    data-i18n="h_transformacion_titulo">Transformación Digital</h3>
+                                <p class="text-slate-600 dark:text-slate-400 mt-2" data-i18n="h_transformacion_desc">
+                                    Lanzamiento del Tour Virtual 3D interactivo y digitalización completa de los
+                                    archivos históricos del museo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Antes y Después -->
+            <section class="mb-20">
+                <div class="flex items-center gap-4 mb-10">
+                    <div class="h-8 w-2 bg-primary rounded-full"></div>
+                    <h2 class="text-3xl font-bold leading-tight tracking-[-0.015em] text-slate-900 dark:text-white uppercase"
+                        data-i18n="antes_despues_titulo">
+                        El Antes y el Ahora</h2>
+                </div>
+                <p class="text-slate-600 dark:text-slate-400 mb-8 max-w-3xl" data-i18n="antes_despues_desc">Una mirada a
+                    cómo nuestras instalaciones han cambiado a lo largo de las décadas para ofrecer una mejor
+                    experiencia a nuestros visitantes.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 1980 -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden aspect-video bg-slate-200 dark:bg-slate-800 border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAlIUShsTM7Ic2ODMY1siWvR_MLLM8GZTndJ0FmBJ8f8_zI1UD1V2YxGW-uqwcOTkK5XQ3FDtHjN3leWyM6iNp2AvyjHkmMJxKKpmwkcSdnHtLTqEHRlpltvx82rbbNbMt2zUmthKkQShjuKQIVAjNZmr2Xj8_pe07CgQwCa8QOO98EVrHfKJ1QuSvXUEl9rToatZBlKXA6VM80I97_w2vi276GKzlK85glR15DCB89mhNNZhm40HsH6d3oOIHZyHSc19746xttQGCu')">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span
+                                class="bg-primary/90 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider mb-1 inline-block">1980</span>
+                            <p class="text-white text-base font-bold leading-tight" data-i18n="antes_fachada">Fachada
+                                Original</p>
+                        </div>
+                    </div>
+                    <!-- Actualidad -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden aspect-video bg-slate-200 dark:bg-slate-800 border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGN2x3mIEj7zqyNU6IQL1WY8onqqEZSfliqtWEez16lI_GjTtKJhH_0ZlfOFSuytFAHouUn8ir6gHXqXtd0TKof7Vc_x6DenAWT1V7ZVjcH8o_BME7pFPukWG03q51tFKxnIR7I2WHtfKnIgtHGd4yJuiucgj4RSBQqSUPZArWHOtm81H8y3bmDFI4QSMM8mYS6VRZjExdEM4curxKG8Vwc0Nr6mh_phKoHzJj-cveqMl7vuV3ZRiBYQbON936UX8QNJmlDJ7L-KXh')">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span
+                                class="bg-primary/90 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider mb-1 inline-block"
+                                data-i18n="actualidad">Actualidad</span>
+                            <p class="text-white text-base font-bold leading-tight" data-i18n="despues_fachada">Fachada
+                                Moderna</p>
+                        </div>
+                    </div>
+                    <!-- Pabellón Antiguo -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden aspect-video bg-slate-200 dark:bg-slate-800 border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnTdOTUJjWoOFS9s-d6ALVpNRpkMLqpIT4nTWHKKFC7iFBa6IBuZrDU3S-h76c0_7EMRzBN0pJQspMS5v8nM0_QrTszRPN5xcfz24XhzWnRnbklQ3cpoi5CngDE13oDFlTIzEPVgOUnGMD960RbAT3YSrf1eMcinX5-YQuYGePw3iWI1FBfVfhJkUWYwjeN15JO-OTDoiG0zV-DLpnk_udQFFUW0fs13rLddwL3bS5Yec2tAhLWQBLmQDFzkqt6gUNxgoAECPGhY5')">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span
+                                class="bg-primary/90 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider mb-1 inline-block">1990</span>
+                            <p class="text-white text-base font-bold leading-tight" data-i18n="antes_pabellon">Pabellón
+                                Principal</p>
+                        </div>
+                    </div>
+                    <!-- Pabellón Actual -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden aspect-video bg-slate-200 dark:bg-slate-800 border border-white/5">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCm6NshCECvMUFwfPW6xIlL-l2ZCsKnem0UM7yr9v-pm1RDg0W_mo628lGJqzr0yjHsKSN6M1nEk4avknrtfRaYfuGU8nSBPof1RPFpO54nwf9RtDwReBCP0nFGTNdyB6cfiokKn3leu2m3Rms4dHisRVhHEyLttuX8U6U-enc0d0Tu6YKM2A4KZYYMLIBWMRt8rwx1RDRPEweryFsLLrdP8rX5KJsoiShV7pkIYChccp6qBDKHsHZhRA7KeoOiqeR63S4BzfrzYMJo')">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span
+                                class="bg-primary/90 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider mb-1 inline-block"
+                                data-i18n="actualidad">Actualidad</span>
+                            <p class="text-white text-base font-bold leading-tight" data-i18n="despues_pabellon">
+                                Pabellón Renovado</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Digital -->
+            <section
+                class="mb-12 bg-slate-50 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-slate-200 dark:border-white/10 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary border border-primary/20 dark:border-primary/30 mb-6">
+                            <span class="material-symbols-outlined text-sm">360</span>
+                            <span class="text-xs font-bold uppercase tracking-wider"
+                                data-i18n="innovacion">Innovación</span>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-black leading-tight tracking-[-0.015em] text-slate-900 dark:text-white mb-6 uppercase"
+                            data-i18n="transformacion_digital_titulo">Transformación Digital</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg mb-6 leading-relaxed"
+                            data-i18n="transformacion_digital_desc">
+                            Hemos llevado la historia al siglo XXI. Nuestro nuevo Tour Virtual te permite explorar el
+                            interior de los blindados más icónicos desde la comodidad de tu hogar.
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <span data-i18n="td_item1">Modelos 3D de alta resolución</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <span data-i18n="td_item2">Vistas interiores de cabinas</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                                <span class="material-symbols-outlined text-primary">check_circle</span>
+                                <span data-i18n="td_item3">Archivo histórico digitalizado</span>
+                            </li>
+                        </ul>
+                        <button
+                            class="flex min-w-[120px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all hover:scale-105 shadow-xl shadow-primary/30">
+                            <span class="material-symbols-outlined">explore</span>
+                            <span data-i18n="iniciar_tour">Iniciar Tour Virtual</span>
+                        </button>
+                    </div>
+                    <div
+                        class="relative rounded-xl overflow-hidden aspect-square lg:aspect-auto lg:h-[500px] shadow-2xl bg-slate-900 border border-white/10 group">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-60 transition-transform duration-700 group-hover:scale-110"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfVNc8vG35z9sUbmHl1BnsNTGXW2UrNgDo69DgU1SBWQIM_QImTGf_GKBkLmgQjXUKsR5YFhtgL6TgC3vIm_hxR2c8j5Ew2pi5-nV2HZJ_Tj1OckF1yGhqeKsLlxEinzFO4XNT4W7-uNtp214_n3svMqw0mQTswIdXIHCEjijq9U_EUAdkPI1KGuYPMz6dv_CXmpKX1xfXY6TiOEW70y7AagglfeoldR2yvxUlrQNAjE1K1KaiW9HvJNhAvLec6WZeNeu5WkkjeRHM')">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40">
+                            <button
+                                class="size-20 rounded-full bg-primary/95 text-white flex items-center justify-center hover:scale-110 transition-transform shadow-2xl shadow-primary/40 backdrop-blur-sm border border-white/20">
+                                <span class="material-symbols-outlined text-4xl ml-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </div>
     </main>

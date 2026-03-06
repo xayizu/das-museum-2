@@ -80,7 +80,7 @@ const diccionario = {
         "entrar_al_museo_principal": `Entrar al Museo Principal`,
         "preguntas_frecuentes": `Preguntas Frecuentes`,
         "inicio_menu": `Inicio`,
-        "tour_virtual": `Tour Virtual`,
+        "tour_virtual": "Tour Virtual",
         "nosotros": `Nosotros`,
         "mision_vision": "Misión Y Vision",
         "video_institucional": `Video Institucional`,
@@ -333,6 +333,79 @@ const diccionario = {
         "msg_compromiso_li1": "Accesibilidad histórica para estudiantes con discapacidades mediante la interacción virtual y sensorial.",
         "msg_compromiso_li2": "Preservando las historias orales de los veteranos de combate y enlazándolas con sus respectivos vehículos.",
         "msg_compromiso_li3": "Proveyendo en tiempo real activos educativos de código abierto para investigadores académicos en todo el mundo.",
+        "tour_sala_pesados": "Sala de Blindados Pesados",
+        "tour_ubicacion_ala": "Ubicación: Ala Este - Segunda Guerra Mundial",
+        "tour_iniciar_experiencia": "INICIAR EXPERIENCIA INMERSIVA",
+        "tour_en_vivo": "EN VIVO",
+        "tour_puntos_interes": "Puntos de Interés",
+        "tour_blindado_pesado": "Blindado Pesado",
+        "tour_tiger_desc": "Considerado el tanque más temido de la SGM. Nuestra unidad está 100% restaurada con piezas originales.",
+        "tour_ver_360": "VER EN 360",
+        "tour_aliados": "Aliados",
+        "tour_sherman_desc": "El caballo de batalla aliado con el cañón británico de 17 libras, capaz de perforar el blindaje alemán.",
+        "tour_ejercito_rojo": "Ejército Rojo",
+        "tour_t34_desc": "El equilibrio perfecto entre potencia de fuego, movilidad y protección. Un hito de la ingeniería militar.",
+        "tour_guia_navegacion": "Guía de Navegación",
+        "tour_control_camara": "Control de Cámara",
+        "tour_control_desc": "Haz clic y arrastra para girar la vista 360 grados. Usa la rueda del ratón para hacer zoom.",
+        "tour_puntos_info": "Puntos de Información",
+        "tour_info_desc": "Haz clic en los iconos flotantes de información para abrir fichas técnicas detalladas de cada tanque.",
+        "tour_entrada_cabina": "Entrada a Cabina",
+        "tour_cabina_desc": "Busca el icono de \"Puerta\" para acceder al interior de los blindados seleccionados.",
+        "tour_req_tecnicos": "Requisitos Técnicos",
+        "tour_req_navegador": "Navegador",
+        "tour_req_nav_desc": "Chrome, Firefox, Safari (últ. versiones)",
+        "tour_req_conexion": "Conexión",
+        "tour_req_con_desc": "Mínimo 10 Mbps recomendado",
+        "tour_req_hardware": "Hardware",
+        "tour_req_hard_desc": "Aceleración por GPU activada",
+        "tour_req_vr": "VR ready",
+        "tour_req_vr_desc": "Compatible con Meta Quest y HTC Vive",
+        "tour_req_aviso": "Para una experiencia óptima en dispositivos móviles, utiliza el modo horizontal (landscape).",
+        "tour_experiencias": "Experiencias de Visitantes",
+        "tour_exp_carlos": '"La calidad del 360 es asombrosa. Pude ver detalles de la soldadura del Tiger que nunca había apreciado en fotos."',
+        "tour_exp_elena": '"Una herramienta educativa increíble. Mi clase de historia disfrutó muchísimo explorando el interior de los tanques."',
+        "tour_exp_mark": '"Usé mis Oculus Quest y la inmersión es total. Sientes realmente el tamaño masivo de estas máquinas."',
+        "tour_historiador": "Historiador",
+        "tour_estudiante": "Estudiante",
+        "tour_entusiasta": "Entusiasta VR",
+        "news_title": "Todas las Noticias",
+        "news_hero_cat": "Destacado",
+        "news_hero_title": "Restauración Histórica: El Tiger I vuelve a la vida",
+        "news_hero_desc": "Tras dos años de intenso trabajo, nuestro equipo de ingeniería ha completado la restauración del motor Maybach original. El rugido vuelve al museo.",
+        "news_hero_btn": "Leer reportaje",
+        "news_filter_placeholder": "Filtrar noticias por palabra clave...",
+        "news_cat_acquisitions": "Adquisiciones",
+        "news_item1_title": "Llegada del legendario M4 Sherman",
+        "news_item1_desc": "Una pieza única del Frente del Pacífico se une a nuestra colección permanente tras una subasta internacional.",
+        "news_cat_exhibitions": "Exposiciones",
+        "news_item2_title": "Nueva Exhibición: La Guerra Fría",
+        "news_item2_desc": "Explora la tecnología de los años 60 y los prototipos que nunca llegaron a pisar el campo de batalla.",
+        "news_cat_community": "Comunidad",
+        "news_item3_title": "Testimonios: Memorias del Frente",
+        "news_item3_desc": "Iniciamos un ciclo de entrevistas con veteranos para preservar la historia humana detrás del acero.",
+        "news_cat_engineering": "Ingeniería",
+        "news_item4_title": "Secretos del Maybach HL230",
+        "news_item4_desc": "Analizamos la joya de la ingeniería alemana que impulsaba a los colosos de la Segunda Guerra Mundial.",
+        "news_load_more": "Cargar Más Noticias",
+        "news_official_comms": "Comunicados Oficiales",
+        "news_com1_ref": "REF: COM-2023-084",
+        "news_com1_title": "Acuerdo de intercambio con el Museo Bovington",
+        "news_com1_desc": "Se formaliza el préstamo temporal de tres blindados británicos para la temporada de invierno 2024.",
+        "news_com2_ref": "REF: COM-2023-079",
+        "news_com2_title": "Nuevas medidas de conservación preventiva",
+        "news_com2_desc": "Implementación de sistemas de control de humedad en el pabellón principal para la protección de pinturas originales.",
+        "news_download_pdf": "PDF Descargar",
+        "news_voices_restoration": "Voces de la Restauración",
+        "news_quote1": "\"Ver el metal cobrar vida después de 80 años es un privilegio que nos conecta directamente con el pasado.\"",
+        "news_quote1_author": "Carlos M.",
+        "news_quote1_role": "Jefe de Taller",
+        "news_quote2": "\"Cada remache que reemplazamos se hace siguiendo los planos originales. La precisión es nuestra mejor aliada.\"",
+        "news_quote2_author": "Elena S.",
+        "news_quote2_role": "Conservadora",
+        "news_all_interviews": "Ver todas las entrevistas",
+        "news_history_archive": "Archivo Histórico",
+        "news_see_archive_2022": "Ver archivo 2022...",
     },
     en: {
 
@@ -657,6 +730,79 @@ const diccionario = {
         "msg_compromiso_li1": "Accessible history for students with physical disabilities through virtual interaction.",
         "msg_compromiso_li2": "Preserving oral histories from veterans and linking them to their respective vehicles.",
         "msg_compromiso_li3": "Providing open-source educational assets for academic researchers worldwide.",
+        "tour_sala_pesados": "Heavy Armor Hall",
+        "tour_ubicacion_ala": "Location: East Wing - World War II",
+        "tour_iniciar_experiencia": "START IMMERSIVE EXPERIENCE",
+        "tour_en_vivo": "LIVE",
+        "tour_puntos_interes": "Points of Interest",
+        "tour_blindado_pesado": "Heavy Armor",
+        "tour_tiger_desc": "Considered the most feared tank of WWII. Our unit is 100% restored with original parts.",
+        "tour_ver_360": "VIEW IN 360",
+        "tour_aliados": "Allies",
+        "tour_sherman_desc": "The allied workhorse with the British 17-pounder gun, capable of piercing German armor.",
+        "tour_ejercito_rojo": "Red Army",
+        "tour_t34_desc": "The perfect balance of firepower, mobility, and protection. A milestone in military engineering.",
+        "tour_guia_navegacion": "Navigation Guide",
+        "tour_control_camara": "Camera Control",
+        "tour_control_desc": "Click and drag to rotate the view 360 degrees. Use the mouse wheel to zoom in.",
+        "tour_puntos_info": "Information Points",
+        "tour_info_desc": "Click on the floating information icons to open detailed technical sheets for each tank.",
+        "tour_entrada_cabina": "Cabin Entry",
+        "tour_cabina_desc": "Look for the \"Door\" icon to access the interior of selected armored vehicles.",
+        "tour_req_tecnicos": "Technical Requirements",
+        "tour_req_navegador": "Browser",
+        "tour_req_nav_desc": "Chrome, Firefox, Safari (latest versions)",
+        "tour_req_conexion": "Connection",
+        "tour_req_con_desc": "Minimum 10 Mbps recommended",
+        "tour_req_hardware": "Hardware",
+        "tour_req_hard_desc": "GPU acceleration enabled",
+        "tour_req_vr": "VR ready",
+        "tour_req_vr_desc": "Compatible with Meta Quest and HTC Vive",
+        "tour_req_aviso": "For an optimal experience on mobile devices, please use landscape mode.",
+        "tour_experiencias": "Visitor Experiences",
+        "tour_exp_carlos": '"The 360 quality is amazing. I could see details of the Tiger\'s welding that I had never appreciated in photos."',
+        "tour_exp_elena": '"An incredible educational tool. My history class thoroughly enjoyed exploring the inside of the tanks."',
+        "tour_exp_mark": '"I used my Oculus Quest and the immersion is total. You truly feel the massive size of these machines."',
+        "tour_historiador": "Historian",
+        "tour_estudiante": "Student",
+        "tour_entusiasta": "VR Enthusiast",
+        "news_title": "All News",
+        "news_hero_cat": "Featured",
+        "news_hero_title": "Historical Restoration: Tiger I comes back to life",
+        "news_hero_desc": "After two years of intense work, our engineering team has completed the restoration of the original Maybach engine. The roar returns to the museum.",
+        "news_hero_btn": "Read report",
+        "news_filter_placeholder": "Filter news by keyword...",
+        "news_cat_acquisitions": "Acquisitions",
+        "news_item1_title": "Arrival of the legendary M4 Sherman",
+        "news_item1_desc": "A unique piece from the Pacific Front joins our permanent collection after an international auction.",
+        "news_cat_exhibitions": "Exhibitions",
+        "news_item2_title": "New Exhibition: The Cold War",
+        "news_item2_desc": "Explore 1960s technology and prototypes that never reached the battlefield.",
+        "news_cat_community": "Community",
+        "news_item3_title": "Testimonials: Memories from the Front",
+        "news_item3_desc": "We begin a series of interviews with veterans to preserve the human history behind the steel.",
+        "news_cat_engineering": "Engineering",
+        "news_item4_title": "Secrets of the Maybach HL230",
+        "news_item4_desc": "We analyze the jewel of German engineering that powered the colossi of WWII.",
+        "news_load_more": "Load More News",
+        "news_official_comms": "Official Communications",
+        "news_com1_ref": "REF: COM-2023-084",
+        "news_com1_title": "Exchange agreement with Bovington Museum",
+        "news_com1_desc": "Temporal loan of three British armored vehicles for the 2024 winter season is formalized.",
+        "news_com2_ref": "REF: COM-2023-079",
+        "news_com2_title": "New preventive conservation measures",
+        "news_com2_desc": "Implementation of humidity control systems in the main pavilion to protect original paintings.",
+        "news_download_pdf": "Download PDF",
+        "news_voices_restoration": "Voices of Restoration",
+        "news_quote1": '\"Seeing the metal come to life after 80 years is a privilege that connects us directly with the past.\"',
+        "news_quote1_author": "Carlos M.",
+        "news_quote1_role": "Workshop Head",
+        "news_quote2": '\"Every rivet we replace is done following the original plans. Precision is our best ally.\"',
+        "news_quote2_author": "Elena S.",
+        "news_quote2_role": "Conservator",
+        "news_all_interviews": "See all interviews",
+        "news_history_archive": "Historical Archive",
+        "news_see_archive_2022": "See 2022 archive...",
     },
     qu: {
 
@@ -727,7 +873,7 @@ const diccionario = {
         "entrar_al_museo_principal": `Hatun Rikuchikman Yaykuy`,
         "preguntas_frecuentes": `Tapuykuna`,
         "inicio_menu": `Kallari`,
-        "tour_virtual": `Tour Virtual`,
+        "tour_virtual": "Antayachishka Rikuy",
         "nosotros": `Ñukanchik`,
         "mision_vision": `Misión & Visión`,
         "video_institucional": `Video Institucional`,
@@ -981,6 +1127,79 @@ const diccionario = {
         "msg_compromiso_li1": "Mana uki ukuylla kawsakkunapak, llika ukupi riksinata charun.",
         "msg_compromiso_li2": "Aukakunapa rima willayta wakaychishpa antawan tinkinchik.",
         "msg_compromiso_li3": "Llaktakunapa yachana maskakkiman willaykunata kichkishpa kanchik.",
+        "tour_sala_pesados": "Hatun Awqa Antawa Uku",
+        "tour_ubicacion_ala": "Kuskapura: Anti Chincha - Iskay Niki Hatun Awqanakuy",
+        "tour_iniciar_experiencia": "UKU YACHAYTA KALLARIY",
+        "tour_en_vivo": "KAWSAK",
+        "tour_puntos_interes": "Rikuna Kuskakuna",
+        "tour_blindado_pesado": "Hatun Awqa Antawa",
+        "tour_tiger_desc": "SGM pachapi ashtawan manchariska antawa. Ñukanchikka pachamanta kikin imakunawanmi 100% allichiska.",
+        "tour_ver_360": "360 RIKUY",
+        "tour_aliados": "Mashikuna",
+        "tour_sherman_desc": "Allied wasi antawa, británico 17-pounder illapawan, Alemania antawapa qaratapash llikik.",
+        "tour_ejercito_rojo": "Puka Awqakuna",
+        "tour_t34_desc": "Nina kachay, rawray, wakaychina chawpipi sumak kay. Hatarina yachaypi hatun tuypu.",
+        "tour_guia_navegacion": "Purina Yachay",
+        "tour_control_camara": "Rikukta Apak",
+        "tour_control_desc": "Nitishpa aysay 360 grados muyunkapak. Ukucha rueda nishkawan chimpay.",
+        "tour_puntos_info": "Willay Kuskakuna",
+        "tour_info_desc": "Wampuk willay unanchakunapi nitiy, sapa antawapa yachay pankakunata paskankapak.",
+        "tour_entrada_cabina": "Ukuman Yaykuy",
+        "tour_cabina_desc": "\"Punku\" unanchata maskay, akllaska antawakunapa ukuman yaykunkapak.",
+        "tour_req_tecnicos": "Mutsurishka Yachaykuna",
+        "tour_req_navegador": "Wampuk",
+        "tour_req_nav_desc": "Chrome, Firefox, Safari (qipa laya)",
+        "tour_req_conexion": "Llika",
+        "tour_req_con_desc": "10 Mbps ashtawan pishilla",
+        "tour_req_hardware": "Llikap",
+        "tour_req_hard_desc": "GPU utkayachik pashkashka",
+        "tour_req_vr": "VR ready",
+        "tour_req_vr_desc": "Meta Quest, HTC Vive-wanpas allimi",
+        "tour_req_aviso": "Kuyuk antakunapi ashtawan alli rikunkapakka, kinrayta (landscape) churay.",
+        "tour_experiencias": "Puruqpa Yuyaykuna",
+        "tour_exp_carlos": '"360 rikuyka sumakmi. Tiger antawapa llasakkunata, fotopi mana rikuskatami rikurkani."',
+        "tour_exp_elena": '"Sumak yachana llika. Ñuka yachaku mashikunawan antawakunapa ukuman yaykushpami ashtawan yachakurkań."',
+        "tour_exp_mark": '"Oculus Quest llikata churashpa tukuy ukuman yaykukkani. Kay mashikunapa sumak jatunta ashtawan sintirmi."',
+        "tour_historiador": "Wiñay Kawsay Yachak",
+        "tour_estudiante": "Yachakuk",
+        "tour_entusiasta": "Entusiasta VR",
+        "news_title": "Kushiy Willaykuna",
+        "news_hero_cat": "Hatun Willay",
+        "news_hero_title": "Wiñay Kawsay Allichiy: Tiger I kawsarinmi",
+        "news_hero_desc": "Ishkay wata llamkashpa, ñukanchik injenierokuna Maybach motorta allichishkami. Kunanka museo ucupi wakachun.",
+        "news_hero_btn": "Willayta ñawiriy",
+        "news_filter_placeholder": "Simikunawan maskay...",
+        "news_cat_acquisitions": "Mushuk Chayashkakuna",
+        "news_item1_title": "Legendario M4 Sherman chayashkami",
+        "news_item1_desc": "Pacífico kullumanta shamushka, kunanka ñukanchikpami subasta kayshashpa.",
+        "news_cat_exhibitions": "Rikuchiykuna",
+        "news_item2_title": "Mushuk Rikuchiy: Chiriy Awqanakuy",
+        "news_item2_desc": "60 watakunapa teknolojiata rikuriy, ima mana awqanakuyman rishkakunata.",
+        "news_cat_community": "Ayllukuna",
+        "news_item3_title": "Rimanakuykuna: Awqakunamanta Yuyay",
+        "news_item3_desc": "Awqakunawan rimanakuyta kallarinchik, anta kawsayta yuyaringapa.",
+        "news_cat_engineering": "Injenieria",
+        "news_item4_title": "Maybach HL230 Pakashkakuna",
+        "news_item4_desc": "Alemania llaktapa sumak injenieria motorta rikuchinchik.",
+        "news_load_more": "Ashtawan Willaykuna",
+        "news_official_comms": "Hatun Willaykuna",
+        "news_com1_ref": "Willay: COM-2023-084",
+        "news_com1_title": "Bovington Museowan tantanakuy",
+        "news_com1_desc": "2024 watapa kimsa antawata mañankuchik.",
+        "news_com2_ref": "Willay: COM-2023-079",
+        "news_com2_title": "Allichinapa mushuk ñankuna",
+        "news_com2_desc": "Ukupi yakuta harkankuchik, sumak rikchakunata ama urmachun.",
+        "news_download_pdf": "PDF Urachiy",
+        "news_voices_restoration": "Allichikkunapa Simi",
+        "news_quote1": "\"Antata kawsarishpa rikungapa sumakmi kawsarin, ñawpallaman pushawan.\"",
+        "news_quote1_author": "Carlos M.",
+        "news_quote1_role": "Llamkanawasi Pushak",
+        "news_quote2": "\"Tukuyta sumak allichinchi, ñawpa imashina kashkata rikuchishpa.\"",
+        "news_quote2_author": "Elena S.",
+        "news_quote2_role": "Kamayuk",
+        "news_all_interviews": "Tukuy rimanakuykunata rikuy",
+        "news_history_archive": "Wiñay Kawsay Wakaychiy",
+        "news_see_archive_2022": "2022 watamanta rikuy...",
     }
 };
 
@@ -993,6 +1212,8 @@ window.cambiarIdioma = function (idioma) {
         const clave = elemento.getAttribute('data-i18n');
         if (diccionario[idioma][clave]) {
             elemento.innerHTML = diccionario[idioma][clave];
+        } else {
+            console.warn(`[i18n] Clave no encontrada: ${clave} para idioma: ${idioma}`);
         }
     });
 
@@ -1030,21 +1251,17 @@ window.cambiarIdioma = function (idioma) {
 
     // Guardar la preferencia en la memoria del navegador
     localStorage.setItem('idioma_preferido_tapi', idioma);
-};
 
-// 3. Protocolo de Arranque (Al cargar la página)
-document.addEventListener('DOMContentLoaded', () => {
-    const idiomaGuardado = localStorage.getItem('idioma_preferido_tapi') || 'es';
-
+    // Actualizar también los flags si existen
     const flagsEs = document.querySelectorAll('.flag-es');
     const flagsEn = document.querySelectorAll('.flag-en');
     const flagsEc = document.querySelectorAll('.flag-ec');
 
-    if (idiomaGuardado === 'en') {
+    if (idioma === 'en') {
         flagsEs.forEach(f => f.classList.add('hidden'));
         flagsEn.forEach(f => f.classList.remove('hidden'));
         flagsEc.forEach(f => f.classList.add('hidden'));
-    } else if (idiomaGuardado === 'qu') {
+    } else if (idioma === 'qu') {
         flagsEs.forEach(f => f.classList.add('hidden'));
         flagsEn.forEach(f => f.classList.add('hidden'));
         flagsEc.forEach(f => f.classList.remove('hidden'));
@@ -1053,6 +1270,20 @@ document.addEventListener('DOMContentLoaded', () => {
         flagsEn.forEach(f => f.classList.add('hidden'));
         flagsEc.forEach(f => f.classList.add('hidden'));
     }
+};
 
-    cambiarIdioma(idiomaGuardado);
+document.addEventListener('DOMContentLoaded', () => {
+    const idiomaGuardado = localStorage.getItem('idioma_preferido_tapi') || 'es';
+    window.cambiarIdioma(idiomaGuardado);
 });
+
+// Exponer para el cargador de componentes (components-loader.js)
+window.i18n = {
+    updateUI: function () {
+        const idioma = localStorage.getItem('idioma_preferido_tapi') || 'es';
+        if (typeof window.cambiarIdioma === 'function') {
+            window.cambiarIdioma(idioma);
+        }
+    }
+};
+

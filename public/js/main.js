@@ -190,28 +190,34 @@ function updateThemeIcons(isDark) {
 
 // Language toggle (ES -> EN -> KI -> ES)
 window.handleLang = function () {
-    const flagsEs = document.querySelectorAll('.flag-es');
-    const flagsEn = document.querySelectorAll('.flag-en');
-    const flagsEc = document.querySelectorAll('.flag-ec'); // We'll keep the class for now or update it
+    const currentLang = localStorage.getItem('idioma_preferido_tapi') || 'es';
+    let nextLang = 'en';
+    if (currentLang === 'en') nextLang = 'qu';
+    else if (currentLang === 'qu') nextLang = 'es';
 
-    if (flagsEs.length > 0 && !flagsEs[0].classList.contains('hidden')) {
-        // ES -> EN
-        flagsEs.forEach(f => f.classList.add('hidden'));
-        flagsEn.forEach(f => f.classList.remove('hidden'));
-        flagsEc.forEach(f => f.classList.add('hidden'));
-        cambiarIdioma('en');
-    } else if (flagsEn.length > 0 && !flagsEn[0].classList.contains('hidden')) {
-        // EN -> KI
-        flagsEs.forEach(f => f.classList.add('hidden'));
-        flagsEn.forEach(f => f.classList.add('hidden'));
-        flagsEc.forEach(f => f.classList.remove('hidden'));
-        cambiarIdioma('qu'); // Keep internal key or change if i18n supports 'ki'
+    if (typeof window.cambiarIdioma === 'function') {
+        window.cambiarIdioma(nextLang);
+        // La función cambiarIdioma ya debería manejar la visibilidad de los flags en su lógica interna (si los actualizamos allí)
+        // Pero por ahora, main.js también los actualiza para respuesta inmediata
+        const flagsEs = document.querySelectorAll('.flag-es');
+        const flagsEn = document.querySelectorAll('.flag-en');
+        const flagsEc = document.querySelectorAll('.flag-ec');
+
+        if (nextLang === 'en') {
+            flagsEs.forEach(f => f.classList.add('hidden'));
+            flagsEn.forEach(f => f.classList.remove('hidden'));
+            flagsEc.forEach(f => f.classList.add('hidden'));
+        } else if (nextLang === 'qu') {
+            flagsEs.forEach(f => f.classList.add('hidden'));
+            flagsEn.forEach(f => f.classList.add('hidden'));
+            flagsEc.forEach(f => f.classList.remove('hidden'));
+        } else {
+            flagsEs.forEach(f => f.classList.remove('hidden'));
+            flagsEn.forEach(f => f.classList.add('hidden'));
+            flagsEc.forEach(f => f.classList.add('hidden'));
+        }
     } else {
-        // KI -> ES
-        flagsEs.forEach(f => f.classList.remove('hidden'));
-        flagsEn.forEach(f => f.classList.add('hidden'));
-        flagsEc.forEach(f => f.classList.add('hidden'));
-        cambiarIdioma('es');
+        console.error('[Main] cambiarIdioma no encontrada en window');
     }
 };
 

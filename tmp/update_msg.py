@@ -1,0 +1,216 @@
+
+import os
+
+html_path = r'c:\Users\User\Desktop\DISEÑADOR GRAFICO\Plantillas\27) Google Antigravity\das museum 2\public\museo-tanques\3.5mensaje.html'
+
+with open(html_path, 'r', encoding='utf-8') as f:
+    text = f.read()
+
+new_main = """    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow pt-[110px] md:pt-[100px] px-0 md:px-6">
+        <div class="max-w-[1200px] mx-auto pb-12">
+
+            <!-- Hero Section -->
+            <section class="relative h-[450px] w-full bg-slate-900 overflow-hidden md:rounded-2xl md:mt-4 shadow-2xl">
+                <div class="absolute inset-0 opacity-60 bg-cover bg-center" data-alt="Close up of a historic military tank in museum" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCq-FvVOD4LgW-Q7JC2oHYTPlGLQ7BiG4JXKx0u-n1jO6egY8AeHg1x2aIwAZtAxZOG5zq5CFiexB19bBGMI1PH05YYyuzP6sJlDOfkBBsUoJBZ5FK-SkBoabw-9_AFRXuCrsoLa9uURFII3nwWpaDPuJP3c7rg9K-sWdVsECGKfgWk30tYbwR3y99SFfqtoALno_U5DXy_NKmrzSetzilVQRrxF0lYHlytdEqkMg9kuU7L14-c8rqXKCHPIW23iU2qttyuuyHaXHab');"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent dark:from-background-dark dark:via-background-dark/40"></div>
+                
+                <div class="relative h-full max-w-5xl mx-auto px-6 flex flex-col justify-end pb-12">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="h-1 w-12 bg-primary"></span>
+                        <span class="text-primary uppercase tracking-widest text-xs font-bold" data-i18n="msg_institucional">Declaración Institucional</span>
+                    </div>
+                    <h1 class="text-white text-4xl md:text-5xl font-black mb-4 tracking-tight leading-tight" data-i18n="msg_titulo">Mensaje Comando:<br/><span class="text-primary-light">Digitalizando Nuestro Legado</span></h1>
+                    <p class="text-slate-200 text-lg max-w-2xl leading-relaxed" data-i18n="msg_desc">Una visión estratégica para la preservación y accesibilidad de la historia blindada en el siglo XXI.</p>
+                </div>
+            </section>
+
+            <!-- Commander Bio & Message -->
+            <section class="max-w-5xl mx-auto px-6 py-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <div class="lg:col-span-4 flex flex-col gap-6">
+                        <div class="rounded-xl overflow-hidden border-4 border-primary/20 shadow-2xl aspect-[3/4]">
+                            <div class="h-full w-full bg-cover bg-top" data-alt="Professional portrait of military official Carlos Montoya" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBpFMOA7pApjAyTrBggFX4otwALdbzZBob1CQFUWs6KFEpEocOeXBUJc3e-T77PBdaCBhjBe3pIV4GFlDv6OhUwBVo9EXVcuN5XHGkXzui2D6CmVnHI7NReQvgfK7qfK9Z79RHw78_g9ftEmRm44jZAEPm-WcNC6RzS8H_sFGbV2S2pz_-CD7_QQG4ZBgw2uRkU0H9Gk7UyklLeb1XdStH07Y4FwNmn9-YeeAbRcm1YrTZPOCXl3ISivIiqJ9hGBBddUIQ7you_42_U');"></div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors duration-300">
+                            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1" data-i18n="msg_director_nombre">General Carlos Montoya</h3>
+                            <p class="text-primary font-semibold mb-4 text-sm" data-i18n="msg_director_cargo">Director del Museo de Tanques</p>
+                            
+                            <div class="flex gap-4 border-t border-slate-100 dark:border-slate-700 pt-4 transition-colors duration-300">
+                                <div class="flex-1 text-center">
+                                    <p class="text-2xl font-bold text-slate-900 dark:text-white transition-colors duration-300">2024</p>
+                                    <p class="text-[10px] uppercase text-slate-500 font-bold" data-i18n="msg_año_lanzamiento">Año de Lanzamiento</p>
+                                </div>
+                                <div class="w-[1px] bg-slate-100 dark:bg-slate-700 transition-colors duration-300"></div>
+                                <div class="flex-1 text-center">
+                                    <p class="text-2xl font-bold text-slate-900 dark:text-white transition-colors duration-300">6Y</p>
+                                    <p class="text-[10px] uppercase text-slate-500 font-bold" data-i18n="msg_hoja_ruta">Hoja de Ruta</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-8">
+                        <div class="prose prose-slate dark:prose-invert max-w-none">
+                            <p class="text-xl leading-relaxed text-slate-700 dark:text-slate-300 italic mb-8 border-l-4 border-primary pl-6 py-2 transition-colors duration-300" data-i18n="msg_cita">
+                                "Estamos uniendo la historia y la tecnología para preservar el legado de nuestras fuerzas blindadas para las futuras generaciones. El proyecto de digitalización no es un mero avance; es un cambio fundamental en nuestra forma de honrar el pasado."
+                            </p>
+                            <p class="mb-4 text-slate-700 dark:text-slate-300 transition-colors duration-300" data-i18n="msg_p1">
+                                Al embarcarnos en este ambicioso viaje entre 2024 y 2030, nuestra misión sigue siendo clara: asegurar que las maravillas mecánicas y las historias de los valientes que las operaron jamás se pierdan en el tiempo. A través del escaneo 3D de alta fidelidad, la digitalización de archivos y entornos virtuales, abrimos las puertas de nuestro museo al mundo entero.
+                            </p>
+                            <p class="mb-4 text-slate-700 dark:text-slate-300 transition-colors duration-300" data-i18n="msg_p2">
+                                La digitalización nos permite analizar especificaciones técnicas con precisión sin precedentes y compartir recursos educativos con escuelas e investigadores sin fronteras. Es nuestro deber adaptarnos a la era digital manteniendo la solemnidad y el honor que representan estas exhibiciones.
+                            </p>
+                            <p class="text-slate-700 dark:text-slate-300 font-medium transition-colors duration-300" data-i18n="msg_p3">
+                                Juntos, estamos construyendo un museo que vive no solo entre muros, sino al alcance de cada mente curiosa.
+                            </p>
+                            
+                            <div class="mt-8">
+                                <img class="w-24 h-auto opacity-50 dark:invert transition-all duration-300" data-alt="Official signature of General Montoya" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2bOAwbigmhFB74mdTOCQFeJCGK0MZk-Ua65CNFErmxph5Ji2WOWQnJIsQx4EKCPrqivV28kTiHcek-ZPsptBezu8dNurJDiA3zVWBv4-9VwPPWbyDhPFLfmBvqVY2Z_Vllv_t_njL_gSHm2R-to2cmavpg-p_G9y2UusIHBPgpFY_f-AFgNHlUYV1pPkQSvyd390yHPAzvNJlFvuJXeC7P5Yquihh5xDvvJchTwzvIOBFpSDo7xTjvGRF4b-VS_nchQFDbS2U2CJO"/>
+                                <p class="text-sm font-bold mt-2 text-slate-900 dark:text-white transition-colors duration-300" data-i18n="msg_director_nombre">General Carlos Montoya</p>
+                                <p class="text-xs text-slate-500 uppercase transition-colors duration-300" data-i18n="msg_cargo_inferior">Director General, Museo de Tanques</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Strategic Vision -->
+            <section class="bg-primary py-16 md:py-20 rounded-none md:rounded-2xl mx-0 md:mx-6 mb-16 shadow-lg relative overflow-hidden">
+                <div class="max-w-5xl mx-auto px-6 relative z-10">
+                    <div class="text-center mb-16">
+                        <h2 class="text-white text-3xl font-bold mb-4" data-i18n="msg_vision_titulo">Visión Estratégica 2024-2030</h2>
+                        <p class="text-white/80 text-lg max-w-2xl mx-auto" data-i18n="msg_vision_desc">Nuestra hoja de ruta para convertirnos en líderes globales del archivo militar digital.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-black/10 backdrop-blur-md p-8 rounded-xl border border-white/20 hover:bg-black/20 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-white/90 text-4xl mb-4">view_in_ar</span>
+                            <h3 class="text-white text-xl font-bold mb-3" data-i18n="msg_preservacion_titulo">Preservación Inmersiva</h3>
+                            <p class="text-white/80 text-sm leading-relaxed" data-i18n="msg_preservacion_desc">Convirtiendo cada vehículo blindado en un modelo 3D de alta fidelidad para recorridos virtuales y estudio técnico.</p>
+                        </div>
+                        <div class="bg-black/10 backdrop-blur-md p-8 rounded-xl border border-white/20 hover:bg-black/20 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-white/90 text-4xl mb-4">hub</span>
+                            <h3 class="text-white text-xl font-bold mb-3" data-i18n="msg_conectividad_titulo">Conectividad Global</h3>
+                            <p class="text-white/80 text-sm leading-relaxed" data-i18n="msg_conectividad_desc">Construyendo un archivo digital habilitado por API para universidades y sociedades históricas de todo el mundo.</p>
+                        </div>
+                        <div class="bg-black/10 backdrop-blur-md p-8 rounded-xl border border-white/20 hover:bg-black/20 transition-all cursor-default">
+                            <span class="material-symbols-outlined text-white/90 text-4xl mb-4">school</span>
+                            <h3 class="text-white text-xl font-bold mb-3" data-i18n="msg_educacion_titulo">Educación Interactiva</h3>
+                            <p class="text-white/80 text-sm leading-relaxed" data-i18n="msg_educacion_desc">Creando contenido alineado al currículo escolar en Realidad Aumentada para programas educativos.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Project Milestones -->
+            <section class="py-16 mb-16 px-6 max-w-5xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 flex items-center gap-4 text-slate-900 dark:text-white transition-colors duration-300">
+                    <span class="material-symbols-outlined text-primary">timeline</span>
+                    <span data-i18n="msg_hitos_titulo">Hitos Clave del Proyecto</span>
+                </h2>
+                
+                <div class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-primary before:via-primary/50 before:to-transparent">
+                    
+                    <!-- Item 1 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background-light dark:border-background-dark bg-primary text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-300">
+                            <span class="material-symbols-outlined text-sm">check</span>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700 transition-colors duration-300 hover:-translate-y-1">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between space-y-2 md:space-y-0 md:space-x-2 mb-3">
+                                <div class="font-bold text-slate-900 dark:text-white text-lg transition-colors duration-300" data-i18n="msg_fase1_titulo">Fase 1: Inventario y Escaneo</div>
+                                <time class="font-bold text-primary bg-primary/10 px-3 py-1 rounded-full text-sm inline-block w-max" data-i18n="msg_fase1_fecha">Q1 2024</time>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-300" data-i18n="msg_fase1_desc">Escaneo completado de la colección de 'Tigers' usando tecnología Lidar.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background-light dark:border-background-dark bg-yellow-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-300">
+                            <span class="material-symbols-outlined text-sm">pending</span>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl bg-white dark:bg-slate-800 shadow-lg border border-slate-100 dark:border-slate-700 transition-colors duration-300 hover:-translate-y-1">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between space-y-2 md:space-y-0 md:space-x-2 mb-3">
+                                <div class="font-bold text-slate-900 dark:text-white text-lg transition-colors duration-300" data-i18n="msg_fase2_titulo">Fase 2: Lanzamiento del Portal de Archivo</div>
+                                <time class="font-bold text-yellow-500 bg-yellow-500/10 px-3 py-1 rounded-full text-sm inline-block w-max" data-i18n="msg_fase2_fecha">Q4 2024</time>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-300" data-i18n="msg_fase2_desc">El portal interactivo del museo entra en línea para historiadores registrados.</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background-light dark:border-background-dark bg-slate-200 dark:bg-slate-700 text-slate-400 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors duration-300">
+                            <span class="material-symbols-outlined text-sm">schedule</span>
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl bg-white/60 dark:bg-slate-800/60 shadow border border-slate-100 dark:border-slate-700 transition-colors duration-300">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between space-y-2 md:space-y-0 md:space-x-2 mb-3">
+                                <div class="font-bold text-slate-900 dark:text-white text-lg transition-colors duration-300" data-i18n="msg_fase3_titulo">Fase 3: Integración de RV</div>
+                                <time class="font-bold text-slate-500 bg-slate-500/10 px-3 py-1 rounded-full text-sm inline-block w-max" data-i18n="msg_fase3_fecha">2025</time>
+                            </div>
+                            <div class="text-slate-600 dark:text-slate-400 text-sm transition-colors duration-300" data-i18n="msg_fase3_desc">Soporte completo de realidad virtual para aulas remotas y estaciones dentro del museo.</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Commitment to Community -->
+            <section class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12 pt-8 border-t border-slate-200 dark:border-slate-800 transition-colors duration-300">
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white transition-colors duration-300" data-i18n="msg_compromiso_titulo">Compromiso con la Comunidad</h2>
+                    <p class="text-slate-700 dark:text-slate-300 mb-8 text-lg transition-colors duration-300" data-i18n="msg_compromiso_desc">
+                        Más allá del acero y la tecnología, nuestros esfuerzos se centran en las personas. Creemos firmemente que la historia pertenece a la comunidad y que el acceso jamás debe estar restringido por la geografía o las habilidades físicas.
+                    </p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-2 rounded-lg shrink-0 mt-1">
+                                <span class="material-symbols-outlined text-primary">diversity_3</span>
+                            </div>
+                            <span class="text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-300" data-i18n="msg_compromiso_li1">Accesibilidad histórica para estudiantes con discapacidades mediante la interacción virtual y sensorial.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-2 rounded-lg shrink-0 mt-1">
+                                <span class="material-symbols-outlined text-primary">history_edu</span>
+                            </div>
+                            <span class="text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-300" data-i18n="msg_compromiso_li2">Preservando las historias orales de los veteranos de combate y enlazándolas con sus respectivos vehículos.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-2 rounded-lg shrink-0 mt-1">
+                                <span class="material-symbols-outlined text-primary">public</span>
+                            </div>
+                            <span class="text-slate-800 dark:text-slate-200 leading-relaxed transition-colors duration-300" data-i18n="msg_compromiso_li3">Proveyendo en tiempo real activos educativos de código abierto para investigadores académicos en todo el mundo.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="flex-1 w-full mt-8 md:mt-0">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-primary-light rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-2xl aspect-square md:aspect-auto">
+                            <img class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700" data-alt="Students interacting with a digital museum display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr1a0I7umYeEjjrbV95C66TGwKovWpOuHO7gdli-SHAzpFRkqAbLrdsKlhtFPRVQLwVMRabkGCnef8-NBH_pvz0dmpdfMl6OObZFpGPrJD2UB3xA5KhLYdUMIlVnSe6vKIri4g-ukImm7NEc3Nsyw_yaDSRhOYVIPN9dT7oEnKkFY_lm4oEhxzTlyNvNDb5uuY0pchCaHAJM43JyNhxddBcSRht3d0kI-2qYk2zquxmKMofCT1W59SqU7PgfrQvDoLAW2v3KFis7C-"/>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>"""
+
+import re
+
+# We will replace from <!-- CONTENIDO PRINCIPAL --> to </main>
+# Using dotall flag to match across lines
+pattern = re.compile(r'<!-- CONTENIDO PRINCIPAL -->\s*<main.*?</main>', re.DOTALL)
+new_content = pattern.sub(new_main, text)
+
+with open(html_path, 'w', encoding='utf-8') as f:
+    f.write(new_content)
+
+print("Updated 3.5mensaje.html main section")

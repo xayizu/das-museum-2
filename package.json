@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "supabase": "^2.76.17",
-    "wrangler": "^4.70.0"
+    "wrangler": "^4.71.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

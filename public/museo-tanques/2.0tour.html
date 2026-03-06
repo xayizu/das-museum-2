@@ -47,110 +47,217 @@
     <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
 
-        <!-- CONTENIDO PRINCIPAL -->
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="flex-grow pt-[110px] md:pt-[100px] px-6">
         <div class="max-w-[1200px] mx-auto pb-12">
 
             <!-- 360 Viewer Section -->
             <section class="mb-12">
-                <div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 shadow-2xl group">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Interior panorámico de un museo de tanques históricos" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQj4vvB5AOI0X0qUfBmc1NuYh4qWiB34Q2gOKHsfWYzbcxR8QZBiK-Rlt_wo3mPe5243HrLZy2dIsN__D29ddjQ8S4oUYDrXaSR7fZwngnBfQJ3tnTftVgF-ttjfpmXxuvnsfnricxyDZMRCWz5S9iFhUbhjD7WrVctTZYFlTIXx4BuLz-FMTh4Pmdyy4HK8qeTRYVXp1_p_fpy04gD8K_7QDunSFb6TPMRDzZ2V-HXxnV6KquCNIISIT1GCMcw9ui_E4OElovVnkP')"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-                    
-                    <!-- Interface Overlay -->
-                    <div class="absolute inset-0 flex flex-col justify-between p-6">
-                        <div class="flex justify-between items-start">
-                            <div class="bg-black/50 backdrop-blur-md p-3 rounded-xl border border-white/10">
-                                <h1 class="text-white text-2xl md:text-3xl font-bold flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-primary">360</span>
-                                    <span data-i18n="tour_sala_pesados">Sala de Blindados Pesados</span>
-                                </h1>
-                                <p class="text-slate-300 text-sm mt-1" data-i18n="tour_ubicacion_ala">Ubicación: Ala Este - Segunda Guerra Mundial</p>
-                            </div>
-                            <div class="flex gap-2">
-                                <button class="size-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-primary transition-all">
-                                    <span class="material-symbols-outlined">zoom_in</span>
-                                </button>
-                                <button class="size-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-primary transition-all">
-                                    <span class="material-symbols-outlined">fullscreen</span>
-                                </button>
-                            </div>
+                <div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 shadow-2xl group transition-all duration-700"
+                    id="tour-container">
+                    <!-- Static Preview & Overlay (Visible by default) -->
+                    <div id="tour-preview" class="absolute inset-0 z-10">
+                        <div class="absolute inset-0 bg-cover bg-center opacity-80"
+                            data-alt="Interior panorámico de un museo de tanques históricos"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQj4vvB5AOI0X0qUfBmc1NuYh4qWiB34Q2gOKHsfWYzbcxR8QZBiK-Rlt_wo3mPe5243HrLZy2dIsN__D29ddjQ8S4oUYDrXaSR7fZwngnBfQJ3tnTftVgF-ttjfpmXxuvnsfnricxyDZMRCWz5S9iFhUbhjD7WrVctTZYFlTIXx4BuLz-FMTh4Pmdyy4HK8qeTRYVXp1_p_fpy04gD8K_7QDunSFb6TPMRDzZ2V-HXxnV6KquCNIISIT1GCMcw9ui_E4OElovVnkP')">
                         </div>
-                        
-                        <div class="flex justify-center mb-8 sm:mb-2 lg:mb-8">
-                            <div class="bg-primary/90 text-white px-6 py-3 rounded-full font-bold flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform shadow-lg">
-                                <span class="material-symbols-outlined">play_circle</span>
-                                <span data-i18n="tour_iniciar_experiencia">INICIAR EXPERIENCIA INMERSIVA</span>
-                            </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
                         </div>
-                        
-                        <div class="flex flex-col sm:flex-row justify-between items-end gap-4">
-                            <div class="flex gap-2">
-                                <div class="size-16 rounded-lg border-2 border-primary overflow-hidden cursor-pointer opacity-100">
-                                    <div class="w-full h-full bg-cover bg-center" data-alt="Miniatura de tanque pesado alemán" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_tz9pqgT2-Qv51_XzIxE5YbKIjdZUQs00of7QKNTsUnSJxsOvbYMeM1iwq3Fq-6jtvaJ0Dsd2fH9FyN8uIJuItCrl4UcWmJ9XllDel1PfZxVE9oVWxDxib8tAHAcaEmMpFg8QAZzrEDl5jZZO2c4F7dhEJBUR4c8oBHcgKLQnYTy4HGOIMjavVrGDXlFEf-h4AI6LJR0pQWpzPtWDFo3V1diwljeJhob0eUMvL4gZpWr6Z4GrriNf6dhMF-HnNVNlmnEPJ1oNmv_G')"></div>
-                                </div>
-                                <div class="size-16 rounded-lg border-2 border-transparent overflow-hidden cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
-                                    <div class="w-full h-full bg-cover bg-center" data-alt="Miniatura de blindados soviéticos" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHREVY8J3rMd9CBG3sLZQaAyJXjjd5M2kX_yD6pqdwXDYjqGnb1dXepFTkri_exICJk5wZgZe6DJuxhuDZ4rrrt1-e0qlIh8cI75E8P-0hw5rWEeC8boAlUM3QhgnXWuunfOzHbwnwYDUe0VTEI6zK7fL4Xx-SOUAQ8p5haG6IRaCr-5n295Yb3j5-tmOmCTKM1CJnyke_qTaB9ho-45eJuGo42G4OgbX1LSMwccnA_4zM7WCnNzXQHU5KGMKDK3TxY4jfrF2lODij')"></div>
+
+                        <!-- Interface Overlay -->
+                        <div class="absolute inset-0 flex flex-col justify-between p-6">
+                            <div class="flex justify-between items-start">
+                                <div class="bg-black/50 backdrop-blur-md p-3 rounded-xl border border-white/10">
+                                    <h1 class="text-white text-2xl md:text-3xl font-bold flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-primary">360</span>
+                                        <span data-i18n="tour_sala_pesados">Sala de Blindados Pesados</span>
+                                    </h1>
+                                    <p class="text-slate-300 text-sm mt-1" data-i18n="tour_ubicacion_ala">Ubicación: Ala
+                                        Este - Segunda Guerra Mundial</p>
                                 </div>
                             </div>
-                            <div class="text-white flex items-center gap-4 text-sm font-medium bg-black/40 px-4 py-2 rounded-full backdrop-blur-sm self-end sm:self-auto">
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 1,240</span>
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-red-500">fiber_manual_record</span> <span data-i18n="tour_en_vivo">EN VIVO</span></span>
+
+                            <div class="flex justify-center mb-8 sm:mb-2 lg:mb-8">
+                                <div onclick="loadVirtualTour()"
+                                    class="bg-primary/95 text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-xl shadow-primary/20 group/btn">
+                                    <span
+                                        class="material-symbols-outlined text-3xl group-hover/btn:rotate-12 transition-transform">play_circle</span>
+                                    <span class="text-lg tracking-wide" data-i18n="tour_iniciar_experiencia">INICIAR
+                                        EXPERIENCIA INMERSIVA</span>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row justify-between items-end gap-4">
+                                <div class="flex gap-2">
+                                    <div
+                                        class="size-16 rounded-lg border-2 border-primary overflow-hidden cursor-pointer opacity-100 shadow-lg">
+                                        <div class="w-full h-full bg-cover bg-center"
+                                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_tz9pqgT2-Qv51_XzIxE5YbKIjdZUQs00of7QKNTsUnSJxsOvbYMeM1iwq3Fq-6jtvaJ0Dsd2fH9FyN8uIJuItCrl4UcWmJ9XllDel1PfZxVE9oVWxDxib8tAHAcaEmMpFg8QAZzrEDl5jZZO2c4F7dhEJBUR4c8oBHcgKLQnYTy4HGOIMjavVrGDXlFEf-h4AI6LJR0pQWpzPtWDFo3V1diwljeJhob0eUMvL4gZpWr6Z4GrriNf6dhMF-HnNVNlmnEPJ1oNmv_G')">
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="size-16 rounded-lg border-2 border-transparent overflow-hidden cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+                                        <div class="w-full h-full bg-cover bg-center"
+                                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHREVY8J3rMd9CBG3sLZQaAyJXjjd5M2kX_yD6pqdwXDYjqGnb1dXepFTkri_exICJk5wZgZe6DJuxhuDZ4rrrt1-e0qlIh8cI75E8P-0hw5rWEeC8boAlUM3QhgnXWuunfOzHbwnwYDUe0VTEI6zK7fL4Xx-SOUAQ8p5haG6IRaCr-5n295Yb3j5-tmOmCTKM1CJnyke_qTaB9ho-45eJuGo42G4OgbX1LSMwccnA_4zM7WCnNzXQHU5KGMKDK3TxY4jfrF2lODij')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="text-white flex items-center gap-4 text-sm font-medium bg-black/50 px-5 py-2.5 rounded-full backdrop-blur-md border border-white/10">
+                                    <span class="flex items-center gap-1.5"><span
+                                            class="material-symbols-outlined text-sm text-primary">visibility</span>
+                                        1,240</span>
+                                    <div class="w-px h-4 bg-white/20"></div>
+                                    <span class="flex items-center gap-1.5"><span
+                                            class="material-symbols-outlined text-sm text-red-500 animate-pulse">fiber_manual_record</span>
+                                        <span data-i18n="tour_en_vivo">EN VIVO</span></span>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Iframe Container (Hidden by default) -->
+                    <div id="tour-iframe-container"
+                        class="absolute inset-0 hidden opacity-0 transition-opacity duration-1000">
+                        <iframe id="virtual-tour-frame" class="w-full h-full border-0" allowfullscreen
+                            allow="gyroscope; accelerometer; vr"></iframe>
+                        <!-- Back button/Close iframe -->
+                        <button onclick="closeVirtualTour()"
+                            class="absolute top-4 right-4 z-20 size-10 bg-black/60 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all shadow-lg backdrop-blur-md border border-white/20">
+                            <span class="material-symbols-outlined">close</span>
+                        </button>
+                    </div>
+
+                    <!-- Loader (Visible during loading) -->
+                    <div id="tour-loader"
+                        class="absolute inset-0 z-15 flex flex-col items-center justify-center bg-slate-900 hidden">
+                        <div
+                            class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4">
+                        </div>
+                        <p class="text-white font-bold animate-pulse" data-i18n="cargando_experiencia">CARGANDO
+                            EXPERIENCIA 360...</p>
+                    </div>
                 </div>
+
+                <script>
+                    function loadVirtualTour() {
+                        const preview = document.getElementById('tour-preview');
+                        const loader = document.getElementById('tour-loader');
+                        const container = document.getElementById('tour-iframe-container');
+                        const iframe = document.getElementById('virtual-tour-frame');
+
+                        // Path provided by user
+                        const tourPath = "../recursos/Tour_Virtual/Museo_Tanques/comil/index.htm";
+
+                        loader.classList.remove('hidden');
+                        preview.classList.add('opacity-0');
+
+                        iframe.src = tourPath;
+
+                        iframe.onload = () => {
+                            loader.classList.add('hidden');
+                            preview.classList.add('hidden');
+                            container.classList.remove('hidden');
+                            setTimeout(() => container.classList.add('opacity-100'), 50);
+                        };
+                    }
+
+                    function closeVirtualTour() {
+                        const preview = document.getElementById('tour-preview');
+                        const container = document.getElementById('tour-iframe-container');
+                        const iframe = document.getElementById('virtual-tour-frame');
+
+                        container.classList.remove('opacity-100');
+                        setTimeout(() => {
+                            container.classList.add('hidden');
+                            preview.classList.remove('hidden');
+                            preview.classList.remove('opacity-0');
+                            iframe.src = ""; // Stop the tour processes
+                        }, 500);
+                    }
+                </script>
             </section>
 
             <!-- Puntos de Interés Destacados -->
             <section class="mb-16">
                 <div class="flex items-center gap-4 mb-8">
-                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300" data-i18n="tour_puntos_interes">Puntos de Interés</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white transition-colors duration-300"
+                        data-i18n="tour_puntos_interes">Puntos de Interés</h2>
                     <div class="h-px flex-1 bg-slate-200 dark:bg-slate-700 transition-colors duration-300"></div>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Ticket 1 -->
-                    <div class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <div
+                        class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
                         <div class="h-48 overflow-hidden relative">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tanque Tiger I restaurado en exhibición" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaiAtvp5uED-cvHy-lyZQb_XiEPNMOl9QzO3hg5nfIRP4Thpezdm39MXxSlx_VlsJFm1chtLhFJWWfz6QJh7GkQsLsQITSMnoIOHRCDiHPW2qJLm-hSrOSKDI7cjekP3wb6-9TGMKE_x2dZou-P1vNSz3Zchw7aqNCYEvHxBb2HQcQkKCyB38XqTG0a5msrPK0zPOR6KIP7IzqWr01RNEtp2Nq9jisXuifKeOdXg0EUUDOQnAZ63z8MaIoN4LhGh2avXge0qjTEn7o"/>
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                data-alt="Tanque Tiger I restaurado en exhibición"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaiAtvp5uED-cvHy-lyZQb_XiEPNMOl9QzO3hg5nfIRP4Thpezdm39MXxSlx_VlsJFm1chtLhFJWWfz6QJh7GkQsLsQITSMnoIOHRCDiHPW2qJLm-hSrOSKDI7cjekP3wb6-9TGMKE_x2dZou-P1vNSz3Zchw7aqNCYEvHxBb2HQcQkKCyB38XqTG0a5msrPK0zPOR6KIP7IzqWr01RNEtp2Nq9jisXuifKeOdXg0EUUDOQnAZ63z8MaIoN4LhGh2avXge0qjTEn7o" />
                         </div>
                         <div class="p-5">
-                            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="tour_blindado_pesado">Blindado Pesado</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-slate-900 dark:text-white transition-colors duration-300">Panzer VI "Tiger I"</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed transition-colors duration-300" data-i18n="tour_tiger_desc">Considerado el tanque más temido de la SGM. Nuestra unidad está 100% restaurada con piezas originales.</p>
-                            <button class="mt-4 flex items-center gap-2 text-primary font-bold text-sm hover:underline group-hover:translate-x-1 transition-transform">
-                                <span data-i18n="tour_ver_360">VER EN 360</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            <span class="text-primary text-xs font-bold tracking-widest uppercase"
+                                data-i18n="tour_blindado_pesado">Blindado Pesado</span>
+                            <h3
+                                class="text-xl font-bold mt-1 mb-2 text-slate-900 dark:text-white transition-colors duration-300">
+                                Panzer VI "Tiger I"</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed transition-colors duration-300"
+                                data-i18n="tour_tiger_desc">Considerado el tanque más temido de la SGM. Nuestra unidad
+                                está 100% restaurada con piezas originales.</p>
+                            <button
+                                class="mt-4 flex items-center gap-2 text-primary font-bold text-sm hover:underline group-hover:translate-x-1 transition-transform">
+                                <span data-i18n="tour_ver_360">VER EN 360</span> <span
+                                    class="material-symbols-outlined text-sm">arrow_forward</span>
                             </button>
                         </div>
                     </div>
-                    
+
                     <!-- Ticket 2 -->
-                    <div class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <div
+                        class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
                         <div class="h-48 overflow-hidden relative">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tanque M4 Sherman americano" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGS50mF55Ehp8yJ1anIJtVI58qlM-fYTk_cCKHNkeTN-jr3nC81Aupcm2vdhV9XkGJ-GSm-a6R2MdIU52pU2iacohxIYe_VnUsRvchvwXLzshZwGaCKjtZTXef-7B0QHyXMJ-sfDzprq7WDojo0UETQCgGDPullbg6aJWxRat_XZld5oZ8-B-euH_c7MFc9lynMCmglJf7bcwSCviCPW8DxmsRe1WS1QvAooC5v6uTIaUleo4qNWyrYnTjAXyA4ZGtvr9gdaJZN9-m"/>
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                data-alt="Tanque M4 Sherman americano"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGS50mF55Ehp8yJ1anIJtVI58qlM-fYTk_cCKHNkeTN-jr3nC81Aupcm2vdhV9XkGJ-GSm-a6R2MdIU52pU2iacohxIYe_VnUsRvchvwXLzshZwGaCKjtZTXef-7B0QHyXMJ-sfDzprq7WDojo0UETQCgGDPullbg6aJWxRat_XZld5oZ8-B-euH_c7MFc9lynMCmglJf7bcwSCviCPW8DxmsRe1WS1QvAooC5v6uTIaUleo4qNWyrYnTjAXyA4ZGtvr9gdaJZN9-m" />
                         </div>
                         <div class="p-5">
-                            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="tour_aliados">Aliados</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-slate-900 dark:text-white transition-colors duration-300">M4 Sherman "Firefly"</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed transition-colors duration-300" data-i18n="tour_sherman_desc">El caballo de batalla aliado con el cañón británico de 17 libras, capaz de perforar el blindaje alemán.</p>
-                            <button class="mt-4 flex items-center gap-2 text-primary font-bold text-sm hover:underline group-hover:translate-x-1 transition-transform">
-                                <span data-i18n="tour_ver_360">VER EN 360</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            <span class="text-primary text-xs font-bold tracking-widest uppercase"
+                                data-i18n="tour_aliados">Aliados</span>
+                            <h3
+                                class="text-xl font-bold mt-1 mb-2 text-slate-900 dark:text-white transition-colors duration-300">
+                                M4 Sherman "Firefly"</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed transition-colors duration-300"
+                                data-i18n="tour_sherman_desc">El caballo de batalla aliado con el cañón británico de 17
+                                libras, capaz de perforar el blindaje alemán.</p>
+                            <button
+                                class="mt-4 flex items-center gap-2 text-primary font-bold text-sm hover:underline group-hover:translate-x-1 transition-transform">
+                                <span data-i18n="tour_ver_360">VER EN 360</span> <span
+                                    class="material-symbols-outlined text-sm">arrow_forward</span>
                             </button>
                         </div>
                     </div>
-                    
+
                     <!-- Ticket 3 -->
-                    <div class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <div
+                        class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
                         <div class="h-48 overflow-hidden relative">
-                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tanque T-34 soviético" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKm_4BacuXO6I68fur8u0Ra9ogEFR7GoKc4Ih9Bz-pAiVH8XSh-n6noCN3MXGEZGb0jN8gI9tAb_VlzpI-eOmvEe_xxvldo677mCXlZGjNmvm9MS6SsjvXrAQGgUv84Nq6XRAzrLzKwGh0N3x5vz4QHpjjL7bS4TV1Qw2140JmgHOdnf3HJcEHMX5i6mk9yDv2qHi-Srrd8Epj52rYIwiPEvss_pwZ8PVDfoqn9wMz_QFqONbuedANloVzB9ozvGPqDv7Fy0rpehSw"/>
+                            <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                data-alt="Tanque T-34 soviético"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKm_4BacuXO6I68fur8u0Ra9ogEFR7GoKc4Ih9Bz-pAiVH8XSh-n6noCN3MXGEZGb0jN8gI9tAb_VlzpI-eOmvEe_xxvldo677mCXlZGjNmvm9MS6SsjvXrAQGgUv84Nq6XRAzrLzKwGh0N3x5vz4QHpjjL7bS4TV1Qw2140JmgHOdnf3HJcEHMX5i6mk9yDv2qHi-Srrd8Epj52rYIwiPEvss_pwZ8PVDfoqn9wMz_QFqONbuedANloVzB9ozvGPqDv7Fy0rpehSw" />
                         </div>
                         <div class="p-5">
-                            <span class="text-primary text-xs font-bold tracking-widest uppercase" data-i18n="tour_ejercito_rojo">Ejército Rojo</span>
-                            <h3 class="text-xl font-bold mt-1 mb-2 text-slate-900 dark:text-white transition-colors duration-300">T-34/85 Soviético</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed transition-colors duration-300" data-i18n="tour_t34_desc">El equilibrio perfecto entre potencia de fuego, movilidad y protección. Un hito de la ingeniería militar.</p>
-                            <button class="mt-4 flex items-center gap-2 text-primary font-bold text-sm hover:underline group-hover:translate-x-1 transition-transform">
-                                <span data-i18n="tour_ver_360">VER EN 360</span> <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            <span class="text-primary text-xs font-bold tracking-widest uppercase"
+                                data-i18n="tour_ejercito_rojo">Ejército Rojo</span>
+                            <h3
+                                class="text-xl font-bold mt-1 mb-2 text-slate-900 dark:text-white transition-colors duration-300">
+                                T-34/85 Soviético</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed transition-colors duration-300"
+                                data-i18n="tour_t34_desc">El equilibrio perfecto entre potencia de fuego, movilidad y
+                                protección. Un hito de la ingeniería militar.</p>
+                            <button
+                                class="mt-4 flex items-center gap-2 text-primary font-bold text-sm hover:underline group-hover:translate-x-1 transition-transform">
+                                <span data-i18n="tour_ver_360">VER EN 360</span> <span
+                                    class="material-symbols-outlined text-sm">arrow_forward</span>
                             </button>
                         </div>
                     </div>
@@ -160,9 +267,11 @@
             <!-- Navegación y Requisitos -->
             <section class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-16">
                 <!-- Guía de Navegación -->
-                <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 text-slate-900 dark:text-slate-100 p-8 rounded-2xl shadow-sm transition-colors duration-300">
+                <div
+                    class="bg-primary/5 dark:bg-primary/10 border border-primary/20 text-slate-900 dark:text-slate-100 p-8 rounded-2xl shadow-sm transition-colors duration-300">
                     <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
-                        <span class="material-symbols-outlined text-primary">explore</span> <span data-i18n="tour_guia_navegacion">Guía de Navegación</span>
+                        <span class="material-symbols-outlined text-primary">explore</span> <span
+                            data-i18n="tour_guia_navegacion">Guía de Navegación</span>
                     </h3>
                     <div class="space-y-6">
                         <div class="flex gap-4">
@@ -171,7 +280,9 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-lg" data-i18n="tour_control_camara">Control de Cámara</h4>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="tour_control_desc">Haz clic y arrastra para girar la vista 360 grados. Usa la rueda del ratón para hacer zoom.</p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="tour_control_desc">Haz
+                                    clic y arrastra para girar la vista 360 grados. Usa la rueda del ratón para hacer
+                                    zoom.</p>
                             </div>
                         </div>
                         <div class="flex gap-4">
@@ -180,7 +291,9 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-lg" data-i18n="tour_puntos_info">Puntos de Información</h4>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="tour_info_desc">Haz clic en los iconos flotantes de información para abrir fichas técnicas detalladas de cada tanque.</p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="tour_info_desc">Haz
+                                    clic en los iconos flotantes de información para abrir fichas técnicas detalladas de
+                                    cada tanque.</p>
                             </div>
                         </div>
                         <div class="flex gap-4">
@@ -189,38 +302,53 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-lg" data-i18n="tour_entrada_cabina">Entrada a Cabina</h4>
-                                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="tour_cabina_desc">Busca el icono de "Puerta" para acceder al interior de los blindados seleccionados.</p>
+                                <p class="text-slate-600 dark:text-slate-400 text-sm" data-i18n="tour_cabina_desc">Busca
+                                    el icono de "Puerta" para acceder al interior de los blindados seleccionados.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Requisitos Técnicos -->
-                <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
-                    <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-slate-900 dark:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-primary">speed</span> <span data-i18n="tour_req_tecnicos">Requisitos Técnicos</span>
+                <div
+                    class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3
+                        class="text-2xl font-bold mb-6 flex items-center gap-3 text-slate-900 dark:text-white transition-colors duration-300">
+                        <span class="material-symbols-outlined text-primary">speed</span> <span
+                            data-i18n="tour_req_tecnicos">Requisitos Técnicos</span>
                     </h3>
                     <div class="space-y-4">
-                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
                             <span class="text-sm font-medium" data-i18n="tour_req_navegador">Navegador</span>
-                            <span class="text-sm text-slate-500" data-i18n="tour_req_nav_desc">Chrome, Firefox, Safari (últ. versiones)</span>
+                            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium"
+                                data-i18n="tour_req_nav_desc">Chrome, Firefox, Safari (últ. versiones)</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
                             <span class="text-sm font-medium" data-i18n="tour_req_conexion">Conexión</span>
-                            <span class="text-sm text-slate-500" data-i18n="tour_req_con_desc">Mínimo 10 Mbps recomendado</span>
+                            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium"
+                                data-i18n="tour_req_con_desc">Mínimo 10 Mbps recomendado</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
                             <span class="text-sm font-medium" data-i18n="tour_req_hardware">Hardware</span>
-                            <span class="text-sm text-slate-500" data-i18n="tour_req_hard_desc">Aceleración por GPU activada</span>
+                            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium"
+                                data-i18n="tour_req_hard_desc">Aceleración por GPU activada</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
+                        <div
+                            class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg transition-colors duration-300">
                             <span class="text-sm font-medium" data-i18n="tour_req_vr">VR ready</span>
-                            <span class="text-sm text-slate-500" data-i18n="tour_req_vr_desc">Compatible con Meta Quest y HTC Vive</span>
+                            <span class="text-sm text-slate-500 dark:text-slate-400 font-medium"
+                                data-i18n="tour_req_vr_desc">Compatible con Meta Quest y HTC Vive</span>
                         </div>
-                        <div class="mt-6 p-4 bg-primary/10 rounded-xl border border-primary/20">
-                            <p class="text-primary text-xs font-bold leading-relaxed">
-                                <span class="material-symbols-outlined align-middle mr-1 text-sm">info</span>
-                                <span data-i18n="tour_req_aviso">Para una experiencia óptima en dispositivos móviles, utiliza el modo horizontal (landscape).</span>
+                        <div
+                            class="mt-6 p-4 bg-primary/10 dark:bg-primary/20 rounded-xl border border-primary/20 transition-colors duration-300">
+                            <p
+                                class="text-primary dark:text-blue-300 text-xs font-bold leading-relaxed flex items-center">
+                                <span class="material-symbols-outlined text-sm mr-2">info</span>
+                                <span data-i18n="tour_req_aviso">Para una experiencia óptima en dispositivos móviles,
+                                    utiliza el modo horizontal (landscape).</span>
                             </p>
                         </div>
                     </div>
@@ -229,48 +357,70 @@
 
             <!-- Testimonios Section -->
             <section class="mb-8">
-                <h2 class="text-3xl font-bold text-center mb-10 text-slate-900 dark:text-white transition-colors duration-300" data-i18n="tour_experiencias">Experiencias de Visitantes</h2>
+                <h2 class="text-3xl font-bold text-center mb-10 text-slate-900 dark:text-white transition-colors duration-300"
+                    data-i18n="tour_experiencias">Experiencias de Visitantes</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm p-6 rounded-xl relative transition-colors duration-300">
-                        <span class="material-symbols-outlined text-primary/20 dark:text-primary/10 absolute top-4 right-4 text-4xl">format_quote</span>
+                    <div
+                        class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm p-6 rounded-xl relative transition-colors duration-300">
+                        <span
+                            class="material-symbols-outlined text-primary/20 dark:text-primary/10 absolute top-4 right-4 text-4xl">format_quote</span>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="size-10 rounded-full bg-slate-300 overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" data-alt="Retrato de visitante virtual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBjipLRjAqqLP0f3f-XhPi1V9LfUB_R6uAwiIYScTsEu1j3wcjN0c6NS15EQr_OqpFtBO_5Xg3DCu586f1bPS6FADHBtj31gJWWAzqny_d17ua8Otuc_Adn0TvJ5Zvf5kTRqKfOMwJMKwwYNOYkQUef5GewuUud0Y52jSKOaFzRVRUhBHKmHXTS6JaLusdQ_kuP0Hb5M6cgGljkNJhCaxXxaVkNB0R9vJTU1yj8h-oPnFcesVUptxbu5fmtFWCJA9fKGlT0foDMDrj"/>
+                                <img class="w-full h-full object-cover" data-alt="Retrato de visitante virtual"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBjipLRjAqqLP0f3f-XhPi1V9LfUB_R6uAwiIYScTsEu1j3wcjN0c6NS15EQr_OqpFtBO_5Xg3DCu586f1bPS6FADHBtj31gJWWAzqny_d17ua8Otuc_Adn0TvJ5Zvf5kTRqKfOMwJMKwwYNOYkQUef5GewuUud0Y52jSKOaFzRVRUhBHKmHXTS6JaLusdQ_kuP0Hb5M6cgGljkNJhCaxXxaVkNB0R9vJTU1yj8h-oPnFcesVUptxbu5fmtFWCJA9fKGlT0foDMDrj" />
                             </div>
                             <div>
-                                <p class="font-bold text-sm text-slate-800 dark:text-slate-200 transition-colors duration-300">Carlos Ruiz</p>
+                                <p
+                                    class="font-bold text-sm text-slate-800 dark:text-slate-200 transition-colors duration-300">
+                                    Carlos Ruiz</p>
                                 <p class="text-xs text-slate-500" data-i18n="tour_historiador">Historiador</p>
                             </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm italic transition-colors duration-300" data-i18n="tour_exp_carlos">"La calidad del 360 es asombrosa. Pude ver detalles de la soldadura del Tiger que nunca había apreciado en fotos."</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm italic transition-colors duration-300"
+                            data-i18n="tour_exp_carlos">"La calidad del 360 es asombrosa. Pude ver detalles de la
+                            soldadura del Tiger que nunca había apreciado en fotos."</p>
                     </div>
-                    
-                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm p-6 rounded-xl relative transition-colors duration-300">
-                        <span class="material-symbols-outlined text-primary/20 dark:text-primary/10 absolute top-4 right-4 text-4xl">format_quote</span>
+
+                    <div
+                        class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm p-6 rounded-xl relative transition-colors duration-300">
+                        <span
+                            class="material-symbols-outlined text-primary/20 dark:text-primary/10 absolute top-4 right-4 text-4xl">format_quote</span>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="size-10 rounded-full bg-slate-300 overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" data-alt="Retrato de visitante virtual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35zlN0ExFoagm2Ruxqs8_kpYezz0Vs0dgFw4u-XJE_6lqjkr3wbZJR6dwv_3Dg_yBvwIsmZuOrvwqaxkfFZbJb6lrjdWlNJWG56hhtoTH3k_U0onyoQlGRuBphlMBH45t9q5fA7FerAuDfiIsBpekJ0w9nXZveWqq9emNHXrjlghOHQHMa7MDmMaHpvEf7wdBXatVeeqDQMUdZy5l8KjQXH_Y29i_6dsgD1s5ItgA84WzWANVwvmwHs63Dzmqf3tM-HUNCk6BBuaM"/>
+                                <img class="w-full h-full object-cover" data-alt="Retrato de visitante virtual"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35zlN0ExFoagm2Ruxqs8_kpYezz0Vs0dgFw4u-XJE_6lqjkr3wbZJR6dwv_3Dg_yBvwIsmZuOrvwqaxkfFZbJb6lrjdWlNJWG56hhtoTH3k_U0onyoQlGRuBphlMBH45t9q5fA7FerAuDfiIsBpekJ0w9nXZveWqq9emNHXrjlghOHQHMa7MDmMaHpvEf7wdBXatVeeqDQMUdZy5l8KjQXH_Y29i_6dsgD1s5ItgA84WzWANVwvmwHs63Dzmqf3tM-HUNCk6BBuaM" />
                             </div>
                             <div>
-                                <p class="font-bold text-sm text-slate-800 dark:text-slate-200 transition-colors duration-300">Elena Martínez</p>
+                                <p
+                                    class="font-bold text-sm text-slate-800 dark:text-slate-200 transition-colors duration-300">
+                                    Elena Martínez</p>
                                 <p class="text-xs text-slate-500" data-i18n="tour_estudiante">Estudiante</p>
                             </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm italic transition-colors duration-300" data-i18n="tour_exp_elena">"Una herramienta educativa increíble. Mi clase de historia disfrutó muchísimo explorando el interior de los tanques."</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm italic transition-colors duration-300"
+                            data-i18n="tour_exp_elena">"Una herramienta educativa increíble. Mi clase de historia
+                            disfrutó muchísimo explorando el interior de los tanques."</p>
                     </div>
-                    
-                    <div class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm p-6 rounded-xl relative transition-colors duration-300">
-                        <span class="material-symbols-outlined text-primary/20 dark:text-primary/10 absolute top-4 right-4 text-4xl">format_quote</span>
+
+                    <div
+                        class="bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-sm p-6 rounded-xl relative transition-colors duration-300">
+                        <span
+                            class="material-symbols-outlined text-primary/20 dark:text-primary/10 absolute top-4 right-4 text-4xl">format_quote</span>
                         <div class="flex items-center gap-3 mb-4">
                             <div class="size-10 rounded-full bg-slate-300 overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" data-alt="Retrato de visitante virtual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLNhRsUN4hBpceWTfh8nMR4ENT5wxoMIqCHPq9sdsS-z4ocyYgVcXZmy_U3Gx001e_rncA6DbcKs3nt_8emYEtTgxJn8u246DAI2tUspOGJlyh5_f72ZurMC9cqs2B80S0zkCSWW7INd-Mj3MU2uceqC05SfxtLXJMDHNIex61yJD8OQX9kytJcIhBEG32kWTDT_smWqaY17BJ4mOpZuTgCn7U_auFiastEuKJE4ZEBVPJDTGyItPTMFmB4GjIOLERKtD93iRATWyZ"/>
+                                <img class="w-full h-full object-cover" data-alt="Retrato de visitante virtual"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLNhRsUN4hBpceWTfh8nMR4ENT5wxoMIqCHPq9sdsS-z4ocyYgVcXZmy_U3Gx001e_rncA6DbcKs3nt_8emYEtTgxJn8u246DAI2tUspOGJlyh5_f72ZurMC9cqs2B80S0zkCSWW7INd-Mj3MU2uceqC05SfxtLXJMDHNIex61yJD8OQX9kytJcIhBEG32kWTDT_smWqaY17BJ4mOpZuTgCn7U_auFiastEuKJE4ZEBVPJDTGyItPTMFmB4GjIOLERKtD93iRATWyZ" />
                             </div>
                             <div>
-                                <p class="font-bold text-sm text-slate-800 dark:text-slate-200 transition-colors duration-300">Mark Thompson</p>
+                                <p
+                                    class="font-bold text-sm text-slate-800 dark:text-slate-200 transition-colors duration-300">
+                                    Mark Thompson</p>
                                 <p class="text-xs text-slate-500" data-i18n="tour_entusiasta">Entusiasta VR</p>
                             </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm italic transition-colors duration-300" data-i18n="tour_exp_mark">"Usé mis Oculus Quest y la inmersión es total. Sientes realmente el tamaño masivo de estas máquinas."</p>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm italic transition-colors duration-300"
+                            data-i18n="tour_exp_mark">"Usé mis Oculus Quest y la inmersión es total. Sientes realmente
+                            el tamaño masivo de estas máquinas."</p>
                     </div>
                 </div>
             </section>
