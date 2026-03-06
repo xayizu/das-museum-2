@@ -53,63 +53,50 @@
 
             <!-- 360 Viewer Section -->
             <section class="mb-12">
-                <div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 shadow-2xl group transition-all duration-700"
+                <div class="relative h-[70vh] md:h-auto md:aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 shadow-2xl group transition-all duration-700"
                     id="tour-container">
                     <!-- Static Preview & Overlay (Visible by default) -->
-                    <div id="tour-preview" class="absolute inset-0 z-10">
+                    <div id="tour-preview" class="absolute inset-0 z-10 transition-opacity duration-300">
                         <div class="absolute inset-0 bg-cover bg-center opacity-80"
                             data-alt="Interior panorámico de un museo de tanques históricos"
                             style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQj4vvB5AOI0X0qUfBmc1NuYh4qWiB34Q2gOKHsfWYzbcxR8QZBiK-Rlt_wo3mPe5243HrLZy2dIsN__D29ddjQ8S4oUYDrXaSR7fZwngnBfQJ3tnTftVgF-ttjfpmXxuvnsfnricxyDZMRCWz5S9iFhUbhjD7WrVctTZYFlTIXx4BuLz-FMTh4Pmdyy4HK8qeTRYVXp1_p_fpy04gD8K_7QDunSFb6TPMRDzZ2V-HXxnV6KquCNIISIT1GCMcw9ui_E4OElovVnkP')">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-black/20">
                         </div>
 
                         <!-- Interface Overlay -->
                         <div class="absolute inset-0 flex flex-col justify-between p-6">
                             <div class="flex justify-between items-start">
-                                <div class="bg-black/50 backdrop-blur-md p-3 rounded-xl border border-white/10">
-                                    <h1 class="text-white text-2xl md:text-3xl font-bold flex items-center gap-2">
-                                        <span class="material-symbols-outlined text-primary">360</span>
+                                <div
+                                    class="bg-black/60 backdrop-blur-md p-4 rounded-2xl border border-white/20 shadow-2xl">
+                                    <h1 class="text-white text-xl md:text-3xl font-black flex items-center gap-3">
+                                        <span class="material-symbols-outlined text-primary text-3xl">360</span>
                                         <span data-i18n="tour_sala_pesados">Sala de Blindados Pesados</span>
                                     </h1>
-                                    <p class="text-slate-300 text-sm mt-1" data-i18n="tour_ubicacion_ala">Ubicación: Ala
-                                        Este - Segunda Guerra Mundial</p>
+                                    <p class="text-slate-300 text-xs md:text-sm mt-1.5 font-medium"
+                                        data-i18n="tour_ubicacion_ala">Ubicación: Ala Este - Segunda Guerra Mundial</p>
                                 </div>
                             </div>
 
-                            <div class="flex justify-center mb-8 sm:mb-2 lg:mb-8">
+                            <div class="flex justify-center mb-8">
                                 <div onclick="loadVirtualTour()"
-                                    class="bg-primary/95 text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-xl shadow-primary/20 group/btn">
+                                    class="bg-primary hover:bg-primary/90 text-white px-10 py-5 rounded-full font-black flex items-center gap-4 cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-primary/40 group/btn border-2 border-white/10">
                                     <span
-                                        class="material-symbols-outlined text-3xl group-hover/btn:rotate-12 transition-transform">play_circle</span>
-                                    <span class="text-lg tracking-wide" data-i18n="tour_iniciar_experiencia">INICIAR
-                                        EXPERIENCIA INMERSIVA</span>
+                                        class="material-symbols-outlined text-4xl group-hover/btn:rotate-12 transition-transform">play_circle</span>
+                                    <span class="text-lg md:text-xl tracking-tight"
+                                        data-i18n="tour_iniciar_experiencia">INICIAR EXPERIENCIA INMERSIVA</span>
                                 </div>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row justify-between items-end gap-4">
-                                <div class="flex gap-2">
-                                    <div
-                                        class="size-16 rounded-lg border-2 border-primary overflow-hidden cursor-pointer opacity-100 shadow-lg">
-                                        <div class="w-full h-full bg-cover bg-center"
-                                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_tz9pqgT2-Qv51_XzIxE5YbKIjdZUQs00of7QKNTsUnSJxsOvbYMeM1iwq3Fq-6jtvaJ0Dsd2fH9FyN8uIJuItCrl4UcWmJ9XllDel1PfZxVE9oVWxDxib8tAHAcaEmMpFg8QAZzrEDl5jZZO2c4F7dhEJBUR4c8oBHcgKLQnYTy4HGOIMjavVrGDXlFEf-h4AI6LJR0pQWpzPtWDFo3V1diwljeJhob0eUMvL4gZpWr6Z4GrriNf6dhMF-HnNVNlmnEPJ1oNmv_G')">
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="size-16 rounded-lg border-2 border-transparent overflow-hidden cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
-                                        <div class="w-full h-full bg-cover bg-center"
-                                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHREVY8J3rMd9CBG3sLZQaAyJXjjd5M2kX_yD6pqdwXDYjqGnb1dXepFTkri_exICJk5wZgZe6DJuxhuDZ4rrrt1-e0qlIh8cI75E8P-0hw5rWEeC8boAlUM3QhgnXWuunfOzHbwnwYDUe0VTEI6zK7fL4Xx-SOUAQ8p5haG6IRaCr-5n295Yb3j5-tmOmCTKM1CJnyke_qTaB9ho-45eJuGo42G4OgbX1LSMwccnA_4zM7WCnNzXQHU5KGMKDK3TxY4jfrF2lODij')">
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="flex justify-end items-end">
                                 <div
-                                    class="text-white flex items-center gap-4 text-sm font-medium bg-black/50 px-5 py-2.5 rounded-full backdrop-blur-md border border-white/10">
-                                    <span class="flex items-center gap-1.5"><span
-                                            class="material-symbols-outlined text-sm text-primary">visibility</span>
+                                    class="text-white flex items-center gap-5 text-sm font-black bg-black/60 px-6 py-3 rounded-full backdrop-blur-md border border-white/10 shadow-xl">
+                                    <span class="flex items-center gap-2 font-mono"><span
+                                            class="material-symbols-outlined text-primary text-xl font-bold">visibility</span>
                                         1,240</span>
                                     <div class="w-px h-4 bg-white/20"></div>
-                                    <span class="flex items-center gap-1.5"><span
-                                            class="material-symbols-outlined text-sm text-red-500 animate-pulse">fiber_manual_record</span>
+                                    <span class="flex items-center gap-2"><span
+                                            class="material-symbols-outlined text-red-500 text-xl font-bold animate-pulse">fiber_manual_record</span>
                                         <span data-i18n="tour_en_vivo">EN VIVO</span></span>
                                 </div>
                             </div>
@@ -118,24 +105,27 @@
 
                     <!-- Iframe Container (Hidden by default) -->
                     <div id="tour-iframe-container"
-                        class="absolute inset-0 hidden opacity-0 transition-opacity duration-1000">
+                        class="absolute inset-0 hidden opacity-0 transition-opacity duration-1000 z-20">
                         <iframe id="virtual-tour-frame" class="w-full h-full border-0" allowfullscreen
                             allow="gyroscope; accelerometer; vr"></iframe>
                         <!-- Back button/Close iframe -->
                         <button onclick="closeVirtualTour()"
-                            class="absolute top-4 right-4 z-20 size-10 bg-black/60 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all shadow-lg backdrop-blur-md border border-white/20">
-                            <span class="material-symbols-outlined">close</span>
+                            class="absolute top-6 right-6 z-30 size-12 bg-black/70 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-all shadow-2xl backdrop-blur-xl border-2 border-white/20 hover:scale-110 active:scale-90">
+                            <span class="material-symbols-outlined text-2xl font-black">close</span>
                         </button>
                     </div>
 
                     <!-- Loader (Visible during loading) -->
                     <div id="tour-loader"
                         class="absolute inset-0 z-15 flex flex-col items-center justify-center bg-slate-900 hidden">
-                        <div
-                            class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4">
+                        <div class="relative">
+                            <div class="w-20 h-20 border-4 border-primary/20 rounded-full"></div>
+                            <div
+                                class="w-20 h-20 border-4 border-primary border-t-transparent rounded-full animate-spin absolute top-0 left-0">
+                            </div>
                         </div>
-                        <p class="text-white font-bold animate-pulse" data-i18n="cargando_experiencia">CARGANDO
-                            EXPERIENCIA 360...</p>
+                        <p class="text-white font-black mt-6 tracking-[0.2em] text-sm animate-pulse"
+                            data-i18n="cargando_experiencia">CARGANDO EXPERIENCIA 360...</p>
                     </div>
                 </div>
 
