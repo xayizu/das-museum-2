@@ -927,18 +927,14 @@ body {
 
 /* Fallback for smooth class-based transition */
 html.theme-transitioning,
-html.theme-transitioning body,
-html.theme-transitioning main,
-html.theme-transitioning div,
-html.theme-transitioning nav,
-html.theme-transitioning aside,
-html.theme-transitioning header,
-html.theme-transitioning footer,
-html.theme-transitioning section,
-html.theme-transitioning article {
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
     transition: background-color 0.6s ease-in-out,
         color 0.6s ease-in-out,
         border-color 0.6s ease-in-out,
         box-shadow 0.6s ease-in-out,
-        backdrop-filter 0.6s ease-in-out !important;
+        backdrop-filter 0.6s ease-in-out,
+        filter 0.6s ease-in-out,
+        opacity 0.6s ease-in-out !important;
 }

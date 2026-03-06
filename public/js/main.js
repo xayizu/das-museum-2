@@ -149,6 +149,12 @@ window.addEventListener('componentsReady', () => {
     icons.forEach(i => {
         i.innerHTML = isMusicPlaying ? VOLUME_UP_SVG : VOLUME_OFF_SVG;
     });
+
+    // Sync button classes for dynamically loaded components
+    document.querySelectorAll('.bg-music-toggle').forEach(b => {
+        if (!isMusicPlaying) b.classList.remove('playing');
+        else b.classList.add('playing');
+    });
 });
 
 // Theme toggle
@@ -259,7 +265,7 @@ window.executeSearch = function () {
 
 // Background music logic
 let bgMusic = null;
-let isMusicPlaying = true; // Match the initial UI state (playing)
+let isMusicPlaying = false; // Muted by default as requested by user
 
 const VOLUME_UP_SVG = `
 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -275,13 +281,14 @@ const VOLUME_OFF_SVG = `
 
 window.toggleBackgroundMusic = function (forcePlay = false) {
     if (!bgMusic) {
-        let basePath = './';
-        if (window.location.pathname.includes('/tanks/')) {
-            basePath = '../../';
-        } else if (window.location.pathname.includes('/museo-tanques/') || window.location.pathname.includes('/casa-historica/')) {
-            basePath = '../';
+        let basePath = window.location.pathname.includes('/museo-tanques/') || window.location.pathname.includes('/casa-historica/') ? '../' : './';
+
+        if (window.location.pathname.includes('/museo-tanques/')) {
+            bgMusic = new Audio(basePath + 'recursos/audios/museo-tanques/musica_museo_tanques_01.webm');
+        } else {
+            // General fallback
+            bgMusic = new Audio(basePath + 'recursos/audios/index/ambient.mp3');
         }
-        bgMusic = new Audio(basePath + 'recursos/audio/ambient.mp3');
         bgMusic.loop = true;
         bgMusic.volume = 0.5;
     }
@@ -312,6 +319,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const icons = document.querySelectorAll('#bg-music-icon');
     icons.forEach(i => {
         i.innerHTML = isMusicPlaying ? VOLUME_UP_SVG : VOLUME_OFF_SVG;
+    });
+
+    // Ensure button classes match initial state (muted)
+    document.querySelectorAll('.bg-music-toggle').forEach(b => {
+        if (!isMusicPlaying) b.classList.remove('playing');
+        else b.classList.add('playing');
     });
 });
 // Index specific initialization and toggle scripts
