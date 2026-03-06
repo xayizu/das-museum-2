@@ -48,22 +48,210 @@
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
+    <main class="flex-grow pt-[110px] md:pt-[100px] px-6">
         <div class="max-w-[1200px] mx-auto py-12">
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="video_institucional">Video Institucional</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
+            <!-- Hero Section: Video Principal -->
+            <section class="w-full flex flex-col gap-8 mb-16">
+                <div class="flex flex-col gap-4">
+                    <h1 class="text-slate-900 dark:text-white text-4xl md:text-6xl font-black uppercase tracking-tighter"
+                        data-i18n="video_institucional">
+                        Video Institucional
+                    </h1>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl"
+                        data-i18n="video_institucional_desc_detail">
+                        Descubre la historia, la misión y el impacto del Museo de Tanques de Riobamba a través de
+                        nuestro recorrido visual oficial.
+                    </p>
+                </div>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="video_institucional">Video Institucional
-                    </h2>
-                    <p class="text-gray-400">Video de presentación de nuestras instalaciones.</p>
+                <!-- Contenedor del Video con estética Premium -->
+                <div
+                    class="group relative w-full aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-primary/20 bg-slate-900">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        style="background-image: linear-gradient(rgba(15, 23, 42, 0.4), rgba(0, 50, 160, 0.3)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuD8YrAHk_fkf5v5Ai79H9XB1X6dfYcNV93r-W2QuhBcIuGEA4Ob2xeq94Za9bSZCBjKCVaeC0qEA8fnPk-LYfjqgZ7BTCCkWafwoQaZgy1C9cBJz4adrlEJjnj8vuPrATexO26Bh20fILvvBdMvR0mYIfw9l1sG437a0kwtSmk9EIxlmZbj6B1XcHgYjEl06cvWhhU-d9vs3_nN6PIxxuN7x8cryFw_W4iT5tfCOl_DyNT9A6Hkh38yahuvTG6SIU7DDyhjIDDn5dr6');">
+                    </div>
+
+                    <!-- Capa de Interacción -->
+                    <div
+                        class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors">
+                        <button
+                            class="size-24 md:size-32 bg-primary/90 hover:bg-primary text-white rounded-full flex items-center justify-center shadow-glow-lg transition-all hover:scale-110 group/btn backdrop-blur-md border border-white/30">
+                            <span
+                                class="material-symbols-outlined text-5xl md:text-6xl ml-2 group-hover/btn:scale-110 transition-transform">play_arrow</span>
+                        </button>
+                    </div>
+
+                    <!-- Overlay Info Inferior -->
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent">
+                        <div class="flex items-center gap-4 text-white/80">
+                            <span class="material-symbols-outlined">hd</span>
+                            <span class="text-sm font-bold uppercase tracking-widest">4K Ultra HD Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid de Información Adicional -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+                <!-- Columna Izquierda: Mensaje y FAQ -->
+                <div class="flex flex-col gap-10 lg:col-span-1">
+
+                    <!-- Mensaje del Director -->
+                    <section
+                        class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-primary/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-6 border-b border-white/5 pb-4">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">format_quote</span>
+                            </div>
+                            <h2 class="text-slate-900 dark:text-white text-xl font-bold uppercase tracking-tight"
+                                data-i18n="mensaje_director_title">Mensaje del Director</h2>
+                        </div>
+                        <p class="text-slate-700 dark:text-gray-300 text-base leading-relaxed italic mb-6"
+                            data-i18n="mensaje_director_content">
+                            "Este video es más que una presentación; es un testimonio de nuestro compromiso con la
+                            preservación de la historia militar y su impacto en nuestra sociedad contemporánea."
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <div class="size-12 rounded-full bg-cover bg-center border border-primary/30"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9MFth9bil-OHFrgzaRIKDjT6vdb_sYSzqUv9UvlKw2ViRsFbjy8fQa_2kpczn3-RL5a4A4Q9qVi6lXQyJr2vKK8TpK-ifGWOd9lk5DL7jpg4JDWPrcvWnZCjGlziDYanHJM0mRvp_7qm4rkItn5ctCJK_Dn5FU3KmuZb2M7NLuRotq4qlU5714HrHGjVVO4JOVCIxlogKWshWC6-RA8v2D1SMqGhUtJnplUOz7pyssMoWlTk3qpdllviwB1xeIbFq9UFzxFcOlIrh');">
+                            </div>
+                            <div>
+                                <p class="text-slate-900 dark:text-white font-bold" data-i18n="director_name">Crnl.
+                                    Roberto Silva</p>
+                                <p class="text-primary text-xs font-bold uppercase tracking-widest"
+                                    data-i18n="director_rank">Director del Museo</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Preguntas Frecuentes -->
+                    <section
+                        class="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-primary/40 transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-8 border-b border-white/5 pb-4">
+                            <div
+                                class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                <span class="material-symbols-outlined">help_center</span>
+                            </div>
+                            <h2 class="text-slate-900 dark:text-white text-xl font-bold uppercase tracking-tight"
+                                data-i18n="faq_title">
+                                Preguntas Frecuentes</h2>
+                        </div>
+                        <div class="flex flex-col gap-6">
+                            <div class="flex flex-col gap-2">
+                                <p class="text-slate-900 dark:text-white font-bold text-sm" data-i18n="faq_q1">¿Cuál es
+                                    el horario de
+                                    atención?</p>
+                                <p class="text-slate-600 dark:text-gray-400 text-xs leading-relaxed" data-i18n="faq_a1">
+                                    Lunes a domingo de
+                                    09:00 a 17:00, incluyendo feriados.</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="text-slate-900 dark:text-white font-bold text-sm" data-i18n="faq_q2">¿Se
+                                    permiten fotografías?</p>
+                                <p class="text-slate-600 dark:text-gray-400 text-xs leading-relaxed" data-i18n="faq_a2">
+                                    Sí, se permite el
+                                    uso de cámaras personales sin flash en las áreas designadas.</p>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <p class="text-white font-bold text-sm" data-i18n="faq_q3">¿Ofrecen visitas guiadas?</p>
+                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="faq_a3">Contamos con guías
+                                    especializados cada hora para grupos y visitantes individuales.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Columna Derecha: Hitos Históricos -->
+                <div class="lg:col-span-2 flex flex-col gap-8">
+                    <div
+                        class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+                        <div class="flex flex-col gap-2">
+                            <h2
+                                class="text-slate-900 dark:text-white text-3xl font-black uppercase tracking-tighter flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary text-4xl">history_edu</span>
+                                <span data-i18n="hitos_historicos_museo_title">Hitos Históricos del Museo</span>
+                            </h2>
+                            <p class="text-slate-600 dark:text-gray-400 text-base"
+                                data-i18n="hitos_historicos_desc_detail">Explora los
+                                momentos fundamentales que han dado forma a nuestra institución.</p>
+                        </div>
+                        <a href="#"
+                            class="text-primary font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:text-white transition-colors group">
+                            <span data-i18n="ver_cronologia_completa">Ver cronología completa</span>
+                            <span
+                                class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <!-- Grid de Hitos -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Hito 1 -->
+                        <div
+                            class="group relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-slate-800">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJgpCslgnMjFlNaeCNymhhqa6uBAbX6U451knO6zkhnYqAFtlxJj2znx5oKtXL37ZBcdQlluFKMUWndDHp3MsdczLhqnnShETMPkQmig9MggHWbJAo98_UT3ivoGBLyWFlvCEjhh3fAXdiQvbYBSr-TImE__cNRAvq2F9ji4vpfKFtX2Vk78YzxIsIoEwno9ARFGJH-6_Bu5icz7CypY6vffeZOv4SBD6IBGCZKvmcI_YhoJCLLYeAJ--jImufBcgMuw3eoyonPHtJ');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span
+                                        class="bg-primary text-white text-[10px] px-2 py-1 rounded font-black uppercase tracking-widest">1978</span>
+                                    <h3 class="text-white font-bold text-lg" data-i18n="hito_fundacion_title">Fundación
+                                        Oficial</h3>
+                                </div>
+                                <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
+                                    data-i18n="hito_fundacion_desc">
+                                    Inauguración por el alto mando militar como centro de preservación histórica.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Hito 2 -->
+                        <div
+                            class="group relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10 bg-slate-800">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkcxXozJiaKqjbNBooGCIhzdYEklvKEQAx8qyU5mOwJO5i20zV7iGNvWIwXzVSVurTWAyfn35VpkG-urG1pMTnlE_BF-d6uWS-wfbvbi2KFCVmxtqruyX0BAJj4MdWn-UFgMumQUK7wR2QT8RHRWOwTKWWF4rxslMx0apH_sGHNC746feUkr1w2iMZ73LVNrj6BoJBCJhUaMVbYrAplBNfBYVedDEtrV_UHVjkGuBfrEwN8E74fPWQP0efZ7xKcZaMdYr7zZLZM-9t');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <span
+                                        class="bg-primary text-white text-[10px] px-2 py-1 rounded font-black uppercase tracking-widest">1995</span>
+                                    <h3 class="text-white font-bold text-lg" data-i18n="hito_coleccion_title">Colección
+                                        Blindada</h3>
+                                </div>
+                                <p class="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0"
+                                    data-i18n="hito_coleccion_desc">
+                                    Adquisición y restauración de las primeras unidades soviéticas y aliadas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Hito 3 (Full width) -->
+                        <div
+                            class="group relative aspect-[21/9] md:col-span-2 rounded-2xl overflow-hidden border border-white/10 bg-slate-800">
+                            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvjFQIaxNH3TlGHyxhw4Egx9ORcpBcAT-W7ig3IiguLMxwQOVb2rCPDSGkzJungEcX5MYvjBGLwpDA82hBy_oLTpjVwZIBPXxZhgcCdUtaGbqUsrvEE_SD_YEyL9yHYDVwduKmDkmmpXn0q13jQ2NX_Lq2yrTGTfMbRVG1sFJInYNJ9FpN3QcTWj3FwiJmBS0tLcowSMSDDFikE3nTkF7WJTVCx_VF9AxOyypVC696oGpilNRPSh8iy-oKeG_dO2nnLsAq_X6I87RK');">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent flex flex-col justify-end p-8">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span
+                                        class="bg-primary text-white text-[12px] px-3 py-1 rounded font-black uppercase tracking-widest">2012</span>
+                                    <h3 class="text-white font-black text-2xl md:text-3xl"
+                                        data-i18n="hito_expansion_title">Gran Expansión Tecnológica</h3>
+                                </div>
+                                <p class="text-gray-300 text-base max-w-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0"
+                                    data-i18n="hito_expansion_desc">
+                                    Apertura del nuevo pabellón de tecnología moderna y restauración de unidades
+                                    históricas, consolidándonos como referentes regionales.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

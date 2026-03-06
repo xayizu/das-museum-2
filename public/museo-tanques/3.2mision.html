@@ -48,21 +48,159 @@
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
+    <main class="flex-grow pt-[110px] md:pt-[100px] px-6">
         <div class="max-w-[1200px] mx-auto py-12">
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="mision_vision">Misión y Visión</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
+            <!-- Hero Section: Nuestra Razón de Ser -->
+            <div class="w-full mb-16">
+                <div class="flex min-h-[320px] md:min-h-[400px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-6 md:p-10 relative overflow-hidden"
+                    style="background-image: linear-gradient(rgba(0, 50, 158, 0.7), rgba(15, 23, 42, 0.9)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoaTukdDMIgTgvrGlME7q3mGlqpV7puOXSmKyLSpQtHScx8EMvdBM8dX5XMqZ8LXxfoKlx_zKzCncYiWiQP-S-6IN_IeVWPGl4BpjpUEpSkjmxsNUjW5i17oktBuarYuJBXx8Jh75CBq3pJJ7jcu4l7P30UKQUOguLWRqtPLWr0HBd1vgO2snVLLlk-NwYnEkkZi3bWJ7mz9zqnxI46KldyLtI8l6vyNwM5n3VB7pw5jn6dZcUBPjDeEuCFd1548hMa5_wQDIgJFr4');">
+                    <div class="relative z-10 flex flex-col gap-4 text-center max-w-3xl">
+                        <h1 class="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter mb-2"
+                            data-i18n="nuestra_razon_de_ser">
+                            Nuestra Razón de Ser
+                        </h1>
+                        <p class="text-white/90 text-base md:text-xl font-light leading-relaxed max-w-2xl mx-auto"
+                            data-i18n="preservando_la_historia_militar_desc">
+                            Preservando la historia militar de Ecuador y educando a las futuras generaciones a través de
+                            nuestro legado tecnológico.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="mision_vision">Misión y Visión</h2>
-                    <p class="text-gray-400">Nuestra misión y visión institucional.</p>
+            <!-- Section: Misión y Visión -->
+            <div class="flex flex-col gap-10 mb-20">
+                <div class="flex flex-col gap-4 text-center items-center">
+                    <h2 class="text-primary tracking-widest text-sm font-bold uppercase" data-i18n="mision_vision">
+                        Misión y Visión
+                    </h2>
+                    <p class="text-slate-600 dark:text-gray-400 text-lg font-light leading-relaxed max-w-[720px]"
+                        data-i18n="mision_vision_sec_desc">
+                        Los pilares fundamentales que guían nuestras acciones y delinean el futuro del Museo de Tanques
+                        de Riobamba.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div
+                        class="bg-slate-100/80 dark:bg-white/5 p-8 rounded-2xl border border-slate-300 dark:border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 shadow-sm">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="flex items-center justify-center size-14 rounded-full bg-primary/10 text-primary">
+                                <span class="material-symbols-outlined text-3xl">menu_book</span>
+                            </div>
+                            <h3 class="text-slate-900 dark:text-white text-2xl font-black uppercase tracking-tight"
+                                data-i18n="mision">
+                                Misión</h3>
+                        </div>
+                        <p class="text-slate-700 dark:text-gray-400 text-base leading-relaxed"
+                            data-i18n="mision_content_detail">
+                            Rescatar, conservar y exhibir el patrimonio blindado y la historia militar del Ecuador. Nos
+                            dedicamos a educar a la ciudadanía, especialmente a las nuevas generaciones, sobre el
+                            desarrollo tecnológico militar y su impacto en la soberanía nacional, fomentando el civismo
+                            y el respeto por nuestro legado histórico a través de experiencias inmersivas y educativas.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-slate-100/80 dark:bg-white/5 p-8 rounded-2xl border border-slate-300 dark:border-white/10 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 shadow-sm">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="flex items-center justify-center size-14 rounded-full bg-primary/10 text-primary">
+                                <span class="material-symbols-outlined text-3xl">public</span>
+                            </div>
+                            <h3 class="text-slate-900 dark:text-white text-2xl font-black uppercase tracking-tight"
+                                data-i18n="vision">
+                                Visión</h3>
+                        </div>
+                        <p class="text-slate-700 dark:text-gray-400 text-base leading-relaxed"
+                            data-i18n="vision_content_detail">
+                            Consolidarnos como el museo militar especializado más importante del país y un referente
+                            cultural y tecnológico a nivel latinoamericano. Aspiramos a ser un centro dinámico de
+                            investigación e innovación museográfica que mantenga viva la historia de las fuerzas
+                            acorazadas, atrayendo a visitantes locales e internacionales mediante exhibiciones de
+                            vanguardia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section: Valores -->
+            <div
+                class="bg-slate-100/40 dark:bg-white/5 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-white/10 mb-12 shadow-inner">
+                <div class="flex flex-col gap-4 text-center items-center mb-12">
+                    <h2 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black uppercase tracking-tighter"
+                        data-i18n="valores_institucionales_title">
+                        Nuestros Valores Institucionales
+                    </h2>
+                    <p class="text-slate-600 dark:text-gray-400 text-base leading-relaxed max-w-[720px]"
+                        data-i18n="valores_institucionales_desc">
+                        Los principios éticos y profesionales que rigen el trabajo diario de nuestro equipo y nuestra
+                        interacción con la comunidad.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="flex flex-col items-center text-center gap-6 p-6 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-300 shadow-sm">
+                        <div class="text-primary">
+                            <span class="material-symbols-outlined text-[40px]">loyalty</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white font-bold text-lg" data-i18n="respeto_civismo">
+                                Respeto y Civismo</h3>
+                            <p class="text-slate-700 dark:text-gray-400 text-sm leading-relaxed"
+                                data-i18n="respeto_civismo_desc">Honramos a
+                                quienes sirvieron a la nación y tratamos con dignidad la historia que representan
+                                nuestros vehículos.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-col items-center text-center gap-6 p-6 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-300 shadow-sm">
+                        <div class="text-primary">
+                            <span class="material-symbols-outlined text-[40px]">school</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white font-bold text-lg" data-i18n="educacion">Educación
+                            </h3>
+                            <p class="text-slate-700 dark:text-gray-400 text-sm leading-relaxed"
+                                data-i18n="educacion_desc">Creemos
+                                firmemente en el poder del conocimiento histórico para inspirar y formar mejores
+                                ciudadanos para el futuro.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-col items-center text-center gap-6 p-6 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-300 shadow-sm">
+                        <div class="text-primary">
+                            <span class="material-symbols-outlined text-[40px]">security</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white font-bold text-lg" data-i18n="preservacion">
+                                Preservación</h3>
+                            <p class="text-slate-700 dark:text-gray-400 text-sm leading-relaxed"
+                                data-i18n="preservacion_desc_valor">Nos
+                                comprometemos a conservar y restaurar nuestro patrimonio tecnológico con rigor técnico y
+                                autenticidad histórica.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-col items-center text-center gap-6 p-6 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-300 shadow-sm">
+                        <div class="text-primary">
+                            <span class="material-symbols-outlined text-[40px]">groups</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-slate-900 dark:text-white font-bold text-lg" data-i18n="integracion">
+                                Integración</h3>
+                            <p class="text-slate-700 dark:text-gray-400 text-sm leading-relaxed"
+                                data-i18n="integracion_desc">Fomentamos un
+                                espacio inclusivo donde la comunidad civil y militar se encuentran para dialogar sobre
+                                nuestro pasado común.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

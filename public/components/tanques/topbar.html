@@ -1,14 +1,14 @@
 <!-- Topbar (Museo de Tanques - Blue/White Theme) -->
 <div class="topbar-global topbar-main footer-fusion-tanks !fixed">
     <div
-        class="topbar-container relative z-10 w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
+        class="topbar-container relative z-[60] w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
         <!-- Left: Branding & Back -->
         <div
-            class="w-full md:w-auto flex items-center justify-center md:justify-start relative mb-2 md:mb-0 px-10 md:px-0">
+            class="w-full md:w-auto flex items-center justify-center md:justify-start relative z-[60] mb-2 md:mb-0 px-10 md:px-0">
             <!-- Menú Lateral (Hamburguesa) -->
             <button aria-label="Abrir Menú"
                 class="absolute left-0 md:relative md:left-auto util-btn group !bg-transparent !border-none md:mr-4"
-                onclick="window.toggleLeftMenu()">
+                data-tooltip="Abrir Menú Lateral" data-i18n-tooltip="tooltip_menu" onclick="window.toggleLeftMenu()">
                 <span class="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform">menu</span>
             </button>
             <a class="topbar-brand flex items-center gap-2" href="museo-tanques/1.0index.html">
@@ -22,7 +22,7 @@
             </a>
         </div>
         <!-- Right: Utilities -->
-        <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end">
+        <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end relative z-[60]">
             <!-- Volver al Inicio -->
             <a aria-label="Volver al Inicio" class="util-btn group" data-i18n-tooltip="tooltip_back_home"
                 data-tooltip="Volver al Inicio" href="index.html">

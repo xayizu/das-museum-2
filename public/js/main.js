@@ -153,16 +153,34 @@ window.addEventListener('componentsReady', () => {
 
 // Theme toggle
 window.toggleTheme = function () {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    console.log("Theme toggled: ", isDark ? "dark" : "light");
+    const doc = document.documentElement;
 
-    // Update icons globally across all headers
+    // Check for View Transitions API support
+    if (document.startViewTransition) {
+        document.startViewTransition(() => {
+            const isDark = doc.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        });
+    } else {
+        // Fallback: smooth class transition
+        doc.classList.add('theme-transitioning');
+        const isDark = doc.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateThemeIcons(isDark);
+
+        setTimeout(() => {
+            doc.classList.remove('theme-transitioning');
+        }, 600);
+    }
+};
+
+function updateThemeIcons(isDark) {
     const themeIcons = document.querySelectorAll('.theme-toggle .material-symbols-outlined');
     themeIcons.forEach(icon => {
         icon.textContent = isDark ? 'dark_mode' : 'light_mode';
     });
-};
+}
 
 // Language toggle (ES -> EN -> KI -> ES)
 window.handleLang = function () {

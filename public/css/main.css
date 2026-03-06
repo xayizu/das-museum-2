@@ -184,7 +184,7 @@ body {
     backdrop-filter: blur(12px);
     color: white;
     padding-top: 0;
-    padding-bottom: 0.75rem;
+    padding-bottom: 0.25rem;
     z-index: 80;
     position: fixed;
     top: 0;
@@ -287,7 +287,7 @@ body {
     bottom: -42px;
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(15, 23, 42, 0.98);
     color: #e2e8f0;
     font-size: 11px;
     font-weight: 600;
@@ -297,7 +297,7 @@ body {
     border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -341,7 +341,7 @@ body {
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%) translateY(4px);
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(15, 23, 42, 0.98);
     color: #e2e8f0;
     font-size: 11px;
     font-weight: 600;
@@ -914,4 +914,31 @@ body {
 .dark .tech-card {
     background: rgba(30, 41, 59, 0.7);
     border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Theme Switch Smooth Transitions ── */
+
+/* View Transitions API (Chrome/Edge/Modern) */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fallback for smooth class-based transition */
+html.theme-transitioning,
+html.theme-transitioning body,
+html.theme-transitioning main,
+html.theme-transitioning div,
+html.theme-transitioning nav,
+html.theme-transitioning aside,
+html.theme-transitioning header,
+html.theme-transitioning footer,
+html.theme-transitioning section,
+html.theme-transitioning article {
+    transition: background-color 0.6s ease-in-out,
+        color 0.6s ease-in-out,
+        border-color 0.6s ease-in-out,
+        box-shadow 0.6s ease-in-out,
+        backdrop-filter 0.6s ease-in-out !important;
 }
