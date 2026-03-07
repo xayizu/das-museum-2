@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const loadTasks = Array.from(includes).map(async (el) => {
         const file = el.getAttribute('data-include');
-        // Construimos la ruta al componente basado en el rootPath
-        const path = `${rootPath}components/${file}.html`;
+        // Construimos la ruta al componente basado en el rootPath con cache breaker
+        const path = `${rootPath}components/${file}.html?v=1.2`;
 
         try {
             const response = await fetch(path);
