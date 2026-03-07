@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0505c7",
+                        "background-light": "#f5f5f8",
+                        "background-dark": "#0f0f23",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .metallic-gradient {
+            background: linear-gradient(135deg, #e2e8f0 0%, #ffffff 50%, #94a3b8 100%);
+        }
+        .steel-texture {
+            background-color: #0f0f23;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<!-- Header / Navigation -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1">shield</span>
+</div>
+<span class="text-xl font-black tracking-tighter text-primary">MUSEOS TAPI</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Colecciones</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors border-b-2 border-primary" href="#">Historia</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Restauración</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Educación</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Visítanos</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-sm">language</span>
+                        ES / EN
+                    </button>
+<button class="bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+                        Tickets
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main>
+<!-- Section 1: Hero -->
+<section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-slate-900">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-black/60 z-10"></div>
+<img alt="Hero Tank" class="w-full h-full object-cover opacity-80" data-alt="Cerca de un tanque histórico Tiger alemán en exhibición" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdXmGhjZOxD6Ig-toD6FWDnJN1hFm4cdSR5weJXJwh-MMJAHmGj65tgqhwOXnBISnP_9EEHoqPpW56Ea-XzVioevhopH5-OgdnY9ikVJGxuTThIHZOf-VXaJMiT2S5TXcZqBiFqz-rgFMH8ID-VFkKU-d52tEE4SoLA7LOEKC_3ILEpB4pufyAYwO8a-jiMUk9p5dozumrD_M_UU8qcC8Px6L8Czt2OKT02Wh-evJM8GaV1izeyTAyOyFzvDoOCVtzzko9JuJi5p4M"/>
+</div>
+<div class="relative z-20 text-center px-4 max-w-4xl">
+<span class="inline-block px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 text-white text-xs font-bold tracking-[0.2em] uppercase mb-6">
+                    El Legado del Acero
+                </span>
+<h1 class="text-5xl md:text-8xl font-black text-white leading-none tracking-tight mb-8">
+                    Forjando la <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400">Historia</span>
+</h1>
+<p class="text-xl md:text-2xl text-slate-200 font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+                    Un viaje inmersivo a través de la evolución del blindaje, la ingeniería militar y el valor humano que cambió el curso del siglo XX.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-white text-primary px-8 py-4 rounded-lg font-bold hover:bg-slate-100 transition-all">Explorar Colección</button>
+<button class="bg-primary/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-all">Ver Documental</button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+<span class="material-symbols-outlined text-white text-3xl">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- Section 2: Our Origins -->
+<section class="py-24 bg-white dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-sm">
+<span class="w-12 h-[2px] bg-primary"></span>
+                            Nuestros Orígenes
+                        </div>
+<h2 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+                            Del Regimiento a la <br/>Custodia de la Memoria
+                        </h2>
+<div class="prose prose-slate dark:prose-invert max-w-none text-lg leading-relaxed text-slate-600 dark:text-slate-400 space-y-6">
+<p>
+                                El Museo de Tanques "TAPI" no nació como una galería, sino como una necesidad de preservación. Sus raíces se hunden en el antiguo Regimiento de Caballería Blindada No. 4, donde los veteranos comenzaron a resguardar las máquinas que habían sido sus hogares en tiempos de conflicto.
+                            </p>
+<p>
+                                Fundado oficialmente en 1974, el museo ha evolucionado desde un simple depósito de unidades retiradas hasta convertirse en una de las instituciones de referencia mundial en ingeniería militar. Nuestra misión trasciende la exhibición de metal; buscamos narrar las historias de los hombres y mujeres que operaron estas colosales piezas de ingeniería.
+                            </p>
+<p>
+                                Cada rasguño en el blindaje, cada motor restaurado a su gloria original, es un testimonio de una era donde el acero definía fronteras y destinos.
+                            </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<img alt="Historical 1" class="rounded-xl grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl w-full aspect-[3/4] object-cover" data-alt="Foto antigua en blanco y negro de soldados junto a un tanque" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoeba_VHiqvWwABnAw-lTOpjPGYnft396z7v-2yMzYfAMZKsgdRmjKbker0LHAdju5MwR1LpmNGWFrPzCxzxIISEzbrBgeO2l8vhWi89VoJqRH5R80CHX6RQa17670Q249MbYwnVThufv7DL1m-HxuemuJqYXSWoSo-sQyaPn20PHBwCg-npBRYL2noIqLniyW0WmdbOJgFujyTy-lrviaTEwAZ-739QKtzdSURSMlUsFdGsYiN1YRUbPMyKCho6NB5Y83OHzNQLx6"/>
+<img alt="Detail" class="rounded-xl shadow-lg w-full aspect-square object-cover" data-alt="Primer plano de cadenas de tanque oxidadas en un campo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVRynOwj8yL0JD7wAHWI-AHwE97SLvEKM1DnvP9ggi0awTtqj2OtRq6Kj0TM9UVQvLeeDD0TyCZvsoVpWOvILjHamJHtNpZ0qsV0HAGoiZmw1hUIdRgrz67dSqUPxOFmUSBIM1KVbVgvYYmjtZ5pwQvGkiTjg1CBhh7rrwTRkr35Izj70gEyDZr3KcSrD7yYLNVQkVxO1GEP5J4os2g9k0D5L5DWPbg5L5EMvJIpWvhQlEe4H-XML40usTdPQNSjW3pLpOVFqQ_CkG"/>
+</div>
+<div class="pt-12 space-y-4">
+<img alt="Museum Building" class="rounded-xl shadow-lg w-full aspect-square object-cover" data-alt="Entrada principal del edificio histórico del museo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkwG8wnjyqBgW8a8jtOdE1THTcb6fa7KN9p1htV1lbLdRSMkBCR8XITCj00LEbFy5Y19UgitVfzBTqtSivtyeMQ37U8tQj_xkYJ_dkWJ3McsRvm5jwClhPTTXTu9_ghjP7B00n1dK7rQN7DtyndiZ6oonoqv2dNfVjhULGXRMhHQn_jC3RzdsQpbYPfniLI3bpaKN_HePvdPMBdlFMt2TCRkGeFK6jfvPSwmb_C5ukqy6FcNSFSBHQfIe5FuCgpVGn8YYi3ZBC1GqK"/>
+<img alt="Historical Archive" class="rounded-xl grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl w-full aspect-[3/4] object-cover" data-alt="Documento antiguo y medallas militares" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeuBJPK0QZ4mszUs6RQUu1-lVR8L7cH8z6038nsZN8sjBffQayHI39wsYdEJtGpP3kWD8vU6sy_uhyI11vgdC8XzxoX96_BuBdmzms0cT5bBuyeihcFzj7XcgZ4uPo3KW3WhKp3Xbspdo9DPXFXBKrj5lXPWstLIFw51CaDRoaIINCAx-pPR_VMHUd_MVhgV2z2aaO7X3IH68XdzEh4zUslNg6jkkCeXWEypVut9bskeO4ZdlZcNhMiNS2Jcj9sXgyAX13nmMgFD5f"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: The Collection -->
+<section class="py-24 bg-slate-50 dark:bg-slate-900/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
+<h2 class="text-4xl font-black mb-4">La Colección Permanente</h2>
+<p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">Más de 150 unidades que trazan la línea del tiempo tecnológica, desde el Mark IV británico hasta los Leopard modernos.</p>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Tank Card 1 -->
+<div class="group bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-slate-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="Panzer IV" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Tanque de la Segunda Guerra Mundial en un museo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWWc773ZL4AWi-surJ3-pbVYS1rNaASBnwBKmg-TqNi3ngy01ZbeX4EAHu3jLHcTmF2x-yqTVU89LrRQb36Q5n-6bK2VBYrjCxeIULgpvoGZxrykRh8fFQi2vBRC9RONahZ5q6BWzn-BXDHFD5j3x4ifZ_lMd3_3tXBk_SODf2b_z88FO6PGF5SQW2BqBE-dENgF3fJeo7J5KiomkfxxtHcR-1fmeCE-Wh0bIRm-Qf1L9iuQ1KS_UIo2TcIIHv7J1tPb80fd1Bte3F"/>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Icono WWII</div>
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-2">Panzer IV Ausf. G</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6">El caballo de batalla de las divisiones acorazadas alemanas, restaurado íntegramente en 2018.</p>
+<div class="grid grid-cols-2 gap-4 border-t border-slate-100 dark:border-slate-800 pt-6">
+<div>
+<span class="text-[10px] uppercase font-bold text-slate-400">Peso</span>
+<p class="font-bold text-sm">25 Toneladas</p>
+</div>
+<div>
+<span class="text-[10px] uppercase font-bold text-slate-400">Cañón</span>
+<p class="font-bold text-sm">75 mm KwK 40</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tank Card 2 -->
+<div class="group bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-slate-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="M4 Sherman" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Tanque Sherman americano en exhibición exterior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASTPlSU7Akea9xCHTp2s7cz-BbY4Xoj9FcF4hTKtGHmDcvaC3SKD5xFmYGhkYhiKTVuQda3yVuKLVyB1nC71JUP_yJvBKcydvVjag-rkgTk3cUaT7FaglpampNWrWTfVRMMGVekZVWQxY8c5LMYjSlwIfhWodLR4Wa0pUm0VAFKS5AtFYvQ74URKsM8ciyyP0Sh3Xx5foeQ-FCWH674ZJNvjefs9a_UXVl2m3XcMn1FrAlVd40fplDB8-GRiFdNT8ybFSrr_zYiPXm"/>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Aliado</div>
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-2">M4A3E8 Sherman</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Famoso por su versatilidad y fiabilidad. Nuestra unidad participó en la liberación de París.</p>
+<div class="grid grid-cols-2 gap-4 border-t border-slate-100 dark:border-slate-800 pt-6">
+<div>
+<span class="text-[10px] uppercase font-bold text-slate-400">Velocidad</span>
+<p class="font-bold text-sm">48 km/h</p>
+</div>
+<div>
+<span class="text-[10px] uppercase font-bold text-slate-400">Tripulación</span>
+<p class="font-bold text-sm">5 Personas</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tank Card 3 -->
+<div class="group bg-white dark:bg-background-dark rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all border border-slate-100 dark:border-slate-800">
+<div class="relative h-64 overflow-hidden">
+<img alt="Leopard 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Tanque moderno Leopard camuflado" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_BZ8AdIe3RMcjGBQeZouxZk8XRChOu5haHj5dZBohNm7nULRMzqNUsn68TJct-7ogkuB7sayjbqhe6_NQAEsCfx2N-bSUeBnt96N4pVfAVlXXRf3WUCHJ9j_WkIhbeGNq7rt-1wZpaymnwMLJxl_nWpv_9a0NsrmPwH5JGS3FEYj9Zt8PFWYfjeX_rkaZ9TwL6-JtJb9klBvN3w27uJMKgPX0cUmOz9Bfm-vrZw_owM4Xxf-dEhxW_DY8gYvfIbbYG6qh9a5Qtk6P"/>
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Era Moderna</div>
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-2">Leopard 2A4</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-6">Tecnología de vanguardia en blindaje compuesto y sistemas de tiro computerizados.</p>
+<div class="grid grid-cols-2 gap-4 border-t border-slate-100 dark:border-slate-800 pt-6">
+<div>
+<span class="text-[10px] uppercase font-bold text-slate-400">Potencia</span>
+<p class="font-bold text-sm">1,500 CV</p>
+</div>
+<div>
+<span class="text-[10px] uppercase font-bold text-slate-400">Alcance</span>
+<p class="font-bold text-sm">4,000 m</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Restoration -->
+<section class="py-24 steel-texture text-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row gap-16 items-center">
+<div class="lg:w-1/2 order-2 lg:order-1">
+<div class="grid grid-cols-2 gap-4">
+<img alt="Welding" class="rounded-lg shadow-xl aspect-square object-cover" data-alt="Primer plano de un mecánico soldando acero con chispas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuDmS2aN3nBiwL7UsncAR61qYm_RtOPfbk06cVecFDbvOd9KXc6Kg8bn-rGSvjmD2RAaPb5AE42U9Ti67fiIk1PlHcU1l_dE2OfoPzakagk19Crf6rP5Cje2pu6LJl-5AIGNGl01mYB_PivTrfz9Xr4RDdfimOGRBp86ca-UycWWrrZK_7xWA6iqf6kufFIp8hlWqcv9Bw7yCDcchtvU2O5eIWnktgsByJ1EcsaHRt48LUmP26V8avIZ-8I6Qoo8NkdI9LFjiZbspf"/>
+<img alt="Engine Work" class="rounded-lg shadow-xl aspect-square object-cover" data-alt="Manos engrasadas trabajando en un motor diesel antiguo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKNkaoG6izZHNh2ubHOyDbnuEwQSG9BZJeWKDc5RmvHppK3LtRTfB_0z51hO9zuhN56rZZ86ME8Fj_bZ_ORdK-qzYsA2PsAj62Z3rkWqH_yScAlt_UoCJpTwcBippYlKI6s9mQF9KY6qL6FUd1-SxvRASjIXRqw2GQf6n47mJoZP6Kw36KoiXZUqWbGXqX1v6HV-6ePedsP_kLaD2ApbutdM_NzVf5khtayNi82Kvg1lEjh3QCfWyjWZFNkxVl30ngCDrzRtzlEQps"/>
+<div class="col-span-2">
+<img alt="Workshop" class="rounded-lg shadow-xl h-64 w-full object-cover" data-alt="Taller de restauración amplio con tanques a medio ensamblar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdXAz3P1iWaV5Rb6IADEGNPvL-Q50pmvX-snZV4luLkfQmtZ-OZK9eVFSOVL4P4yjSM2EPcpiOKQGMlH3ltTUMUGgsZo57z1We4BEmgwBWKEKypmKU_kb4ogIzPgPhbT10dVwtVi6VwYSmApE50ED8zqg_dIgT8a3mHfHNF5Fe4r4HIvYVdCF-y0Gwc-x4bNngF3-HfSJOkdVdojFUU2KZtGf__eAdxD2q8xHQB5wnSsaWakypYMeqFT4FygYfL6LCbC1k4bA6oeNs"/>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 order-1 lg:order-2 space-y-8">
+<div class="inline-flex items-center gap-2 text-primary font-bold tracking-widest uppercase text-sm">
+<span class="w-12 h-[2px] bg-primary"></span>
+                            Artesanos del Metal
+                        </div>
+<h2 class="text-4xl md:text-6xl font-black leading-tight">El Arte de la Restauración</h2>
+<p class="text-slate-300 text-lg leading-relaxed">
+                            No solo mantenemos tanques; resucitamos gigantes. Nuestro equipo de maestros mecánicos y artesanos del acero trabaja incansablemente para que cada pieza de nuestra colección no solo sea visible, sino funcional. 
+                        </p>
+<p class="text-slate-300 text-lg leading-relaxed">
+                            Utilizamos técnicas de ingeniería inversa y metalurgia histórica para fabricar piezas que ya no existen, asegurando que el rugido de los motores Maybach y Rolls-Royce siga resonando en nuestras exhibiciones en vivo.
+                        </p>
+<div class="flex gap-8">
+<div class="text-center">
+<p class="text-4xl font-black text-primary">12k+</p>
+<p class="text-xs uppercase tracking-widest text-slate-400 mt-2">Horas de trabajo/año</p>
+</div>
+<div class="text-center">
+<p class="text-4xl font-black text-primary">85%</p>
+<p class="text-xs uppercase tracking-widest text-slate-400 mt-2">Flota operativa</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Community -->
+<section class="py-24 bg-white dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16 max-w-3xl mx-auto">
+<h2 class="text-4xl font-black mb-6">Comunidad y Educación</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg">Creemos en el conocimiento como la mejor herramienta para entender el pasado y construir un futuro en paz.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="flex gap-6 items-start p-8 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
+<div class="bg-primary/10 p-4 rounded-xl text-primary">
+<span class="material-symbols-outlined text-4xl">school</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-3">Programa Escolar</h4>
+<p class="text-slate-600 dark:text-slate-400">Visitas guiadas adaptadas a todos los niveles educativos, centradas en la ciencia de los materiales y la historia geopolítica.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start p-8 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800">
+<div class="bg-primary/10 p-4 rounded-xl text-primary">
+<span class="material-symbols-outlined text-4xl">history_edu</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-3">Archivo Histórico</h4>
+<p class="text-slate-600 dark:text-slate-400">Acceso a investigadores y estudiantes a nuestra base de datos de más de 50,000 documentos y planos originales.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 6: The Future -->
+<section class="relative py-24 bg-primary text-white overflow-hidden">
+<div class="absolute inset-0 opacity-10">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+<h2 class="text-4xl md:text-5xl font-black mb-8 italic">El Futuro: Preservación Digital</h2>
+<p class="text-xl text-primary/10 bg-white/90 backdrop-blur inline-block px-4 py-2 rounded mb-10 font-bold uppercase tracking-widest">Proyecto Horizonte 2030</p>
+<div class="max-w-3xl mx-auto space-y-8">
+<p class="text-lg leading-relaxed opacity-90">
+                        Estamos expandiendo nuestras fronteras a través de la digitalización 3D y la Realidad Aumentada. Pronto, entusiastas de todo el mundo podrán explorar el interior de nuestras piezas más raras desde sus hogares.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 border border-white/20 rounded-xl bg-white/5">
+<span class="material-symbols-outlined text-3xl mb-4">view_in_ar</span>
+<h5 class="font-bold">Realidad Virtual</h5>
+</div>
+<div class="p-6 border border-white/20 rounded-xl bg-white/5">
+<span class="material-symbols-outlined text-3xl mb-4">dataset</span>
+<h5 class="font-bold">Gemelos Digitales</h5>
+</div>
+<div class="p-6 border border-white/20 rounded-xl bg-white/5">
+<span class="material-symbols-outlined text-3xl mb-4">public</span>
+<h5 class="font-bold">Red Global</h5>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark text-slate-400 pt-20 pb-10 border-t border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 text-white mb-6">
+<span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1">shield</span>
+<span class="text-lg font-black tracking-tighter">MUSEOS TAPI</span>
+</div>
+<p class="text-sm leading-relaxed mb-6">
+                        Custodiando el patrimonio industrial y militar para las futuras generaciones.
+                    </p>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">brand_awareness</span></a>
+<a class="hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">video_library</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Explorar</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Exhibiciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Eventos En Vivo</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Tienda Online</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Membresías</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Newsletter</h4>
+<p class="text-sm mb-4">Recibe noticias sobre nuevas restauraciones y eventos.</p>
+<form class="flex gap-2">
+<input class="bg-slate-900 border-slate-700 rounded-lg text-xs w-full focus:ring-primary focus:border-primary" placeholder="Tu email" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg hover:bg-primary/80 transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</form>
+</div>
+<div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+<h4 class="text-white font-bold mb-4 text-sm">Estadísticas de Visitas</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-widest font-bold">Hoy</span>
+<span class="text-primary font-bold">1,248</span>
+</div>
+<div class="w-full bg-slate-800 h-1.5 rounded-full">
+<div class="bg-primary h-1.5 rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs uppercase tracking-widest font-bold">Total Acumulado</span>
+<span class="text-white font-bold">2.4M</span>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-800 flex flex-col md:row justify-between items-center gap-4 text-xs">
+<p>© 2024 Museo de Tanques TAPI. Todos los derechos reservados.</p>
+<div class="flex gap-8">
+<a class="hover:text-white" href="#">Privacidad</a>
+<a class="hover:text-white" href="#">Términos</a>
+<a class="hover:text-white" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

@@ -4,24 +4,33 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Hangar | MUSEO DE TANQUES</title>
-
-    <!-- Fonts -->
+    <title>Galería de Tanques - Museo de Tanques</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
+                    colors: {
+                        "primary": "#0032A0", // Pantone 286 C
+                        "background-light": "#f7f8f6",
+                        "background-dark": "#0b1121", // Dark Navy
+                        "surface-dark": "#162032",    // Slate
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                     backgroundImage: {
                         'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
                     }
@@ -29,125 +38,132 @@
             },
         }
     </script>
+    <style>
+        body {
+            font-family: "Public Sans", "Noto Sans", sans-serif;
+        }
 
-    <!-- Estilos específicos del proyecto -->
-    <script src="../js/config.js"></script>
-    <link href="../css/main.css?v=1.1" rel="stylesheet" />
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
 
-    <!-- Scripts de Funcionalidad -->
-    <script defer src="../js/i18n.js?v=1.1"></script>
-    <script defer src="../js/main.js?v=1.1"></script>
-    <script defer src="../js/components-loader.js"></script>
-
-    <!-- Supabase integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase/client.js"></script>
-    <script src="../js/supabase/auth.js"></script>
-    <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/ui-bridge.js"></script>
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
-
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
-    <div data-include="tanques/sidebar"></div>
-    <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
-    <div data-include="tanques/topbar"></div>
-
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
-    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-[110px] md:pt-[100px]">
-
-        <!-- Hero Section (Adapted from Stitch) -->
-        <section class="w-full relative bg-slate-900 dark:bg-[#0b1121] overflow-hidden">
-            <!-- Background Image with Overlay -->
-            <div
-                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542880941-13c54e58db99?q=80&w=2666&auto=format&fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 min-h-screen flex flex-col">
+    <div class="relative w-full z-50">
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 dark:border-[#1e293b] bg-surface-light dark:bg-[#0b1121] px-6 lg:px-10 py-4 shadow-sm">
+            <div class="flex items-center gap-4 dark:text-white text-slate-900">
+                <div class="size-8 text-primary dark:text-blue-500">
+                    <svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                            fill="currentColor"></path>
+                    </svg>
+                </div>
+                <h2 class="text-xl font-extrabold leading-tight tracking-[-0.015em] uppercase">Museo de Tanques</h2>
             </div>
-            <div
-                class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/60 to-background-light dark:to-background-dark">
+            <div class="flex flex-1 justify-end gap-8">
+                <nav class="hidden md:flex items-center gap-9">
+                    <a class="dark:text-white text-slate-700 hover:text-primary dark:hover:text-blue-400 transition-colors text-sm font-bold leading-normal uppercase tracking-wider"
+                        href="#">Inicio</a>
+                    <a class="text-primary dark:text-blue-400 text-sm font-bold leading-normal uppercase tracking-wider border-b-2 border-primary dark:border-blue-400"
+                        href="#">Galería</a>
+                    <a class="dark:text-white text-slate-700 hover:text-primary dark:hover:text-blue-400 transition-colors text-sm font-bold leading-normal uppercase tracking-wider"
+                        href="#">Eventos</a>
+                    <a class="dark:text-white text-slate-700 hover:text-primary dark:hover:text-blue-400 transition-colors text-sm font-bold leading-normal uppercase tracking-wider"
+                        href="#">Visitas</a>
+                </nav>
+                <button
+                    class="hidden sm:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-primary text-white hover:bg-[#0047cc] transition-colors text-sm font-bold leading-normal tracking-[0.015em] shadow-[0_0_15px_rgba(0,50,160,0.5)]">
+                    <span class="truncate uppercase">Comprar Entradas</span>
+                </button>
+                <button class="md:hidden text-slate-900 dark:text-white">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
-
+        </header>
+    </div>
+    <main class="flex-1 w-full flex flex-col items-center">
+        <section class="w-full relative bg-[#0b1121]">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542880941-13c54e58db99?q=80&amp;w=2666&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-30 mix-blend-overlay"
+                data-alt="Dark texture pattern of metal rivets"></div>
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-[#0b1121]/80 via-[#0b1121]/60 to-background-light dark:to-background-dark">
+            </div>
             <div
                 class="relative w-full max-w-[1280px] px-6 lg:px-10 pt-16 pb-8 mx-auto flex flex-col md:flex-row items-end justify-between gap-6">
                 <div class="flex flex-col gap-3 max-w-2xl">
                     <div
                         class="inline-flex items-center gap-2 text-primary dark:text-blue-400 text-sm font-bold tracking-widest uppercase">
                         <span class="w-2 h-2 rounded-full bg-primary dark:bg-blue-400"></span>
-                        <span data-i18n="archivo_digital">Archivo Digital</span>
+                        Archivo Digital
                     </div>
-                    <h1 class="text-slate-900 dark:text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em] uppercase"
-                        data-i18n="coleccion_blindada">
+                    <h1
+                        class="text-slate-900 dark:text-white text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-[-0.033em]">
                         Colección Blindada
                     </h1>
-                    <p class="text-slate-600 dark:text-gray-300 text-base md:text-lg font-normal leading-relaxed max-w-xl"
-                        data-i18n="coleccion_blindada_desc">
+                    <p
+                        class="text-slate-600 dark:text-gray-300 text-base md:text-lg font-normal leading-relaxed max-w-xl">
                         Explore nuestra vasta colección de ingeniería militar. Desde los primeros prototipos de la Gran
                         Guerra hasta los titanes de acero modernos.
                     </p>
                 </div>
-                <div class="hidden md:flex gap-8 border-l-2 border-slate-200 dark:border-[#1e293b] pl-8">
+                <div class="hidden md:flex gap-8 border-l-2 border-[#1e293b] pl-8">
                     <div>
-                        <p class="text-3xl font-black text-slate-900 dark:text-white">142</p>
-                        <p class="text-xs uppercase tracking-wider text-primary dark:text-blue-500"
-                            data-i18n="vehiculos_count_label">Vehículos</p>
+                        <p class="text-3xl font-black text-white">142</p>
+                        <p class="text-xs uppercase tracking-wider text-blue-500">Vehículos</p>
                     </div>
                     <div>
-                        <p class="text-3xl font-black text-slate-900 dark:text-white">18</p>
-                        <p class="text-xs uppercase tracking-wider text-primary dark:text-blue-500"
-                            data-i18n="naciones_count_label">Naciones</p>
+                        <p class="text-3xl font-black text-white">18</p>
+                        <p class="text-xs uppercase tracking-wider text-blue-500">Naciones</p>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Search and Filter Bar (Sticky) -->
         <section
-            class="w-full sticky top-[70px] md:top-[80px] z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-y border-gray-200 dark:border-[#1e293b] py-4">
+            class="w-full sticky top-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-y border-gray-200 dark:border-[#1e293b] py-4">
             <div class="max-w-[1280px] mx-auto px-6 lg:px-10">
                 <div class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-                    <!-- Search -->
                     <div class="relative group w-full lg:w-96">
                         <span
                             class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary dark:group-focus-within:text-blue-400 transition-colors material-symbols-outlined">search</span>
                         <input
                             class="w-full bg-white dark:bg-[#162032] border border-gray-200 dark:border-[#334155] rounded-lg py-3 pl-12 pr-4 text-slate-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm"
-                            data-i18n-placeholder="search_hangar_placeholder"
                             placeholder="Buscar (ej. Tiger I, M4 Sherman)..." type="text" />
                     </div>
-
-                    <!-- Filters -->
                     <div
                         class="flex flex-wrap gap-2 items-center w-full lg:w-auto overflow-x-auto scrollbar-hide pb-2 lg:pb-0">
                         <button
-                            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:brightness-110 transition-all shadow-[0_4_15px_rgba(0,50,160,0.4)]">
+                            class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white font-bold text-sm hover:brightness-110 transition-all shadow-[0_0_10px_rgba(0,50,160,0.4)]">
                             <span class="material-symbols-outlined text-[20px]">grid_view</span>
-                            <span data-i18n="cat_todo_hangar">Todo</span>
+                            Todo
                         </button>
                         <div class="h-6 w-px bg-gray-300 dark:bg-[#1e293b] mx-1"></div>
                         <button
                             class="group flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-[#162032] border border-gray-200 dark:border-[#1e293b] hover:border-primary/50 text-slate-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 transition-all text-sm font-medium whitespace-nowrap">
                             <span
                                 class="material-symbols-outlined text-[20px] group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">history</span>
-                            <span data-i18n="cat_era_wwii">Era: WWII</span>
+                            Era: WWII
                             <span class="material-symbols-outlined text-[18px]">expand_more</span>
                         </button>
                         <button
                             class="group flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-[#162032] border border-gray-200 dark:border-[#1e293b] hover:border-primary/50 text-slate-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 transition-all text-sm font-medium whitespace-nowrap">
                             <span
                                 class="material-symbols-outlined text-[20px] group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">flag</span>
-                            <span data-i18n="cat_nacion">Nación</span>
+                            Nación
                             <span class="material-symbols-outlined text-[18px]">expand_more</span>
                         </button>
                         <button
                             class="group flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-[#162032] border border-gray-200 dark:border-[#1e293b] hover:border-primary/50 text-slate-700 dark:text-gray-300 hover:text-primary dark:hover:text-blue-400 transition-all text-sm font-medium whitespace-nowrap">
                             <span
                                 class="material-symbols-outlined text-[20px] group-hover:text-primary dark:group-hover:text-blue-400 transition-colors">category</span>
-                            <span data-i18n="cat_tipo_pesado">Tipo: Pesado</span>
+                            Tipo: Pesado
                             <span class="material-symbols-outlined text-[18px]">expand_more</span>
                         </button>
                         <button
@@ -158,21 +174,22 @@
                 </div>
             </div>
         </section>
-
-        <!-- Gallery Grid -->
-        <section class="w-full max-w-[1280px] px-6 lg:px-10 py-8 mx-auto">
+        <section class="w-full max-w-[1280px] px-6 lg:px-10 py-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Tiger I -->
-                <a href="4.1hangar/1tanque.html"
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_pesado">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             Pesado
                         </div>
-                        <img alt="Tiger I Tank"
+                        <img alt="Tiger I Tank in museum display"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="Tiger I German Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDycvCN_xk02slBSUPdP2A8UENjW5cA_2kJh5SoADoDMSrilYcsKqwmT1HxhRljqthjG_33hzGa02fKecf8Xs0CPgv6jZqz7An89dHz4yrAEW251xppb1GhYu86CT_66sr-UZ4nDBNN7Z1GfsfV_yWjsxBDHfrusAilSD_vCPWb-EFmZ1To-XGJ56fDLybtzTXBbxRdlQy35hTHzN3oZFLUQMUCR-qdwKss7QSzDAYX0JGstP5P6w_NwuZJPLEFPgdEJGiGIl5zEtLM" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -182,28 +199,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">Germany • <span
-                                data-i18n="cat_era_wwii">Era: WWII</span></p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">Alemania • WWII</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1942</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1942</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 45 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- M4 Sherman -->
-                <a href="4.1hangar/2tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_medio">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             Medio
                         </div>
-                        <img alt="M4 Sherman"
+                        <img alt="M4 Sherman tank side profile"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="M4 Sherman US Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJCX_tikQ3837jtMfMOP5LUd-ZMnwDrei6thhEE9ALxDdQNkMwCLBvC0HpQ-K3i4GpC10qv1M_VNNEuvMV52eIK7_n8Pvn8yK90X6h_rIBhhngRapmovKonScKCRX6cA37LevMy1XmZw1r_J3fsL1F6kKb_pKAwiWcb5XU_YFVii3nqOezuNtWfzQ3QLo3LynTA-edubA5LNjZK6FxKslwLfVlsx6naxAUcLvqpoTeL_8-p5CEXWqL_JuJv6Pe_l8tYltVuJCeDAwD" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -213,28 +231,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">USA • <span
-                                data-i18n="cat_era_wwii">Era: WWII</span></p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">USA • WWII</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1941</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1941</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 48 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- M1 Abrams -->
-                <a href="4.1hangar/3tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_mbt">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             MBT
                         </div>
-                        <img alt="M1 Abrams"
+                        <img alt="Modern tank in desert camouflage"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="Modern Battle Tank Desert Camo"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2NgaVzXOVZAZegeuuHvheOtXcB-_GVLl7DB3DIR6UqKy2QHT-B6QNTnA6f9bGBqT1OUMsZctXe3xOEDP2DzJjOJnhFOnX1d6Id1odBzDdG5QH9OiMEklymNX3AQC93oSDzh781KcQZtUqSbjWp2X_Q6uwjKj9nHqdfku5QtIIZEg9RtiQpDorhwsO3biH8LUzSUUdX8M7kFkiW72oiw9yXsSwSXVOjAgFyoYzMiTcwLzIv4c5V0IXn46424mKiq-a2GaJGEpwJ90A" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -244,27 +263,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">USA • Moderna</p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">USA • Moderna</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1980</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1980</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 72 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- T-34-85 -->
-                <a href="4.1hangar/4tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_medio">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             Medio
                         </div>
-                        <img alt="T-34 Soviet Tank"
+                        <img alt="T-34 soviet tank monument"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="T-34 Soviet Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa_VIFi7apusFR3inD8fSQuq9y2iJS6etx45n4XJrEDVsWVLSEjoOmX_mRmmaFBCFKMiBoONhZzRdvFu8JqixFTx46n-K0YCI-4EKndiwkYFgHD3TrPbestTXl70kVbQK3NzwsE9WXGzqwNqGkwTzEH_cW5wFhel9Qwd9iWJtctJzTD13h_7cQwc7pdRrmoNaFNzqXOsS8yG0U7agFWt462k3NzWAfotajyqIFzs9hxe08OhogwArNj4nMChW0WBoP-RCU4DR7l9eB" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -274,28 +295,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">URSS • <span
-                                data-i18n="cat_era_wwii">Era: WWII</span></p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">URSS • WWII</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1944</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1944</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 53 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- Leopard 2A4 -->
-                <a href="4.1hangar/5tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_mbt">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             MBT
                         </div>
-                        <img alt="Leopard 2A4"
+                        <img alt="Leopard 2A4 on field"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="Leopard 2 Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0E4GnzcUOqpeKjCHPe-aswzn2NBgJkJ3IRYZrZ52os7F53Z2AjMpsANhNeOpIVQX0i23OPFFY-SUgjv8a2x8u8CBE8sRiVmiqhdeLxqDiiAPoxnp6GmL2nxAPbT9AponTfF3iGYE5pn2cUWPuuumGwDSfpeTu1U4dxfibbkW_MP66cfSrKBAVWnRKHCyrYNP-5ZHyP1e7P6O7vbQfW-OEZgjFMTieo2OLLY1F-BGfC1lN3hiIRmtWPjyzkGhNO68VlMwaoGmr1fXB" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -305,27 +327,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">Alemania • Moderna</p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">Alemania • Moderna</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1985</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1985</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 68 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- Renault FT-17 -->
-                <a href="4.1hangar/8tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_ligero">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             Ligero
                         </div>
-                        <img alt="Renault FT-17"
+                        <img alt="Light tank renault ft-17"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="Renault FT-17 Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuANU_YaX5n4-y61mKrG80xkUu2bqQz6ZAdNXiOAuMyU28dpPJFRiDb7ZuCambvBCv9aVoWakgUVcGEFZV6lE3Dc48O72VkmFNYqBKY9Z6ufblXqjSfajv4_QChfpPSN3jKfdyg6FlN3woY63wJih91oHQaFuZJa9R2CeyesQ0X_kYfew58nodXK9CxM_j9VxZU1kyvlmey3iOw2tW6u8tVZocjsiqSEWBAtT4kAH6ynXOYmSJDkLamxO1r0ZTiY6_7oxOqaQbr0hI1k" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -335,27 +359,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">Francia • WWI</p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">Francia • WWI</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1917</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1917</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 7 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- Challenger 2 -->
-                <a href="4.1hangar/6tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_mbt">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             MBT
                         </div>
-                        <img alt="Challenger 2"
+                        <img alt="Challenger 2 British tank"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="Challenger 2 Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnyim3Lv6Drr3MrD1kg7ITCfiqmpajkbuQFATYMX92zQ6lFgXyySGrWYfZ0DHESWlR6NmC9g7HAE1qyQI1iI9KBHsAGTeChfG57Zxp0p8oE0xzmSwX3IRWy4h2VHsloyJRV7adVhZfB3Wx4Gzi0TvU_9yx5lwxv6D6pV4K9IPAtwyyjjlYQxZm_ruGDJJnvmGbMTffJ9gcLL5mX2KbN2cmtsfHjl21j4HtaBiYqVmYPMsv_2UgQ-eHxd1vaajhBQ90_PHpVxArgID9" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -365,27 +391,29 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">UK • Moderna</p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">UK • Moderna</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1998</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1998</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 59 km/h</span>
                         </div>
                     </div>
-                </a>
-
-                <!-- Centurion Mk 3 -->
-                <a href="4.1hangar/7tanque.html"
+                </div>
+                <div
                     class="group relative bg-white dark:bg-[#162032] rounded-xl overflow-hidden border border-gray-200 dark:border-[#1e293b] hover:border-primary dark:hover:border-blue-500 hover:shadow-[0_0_20px_rgba(0,50,160,0.3)] transition-all duration-300 cursor-pointer flex flex-col">
                     <div class="aspect-[4/3] overflow-hidden relative">
-                        <div class="absolute top-3 left-3 z-10 bg-slate-900/80 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10 uppercase tracking-widest"
-                            data-i18n="cat_tipo_medio">
+                        <div
+                            class="absolute top-3 left-3 z-10 bg-[#0b1121]/80 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-white border border-[#334155] uppercase tracking-wider">
                             Medio
                         </div>
-                        <img alt="Centurion Mk 3"
+                        <img alt="Centurion tank on display"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+                            data-alt="Centurion Mk 3 Tank"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBacjTfsZ7h3v0MNI4--t7cGUiYM89B6A9xqx8NvhnxP1bwc0bA30gklPtDaVQ4StURLpzzkiA8wk3oo_ElD9hwoILNRfvanGkp6tvL4wv9YWgb95j1E_2wD7oKMwxXf8ZutZrvgnQgmfHjU7rR0Xw1RC3yWzFmeHyHHxiDtlURzVke8dAslPKkBAJ6r9dbDAzSfA7GtgSRHs-nXiVTXPBTRgJX9yrS0NKgm62CyD6M88Qr8jEBTx1Sh8Ysoqmm3VV4gQz9wYbp3fYh" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-[#0b1121] via-transparent to-transparent opacity-60">
+                        </div>
                     </div>
                     <div class="p-4 flex flex-col gap-1 flex-1">
                         <div class="flex justify-between items-start">
@@ -395,70 +423,89 @@
                             <span
                                 class="material-symbols-outlined text-primary dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity -translate-x-2 group-hover:translate-x-0 duration-300">arrow_forward</span>
                         </div>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">UK • Guerra Fría</p>
+                        <p class="text-sm text-slate-500 dark:text-gray-400">UK • Guerra Fría</p>
                         <div
-                            class="mt-4 pt-3 border-t border-gray-100 dark:border-[#1e293b] flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500">
-                            <span class="flex items-center gap-1"><span data-i18n="label_año">Año</span>: 1948</span>
-                            <span class="flex items-center gap-1 font-mono uppercase tracking-tighter"><span
+                            class="mt-4 pt-3 border-t border-gray-200 dark:border-[#1e293b] flex items-center justify-between text-xs text-slate-400 dark:text-slate-400">
+                            <span>Año: 1948</span>
+                            <span class="flex items-center gap-1"><span
                                     class="material-symbols-outlined text-[14px]">speed</span> 35 km/h</span>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
-
-            <!-- More Results -->
             <div class="w-full flex justify-center py-12">
                 <button
-                    class="group flex items-center gap-3 px-8 py-3 rounded-lg border border-primary dark:border-blue-400 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:text-white transition-all duration-300 font-bold uppercase tracking-widest text-sm">
-                    <span
-                        class="material-symbols-outlined group-hover:rotate-180 transition-transform duration-500">refresh</span>
-                    <span data-i18n="cargar_mas_btn">Cargar Más Tanques</span>
+                    class="group flex items-center gap-3 px-8 py-3 rounded-lg border border-primary dark:border-blue-400 text-primary dark:text-blue-400 hover:bg-primary hover:text-white dark:hover:text-white transition-all duration-300 font-bold uppercase tracking-wider">
+                    <span class="material-symbols-outlined animate-spin-slow group-hover:animate-none">refresh</span>
+                    Cargar Más Tanques
                 </button>
             </div>
         </section>
-
-        <!-- Call to Action -->
-        <section class="w-full bg-slate-100 dark:bg-[#162032] py-20 px-6 relative overflow-hidden">
-            <!-- Grid decorative background -->
-            <div class="absolute inset-0 bg-grid-pattern bg-[length:30px_30px] opacity-[0.03] dark:opacity-[0.05]">
-            </div>
-
+        <section class="w-full bg-[#162032] py-16 px-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517427294546-5aa12163d01b?q=80&amp;w=2670&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-10 grayscale"
+                data-alt="Abstract metallic texture"></div>
             <div class="max-w-[1280px] mx-auto relative z-10 flex flex-col items-center text-center">
-                <span
-                    class="inline-block px-4 py-1.5 bg-primary/10 dark:bg-blue-400/10 text-primary dark:text-blue-400 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-6">Live
-                    Experience</span>
-                <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 uppercase tracking-tight"
-                    data-i18n="ver_accion_titulo">
-                    ¿Quiere verlos en acción?
-                </h2>
-                <p class="text-slate-600 dark:text-gray-300 max-w-2xl mb-10 text-base md:text-lg leading-relaxed font-normal"
-                    data-i18n="ver_accion_desc">
-                    Únase a nosotros en el próximo evento de "Tankfest" y experimente el poder de la historia en
-                    movimiento.
-                </p>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-4">¿Quiere verlos en acción?</h2>
+                <p class="text-gray-300 max-w-2xl mb-8 text-lg">Únase a nosotros en el próximo evento de "Tankfest" y
+                    experimente el poder de la historia en movimiento.</p>
                 <button
-                    class="flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-10 bg-primary text-white hover:bg-blue-700 hover:scale-105 transition-all text-base font-black uppercase tracking-widest shadow-[0_10_30px_rgba(0,50,160,0.4)]">
-                    <span data-i18n="ver_calendario_btn">Ver Calendario de Eventos</span>
+                    class="flex min-w-[160px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary text-white hover:bg-[#0047cc] hover:scale-105 transition-all text-base font-bold leading-normal tracking-wide shadow-[0_0_20px_rgba(0,50,160,0.6)]">
+                    Ver Calendario de Eventos
                 </button>
             </div>
         </section>
-
     </main>
+    <footer
+        class="bg-surface-light dark:bg-[#0b1121] border-t border-gray-200 dark:border-[#1e293b] py-12 px-6 lg:px-10">
+        <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="md:col-span-2 flex flex-col gap-4">
+                <div class="flex items-center gap-3 text-slate-900 dark:text-white">
+                    <div class="size-6 text-primary dark:text-blue-500">
+                        <svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold">Museo de Tanques</h2>
+                </div>
+                <p class="text-sm text-slate-500 dark:text-gray-400 max-w-xs">Preservando la historia de la guerra
+                    blindada para educar e inspirar a las futuras generaciones.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="text-slate-900 dark:text-white font-bold uppercase tracking-wider text-sm">Explorar</h3>
+                <div class="flex flex-col gap-2">
+                    <a class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors"
+                        href="#">Colección</a>
+                    <a class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors"
+                        href="#">Exhibiciones Virtuales</a>
+                    <a class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors"
+                        href="#">Restauración</a>
+                    <a class="text-sm text-slate-500 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors"
+                        href="#">Blog</a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-4">
+                <h3 class="text-slate-900 dark:text-white font-bold uppercase tracking-wider text-sm">Visítenos</h3>
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-start gap-2 text-sm text-slate-500 dark:text-gray-400">
+                        <span class="material-symbols-outlined text-[18px] mt-0.5">location_on</span>
+                        <span>Av. del Ejército 1945,<br />Madrid, España</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-gray-400">
+                        <span class="material-symbols-outlined text-[18px]">schedule</span>
+                        <span>Mar - Dom: 10:00 - 18:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-[1280px] mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-[#1e293b] text-center md:text-left">
+            <p class="text-xs text-slate-400 dark:text-slate-500">© 2023 Museo de Tanques. Todos los derechos
+                reservados.</p>
+        </div>
+    </footer>
 
-    <!-- FOOTER CARGADO DINÁMICAMENTE -->
-    <div data-include="tanques/footer"></div>
-
-    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
-    <script>
-        window.addEventListener('componentsReady', () => {
-            setTimeout(() => {
-                if (window.StatsManager) {
-                    window.StatsManager.updateUI();
-                    window.StatsManager.subscribeRealtime();
-                }
-            }, 300);
-        });
-    </script>
 </body>
 
 </html>

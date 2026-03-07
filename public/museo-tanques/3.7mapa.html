@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Mapa | MUSEO DE TANQUES</title>
+    <title data-i18n="mapa_titulo">Explorador Histórico Arquitectónico | MUSEO DE TANQUES</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -33,39 +33,474 @@
     <script src="../js/supabase/auth.js"></script>
     <script src="../js/supabase/stats.js"></script>
     <script src="../js/supabase/ui-bridge.js"></script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .blueprint-grid {
+                background-size: 40px 40px;
+                background-image: linear-gradient(to right, rgba(0, 46, 133, 0.05) 1px, transparent 1px),
+                                  linear-gradient(to bottom, rgba(0, 46, 133, 0.05) 1px, transparent 1px);
+            }
+            .dark .blueprint-grid {
+                background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                                  linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            }
+            .custom-scroll::-webkit-scrollbar {
+                width: 6px;
+            }
+            .custom-scroll::-webkit-scrollbar-track {
+                background: theme('colors.slate.100');
+            }
+            .dark .custom-scroll::-webkit-scrollbar-track {
+                background: #0f1623;
+            }
+            .custom-scroll::-webkit-scrollbar-thumb {
+                background: theme('colors.primary');
+                border-radius: 3px;
+            }
+            .timeline-dot::before {
+                content: '';
+                position: absolute;
+                left: -21px;
+                top: 0.375rem;
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 9999px;
+                background-color: theme('colors.primary');
+                border-width: 2px;
+                border-color: white;
+            }
+            .dark .timeline-dot::before {
+                border-color: theme('colors.slate.800');
+            }
+        }
+    </style>
 </head>
 
 <body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-200 overflow-x-hidden min-h-screen flex flex-col"
     data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
+    <!-- SISTEMA DE AUDIO -->
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
+    <main class="flex-grow pt-[100px]">
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2" data-i18n="mapa">
-                    Mapa</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
+        <!-- Hero Section: Historical Infrastructure -->
+        <div class="relative w-full bg-slate-100 dark:bg-[#0f1623] border-b border-slate-200 dark:border-gray-800">
+            <div class="container mx-auto px-6 md:px-10 py-12">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                    <div>
+                        <div
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 w-fit backdrop-blur-sm mb-4">
+                            <span class="material-symbols-outlined text-primary text-sm">map</span>
+                            <span class="text-primary text-xs font-bold uppercase tracking-wider"
+                                data-i18n="infra_guia_badge">Infraestructura y Guía</span>
+                        </div>
+                        <h1 class="text-slate-900 dark:text-white text-3xl md:text-5xl font-black leading-tight tracking-tight mb-2 uppercase"
+                            data-i18n="guia_visitante_titulo">
+                            Guía del Visitante Avanzada
+                        </h1>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm md:text-lg max-w-3xl"
+                            data-i18n="guia_visitante_desc">
+                            Explore nuestras instalaciones con información detallada sobre accesibilidad, áreas de
+                            descanso y rutas sugeridas para optimizar su experiencia.
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button
+                            class="flex items-center gap-2 bg-white dark:bg-[#202f4b] hover:bg-slate-50 dark:hover:bg-[#2a3c5e] text-slate-900 dark:text-white text-sm font-medium py-3 px-6 rounded-lg transition-colors border border-slate-200 dark:border-gray-700 shadow-sm">
+                            <span class="material-symbols-outlined text-sm">download</span>
+                            <span data-i18n="pdf_guia_btn">PDF Guía</span>
+                        </button>
+                        <button
+                            class="flex items-center gap-2 bg-white dark:bg-[#202f4b] hover:bg-slate-50 dark:hover:bg-[#2a3c5e] text-slate-900 dark:text-white text-sm font-medium py-3 px-6 rounded-lg transition-colors border border-slate-200 dark:border-gray-700 shadow-sm">
+                            <span class="material-symbols-outlined text-sm">print</span>
+                            <span data-i18n="imprimir_btn">Imprimir</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="mapa">Mapa</h2>
-                    <p class="text-gray-400">Guía interactiva de nuestras salas y exteriores.</p>
+        <!-- Main Explorer Layout -->
+        <div class="container mx-auto px-4 md:px-6 lg:px-10 py-8 space-y-8">
+
+            <!-- 1. The Primary Map (Full Width) -->
+            <div
+                class="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-gray-800 shadow-2xl relative overflow-hidden h-[600px] md:h-[750px] flex flex-col">
+
+                <!-- Map Layer Controls (Overlay) -->
+                <div class="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                    <div
+                        class="bg-white/95 dark:bg-[#131b2b]/95 backdrop-blur-md p-1 rounded-xl border border-slate-200 dark:border-gray-700 shadow-lg">
+                        <button
+                            class="w-full flex items-center gap-3 px-4 py-2 bg-primary text-white rounded-lg text-xs font-bold mb-1 transition-all">
+                            <span class="material-symbols-outlined text-sm">layers</span>
+                            <span data-i18n="diseño_actual">Diseño Actual</span>
+                        </button>
+                        <button
+                            class="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-100 dark:hover:bg-gray-800 text-slate-600 dark:text-gray-400 rounded-lg text-xs font-bold transition-all">
+                            <span class="material-symbols-outlined text-sm">history</span>
+                            <span data-i18n="plano_historico_1942">Plano Histórico (1942)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Zoom Controls (Overlay) -->
+                <div class="absolute bottom-6 right-4 z-20 flex flex-col gap-2">
+                    <button
+                        class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-gray-700 text-slate-600 dark:text-white hover:border-primary transition-colors flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-gray-700 text-slate-600 dark:text-white hover:border-primary transition-colors flex items-center justify-center shadow-lg">
+                        <span class="material-symbols-outlined">remove</span>
+                    </button>
+                </div>
+
+                <!-- Technical Blueprint Canvas -->
+                <div class="w-full h-full relative blueprint-grid bg-slate-50 dark:bg-slate-900/10">
+                    <svg class="w-full h-full absolute inset-0" preserveAspectRatio="xMidYMid meet"
+                        viewBox="0 0 1000 800">
+                        <path
+                            d="M650 50 H950 A20 20 0 0 1 970 70 V350 A20 20 0 0 1 950 370 H650 A20 20 0 0 1 630 350 V70 A20 20 0 0 1 650 50 Z"
+                            fill="currentColor" class="text-slate-200/50 dark:text-[#131b2b]" stroke="currentColor"
+                            stroke-width="2" stroke-dasharray="5,5"></path>
+                        <path
+                            class="transition-colors hover:fill-primary/10 fill-white dark:fill-slate-800 stroke-primary dark:stroke-primary-light"
+                            d="M50 400 H300 V700 H50 V400 Z" stroke-width="2"></path>
+                        <path
+                            class="transition-colors hover:fill-primary/10 fill-white dark:fill-slate-800 stroke-primary dark:stroke-primary-light"
+                            d="M300 300 H700 V700 H300 V300 Z" stroke-width="2"></path>
+                        <path
+                            class="transition-colors hover:fill-primary/10 fill-white dark:fill-slate-800 stroke-primary dark:stroke-primary-light"
+                            d="M700 400 H950 V700 H700 V400 Z" stroke-width="2"></path>
+                        <text class="fill-slate-900 dark:fill-white font-bold opacity-10" font-family="Public Sans"
+                            font-size="24" text-anchor="middle" x="175" y="550" data-i18n="sala_a">SALA A</text>
+                        <text class="fill-slate-900 dark:fill-white font-bold opacity-10" font-family="Public Sans"
+                            font-size="48" text-anchor="middle" x="500" y="500" data-i18n="sala_b">SALA B</text>
+                        <text class="fill-slate-900 dark:fill-white font-bold opacity-10" font-family="Public Sans"
+                            font-size="24" text-anchor="middle" x="825" y="550" data-i18n="sala_c">SALA C</text>
+                    </svg>
+
+                    <!-- Interactive Pin -->
+                    <div class="absolute top-[38%] left-[50%] group cursor-pointer"
+                        style="transform: translate(-50%, -50%);">
+                        <div
+                            class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white ring-4 ring-primary/20 animate-pulse">
+                            <span class="material-symbols-outlined text-sm">home_repair_service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Bar footer -->
+                <div
+                    class="bg-slate-100 dark:bg-slate-900 p-3 border-t border-slate-200 dark:border-gray-800 flex justify-between items-center text-[10px] uppercase font-bold text-slate-500 tracking-widest">
+                    <span data-i18n="modo_exploracion_activo">Modo Exploración: Activo</span>
+                    <span data-i18n="referencia_registro">Referencia: Registro Nacional de Monumentos Ind. #882</span>
                 </div>
             </div>
 
+            <!-- 2. Bottom Layout: Navigator & Service Details -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+                <!-- Left Nav: Search, Halls & Services List -->
+                <div class="md:col-span-5 lg:col-span-4 space-y-6">
+                    <div
+                        class="bg-white dark:bg-[#131b2b] rounded-2xl border border-slate-200 dark:border-gray-800 overflow-hidden shadow-xl">
+                        <!-- Search Bar -->
+                        <div class="p-4 border-b border-slate-100 dark:border-gray-800">
+                            <div class="relative group">
+                                <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                                <input type="text" data-i18n-placeholder="map_search_placeholder"
+                                    placeholder="Buscar en el mapa..."
+                                    class="w-full bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-gray-700 rounded-xl pl-10 py-3 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all shadow-inner">
+                            </div>
+                        </div>
+
+                        <!-- Categories Tab -->
+                        <div class="flex p-2 gap-2 bg-slate-50 dark:bg-slate-900/50">
+                            <button
+                                class="flex-1 py-2 px-3 bg-primary text-white rounded-lg text-xs font-bold shadow-md"
+                                data-i18n="cat_todo">Todo</button>
+                            <button
+                                class="flex-1 py-2 px-3 hover:bg-white dark:hover:bg-slate-800 text-slate-500 dark:text-gray-400 rounded-lg text-xs font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-700 transition-all"
+                                data-i18n="cat_salas">Salas</button>
+                            <button
+                                class="flex-1 py-2 px-3 hover:bg-white dark:hover:bg-slate-800 text-slate-500 dark:text-gray-400 rounded-lg text-xs font-bold border border-transparent hover:border-slate-200 dark:hover:border-gray-700 transition-all"
+                                data-i18n="cat_servicios">Servicios</button>
+                        </div>
+
+                        <!-- Main Halls List -->
+                        <div class="p-4 space-y-3">
+                            <h3 class="text-[10px] font-black text-slate-400 dark:text-gray-500 tracking-[0.2em] uppercase mb-2"
+                                data-i18n="salas_principales">SALAS PRINCIPALES</h3>
+
+                            <button
+                                class="w-full group flex items-center gap-4 p-3 rounded-xl bg-primary/5 border border-primary/20 transition-all hover:bg-primary/10">
+                                <div
+                                    class="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-black text-xs">
+                                    A</div>
+                                <div class="text-left">
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white"
+                                        data-i18n="sala_gran_guerra">Sala de la Gran Guerra</h4>
+                                    <p class="text-[10px] text-slate-500 dark:text-gray-400"
+                                        data-i18n="sala_gran_guerra_desc">1914-1918 • Mark IV, A7V</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined ml-auto text-primary opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+                            </button>
+
+                            <button
+                                class="w-full group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800/50 transition-all border border-transparent hover:border-slate-200 dark:hover:border-gray-700">
+                                <div
+                                    class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-gray-400 font-black text-xs">
+                                    B</div>
+                                <div class="text-left">
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white"
+                                        data-i18n="sala_segunda_guerra">Segunda Guerra Mundial</h4>
+                                    <p class="text-[10px] text-slate-500 dark:text-gray-400"
+                                        data-i18n="sala_segunda_guerra_desc">1939-1945 • Tiger 131, T-34</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined ml-auto text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+                            </button>
+
+                            <button
+                                class="w-full group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800/50 transition-all border border-transparent hover:border-slate-200 dark:hover:border-gray-700">
+                                <div
+                                    class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-gray-400 font-black text-xs">
+                                    C</div>
+                                <div class="text-left">
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white"
+                                        data-i18n="sala_guerra_fria">Guerra Fría</h4>
+                                    <p class="text-[10px] text-slate-500 dark:text-gray-400"
+                                        data-i18n="sala_guerra_fria_desc">1946-1991 • Centurion, T-72</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined ml-auto text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+                            </button>
+
+                            <button
+                                class="w-full group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800/50 transition-all border border-transparent hover:border-slate-200 dark:hover:border-gray-700">
+                                <div
+                                    class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-gray-400 font-black text-xs">
+                                    D</div>
+                                <div class="text-left">
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white"
+                                        data-i18n="sala_arena_combate">Arena de Combate</h4>
+                                    <p class="text-[10px] text-slate-500 dark:text-gray-400"
+                                        data-i18n="sala_arena_combate_desc">Exterior • Shows en vivo</p>
+                                </div>
+                                <span
+                                    class="material-symbols-outlined ml-auto text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+                            </button>
+                        </div>
+
+                        <!-- Services Grid inside Sidebar -->
+                        <div class="px-4 pb-6 space-y-4">
+                            <h3 class="text-[10px] font-black text-slate-400 dark:text-gray-500 tracking-[0.2em] uppercase"
+                                data-i18n="servicios_mapa">SERVICIOS</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div
+                                    class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-[#202f4b] rounded-xl border border-slate-200 dark:border-gray-700 transition-colors hover:bg-white dark:hover:bg-[#2a3c5e]">
+                                    <span class="material-symbols-outlined text-sm text-green-500">restaurant</span>
+                                    <span class="text-[11px] font-bold text-slate-900 dark:text-white"
+                                        data-i18n="srv_cafeteria">Cafetería</span>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-[#202f4b] rounded-xl border border-slate-200 dark:border-gray-700 transition-colors hover:bg-white dark:hover:bg-[#2a3c5e]">
+                                    <span class="material-symbols-outlined text-sm text-blue-500">wc</span>
+                                    <span class="text-[11px] font-bold text-slate-900 dark:text-white"
+                                        data-i18n="srv_baños">Baños</span>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-[#202f4b] rounded-xl border border-slate-200 dark:border-gray-700 transition-colors hover:bg-white dark:hover:bg-[#2a3c5e]">
+                                    <span class="material-symbols-outlined text-sm text-amber-500">storefront</span>
+                                    <span class="text-[11px] font-bold text-slate-900 dark:text-white"
+                                        data-i18n="srv_tienda">Tienda</span>
+                                </div>
+                                <div
+                                    class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-[#202f4b] rounded-xl border border-slate-200 dark:border-gray-700 transition-colors hover:bg-white dark:hover:bg-[#2a3c5e]">
+                                    <span class="material-symbols-outlined text-sm text-red-500">medical_services</span>
+                                    <span class="text-[11px] font-bold text-slate-900 dark:text-white"
+                                        data-i18n="srv_primeros_auxilios">Primeros Auxilios</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Opening Hours Status -->
+                        <div class="p-4 bg-primary/5 dark:bg-primary/10 border-t border-slate-100 dark:border-gray-800">
+                            <div class="flex items-start gap-3">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary shadow-sm">
+                                    <span class="material-symbols-outlined text-sm">schedule</span>
+                                </div>
+                                <div>
+                                    <h4 class="text-[11px] font-black text-slate-900 dark:text-white uppercase mb-0.5"
+                                        data-i18n="horario_hoy">Horario de Hoy</h4>
+                                    <p class="text-sm font-black text-primary" data-i18n="valor_horario">09:00 AM -
+                                        18:00 PM</p>
+                                    <p class="text-[10px] text-slate-500 dark:text-gray-400 font-medium"
+                                        data-i18n="ultima_admision">Última admisión 17:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Detailed Infrastructure & Layers -->
+                <div class="md:col-span-7 lg:col-span-8 flex flex-col gap-8">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Technical Data Card -->
+                        <section
+                            class="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-gray-800 p-6 shadow-xl space-y-6">
+                            <h3
+                                class="text-slate-900 dark:text-white font-bold text-lg flex items-center gap-2 border-b border-slate-100 dark:border-gray-800 pb-4">
+                                <span class="material-symbols-outlined text-primary">architecture</span>
+                                <span data-i18n="datos_infraestructura">Datos Técnicos</span>
+                            </h3>
+                            <div class="grid grid-cols-2 gap-x-4 gap-y-6">
+                                <div>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1"
+                                        data-i18n="superficie_total">Superficie</p>
+                                    <p class="text-xl font-black text-slate-900 dark:text-white"
+                                        data-i18n="valor_superficie">12,500 m²</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1"
+                                        data-i18n="altitud_techo">Altitud</p>
+                                    <p class="text-xl font-black text-slate-900 dark:text-white"
+                                        data-i18n="valor_altitud">18.5 m</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1"
+                                        data-i18n="carga_max_piso">Carga Máx</p>
+                                    <p class="text-lg font-black text-slate-900 dark:text-white"
+                                        data-i18n="valor_carga">120 T/m²</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1"
+                                        data-i18n="climatizacion">Clima</p>
+                                    <div
+                                        class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-green-500/10 text-green-500 rounded-full border border-green-500/20 text-[10px] font-black uppercase">
+                                        <div class="w-1 h-1 bg-green-500 rounded-full animate-pulse"></div>
+                                        <span data-i18n="valor_climatizacion">Estabilizada</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Layers Control Card -->
+                        <section
+                            class="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-gray-800 p-6 shadow-xl space-y-4">
+                            <h3
+                                class="text-slate-900 dark:text-white font-bold text-lg border-b border-slate-100 dark:border-gray-800 pb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">visibility</span>
+                                <span data-i18n="vistas_capas">Control de Capas</span>
+                            </h3>
+                            <div class="space-y-2">
+                                <label
+                                    class="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-gray-700 cursor-pointer group hover:border-primary/50 transition-all">
+                                    <input checked=""
+                                        class="w-5 h-5 rounded border-slate-300 dark:border-gray-700 text-primary focus:ring-primary"
+                                        type="checkbox" />
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-900 dark:text-white"
+                                            data-i18n="zonas_conservacion">Zonas Originales</p>
+                                        <p class="text-[9px] text-slate-500 dark:text-gray-500"
+                                            data-i18n="zonas_conservacion_desc">Áreas históricas protegidas</p>
+                                    </div>
+                                </label>
+                                <label
+                                    class="flex items-center gap-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-900 border border-transparent hover:border-slate-100 dark:hover:border-gray-700 cursor-pointer group transition-all">
+                                    <input
+                                        class="w-5 h-5 rounded border-slate-300 dark:border-gray-700 text-primary focus:ring-primary"
+                                        type="checkbox" />
+                                    <div>
+                                        <p class="text-xs font-bold text-slate-900 dark:text-white"
+                                            data-i18n="sistemas_ventilacion">Extracción de Gases</p>
+                                        <p class="text-[9px] text-slate-500 dark:text-gray-500"
+                                            data-i18n="sistemas_ventilacion_desc">Conductos industriales de 1912</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Building Evolution Timeline (Horizontal on desktop) -->
+                    <section
+                        class="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-gray-800 p-8 shadow-xl">
+                        <h3 class="text-slate-900 dark:text-white font-bold text-xl mb-10 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">timeline</span>
+                            <span data-i18n="historia_edificio">Evolución del Edificio</span>
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 relative">
+                            <!-- Visual path -->
+                            <div
+                                class="hidden sm:block absolute top-[18px] left-[10%] right-[10%] h-[2px] bg-slate-100 dark:bg-gray-700 z-0">
+                            </div>
+
+                            <div class="relative z-10 space-y-4">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-white ring-8 ring-white dark:ring-slate-800 shadow-lg">
+                                    <span class="text-[10px] font-black italic">110</span>
+                                </div>
+                                <div class="pl-2">
+                                    <span class="text-[10px] font-black text-primary uppercase"
+                                        data-i18n="fecha_1910_1914">1910 - 1914</span>
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1 uppercase"
+                                        data-i18n="arsenal_real_titulo">Arsenal Real</h4>
+                                    <p class="text-[11px] text-slate-500 dark:text-gray-400 mt-2 leading-relaxed"
+                                        data-i18n="arsenal_real_desc">Hangares de piedra y acero para reparación pesada.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 space-y-4">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-slate-200 dark:bg-gray-700 flex items-center justify-center text-slate-500 dark:text-white ring-8 ring-white dark:ring-slate-800">
+                                    <span class="text-[10px] font-black italic">042</span>
+                                </div>
+                                <div class="pl-2">
+                                    <span class="text-[10px] font-black text-slate-400 dark:text-gray-500 uppercase"
+                                        data-i18n="fecha_1942">1942</span>
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1 uppercase"
+                                        data-i18n="expansion_belica_titulo">Expansión Bélica</h4>
+                                    <p class="text-[11px] text-slate-500 dark:text-gray-400 mt-2 leading-relaxed"
+                                        data-i18n="expansion_belica_desc">Sala B con hormigón reforzado para blindajes
+                                        modernos.</p>
+                                </div>
+                            </div>
+
+                            <div class="relative z-10 space-y-4">
+                                <div
+                                    class="w-9 h-9 rounded-full bg-slate-200 dark:bg-gray-700 flex items-center justify-center text-slate-500 dark:text-white ring-8 ring-white dark:ring-slate-800">
+                                    <span class="text-[10px] font-black italic">015</span>
+                                </div>
+                                <div class="pl-2">
+                                    <span class="text-[10px] font-black text-slate-400 dark:text-gray-500 uppercase"
+                                        data-i18n="fecha_2015">2015</span>
+                                    <h4 class="text-sm font-bold text-slate-900 dark:text-white mt-1 uppercase"
+                                        data-i18n="conversion_museo_titulo">Museo Moderno</h4>
+                                    <p class="text-[11px] text-slate-500 dark:text-gray-400 mt-2 leading-relaxed"
+                                        data-i18n="conversion_museo_desc">Sistemas de climatización y refuerzos de alta
+                                        tecnología.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -75,7 +510,10 @@
     <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
     <script>
         window.addEventListener('componentsReady', () => {
+            // Un pequeño retraso para asegurar que i18n esté cargado y se aplique a los componentes
             setTimeout(() => {
+                if (window.i18n) window.i18n.updateUI();
+
                 if (window.StatsManager) {
                     window.StatsManager.updateUI();
                     window.StatsManager.subscribeRealtime();

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tour Virtual - Museos Tapi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec5b13",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                        "museum-blue": "#0a192f",
+                        "museum-gold": "#c5a059",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Public Sans', sans-serif; }
+        .perspective-text { text-shadow: 0px 2px 4px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-museum-blue border-b border-museum-gold/30">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="text-museum-gold">
+<span class="material-symbols-outlined text-4xl">shield</span>
+</div>
+<h2 class="text-white text-xl font-bold tracking-tight uppercase">Museos Tapi</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-300 hover:text-museum-gold text-sm font-medium transition-colors" href="#">Inicio</a>
+<a class="text-slate-300 hover:text-museum-gold text-sm font-medium transition-colors" href="#">Museo</a>
+<a class="text-slate-300 hover:text-museum-gold text-sm font-medium transition-colors" href="#">Galería</a>
+<a class="text-museum-gold border-b-2 border-museum-gold text-sm font-medium transition-colors pb-1" href="#">Tour Virtual</a>
+<a class="text-slate-300 hover:text-museum-gold text-sm font-medium transition-colors" href="#">Contactos</a>
+<a class="text-slate-300 hover:text-museum-gold text-sm font-medium transition-colors" href="#">Servicios</a>
+<a class="text-slate-300 hover:text-museum-gold text-sm font-medium transition-colors" href="#">Juegos de Guerra</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm text-white focus:ring-1 focus:ring-museum-gold w-48" placeholder="Buscar tanque..." type="text"/>
+</div>
+<button class="bg-museum-gold hover:bg-museum-gold/90 text-museum-blue px-6 py-2 rounded-lg font-bold text-sm transition-all">
+                        ACCESO
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 py-8">
+<!-- 360 Viewer Section -->
+<section class="mb-12">
+<div class="relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-900 shadow-2xl group">
+<div class="absolute inset-0 bg-cover bg-center opacity-80" data-alt="Interior panorámico de un museo de tanques históricos" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQj4vvB5AOI0X0qUfBmc1NuYh4qWiB34Q2gOKHsfWYzbcxR8QZBiK-Rlt_wo3mPe5243HrLZy2dIsN__D29ddjQ8S4oUYDrXaSR7fZwngnBfQJ3tnTftVgF-ttjfpmXxuvnsfnricxyDZMRCWz5S9iFhUbhjD7WrVctTZYFlTIXx4BuLz-FMTh4Pmdyy4HK8qeTRYVXp1_p_fpy04gD8K_7QDunSFb6TPMRDzZ2V-HXxnV6KquCNIISIT1GCMcw9ui_E4OElovVnkP')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-museum-blue/80 via-transparent to-transparent"></div>
+<!-- Interface Overlay -->
+<div class="absolute inset-0 flex flex-col justify-between p-6">
+<div class="flex justify-between items-start">
+<div class="bg-black/50 backdrop-blur-md p-3 rounded-xl border border-white/10">
+<h1 class="text-white text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-museum-gold">360</span>
+                                Sala de Blindados Pesados
+                            </h1>
+<p class="text-slate-300 text-sm">Ubicación: Ala Este - Segunda Guerra Mundial</p>
+</div>
+<div class="flex gap-2">
+<button class="size-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-museum-gold hover:text-museum-blue transition-all">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="size-10 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-museum-gold hover:text-museum-blue transition-all">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+<div class="flex justify-center mb-8">
+<div class="bg-museum-gold/90 text-museum-blue px-6 py-3 rounded-full font-bold flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform shadow-lg">
+<span class="material-symbols-outlined">play_circle</span>
+                            INICIAR EXPERIENCIA INMERSIVA
+                        </div>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex gap-2">
+<div class="size-16 rounded-lg border-2 border-museum-gold overflow-hidden cursor-pointer opacity-100">
+<div class="w-full h-full bg-cover bg-center" data-alt="Miniatura de tanque pesado alemán" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_tz9pqgT2-Qv51_XzIxE5YbKIjdZUQs00of7QKNTsUnSJxsOvbYMeM1iwq3Fq-6jtvaJ0Dsd2fH9FyN8uIJuItCrl4UcWmJ9XllDel1PfZxVE9oVWxDxib8tAHAcaEmMpFg8QAZzrEDl5jZZO2c4F7dhEJBUR4c8oBHcgKLQnYTy4HGOIMjavVrGDXlFEf-h4AI6LJR0pQWpzPtWDFo3V1diwljeJhob0eUMvL4gZpWr6Z4GrriNf6dhMF-HnNVNlmnEPJ1oNmv_G')"></div>
+</div>
+<div class="size-16 rounded-lg border-2 border-transparent overflow-hidden cursor-pointer opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-full h-full bg-cover bg-center" data-alt="Miniatura de blindados soviéticos" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHREVY8J3rMd9CBG3sLZQaAyJXjjd5M2kX_yD6pqdwXDYjqGnb1dXepFTkri_exICJk5wZgZe6DJuxhuDZ4rrrt1-e0qlIh8cI75E8P-0hw5rWEeC8boAlUM3QhgnXWuunfOzHbwnwYDUe0VTEI6zK7fL4Xx-SOUAQ8p5haG6IRaCr-5n295Yb3j5-tmOmCTKM1CJnyke_qTaB9ho-45eJuGo42G4OgbX1LSMwccnA_4zM7WCnNzXQHU5KGMKDK3TxY4jfrF2lODij')"></div>
+</div>
+</div>
+<div class="text-white flex items-center gap-4 text-sm font-medium bg-black/40 px-4 py-2 rounded-full">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 1,240</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-red-500">fiber_manual_record</span> EN VIVO</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Puntos de Interés Destacados -->
+<section class="mb-16">
+<div class="flex items-center gap-4 mb-8">
+<h2 class="text-3xl font-bold text-museum-blue dark:text-slate-100">Puntos de Interés</h2>
+<div class="h-px flex-1 bg-museum-gold/30"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tanque Tiger I restaurado en exhibición" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaiAtvp5uED-cvHy-lyZQb_XiEPNMOl9QzO3hg5nfIRP4Thpezdm39MXxSlx_VlsJFm1chtLhFJWWfz6QJh7GkQsLsQITSMnoIOHRCDiHPW2qJLm-hSrOSKDI7cjekP3wb6-9TGMKE_x2dZou-P1vNSz3Zchw7aqNCYEvHxBb2HQcQkKCyB38XqTG0a5msrPK0zPOR6KIP7IzqWr01RNEtp2Nq9jisXuifKeOdXg0EUUDOQnAZ63z8MaIoN4LhGh2avXge0qjTEn7o"/>
+</div>
+<div class="p-5">
+<span class="text-primary text-xs font-bold tracking-widest uppercase">Blindado Pesado</span>
+<h3 class="text-xl font-bold mt-1 mb-2">Panzer VI "Tiger I"</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Considerado el tanque más temido de la SGM. Nuestra unidad está 100% restaurada con piezas originales.</p>
+<button class="mt-4 flex items-center gap-2 text-museum-gold font-bold text-sm hover:underline">
+                            VER EN 360 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tanque M4 Sherman americano" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGS50mF55Ehp8yJ1anIJtVI58qlM-fYTk_cCKHNkeTN-jr3nC81Aupcm2vdhV9XkGJ-GSm-a6R2MdIU52pU2iacohxIYe_VnUsRvchvwXLzshZwGaCKjtZTXef-7B0QHyXMJ-sfDzprq7WDojo0UETQCgGDPullbg6aJWxRat_XZld5oZ8-B-euH_c7MFc9lynMCmglJf7bcwSCviCPW8DxmsRe1WS1QvAooC5v6uTIaUleo4qNWyrYnTjAXyA4ZGtvr9gdaJZN9-m"/>
+</div>
+<div class="p-5">
+<span class="text-primary text-xs font-bold tracking-widest uppercase">Aliados</span>
+<h3 class="text-xl font-bold mt-1 mb-2">M4 Sherman "Firefly"</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">El caballo de batalla aliado con el cañón británico de 17 libras, capaz de perforar el blindaje alemán.</p>
+<button class="mt-4 flex items-center gap-2 text-museum-gold font-bold text-sm hover:underline">
+                            VER EN 360 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="group bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-700">
+<div class="h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tanque T-34 soviético" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKm_4BacuXO6I68fur8u0Ra9ogEFR7GoKc4Ih9Bz-pAiVH8XSh-n6noCN3MXGEZGb0jN8gI9tAb_VlzpI-eOmvEe_xxvldo677mCXlZGjNmvm9MS6SsjvXrAQGgUv84Nq6XRAzrLzKwGh0N3x5vz4QHpjjL7bS4TV1Qw2140JmgHOdnf3HJcEHMX5i6mk9yDv2qHi-Srrd8Epj52rYIwiPEvss_pwZ8PVDfoqn9wMz_QFqONbuedANloVzB9ozvGPqDv7Fy0rpehSw"/>
+</div>
+<div class="p-5">
+<span class="text-primary text-xs font-bold tracking-widest uppercase">Ejército Rojo</span>
+<h3 class="text-xl font-bold mt-1 mb-2">T-34/85 Soviético</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">El equilibrio perfecto entre potencia de fuego, movilidad y protección. Un hito de la ingeniería militar.</p>
+<button class="mt-4 flex items-center gap-2 text-museum-gold font-bold text-sm hover:underline">
+                            VER EN 360 <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Navegación y Requisitos -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+<div class="bg-museum-blue text-white p-8 rounded-2xl shadow-xl">
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-museum-gold">explore</span> Guía de Navegación
+                </h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="bg-museum-gold/20 p-2 rounded-lg h-fit">
+<span class="material-symbols-outlined text-museum-gold">mouse</span>
+</div>
+<div>
+<h4 class="font-bold text-lg">Control de Cámara</h4>
+<p class="text-slate-300 text-sm">Haz clic y arrastra para girar la vista 360 grados. Usa la rueda del ratón para hacer zoom.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-museum-gold/20 p-2 rounded-lg h-fit">
+<span class="material-symbols-outlined text-museum-gold">ads_click</span>
+</div>
+<div>
+<h4 class="font-bold text-lg">Puntos de Información</h4>
+<p class="text-slate-300 text-sm">Haz clic en los iconos flotantes de información para abrir fichas técnicas detalladas de cada tanque.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-museum-gold/20 p-2 rounded-lg h-fit">
+<span class="material-symbols-outlined text-museum-gold">open_in_new</span>
+</div>
+<div>
+<h4 class="font-bold text-lg">Entrada a Cabina</h4>
+<p class="text-slate-300 text-sm">Busca el icono de "Puerta" para acceder al interior de los blindados seleccionados.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700">
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-museum-blue dark:text-slate-100">
+<span class="material-symbols-outlined text-primary">speed</span> Requisitos Técnicos
+                </h3>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+<span class="text-sm font-medium">Navegador</span>
+<span class="text-sm text-slate-500">Chrome, Firefox, Safari (últ. versiones)</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+<span class="text-sm font-medium">Conexión</span>
+<span class="text-sm text-slate-500">Mínimo 10 Mbps recomendado</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+<span class="text-sm font-medium">Hardware</span>
+<span class="text-sm text-slate-500">Aceleración por GPU activada</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 rounded-lg">
+<span class="text-sm font-medium">VR ready</span>
+<span class="text-sm text-slate-500">Compatible con Meta Quest y HTC Vive</span>
+</div>
+<div class="mt-6 p-4 bg-primary/10 rounded-xl border border-primary/20">
+<p class="text-primary text-xs font-bold leading-relaxed">
+<span class="material-symbols-outlined align-middle mr-1 text-sm">info</span>
+                            Para una experiencia óptima en dispositivos móviles, utiliza el modo horizontal (landscape).
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonios Section -->
+<section class="mb-16">
+<h2 class="text-3xl font-bold text-center mb-10 text-museum-blue dark:text-slate-100">Experiencias de Visitantes</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl relative">
+<span class="material-symbols-outlined text-museum-gold absolute top-4 right-4 text-4xl opacity-30">format_quote</span>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-slate-300 overflow-hidden">
+<img data-alt="Retrato de visitante virtual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBjipLRjAqqLP0f3f-XhPi1V9LfUB_R6uAwiIYScTsEu1j3wcjN0c6NS15EQr_OqpFtBO_5Xg3DCu586f1bPS6FADHBtj31gJWWAzqny_d17ua8Otuc_Adn0TvJ5Zvf5kTRqKfOMwJMKwwYNOYkQUef5GewuUud0Y52jSKOaFzRVRUhBHKmHXTS6JaLusdQ_kuP0Hb5M6cgGljkNJhCaxXxaVkNB0R9vJTU1yj8h-oPnFcesVUptxbu5fmtFWCJA9fKGlT0foDMDrj"/>
+</div>
+<div>
+<p class="font-bold text-sm">Carlos Ruiz</p>
+<p class="text-xs text-slate-500">Historiador</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm italic">"La calidad del 360 es asombrosa. Pude ver detalles de la soldadura del Tiger que nunca había apreciado en fotos."</p>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl relative">
+<span class="material-symbols-outlined text-museum-gold absolute top-4 right-4 text-4xl opacity-30">format_quote</span>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-slate-300 overflow-hidden">
+<img data-alt="Retrato de visitante virtual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35zlN0ExFoagm2Ruxqs8_kpYezz0Vs0dgFw4u-XJE_6lqjkr3wbZJR6dwv_3Dg_yBvwIsmZuOrvwqaxkfFZbJb6lrjdWlNJWG56hhtoTH3k_U0onyoQlGRuBphlMBH45t9q5fA7FerAuDfiIsBpekJ0w9nXZveWqq9emNHXrjlghOHQHMa7MDmMaHpvEf7wdBXatVeeqDQMUdZy5l8KjQXH_Y29i_6dsgD1s5ItgA84WzWANVwvmwHs63Dzmqf3tM-HUNCk6BBuaM"/>
+</div>
+<div>
+<p class="font-bold text-sm">Elena Martínez</p>
+<p class="text-xs text-slate-500">Estudiante</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm italic">"Una herramienta educativa increíble. Mi clase de historia disfrutó muchísimo explorando el interior de los tanques."</p>
+</div>
+<div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl relative">
+<span class="material-symbols-outlined text-museum-gold absolute top-4 right-4 text-4xl opacity-30">format_quote</span>
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-slate-300 overflow-hidden">
+<img data-alt="Retrato de visitante virtual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLNhRsUN4hBpceWTfh8nMR4ENT5wxoMIqCHPq9sdsS-z4ocyYgVcXZmy_U3Gx001e_rncA6DbcKs3nt_8emYEtTgxJn8u246DAI2tUspOGJlyh5_f72ZurMC9cqs2B80S0zkCSWW7INd-Mj3MU2uceqC05SfxtLXJMDHNIex61yJD8OQX9kytJcIhBEG32kWTDT_smWqaY17BJ4mOpZuTgCn7U_auFiastEuKJE4ZEBVPJDTGyItPTMFmB4GjIOLERKtD93iRATWyZ"/>
+</div>
+<div>
+<p class="font-bold text-sm">Mark Thompson</p>
+<p class="text-xs text-slate-500">Entusiasta VR</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm italic">"Usé mis Oculus Quest y la inmersión es total. Sientes realmente el tamaño masivo de estas máquinas."</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Area -->
+<footer class="bg-museum-blue text-white pt-16 pb-8 border-t-4 border-museum-gold">
+<div class="max-w-7xl mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<!-- Subscription Section -->
+<div class="col-span-1 md:col-span-1">
+<h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-museum-gold">mail</span> Boletín
+                    </h4>
+<p class="text-slate-400 text-sm mb-4">Recibe noticias históricas y actualizaciones de nuestra colección.</p>
+<form class="space-y-2">
+<input class="w-full bg-slate-800 border-none rounded-lg px-4 py-2 text-sm focus:ring-1 focus:ring-museum-gold" placeholder="Tu correo electrónico" type="email"/>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 rounded-lg text-sm transition-colors">SUSCRIBIRSE</button>
+</form>
+</div>
+<!-- Visitors Widget -->
+<div class="col-span-1">
+<h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-museum-gold">monitoring</span> Estadísticas
+                    </h4>
+<div class="bg-slate-800/50 p-4 rounded-xl border border-white/10">
+<div class="mb-4">
+<p class="text-xs text-slate-400 uppercase tracking-tighter">Visitas Hoy</p>
+<p class="text-2xl font-bold text-museum-gold">1,482</p>
+</div>
+<div>
+<p class="text-xs text-slate-400 uppercase tracking-tighter">Visitas Totales</p>
+<p class="text-2xl font-bold">428,903</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="col-span-1">
+<h4 class="text-lg font-bold mb-4">Mapa del Sitio</h4>
+<ul class="text-slate-400 text-sm space-y-2">
+<li><a class="hover:text-museum-gold" href="#">Sobre Nosotros</a></li>
+<li><a class="hover:text-museum-gold" href="#">Programas Educativos</a></li>
+<li><a class="hover:text-museum-gold" href="#">Donaciones</a></li>
+<li><a class="hover:text-museum-gold" href="#">Prensa y Medios</a></li>
+<li><a class="hover:text-museum-gold" href="#">Política de Privacidad</a></li>
+</ul>
+</div>
+<!-- Sponsors -->
+<div class="col-span-1">
+<h4 class="text-lg font-bold mb-4">Nuestros Patrocinadores</h4>
+<div class="grid grid-cols-2 gap-4 grayscale opacity-60 hover:opacity-100 transition-opacity">
+<div class="h-12 bg-white/10 rounded flex items-center justify-center p-2">
+<img data-alt="Logo patrocinador A" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCT5e1vZ7d-Mt5j0Sk1pU-h_qAkqNSSKy2opR8r4oa-zpSOz-fKHTDxlYJymH1NvXyaoL1DOBzGr8wozb-lXpBZRBn_QfoMJVJk3Uw5nXnAhunfbFhqnR4t2mdVf6pEQO0DaDr8Xova8f3DaL7X_MPTBFhJOD8xj6pwP_VAoUdC0AJy5NgJ8cbowAI2NPlry-9ogATM97pIqWX_Fpe43RTItupGd6z2_CNzVILpZYYXLfFLsRkgfqRAT8cqVxq9SuJTcbIIIOcrFcv"/>
+</div>
+<div class="h-12 bg-white/10 rounded flex items-center justify-center p-2">
+<img data-alt="Logo patrocinador B" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHwpfzigZTGZ-hxS9BvmUolyKR4dFx7_4PkyTmaOSnXz56BvJIJ18Y_L8K8Q4YYD59CiSLBMo3DxNgPK-DKx95sG7ZjEyV31SZzJ4eOtZPKZcgktBxp1mhRFVIFszlcm8hITGMqDhy9BwofELZvvsa6A406Yc32o3jeP94QtDwRJ0cETvtdBk7RvlE0HaRUFzvdekKFgoRLDV_DSWs_iKMg9R4qYd_1hVnHSGgtCbMI0SN51OfuJCL62BgIHzd3rVno3sxR1I4x-UD"/>
+</div>
+<div class="h-12 bg-white/10 rounded flex items-center justify-center p-2">
+<img data-alt="Logo patrocinador C" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTpqy90M-5bJ_DgxHzlnTVhlt_Mhved8BKjZuUtuv5ezyM7m8UenCp0E3Jnyz0MFdIJzAhUkU8ce5smJX7JlG7yalGk5nJqPCfZ8EUTNddj-K29pQ-j5A5_TtVa84ra3bfCvDAEd2-SkSQOYXII3EMarhAvspYGTJX1vw01-UC_W_oYvlmusPulCAnCkMcPf8MR3bSikoVno5Q3fZ4_oZflCU2tB_U_Gs__PmWfelxcfyqWEdsCNh3tA4hBQzRwTX6mpYMT4SBX1Gh"/>
+</div>
+<div class="h-12 bg-white/10 rounded flex items-center justify-center p-2">
+<img data-alt="Logo patrocinador D" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE1WNYYN63gKIBlDFKeFBAxGOyocOsVcuSYad05Gi_CpAQVOlBWROuSE4quFkU7rHNY_PYXwk-K8n8lGZ3_1_6YNZ7D5ivtSi-_KDm9tnX8f6VATt-N4YGMP4Bi_WKRZMIWNXfQUEdDrPrXVsQuu7WyiabiDTi53kOS3iYepS9wJx45FVF3TS89nP-UaN2aean1f4agPtfID_fsfjsGVhuXI6q_KbXNPYBhMlOHAxMQsAbFLiu9wPcnMwpTePqwaTcQyTw5lTXkwvc"/>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-xs">© 2024 Museos Tapi - Preservando la historia blindada del mundo.</p>
+<div class="flex gap-4">
+<a class="text-slate-400 hover:text-white" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+<a class="text-slate-400 hover:text-white font-bold" href="#">X</a>
+<a class="text-slate-400 hover:text-white" href="#"><span class="material-symbols-outlined">video_library</span></a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

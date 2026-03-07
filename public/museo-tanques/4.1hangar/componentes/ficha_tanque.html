@@ -1,0 +1,364 @@
+<div class="max-w-7xl mx-auto py-6" id="tank-content-wrapper">
+    <!-- Breadcrumbs -->
+    <div class="flex flex-wrap gap-2 pb-6 px-1">
+        <a class="text-slate-500 dark:text-[#94a3b8] hover:text-primary text-sm font-medium transition-colors"
+            href="../1.0index.html" data-i18n="inicio_menu">Inicio</a>
+        <span class="text-slate-400 dark:text-[#94a3b8] text-sm font-medium">/</span>
+        <a class="text-slate-500 dark:text-[#94a3b8] hover:text-primary text-sm font-medium transition-colors"
+            href="../4.1hangar.html" data-i18n="hangar">Hangar</a>
+        <span class="text-slate-400 dark:text-[#94a3b8] text-sm font-medium">/</span>
+        <span class="text-slate-900 dark:text-white text-sm font-medium" data-i18n="tank_{{TNK}}_name">Nombre
+            Tanque</span>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="relative w-full rounded-2xl overflow-hidden mb-8 group border border-white/5 shadow-2xl">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent z-10">
+        </div>
+        <!-- Background Image -->
+        <div class="min-h-[500px] w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style='background-image: url("##IMAGE_URL##");'>
+        </div>
+
+        <div
+            class="absolute bottom-0 left-0 w-full z-20 p-6 md:p-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="flex flex-col gap-2 max-w-2xl">
+                <div class="flex items-center gap-3 mb-2">
+                    <span
+                        class="px-3 py-1 bg-primary/20 text-blue-700 dark:text-blue-200 text-xs font-bold uppercase tracking-wider rounded border border-primary/40 shadow-[0_0_15px_rgba(0,50,160,0.1)] dark:shadow-[0_0_15px_rgba(0,50,160,0.3)] backdrop-blur-sm"
+                        data-i18n="tank_{{TNK}}_cat">Categoría</span>
+                    <span
+                        class="flex items-center gap-1 text-white/90 text-xs font-medium uppercase tracking-wider bg-black/30 px-2 py-1 rounded backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-[16px]">flag</span> <span
+                            data-i18n="tank_{{TNK}}_origin">Origen, Año</span>
+                    </span>
+                </div>
+                <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]"
+                    data-i18n="tank_{{TNK}}_name">
+                    NOMBRE
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl max-w-xl font-normal drop-shadow-md"
+                    data-i18n="tank_{{TNK}}_desc">
+                    Descripción corta del tanque.
+                </p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <!-- Botón 3D Interactivo -->
+                <button onclick="open3DModal()"
+                    class="flex items-center gap-2 bg-gradient-to-r from-primary to-[#335CC0] hover:from-[#335CC0] hover:to-primary text-white font-bold py-3 px-6 rounded-lg transition-all shadow-[0_0_20px_rgba(0,50,160,0.4)] hover:shadow-[0_0_30px_rgba(0,50,160,0.6)] border border-white/10 group">
+                    <span
+                        class="material-symbols-outlined group-hover:rotate-90 transition-transform duration-500">3d_rotation</span>
+                    <span data-i18n="btn_ver_modelo_3d">Ver Modelo 3D</span>
+                </button>
+                <!-- Botón Realidad Aumentada (AR) -->
+                <button
+                    class="flex items-center gap-2 bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-bold py-3 px-6 rounded-lg transition-all border border-slate-200 dark:border-white/10 backdrop-blur-md group shadow-md hover:shadow-lg dark:shadow-none">
+                    <span
+                        class="material-symbols-outlined text-primary dark:text-accent-gold group-hover:scale-125 transition-all">view_in_ar</span>
+                    <span data-i18n="btn_ver_realidad_aumentada">Realidad Aumentada</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats & History Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+        <!-- Main Content (Left) -->
+        <div class="lg:col-span-8 flex flex-col gap-8">
+
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div
+                    class="bg-white dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-md hover:shadow-xl dark:shadow-none">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">weight</span>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-semibold"
+                            data-i18n="label_peso_combate">Peso Combate</p>
+                        <p class="text-slate-900 dark:text-white text-2xl font-bold"
+                            data-i18n="tank_{{TNK}}_stat_weight">--</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-md hover:shadow-xl dark:shadow-none">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">speed</span>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-semibold"
+                            data-i18n="label_velocidad">Velocidad</p>
+                        <p class="text-slate-900 dark:text-white text-2xl font-bold"
+                            data-i18n="tank_{{TNK}}_stat_speed">--</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-md hover:shadow-xl dark:shadow-none">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">swords</span>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-semibold"
+                            data-i18n="label_armamento">Armamento</p>
+                        <p class="text-slate-900 dark:text-white text-2xl font-bold" data-i18n="tank_{{TNK}}_stat_gun">
+                            --</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-white dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-md hover:shadow-xl dark:shadow-none">
+                    <div class="text-primary">
+                        <span class="material-symbols-outlined text-3xl">groups</span>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs uppercase tracking-wider font-semibold"
+                            data-i18n="label_tripulacion">Tripulación</p>
+                        <p class="text-slate-900 dark:text-white text-2xl font-bold" data-i18n="tank_{{TNK}}_stat_crew">
+                            --</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History and Development -->
+            <div
+                class="bg-white dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-xl p-6 md:p-8 relative overflow-hidden shadow-lg">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-500 to-transparent">
+                </div>
+                <div class="flex items-center gap-3 mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
+                    <span class="material-symbols-outlined text-primary">history_edu</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white"
+                        data-i18n="historia_desarrollo_titulo">Historia y
+                        Desarrollo</h2>
+                </div>
+                <div
+                    class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-4">
+                    <p data-i18n="tank_{{TNK}}_hist_p1">--</p>
+                    <p data-i18n="tank_{{TNK}}_hist_p2">--</p>
+                    <h3 class="text-slate-900 dark:text-white font-bold text-lg mt-6 mb-2 flex items-center gap-2">
+                        <span class="w-1 h-6 bg-primary rounded-full"></span>
+                        <span data-i18n="servicio_conflictos_titulo">Servicio en Conflictos</span>
+                    </h3>
+                    <ul class="list-none pl-0 space-y-3 text-slate-600 dark:text-slate-300">
+                        <li
+                            class="pl-4 border-l-2 border-primary/30 hover:border-primary transition-colors hover:bg-slate-50 dark:hover:bg-white/5 py-1 pr-2 rounded-r">
+                            <strong class="text-slate-900 dark:text-white block"
+                                data-i18n="conf_{{TNK_SHORT}}_1_title">Conflicto 1</strong>
+                            <span class="text-sm" data-i18n="conf_{{TNK_SHORT}}_1_desc">Descripción</span>
+                        </li>
+                        <li
+                            class="pl-4 border-l-2 border-primary/30 hover:border-primary transition-colors hover:bg-slate-50 dark:hover:bg-white/5 py-1 pr-2 rounded-r">
+                            <strong class="text-slate-900 dark:text-white block"
+                                data-i18n="conf_{{TNK_SHORT}}_2_title">Conflicto 2</strong>
+                            <span class="text-sm" data-i18n="conf_{{TNK_SHORT}}_2_desc">Descripción</span>
+                        </li>
+                        <li
+                            class="pl-4 border-l-2 border-primary/30 hover:border-primary transition-colors hover:bg-slate-50 dark:hover:bg-white/5 py-1 pr-2 rounded-r">
+                            <strong class="text-slate-900 dark:text-white block"
+                                data-i18n="conf_{{TNK_SHORT}}_3_title">Conflicto 3</strong>
+                            <span class="text-sm" data-i18n="conf_{{TNK_SHORT}}_3_desc">Descripción</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Technical Specifications -->
+            <div
+                class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-xl">
+                <div
+                    class="p-5 border-b border-slate-200 dark:border-slate-700 bg-gradient-to-r from-primary/90 to-blue-900 dark:from-primary dark:to-slate-900">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined">settings</span>
+                        <span data-i18n="especificaciones_tecnicas_titulo">Especificaciones Técnicas</span>
+                    </h3>
+                </div>
+                <div class="divide-y divide-slate-100 dark:divide-slate-700 bg-slate-50 dark:bg-slate-900">
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div
+                            class="p-4 flex justify-between items-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+                            <span class="text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors"
+                                data-i18n="label_motor">Motor</span>
+                            <span class="text-slate-900 dark:text-white font-medium text-right"
+                                data-i18n="tank_{{TNK}}_spec_motor">--</span>
+                        </div>
+                        <div
+                            class="p-4 flex justify-between items-center border-l-0 md:border-l border-slate-200 dark:border-slate-700 hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+                            <span class="text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors"
+                                data-i18n="label_caballos_fuerza">Caballos de Fuerza</span>
+                            <span class="text-slate-900 dark:text-white font-medium text-right"
+                                data-i18n="tank_{{TNK}}_spec_hp">--</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div
+                            class="p-4 flex justify-between items-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+                            <span class="text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors"
+                                data-i18n="label_autonomia_carretera">Autonomía (Carretera)</span>
+                            <span class="text-slate-900 dark:text-white font-medium text-right"
+                                data-i18n="tank_{{TNK}}_spec_range_road">--</span>
+                        </div>
+                        <div
+                            class="p-4 flex justify-between items-center border-l-0 md:border-l border-slate-200 dark:border-slate-700 hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+                            <span class="text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors"
+                                data-i18n="label_autonomia_campo">Autonomía (Campo Traviesa)</span>
+                            <span class="text-slate-900 dark:text-white font-medium text-right"
+                                data-i18n="tank_{{TNK}}_spec_range_off">--</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2">
+                        <div
+                            class="p-4 flex justify-between items-center hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+                            <span class="text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors"
+                                data-i18n="label_blindaje_frontal">Blindaje Frontal</span>
+                            <span class="text-slate-900 dark:text-white font-medium text-right"
+                                data-i18n="tank_{{TNK}}_spec_armor_front">--</span>
+                        </div>
+                        <div
+                            class="p-4 flex justify-between items-center border-l-0 md:border-l border-slate-200 dark:border-slate-700 hover:bg-white/50 dark:hover:bg-white/5 transition-colors group">
+                            <span class="text-slate-500 dark:text-slate-400 group-hover:text-primary transition-colors"
+                                data-i18n="label_blindaje_lateral">Blindaje Lateral</span>
+                            <span class="text-slate-900 dark:text-white font-medium text-right"
+                                data-i18n="tank_{{TNK}}_spec_armor_side">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar (Right) -->
+        <div class="lg:col-span-4 flex flex-col gap-6">
+
+            <!-- Did you know? -->
+            <div
+                class="bg-gradient-to-br from-blue-50 to-white dark:from-primary/30 dark:via-slate-800 dark:to-slate-900 border border-blue-200 dark:border-primary/50 rounded-xl p-6 relative overflow-hidden shadow-lg shadow-blue-500/5">
+                <div class="absolute -right-4 -top-4 text-primary/10 rotate-12">
+                    <span class="material-symbols-outlined text-[140px]">lightbulb</span>
+                </div>
+                <h3
+                    class="text-primary dark:text-blue-200 font-bold text-lg mb-3 relative z-10 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary dark:text-[#335CC0]">info</span>
+                    <span data-i18n="sabias_que_titulo">¿Sabías Qué?</span>
+                </h3>
+                <p class="text-slate-700 dark:text-gray-100 relative z-10 text-sm leading-relaxed"
+                    data-i18n="sabias_que_{{TNK_SHORT}}">
+                    --
+                </p>
+            </div>
+
+            <!-- Armor Profile -->
+            <div
+                class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 flex flex-col gap-4 shadow-lg">
+                <h3 class="text-slate-900 dark:text-white font-bold mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-slate-400">shield</span>
+                    <span data-i18n="perfil_blindaje_titulo">Perfil de Blindaje</span>
+                </h3>
+                <div
+                    class="relative w-full aspect-video bg-slate-100 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-white/10 flex items-center justify-center overflow-hidden shadow-inner">
+                    <div
+                        class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-transparent">
+                    </div>
+                    <img class="object-contain h-full w-full opacity-70 mix-blend-multiply dark:mix-blend-overlay grayscale invert dark:invert-0"
+                        alt="Blueprint" src="##BLUEPRINT_URL##" />
+                    <div
+                        class="absolute bottom-2 right-2 px-2 py-1 bg-black/80 rounded text-xs text-white dark:text-[#335CC0] font-mono border border-primary/20">
+                        SCHEMATIC_V1.02</div>
+                </div>
+                <div
+                    class="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-mono bg-slate-100 dark:bg-black/20 p-2 rounded">
+                    <span>FRONT: <span class="text-slate-900 dark:text-white"
+                            data-i18n="tank_{{TNK}}_armor_val_f">--</span></span>
+                    <span>SIDE: <span class="text-slate-900 dark:text-white"
+                            data-i18n="tank_{{TNK}}_armor_val_s">--</span></span>
+                    <span>REAR: <span class="text-slate-900 dark:text-white"
+                            data-i18n="tank_{{TNK}}_armor_val_r">--</span></span>
+                </div>
+            </div>
+
+            <!-- Related Variants -->
+            <div
+                class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-6 shadow-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-slate-900 dark:text-white font-bold" data-i18n="variantes_relacionadas_titulo">
+                        Variantes
+                        Relacionadas</h3>
+                    <a class="text-primary dark:text-[#335CC0] text-xs font-bold hover:underline transition-colors"
+                        href="#" data-i18n="ver_todas_btn">VER TODAS</a>
+                </div>
+                <div class="flex flex-col gap-4" id="variants-container">
+                    <p class="text-slate-400 dark:text-slate-500 text-xs italic">Cargando variantes...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multimedia Gallery -->
+    <div class="mt-12 mb-8">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-8 bg-gradient-to-b from-primary to-blue-900 dark:to-slate-900 rounded-sm"></span>
+                <span data-i18n="galeria_multimedia_titulo">Galería Multimedia</span>
+            </h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="gallery-container">
+            <!-- Placeholder para galería -->
+            <div class="h-40 bg-slate-200 dark:bg-slate-800/50 rounded-xl animate-pulse"></div>
+            <div class="h-40 bg-slate-200 dark:bg-slate-800/50 rounded-xl animate-pulse"></div>
+            <div class="h-40 bg-slate-200 dark:bg-slate-800/50 rounded-xl animate-pulse"></div>
+        </div>
+    </div>
+
+    <!-- 3D Model Modal -->
+    <div id="modal-3d" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 md:p-10">
+        <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-xl" onclick="close3DModal()"></div>
+        <div
+            class="relative w-full max-w-6xl aspect-video bg-slate-900 rounded-2xl border border-white/10 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col">
+            <!-- Header -->
+            <div class="flex items-center justify-between p-4 border-b border-white/5 bg-slate-800/50">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">3d_rotation</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold uppercase tracking-wider" data-i18n="tank_{{TNK}}_name">NOMBRE
+                            TANQUE</h3>
+                        <p class="text-slate-400 text-[10px] uppercase tracking-[0.2em]">3D Interactive Viewer</p>
+                    </div>
+                </div>
+                <button onclick="close3DModal()"
+                    class="w-10 h-10 rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-500 text-white transition-all flex items-center justify-center">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Viewer Container -->
+            <div class="flex-grow relative bg-[#05080f]">
+                <!-- Cargador -->
+                <div id="loader-3d"
+                    class="absolute inset-0 flex flex-col items-center justify-center z-10 bg-slate-950">
+                    <div class="w-16 h-16 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4">
+                    </div>
+                    <p class="text-primary font-mono text-sm animate-pulse uppercase tracking-widest">Iniciando sistemas
+                        3D...</p>
+                </div>
+
+                <!-- Iframe Placeholder (Se llenará mediante JS) -->
+                <div id="iframe-container-3d" class="w-full h-full"></div>
+
+                <!-- Controls Overlay -->
+                <div class="absolute bottom-6 left-6 flex flex-col gap-2 pointer-events-none opacity-50">
+                    <div
+                        class="flex items-center gap-3 text-white/70 text-xs font-mono bg-black/40 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-sm">mouse</span> Left Click: Rotate
+                    </div>
+                    <div
+                        class="flex items-center gap-3 text-white/70 text-xs font-mono bg-black/40 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-sm">ads_click</span> Right Click: Pan
+                    </div>
+                    <div
+                        class="flex items-center gap-3 text-white/70 text-xs font-mono bg-black/40 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-sm">zoom_in</span> Scroll: Zoom
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

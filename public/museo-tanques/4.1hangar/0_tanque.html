@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tiger I | Detalle - MUSEO DE TANQUES</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Estilos específicos del proyecto -->
+    <script src="../../js/config.js"></script>
+    <link href="../../css/main.css?v=1.1" rel="stylesheet" />
+
+    <!-- Scripts de Funcionalidad -->
+    <script defer src="../../js/i18n.js?v=1.1"></script>
+    <script defer src="../../js/main.js?v=1.1"></script>
+    <script defer src="../../js/components-loader.js"></script>
+
+    <!-- Supabase integration -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../../js/supabase/client.js"></script>
+    <script src="../../js/supabase/auth.js"></script>
+    <script src="../../js/supabase/stats.js"></script>
+    <script src="../../js/supabase/ui-bridge.js"></script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
+    data-root="../../">
+
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <div data-include="tanques/sidebar"></div>
+    <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
+    <div data-include="tanques/topbar"></div>
+
+    <!-- SISTEMA DE AUDIO -->
+    <audio id="bg-music" loop src="../../recursos/audio/background-military.mp3"></audio>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow pt-[100px] md:pt-[60px] px-6" id="main-detail-tank" data-tank-id="tiger"
+        data-tank-short="tiger"
+        data-tank-img="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ2RSwEOvaSzJx3w8KGB4ZRMErexxfT1s_0JAeN-hrxdj-E86JpPbFto2kxTyBym5z6NG-jt04eQQYUh_5RP4VgPcu-AkGQ62cVA_JvpLAp9Q_7Ip-15EmBpMnzCImsaNHjiwUYOg5X4lNROKSNUGpettwbImchAv_LPtND5XSmZeBEWOE0bDaUon1TnY9Y-xFTNt_9a_4qex7blEKK4ZxknXG2zjH7jNb2gomDOjn2nApcfIW6tzfYkkHIcaSuybyk3YZqbMJdb4n"
+        data-tank-blueprint="https://lh3.googleusercontent.com/aida-public/AB6AXuBJIBOXPUpgAD7zei5-axrGQt2nAvL2eRgZTszWp0Ceue3gU60lKJWl2Vf1hHtqV3ckBEZsEl_jfPQVGk4xZTmIm0M9iuEENqTaoOe_ChKCcVDELh_QHDLW-9mYhDU7U53Wy2b1w1on2phTt1qlEzIAqOUPQcGG1Nd5lFg6xoEm_G2uL7QbZHT8R4lMRhZ_OivSnl5M8m2Lj2-5yAztFprnaW_p2RU92BmXSiHOPruak8kI6WW5DqUjqFrARBewHm_AtdUms_EQ5gOS">
+
+        <!-- El cuerpo se carga dinámicamente desde el componente local -->
+        <div data-include="../museo-tanques/4.1hangar/componentes/ficha_tanque"></div>
+
+    </main>
+
+    <!-- FOOTER CARGADO DINÁMICAMENTE -->
+    <div data-include="tanques/footer"></div>
+
+    <!-- SCRIPT DE MANEJO DE PLANTILLA -->
+    <script>
+        window.addEventListener('componentsReady', () => {
+            const main = document.getElementById('main-detail-tank');
+            if (!main) return;
+
+            const tankId = main.getAttribute('data-tank-id');
+            const tankShort = main.getAttribute('data-tank-short');
+            const tankImg = main.getAttribute('data-tank-img');
+            const tankBlueprint = main.getAttribute('data-tank-blueprint');
+
+            // Buscamos el wrapper inyectado
+            const wrapper = main.querySelector('#tank-content-wrapper');
+            if (wrapper) {
+                let html = wrapper.innerHTML;
+
+                // Reemplazamos los placeholders por los datos del tanque actual
+                html = html.replace(/{{TNK}}/g, tankId);
+                html = html.replace(/{{TNK_SHORT}}/g, tankShort);
+                html = html.replace(/##IMAGE_URL##/g, tankImg);
+                html = html.replace(/##BLUEPRINT_URL##/g, tankBlueprint);
+
+                wrapper.innerHTML = html;
+
+                // Forzamos actualización de traducciones para el contenido inyectado
+                if (window.i18n) {
+                    window.i18n.updateUI();
+                }
+
+                // Sincronizamos estadísticas si el manager existe
+                setTimeout(() => {
+                    if (window.StatsManager) {
+                        window.StatsManager.updateUI();
+                    }
+                }, 100);
+            }
+        });
+
+        // FUNCIONES PARA EL MODELO 3D
+        function open3DModal() {
+            const modal = document.getElementById('modal-3d');
+            const loader = document.getElementById('loader-3d');
+            const container = document.getElementById('iframe-container-3d');
+
+            if (!modal || !container) return;
+
+            // Mostramos el modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Bloquear scroll
+
+            // Simulamos carga del modelo (o inyectamos el iframe real si tuvieras la URL)
+            // Aquí podrías usar una URL dinámica si la tuvieras en data-tank-3d-url
+            container.innerHTML = `
+                <iframe 
+                    src="https://sketchfab.com/models/ba401dfd54ba461895a6ad9588960892/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0&ui_hint=2" 
+                    class="w-full h-full border-0"
+                    allow="autoplay; fullscreen; xr-spatial-tracking"
+                ></iframe>
+            `;
+
+            const iframe = container.querySelector('iframe');
+            iframe.onload = () => {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.classList.add('hidden'), 500);
+                }, 1000);
+            };
+        }
+
+        function close3DModal() {
+            const modal = document.getElementById('modal-3d');
+            const container = document.getElementById('iframe-container-3d');
+            const loader = document.getElementById('loader-3d');
+
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = ''; // Restaurar scroll
+
+                // Limpiar iframe para detener audio/recursos
+                if (container) container.innerHTML = '';
+                if (loader) {
+                    loader.classList.remove('hidden');
+                    loader.style.opacity = '1';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
