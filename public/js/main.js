@@ -397,3 +397,161 @@ window.toggleMenu = function (sidebarId, overlayId) {
     }
 };
 
+
+// 3D Modal Controller Logic
+window.open3DModal = function (btn) {
+    const modal = document.getElementById('modal-3d');
+    const content = document.getElementById('modal-3d-content');
+    const container = document.getElementById('iframe-container-3d');
+    const loader = document.getElementById('loader-3d');
+    const main = document.getElementById('main-detail-tank');
+
+    if (!modal || !content || !container || !main) {
+        console.warn("[3D Modal] Modal elements or tank data not found.");
+        return;
+    }
+
+    // Set transform-origin based on button position
+    if (btn) {
+        const rect = btn.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        content.style.transformOrigin = `${centerX}px ${centerY}px`;
+    } else {
+        content.style.transformOrigin = 'center center';
+    }
+
+    // Clean up to prevent duplicates
+    container.innerHTML = '';
+    if (loader) {
+        loader.classList.remove('hidden');
+        loader.style.opacity = '1';
+    }
+
+    // Get tank data from attributes
+    const modelUrl = main.getAttribute('data-tank-model');
+    const tankId = main.getAttribute('data-tank-id') || 'tank';
+
+    // Update modal name if translation exists
+    const modalName = modal.querySelector('[data-i18n^="tank_"]');
+    if (modalName) {
+        modalName.setAttribute('data-i18n', `tank_${tankId}_name`);
+        if (window.i18n) window.i18n.updateUI();
+    }
+
+    // Show modal with animation
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
+    // Force reflow
+    void modal.offsetWidth;
+
+    // Trigger animation
+    modal.classList.add('opacity-100');
+    content.classList.remove('scale-50', 'opacity-0');
+    content.classList.add('scale-100', 'opacity-100');
+
+    // Load content
+    if (modelUrl && (modelUrl.includes('.glb') || modelUrl.includes('.gltf'))) {
+        // USE MODEL-VIEWER (LOCAL)
+        if (!window.modelViewerLoaded) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js';
+            document.head.appendChild(script);
+            window.modelViewerLoaded = true;
+        }
+
+        const mv = document.createElement('model-viewer');
+        mv.id = 'active-model-viewer';
+        mv.src = modelUrl;
+        mv.alt = `3D Model of ${tankId}`;
+        mv.autoRotate = true;
+        mv.cameraControls = true;
+        mv.ar = true;
+        mv.arModes = "webxr scene-viewer quick-look";
+        mv.style.width = '100%';
+        mv.style.height = '100%';
+        mv.style.backgroundColor = 'transparent';
+
+        mv.addEventListener('load', () => {
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.classList.add('hidden'), 500);
+            }
+        });
+
+        container.appendChild(mv);
+    } else {
+        // USE IFRAME (SKETCHFAB OR SIMILAR)
+        const finalUrl = modelUrl || 'https://sketchfab.com/models/ba401dfd54ba461895a6ad9588960892/embed?autostart=1';
+        container.innerHTML = `<iframe src="${finalUrl}" class="w-full h-full border-0" allow="autoplay; fullscreen"></iframe>`;
+
+        const iframe = container.querySelector('iframe');
+        iframe.onload = () => {
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.classList.add('hidden'), 500);
+            }
+        };
+    }
+};
+
+window.close3DModal = function () {
+    const modal = document.getElementById('modal-3d');
+    const content = document.getElementById('modal-3d-content');
+    const container = document.getElementById('iframe-container-3d');
+
+    if (modal && content) {
+        // Start closing animation
+        modal.classList.remove('opacity-100');
+        content.classList.remove('scale-100', 'opacity-100');
+        content.classList.add('scale-50', 'opacity-0');
+
+        // Wait for animation to finish
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+            if (container) container.innerHTML = '';
+        }, 500); // Must match transition duration in CSS (duration-500)
+    }
+};
+
+window.activateAR = function () {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        const mv = document.getElementById('active-model-viewer');
+        if (mv && mv.activateAR) {
+            mv.activateAR();
+        } else {
+            console.warn("[3D Modal] model-viewer with AR not found or not initialized.");
+        }
+    } else {
+        // Show PC warning toast
+        const warningToast = document.getElementById('ar-pc-warning');
+        if (warningToast) {
+            warningToast.classList.remove('hidden');
+            warningToast.classList.add('flex');
+
+            setTimeout(() => {
+                warningToast.classList.remove('opacity-0');
+                warningToast.classList.add('opacity-100');
+            }, 10);
+
+            // Auto hide
+            setTimeout(() => {
+                warningToast.classList.remove('opacity-100');
+                warningToast.classList.add('opacity-0');
+                setTimeout(() => {
+                    warningToast.classList.add('hidden');
+                    warningToast.classList.remove('flex');
+                }, 300);
+            }, 5000);
+        }
+    }
+};
+
+

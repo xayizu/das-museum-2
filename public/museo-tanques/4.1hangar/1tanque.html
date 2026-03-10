@@ -19,13 +19,13 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
     <!-- Estilos específicos del proyecto -->
-    <script src="../../js/config.js?v=1.2"></script>
-    <link href="../../css/main.css?v=1.2" rel="stylesheet" />
+    <script src="../../js/config.js?v=DateRef300"></script>
+    <link href="../../css/main.css?v=DateRef300" rel="stylesheet" />
 
     <!-- Scripts de Funcionalidad -->
-    <script defer src="../../js/i18n.js?v=1.2"></script>
-    <script defer src="../../js/main.js?v=1.2"></script>
-    <script defer src="../../js/components-loader.js?v=1.2"></script>
+    <script defer src="../../js/i18n.js?v=DateRef300"></script>
+    <script defer src="../../js/main.js?v=DateRef300"></script>
+    <script defer src="../../js/components-loader.js?v=DateRef300"></script>
 
     <!-- Supabase integration -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -33,6 +33,8 @@
     <script src="../../js/supabase/auth.js"></script>
     <script src="../../js/supabase/stats.js"></script>
     <script src="../../js/supabase/ui-bridge.js"></script>
+
+
 </head>
 
 <body
@@ -51,7 +53,8 @@
     <main class="flex-grow pt-[100px] md:pt-[60px] px-6" id="main-detail-tank" data-tank-id="tiger"
         data-tank-short="tiger"
         data-tank-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDycvCN_xk02slBSUPdP2A8UENjW5cA_2kJh5SoADoDMSrilYcsKqwmT1HxhRljqthjG_33hzGa02fKecf8Xs0CPgv6jZqz7An89dHz4yrAEW251xppb1GhYu86CT_66sr-UZ4nDBNN7Z1GfsfV_yWjsxBDHfrusAilSD_vCPWb-EFmZ1To-XGJ56fDLybtzTXBbxRdlQy35hTHzN3oZFLUQMUCR-qdwKss7QSzDAYX0JGstP5P6w_NwuZJPLEFPgdEJGiGIl5zEtLM"
-        data-tank-blueprint="https://images.unsplash.com/photo-1599252041753-3932880017fd?q=80&w=2000&auto=format&fit=crop">
+        data-tank-blueprint="https://images.unsplash.com/photo-1599252041753-3932880017fd?q=80&w=2000&auto=format&fit=crop"
+        data-tank-model="../../recursos/3d-objects/museo-tanques/1_tanque/atlantic_explorer_submarineglb.glb">
 
         <!-- El cuerpo se carga dinámicamente desde el componente local -->
         <div data-include="../museo-tanques/4.1hangar/componentes/ficha_tanque"></div>
@@ -71,6 +74,7 @@
             const tankShort = main.getAttribute('data-tank-short');
             const tankImg = main.getAttribute('data-tank-img');
             const tankBlueprint = main.getAttribute('data-tank-blueprint');
+            const tankModel = main.getAttribute('data-tank-model');
 
             // Buscamos el wrapper inyectado
             const wrapper = main.querySelector('#tank-content-wrapper');
@@ -82,6 +86,7 @@
                 html = html.replace(/{{TNK_SHORT}}/g, tankShort);
                 html = html.replace(/##IMAGE_URL##/g, tankImg);
                 html = html.replace(/##BLUEPRINT_URL##/g, tankBlueprint);
+                html = html.replace(/##MODEL_URL##/g, tankModel);
 
                 wrapper.innerHTML = html;
 
@@ -98,6 +103,9 @@
                 }, 100);
             }
         });
+
+        // Las funciones para el modelo 3D y AR ahora se gestionan en el componente modal_3d.html
+
     </script>
 </body>
 

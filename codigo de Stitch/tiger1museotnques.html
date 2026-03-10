@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Detalles de Tanque - Museo de Tanques</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0032A0", // Pantone 286 C
+                        "primary-hover": "#002880",
+                        "primary-light": "#335CC0",
+                        "background-light": "#f1f5f9",
+                        "background-dark": "#0f172a", // Slate 900
+                        "surface-dark": "#1e293b", // Slate 800
+                        "text-secondary": "#94a3b8", // Slate 400
+                        "border-color": "#334155" // Slate 700
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body
+    class="bg-background-light dark:bg-[#0b101a] font-display text-white antialiased selection:bg-primary selection:text-white overflow-x-hidden">
+    <div class="relative flex min-h-screen w-full flex-col">
+        <div class="fixed inset-0 bg-gradient-to-b from-slate-900 via-[#0b101a] to-black -z-10 pointer-events-none">
+        </div>
+        <div
+            class="w-full border-b border-white/10 bg-slate-900/90 backdrop-blur sticky top-0 z-50 shadow-lg shadow-black/20">
+            <div class="px-4 md:px-10 py-3 max-w-7xl mx-auto w-full">
+                <header class="flex items-center justify-between whitespace-nowrap">
+                    <div class="flex items-center gap-4 lg:gap-8">
+                        <div class="flex items-center gap-3 text-white">
+                            <div class="size-8 text-primary">
+                                <svg class="w-full h-full drop-shadow-[0_0_8px_rgba(0,50,160,0.6)]" fill="none"
+                                    viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] hidden sm:block">
+                                Tank Museum</h2>
+                        </div>
+                        <nav class="hidden lg:flex items-center gap-6 xl:gap-9">
+                            <a class="text-gray-300 text-sm font-medium hover:text-primary-light transition-colors"
+                                href="#">Galería</a>
+                            <a class="text-gray-300 text-sm font-medium hover:text-primary-light transition-colors"
+                                href="#">Exhibiciones</a>
+                            <a class="text-gray-300 text-sm font-medium hover:text-primary-light transition-colors"
+                                href="#">Visita</a>
+                            <a class="text-gray-300 text-sm font-medium hover:text-primary-light transition-colors"
+                                href="#">Tienda</a>
+                            <a class="text-gray-300 text-sm font-medium hover:text-primary-light transition-colors"
+                                href="#">Apóyanos</a>
+                        </nav>
+                    </div>
+                    <div class="flex items-center gap-4 md:gap-8">
+                        <div
+                            class="hidden md:flex w-full max-w-[240px] items-stretch rounded-lg h-10 bg-slate-800/50 border border-border-color overflow-hidden group focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+                            <div
+                                class="text-gray-400 group-focus-within:text-primary flex items-center justify-center pl-3 transition-colors">
+                                <span class="material-symbols-outlined text-[20px]">search</span>
+                            </div>
+                            <input
+                                class="w-full bg-transparent border-none text-white placeholder:text-gray-500 px-3 text-sm focus:ring-0"
+                                placeholder="Buscar tanque..." />
+                        </div>
+                        <button
+                            class="flex items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-gradient-to-b from-primary to-primary-hover hover:from-primary-light hover:to-primary border-t border-white/10 shadow-lg shadow-primary/20 transition-all text-white text-sm font-bold leading-normal tracking-[0.015em]">
+                            <span class="truncate">Entradas</span>
+                        </button>
+                    </div>
+                </header>
+            </div>
+        </div>
+        <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-6">
+            <div class="flex flex-wrap gap-2 pb-6 px-1">
+                <a class="text-text-secondary hover:text-primary-light text-sm font-medium leading-normal transition-colors"
+                    href="#">Inicio</a>
+                <span class="text-text-secondary text-sm font-medium leading-normal">/</span>
+                <a class="text-text-secondary hover:text-primary-light text-sm font-medium leading-normal transition-colors"
+                    href="#">Galería</a>
+                <span class="text-text-secondary text-sm font-medium leading-normal">/</span>
+                <span class="text-white text-sm font-medium leading-normal">Tiger I</span>
+            </div>
+            <div class="relative w-full rounded-2xl overflow-hidden mb-8 group border border-white/5 shadow-2xl">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0b101a] via-[#0b101a]/40 to-transparent z-10">
+                </div>
+                <div class="min-h-[500px] w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    data-alt="German Tiger I tank in a field during sunset with dramatic lighting"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBQ2RSwEOvaSzJx3w8KGB4ZRMErexxfT1s_0JAeN-hrxdj-E86JpPbFto2kxTyBym5z6NG-jt04eQQYUh_5RP4VgPcu-AkGQ62cVA_JvpLAp9Q_7Ip-15EmBpMnzCImsaNHjiwUYOg5X4lNROKSNUGpettwbImchAv_LPtND5XSmZeBEWOE0bDaUon1TnY9Y-xFTNt_9a_4qex7blEKK4ZxknXG2zjH7jNb2gomDOjn2nApcfIW6tzfYkkHIcaSuybyk3YZqbMJdb4n");'>
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-full z-20 p-6 md:p-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="flex flex-col gap-2 max-w-2xl">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span
+                                class="px-3 py-1 bg-primary/20 text-blue-200 text-xs font-bold uppercase tracking-wider rounded border border-primary/40 shadow-[0_0_15px_rgba(0,50,160,0.3)] backdrop-blur-sm">Tanque
+                                Pesado</span>
+                            <span
+                                class="flex items-center gap-1 text-white/90 text-xs font-medium uppercase tracking-wider bg-black/30 px-2 py-1 rounded backdrop-blur-sm">
+                                <span class="material-symbols-outlined text-[16px]">flag</span> Alemania, 1942
+                            </span>
+                        </div>
+                        <h1
+                            class="text-white text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em] uppercase drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
+                            Tiger I
+                        </h1>
+                        <p class="text-gray-200 text-lg md:text-xl max-w-xl font-normal drop-shadow-md">
+                            El legendario Panzerkampfwagen VI, conocido por su blindaje impenetrable y su temible cañón
+                            de 88mm.
+                        </p>
+                    </div>
+                    <button
+                        class="flex items-center gap-2 bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary text-white font-bold py-3 px-6 rounded-lg transition-all shadow-[0_0_20px_rgba(0,50,160,0.4)] hover:shadow-[0_0_30px_rgba(0,50,160,0.6)] border border-white/10">
+                        <span class="material-symbols-outlined">360</span>
+                        <span>Ver Modelo 360°</span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-8 flex flex-col gap-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div
+                            class="bg-gradient-to-br from-slate-800 to-slate-900 border border-border-color p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-lg hover:shadow-primary/10">
+                            <div class="text-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-3xl">weight</span>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold">Peso Combate</p>
+                                <p class="text-white text-2xl font-bold">54 Tons</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gradient-to-br from-slate-800 to-slate-900 border border-border-color p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-lg hover:shadow-primary/10">
+                            <div class="text-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-3xl">speed</span>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold">Velocidad</p>
+                                <p class="text-white text-2xl font-bold">45 km/h</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gradient-to-br from-slate-800 to-slate-900 border border-border-color p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-lg hover:shadow-primary/10">
+                            <div class="text-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-3xl">swords</span>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold">Armamento</p>
+                                <p class="text-white text-2xl font-bold">88mm KwK</p>
+                            </div>
+                        </div>
+                        <div
+                            class="bg-gradient-to-br from-slate-800 to-slate-900 border border-border-color p-5 rounded-xl flex flex-col gap-3 group hover:border-primary/60 transition-all shadow-lg hover:shadow-primary/10">
+                            <div class="text-primary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-3xl">groups</span>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-xs uppercase tracking-wider font-semibold">Tripulación</p>
+                                <p class="text-white text-2xl font-bold">5 Pers.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-surface-dark/80 backdrop-blur-sm border border-border-color rounded-xl p-6 md:p-8 relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-blue-500 to-transparent">
+                        </div>
+                        <div class="flex items-center gap-3 mb-6 border-b border-border-color pb-4">
+                            <span class="material-symbols-outlined text-primary">history_edu</span>
+                            <h2 class="text-2xl font-bold text-white">Historia y Desarrollo</h2>
+                        </div>
+                        <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-4">
+                            <p>
+                                El Tiger I fue la respuesta alemana a la inesperada resistencia blindada soviética
+                                encontrada durante los primeros meses de la Operación Barbarroja. Diseñado para dominar
+                                el campo de batalla, combinaba el formidable cañón de 88mm, que previamente había
+                                demostrado su eficacia como arma antiaérea y antitanque, con un blindaje frontal de
+                                100mm que lo hacía prácticamente invulnerable a la mayoría de los cañones aliados de la
+                                época.
+                            </p>
+                            <p>
+                                Su producción comenzó en agosto de 1942. A pesar de su temible reputación, el Tiger
+                                sufría de problemas mecánicos debido a que su motor y transmisión estaban sobrecargados
+                                por el inmenso peso del vehículo. Sin embargo, en manos de tripulaciones expertas como
+                                la de Michael Wittmann, se convirtió en una leyenda, capaz de destruir tanques enemigos
+                                a distancias donde estos no podían responder al fuego.
+                            </p>
+                            <h3 class="text-white font-bold text-lg mt-6 mb-2 flex items-center gap-2">
+                                <span class="w-1 h-6 bg-primary rounded-full"></span>
+                                Servicio en Conflictos
+                            </h3>
+                            <ul class="list-none pl-0 space-y-3 text-gray-300">
+                                <li
+                                    class="pl-4 border-l-2 border-primary/30 hover:border-primary transition-colors hover:bg-white/5 py-1 pr-2 rounded-r">
+                                    <strong class="text-white block">Norte de África (1942-1943)</strong>
+                                    <span class="text-sm">Despliegue inicial en Túnez, donde causó pánico entre las
+                                        fuerzas aliadas.</span>
+                                </li>
+                                <li
+                                    class="pl-4 border-l-2 border-primary/30 hover:border-primary transition-colors hover:bg-white/5 py-1 pr-2 rounded-r">
+                                    <strong class="text-white block">Frente Oriental (1943-1944)</strong>
+                                    <span class="text-sm">Batalla de Kursk, donde formó la punta de lanza de las
+                                        ofensivas blindadas.</span>
+                                </li>
+                                <li
+                                    class="pl-4 border-l-2 border-primary/30 hover:border-primary transition-colors hover:bg-white/5 py-1 pr-2 rounded-r">
+                                    <strong class="text-white block">Normandía (1944)</strong>
+                                    <span class="text-sm">Batallas defensivas en el bocage francés, destacando en el
+                                        enfrentamiento de Villers-Bocage.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-surface-dark border border-border-color rounded-xl overflow-hidden shadow-xl">
+                        <div class="p-5 border-b border-border-color bg-gradient-to-r from-primary to-primary-dark">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined">settings</span>
+                                Especificaciones Técnicas
+                            </h3>
+                        </div>
+                        <div class="divide-y divide-border-color bg-slate-900">
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div
+                                    class="p-4 flex justify-between items-center hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Motor</span>
+                                    <span class="text-white font-medium">Maybach HL230 P45 V-12</span>
+                                </div>
+                                <div
+                                    class="p-4 flex justify-between items-center border-l-0 md:border-l border-border-color hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Caballos
+                                        de Fuerza</span>
+                                    <span class="text-white font-medium">700 PS (690 hp)</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div
+                                    class="p-4 flex justify-between items-center hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Autonomía
+                                        (Carretera)</span>
+                                    <span class="text-white font-medium">195 km</span>
+                                </div>
+                                <div
+                                    class="p-4 flex justify-between items-center border-l-0 md:border-l border-border-color hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Autonomía
+                                        (Campo Traviesa)</span>
+                                    <span class="text-white font-medium">110 km</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div
+                                    class="p-4 flex justify-between items-center hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Blindaje
+                                        Frontal</span>
+                                    <span class="text-white font-medium">100 mm</span>
+                                </div>
+                                <div
+                                    class="p-4 flex justify-between items-center border-l-0 md:border-l border-border-color hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Blindaje
+                                        Lateral</span>
+                                    <span class="text-white font-medium">80 mm (Torreta)</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div
+                                    class="p-4 flex justify-between items-center hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Armamento
+                                        Secundario</span>
+                                    <span class="text-white font-medium">2 × 7.92 mm MG 34</span>
+                                </div>
+                                <div
+                                    class="p-4 flex justify-between items-center border-l-0 md:border-l border-border-color hover:bg-white/5 transition-colors group">
+                                    <span
+                                        class="text-text-secondary group-hover:text-blue-200 transition-colors">Producción
+                                        Total</span>
+                                    <span class="text-white font-medium">1,347 Unidades</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 flex flex-col gap-6">
+                    <div
+                        class="bg-gradient-to-br from-primary/30 via-slate-800 to-slate-900 border border-primary/50 rounded-xl p-6 relative overflow-hidden shadow-lg shadow-primary/5">
+                        <div class="absolute -right-4 -top-4 text-primary/20 rotate-12">
+                            <span class="material-symbols-outlined text-[140px]">lightbulb</span>
+                        </div>
+                        <h3 class="text-blue-200 font-bold text-lg mb-3 relative z-10 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary-light">info</span>
+                            ¿Sabías Qué?
+                        </h3>
+                        <p class="text-gray-100 relative z-10 text-sm leading-relaxed">
+                            Un solo Tiger I costaba más de 250,000 Reichsmarks para producir. Por el mismo costo, la
+                            industria alemana podía fabricar casi dos tanques Panther, o cuatro cañones de asalto StuG
+                            III, que eran más fiables mecánicamente.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-surface-dark border border-border-color rounded-xl p-6 flex flex-col gap-4 shadow-lg">
+                        <h3 class="text-white font-bold mb-2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gray-400">shield</span>
+                            Perfil de Blindaje
+                        </h3>
+                        <div
+                            class="relative w-full aspect-video bg-slate-950 rounded-lg border border-white/10 flex items-center justify-center overflow-hidden shadow-inner">
+                            <div
+                                class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary to-transparent">
+                            </div>
+                            <img class="object-contain h-full w-full opacity-70 mix-blend-overlay grayscale invert"
+                                data-alt="Blueprint schematic drawing of a tank's side profile"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJIBOXPUpgAD7zei5-axrGQt2nAvL2eRgZTszWp0Ceue3gU60lKJWl2Vf1hHtqV3ckBEZsEl_jfPQVGk4xZTmIm0M9iuEENqTaoOe_ChKCcVDELh_QHDLW-9mYhDU7U53Wy2b1w1on2phTt1qlEzIAqOUPQcGG1Nd5lFg6xoEm_G2uL7QbZHT8R4lMRhZ_OivSnl5M8m2Lj2-5yAztFprnaW_p2RU92BmXSiHOPruak8kI6WW5DqUjqFrARBewHm_AtdUms_EQ5gOS" />
+                            <div
+                                class="absolute bottom-2 right-2 px-2 py-1 bg-black/80 rounded text-xs text-primary-light font-mono border border-primary/20">
+                                SCHEMATIC_V1.02</div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400 font-mono bg-black/20 p-2 rounded">
+                            <span>FRONT: <span class="text-white">100mm</span></span>
+                            <span>SIDE: <span class="text-white">80mm</span></span>
+                            <span>REAR: <span class="text-white">80mm</span></span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-dark border border-border-color rounded-xl p-6 shadow-lg">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-white font-bold">Variantes Relacionadas</h3>
+                            <a class="text-primary-light text-xs font-bold hover:text-white hover:underline transition-colors"
+                                href="#">VER TODAS</a>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <a class="flex gap-4 items-center group hover:bg-gradient-to-r hover:from-primary/10 hover:to-transparent p-2 rounded-lg transition-all -mx-2 border border-transparent hover:border-primary/20"
+                                href="#">
+                                <div class="w-16 h-12 rounded bg-gray-800 bg-cover bg-center shrink-0 border border-border-color group-hover:border-primary transition-colors shadow-sm"
+                                    data-alt="Tiger II tank side view"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjpBRLyKSxLz4vHUMJm6oUVY7wyauWtFe0_YxihwvBP1o8WJFCEYzCeW6bs9Xiiz7Q2rWawvfzicGiFlsm9jcPkQVxb16MHYk8B_AEMND_AqaKNaQTssIy9hsJrL8Kj2ZVeEYsscjmRUBusELsAIMtWi3uEY1C0aMCUljc8-m5j7zEgT05QW06f8PXuviLek6mDpMFYXBWl8whP_BtVKjyznlWKruA7Znjq6VxtF7SpUbEFwLyRl6b1jD3VYbdA4BnlXv0cbktEcV4");'>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-white text-sm font-bold group-hover:text-primary-light transition-colors">
+                                        Tiger II</h4>
+                                    <p class="text-gray-400 text-xs">Königstiger</p>
+                                </div>
+                            </a>
+                            <a class="flex gap-4 items-center group hover:bg-gradient-to-r hover:from-primary/10 hover:to-transparent p-2 rounded-lg transition-all -mx-2 border border-transparent hover:border-primary/20"
+                                href="#">
+                                <div class="w-16 h-12 rounded bg-gray-800 bg-cover bg-center shrink-0 border border-border-color group-hover:border-primary transition-colors shadow-sm"
+                                    data-alt="Panther tank in museum display"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDm5d_96bw6f0diz7c2l_NUNMXILZX3NSxIsYIffEYWiKrNQdwy8GQXmzyPvW_cx6Z5I2wXDjXCQpaHRooJIlCL-YmOKV47tIURPsmFRalqXbih1NqzHCaWjBWvNyENrv2irHhFyhGZbhohnaHVgiN4zfngl31a47DEtG8II2uHuGQhe6DbijPKQCbbx3p9MWem3jYYdvSZHIoEzBu5JTYDL3N28wpEIGcvNOJ31hXt9JzaZII9kJUFUyTEMFdpTDB4fyqNFoOsTFel");'>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-white text-sm font-bold group-hover:text-primary-light transition-colors">
+                                        Panther</h4>
+                                    <p class="text-gray-400 text-xs">Panzer V</p>
+                                </div>
+                            </a>
+                            <a class="flex gap-4 items-center group hover:bg-gradient-to-r hover:from-primary/10 hover:to-transparent p-2 rounded-lg transition-all -mx-2 border border-transparent hover:border-primary/20"
+                                href="#">
+                                <div class="w-16 h-12 rounded bg-gray-800 bg-cover bg-center shrink-0 border border-border-color group-hover:border-primary transition-colors shadow-sm"
+                                    data-alt="Sturmtiger assault gun vehicle"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9S4SpttmUh3PvSX88O0Pw8UalOVNMNDbpg4U1OHi4UbjkuHW76zLe5pWHdPlgASiKb1vFoPDvkYzXt39WZwaR5I5LlbrOBafiayNsPYg5bYHqUw4Xrh7Bb9vhcD7NeIopQVOwYAmLMHj4cM2hkCOs4fGAMe5OjSnbP4MslyBzo5ZCauFILi_yW97V1AtiKXQaMS5a3DZ2VlhbadAr0AiPOPp4hTFhxAWTGIN4T--GRQmGHHdMHSXeTrog0Mv9lMjVZl_lr1ggVUkw");'>
+                                </div>
+                                <div>
+                                    <h4
+                                        class="text-white text-sm font-bold group-hover:text-primary-light transition-colors">
+                                        Sturmtiger</h4>
+                                    <p class="text-gray-400 text-xs">380mm Rocket</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <span class="w-2 h-8 bg-gradient-to-b from-primary to-primary-dark rounded-sm"></span>
+                        Galería Multimedia
+                    </h2>
+                    <div class="flex gap-2">
+                        <button
+                            class="size-10 rounded-full border border-border-color bg-surface-dark text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all shadow-lg">
+                            <span class="material-symbols-outlined">arrow_back</span>
+                        </button>
+                        <button
+                            class="size-10 rounded-full border border-border-color bg-surface-dark text-white flex items-center justify-center hover:bg-primary hover:border-primary hover:text-white transition-all shadow-lg">
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div
+                        class="aspect-[4/3] rounded-xl bg-gray-800 overflow-hidden relative group cursor-pointer border border-border-color hover:border-primary transition-colors shadow-lg">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            data-alt="Close up of tank treads and wheels covered in mud"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7FjE2zBubAU9PQqVSZBEHkoJHsatEFlKzDxdbR6eW8ztHbOojUl5VwCmEniHgsNh6TB6Yi7uo-BjQfT9o-32sc9Rl5n1MgzlNB8RkJhPRkKFS3QMkZbtpPyz_KVJ12D9pLVTi8pC-wOjJ8QsctVmhWbQe2s_5fFhXkTG5zpiAzLjIKDihl8r9oUKGk-0sz__8Y52b8cyQnH2eiThMACA-fiuW8pr0JKWSNi6VvV4XgfO-js4K7QWyLufkfzooABGbjQghDvJX8Yb7");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded text-xs text-white font-medium border-l-2 border-primary transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Detalle de Orugas
+                        </div>
+                    </div>
+                    <div
+                        class="aspect-[4/3] rounded-xl bg-gray-800 overflow-hidden relative group cursor-pointer border border-border-color hover:border-primary transition-colors shadow-lg">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            data-alt="Interior view of a tank cockpit with levers and dials"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoBv4bCvtbnXHIspV9O-9c9h7bpoe1xZSg5K4zbok_anHZmpDNIvETLTtVTIeKW5Z53Y9a0OF4ehoKekHLmGupMR8LhlzEt52vlf3S6HcfWKX9Eo4n2dFn6vJc14cTa3oCtX3q7k6oNRMDkXONbT6kYJ3BkJvB3zc6VGqEO29_FpPrkUYui2TKkFanbSDrpWNWCmVbTwZMe15xNcxZrmxQgXrfUkI7mAKNTaFo7E0-9SOEi7DbWBevN9_-nCVfUsNzdA8-vCLg6acy");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded text-xs text-white font-medium border-l-2 border-primary transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Vista Interior
+                        </div>
+                    </div>
+                    <div
+                        class="aspect-[4/3] rounded-xl bg-gray-800 overflow-hidden relative group cursor-pointer sm:col-span-2 md:col-span-1 border border-border-color hover:border-primary transition-colors shadow-lg">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                            data-alt="Rear view of tank showing engine exhaust and armor plating"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAftzujMK6FNB-gk5V9fLtJ0JDHKJHWtWQREfFRbqgEP8K7gnnLYeuEM7MZI1ZWgwN4L7jILmrcAITrgRTuYAJDaaGiE1mM7mgn8V2aGSA6uPcEHNc6jzcE7_SNGxzWhn2sbKRXOkEfYV7-_U2sQODwhbeTGrqfWWMN9ofjJmP-MZnTkYlvsAr5Y3ohBc_ZCtGYl4h8lr00MrkRnfEHRAIcEjK7e-pqdDLyfIpEc3Jz6NnINeINAozePA3TbxgiVTMbe_Ct-lQ2xtSZ");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded text-xs text-white font-medium border-l-2 border-primary transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Motor y Escape
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="border-t border-white/10 bg-slate-900 py-8 px-10 mt-auto relative z-10">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-2 text-gray-400">
+                    <div class="size-5 text-primary">
+                        <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm">© 2024 Tank Museum. Todos los derechos reservados.</span>
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Privacidad</a>
+                    <a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Términos</a>
+                    <a class="text-gray-400 hover:text-white text-sm transition-colors" href="#">Contacto</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+
+</html>
