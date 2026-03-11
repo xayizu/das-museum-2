@@ -6,6 +6,9 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>MUSEOS TAPI | Complejo Museístico de Tanques y Casa Histórica</title>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="recursos/images/index/favicon_pestaña.svg?v=1.1" />
+
+
 
     <!-- SEO Meta Tags -->
     <meta name="description"
@@ -777,6 +780,64 @@
         </div>
     </div>
     <!-- ======================================================================== -->
+    <!-- 5.2 MODAL DE NOTICIAS (News/Announcement Modal) -->
+    <!-- ======================================================================== -->
+    <div id="news-modal" onclick="if(event.target === this) closeNewsModal()" class="fixed inset-0 z-[250] hidden flex items-center justify-center p-4 md:p-6 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-500">
+        <div id="news-modal-content" class="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden transition-all duration-500 transform scale-90 opacity-0">
+            
+            <!-- Header (Premium Consistency) -->
+            <div class="flex items-center justify-between p-3 md:p-4 border-b border-slate-200 dark:border-white/5 bg-white dark:bg-slate-800/50 backdrop-blur-md">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary flex items-center justify-center text-white shadow-md shadow-primary/40">
+                        <span class="material-symbols-outlined text-[24px] md:text-[26px]">campaign</span>
+                    </div>
+                    <div>
+                        <h3 class="text-slate-900 dark:text-white font-black uppercase tracking-widest text-xs md:text-sm" data-i18n="anuncio_importante">Anuncio Importante</h3>
+                        <p class="text-[9px] md:text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest" data-i18n="actualizacion_museo">Noticias del Complejo</p>
+                    </div>
+                </div>
+                <button onclick="closeNewsModal()" class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center text-slate-900 dark:text-white hover:text-red-500 transition-colors group">
+                    <span class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:rotate-90 transition-transform">close</span>
+                </button>
+            </div>
+
+            <!-- Body (Future-proof for images) -->
+            <div class="flex-grow overflow-y-auto custom-scrollbar p-6 md:p-8 space-y-6">
+                <!-- Image Header (Premium Banner) -->
+                <div class="w-full h-48 md:h-64 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden mb-6 shadow-inner border border-slate-200 dark:border-white/5 group-banner">
+                    <img src="recursos/images/index/news_banner.png" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+                         alt="Museo en Construcción">
+                </div>
+                <div class="flex flex-col items-center text-center space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-2">
+                        <span class="material-symbols-outlined text-primary text-5xl">construction</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight" data-i18n="sitio_en_construccion">Sitio en Construcción</h2>
+                    <div class="h-1 w-20 bg-primary rounded-full"></div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed max-w-md" data-i18n="msg_construccion">
+                        Estamos trabajando arduamente en cada detalle para brindarte la mejor experiencia digital del Complejo Museístico. 
+                    </p>
+                    
+                    <div class="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-5 w-full mt-4">
+                        <span class="text-[10px] text-primary font-black uppercase tracking-[0.2em] mb-2 block" data-i18n="despliegue_estimado">Fecha Estimada de Despliegue</span>
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="material-symbols-outlined text-slate-400">event</span>
+                            <span class="text-xl md:text-2xl font-black text-slate-900 dark:text-white" data-i18n="fecha_final">23 DE ABRIL, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer (Premium Consistency) -->
+            <div class="p-4 bg-white dark:bg-slate-950/50 border-t border-slate-200 dark:border-white/5 flex justify-center">
+                <button onclick="closeNewsModal()" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all shadow-lg shadow-primary/20">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- ======================================================================== -->
     <!-- ======================================================================== -->
     <main class="flex-grow flex flex-col md:flex-row relative group/split min-h-[85vh] md:min-h-screen overflow-hidden"
         id="hero-main">
@@ -971,7 +1032,7 @@
                             <h3 class="dark:text-white text-slate-900 text-2xl font-black tracking-tight uppercase transition-colors"
                                 data-i18n="ases_del_blindaje">Ases del Blindaje</h3>
                             <p class="dark:text-gray-500 text-slate-600 text-sm font-medium transition-colors"
-                                data-i18n="lideres_t�cticos">Líderes estrat�gicos en combate de tanques</p>
+                                data-i18n="lideres_tácticos">Líderes estratégicos en combate de tanques</p>
                         </div>
                     </div>
 
@@ -1179,7 +1240,7 @@
         class="relative z-40 bg-white dark:bg-black/80 py-12 border-t border-slate-100 dark:border-white/10 transition-colors duration-500">
         <div class="max-w-[1400px] mx-auto px-6">
             <h4 class="text-center dark:text-white/40 text-gray-800 text-xs font-black uppercase tracking-[0.2em] mb-8 transition-colors"
-                data-i18n="aliados_estratgicos">Aliados
+                data-i18n="aliados_estratégicos">Aliados
                 Estratégicos</h4>
             <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12 text-center">
                 <!-- Sponsor 1 -->
@@ -1395,7 +1456,7 @@
                         </div>
                         <div class="flex flex-col">
                             <span class="text-white font-black text-[11px] uppercase tracking-widest leading-none"
-                                data-i18n="estadsticas_del_complejo">Estadísticas</span>
+                                data-i18n="estadísticas_del_complejo">Estadísticas</span>
                             <span class="text-[8px] text-gray-500 uppercase font-bold tracking-widest"
                                 data-i18n="registro_actualizado">En tiempo real</span>
                         </div>
@@ -1415,9 +1476,8 @@
                                     class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
                                     data-i18n="vehculos_y_armas">Blindados</span>
                                 <span
-                                    class="text-xl font-mono font-black text-white group-hover:text-primary transition-colors">
-                                    <span class="hidden md:inline" id="stat-vehicles-full">...</span>
-                                    <span class="md:hidden" id="stat-vehicles-short">...</span>
+                                    class="text-xl font-display font-black text-white group-hover:text-primary transition-colors">
+                                    <span id="stat-vehicles-full">...</span>
                                 </span>
                             </div>
                         </div>
@@ -1433,9 +1493,8 @@
                                     class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
                                     data-i18n="piezas_de_archivo">Archivo</span>
                                 <span
-                                    class="text-xl font-serif font-black text-white group-hover:text-accent-gold transition-colors">
-                                    <span class="hidden md:inline" id="stat-archives-full">...</span>
-                                    <span class="md:hidden" id="stat-archives-short">...</span>
+                                    class="text-xl font-display font-black text-white group-hover:text-accent-gold transition-colors">
+                                    <span id="stat-archives-full">...</span>
                                 </span>
                             </div>
                         </div>
@@ -1454,33 +1513,29 @@
                                     <div class="flex flex-col items-center">
                                         <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
                                             data-i18n="diario">Hoy</span>
-                                        <span class="text-sm font-mono font-bold text-white">
-                                            <span class="hidden md:inline" id="stat-visitors-daily-full">...</span>
-                                            <span class="md:hidden" id="stat-visitors-daily-short">...</span>
+                                        <span class="text-sm font-display font-bold text-white">
+                                            <span id="stat-visitors-daily-full">...</span>
                                         </span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
                                             data-i18n="semanal">Semana</span>
-                                        <span class="text-sm font-mono font-bold text-white">
-                                            <span class="hidden md:inline" id="stat-visitors-weekly-full">...</span>
-                                            <span class="md:hidden" id="stat-visitors-weekly-short">...</span>
+                                        <span class="text-sm font-display font-bold text-white">
+                                            <span id="stat-visitors-weekly-full">...</span>
                                         </span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
                                             data-i18n="mensual">Mes</span>
-                                        <span class="text-sm font-mono font-bold text-white">
-                                            <span class="hidden md:inline" id="stat-visitors-monthly-full">...</span>
-                                            <span class="md:hidden" id="stat-visitors-monthly-short">...</span>
+                                        <span class="text-sm font-display font-bold text-white">
+                                            <span id="stat-visitors-monthly-full">...</span>
                                         </span>
                                     </div>
                                     <div class="flex flex-col items-center">
                                         <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
                                             data-i18n="total">Total</span>
-                                        <span class="text-sm font-mono font-bold text-white">
-                                            <span class="hidden md:inline" id="stat-visitors-total-full">...</span>
-                                            <span class="md:hidden" id="stat-visitors-total-short">...</span>
+                                        <span class="text-sm font-display font-bold text-white">
+                                            <span id="stat-visitors-total-full">...</span>
                                         </span>
                                     </div>
                                 </div>
@@ -1660,6 +1715,55 @@
 
     <!-- 3. Bridge (Initialization) -->
     <script src="js/supabase/ui-bridge.js"></script>
+
+    <script>
+        /**
+         * NEWS MODAL LOGIC
+         */
+        function openNewsModal() {
+            const modal = document.getElementById('news-modal');
+            const content = document.getElementById('news-modal-content');
+            
+            if (!modal || !content) return;
+
+            // Prevent scroll on body
+            document.body.style.overflow = 'hidden';
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Small delay for transition
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-90', 'opacity-0');
+            }, 10);
+        }
+
+        function closeNewsModal() {
+            const modal = document.getElementById('news-modal');
+            const content = document.getElementById('news-modal-content');
+            
+            if (!modal || !content) return;
+
+            content.classList.add('scale-90', 'opacity-0');
+            modal.classList.add('opacity-0');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 500);
+        }
+
+        // Show news on load (only once or every time as requested)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if already shown in this session (optional)
+            // if (!sessionStorage.getItem('news_shown')) {
+                openNewsModal();
+            //     sessionStorage.setItem('news_shown', 'true');
+            // }
+        });
+    </script>
 </body>
 
 </html>

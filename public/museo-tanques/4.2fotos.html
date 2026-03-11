@@ -51,19 +51,411 @@
     <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
         <div class="max-w-[1200px] mx-auto py-12">
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="fotos">Fotos</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
-
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="fotos">Fotos</h2>
-                    <p class="text-gray-400">Galería fotográfica de nuestras piezas.</p>
+            <!-- HERO SECTION PREMIUM (Estilo Shutterstock) -->
+            <div class="relative overflow-hidden rounded-[2rem] bg-white dark:bg-[#050b18] p-8 md:p-16 mb-16 border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-2xl transition-all duration-500">
+                <!-- Luz de acento decorativa -->
+                <div class="absolute -top-24 -left-24 w-80 h-80 bg-primary/10 dark:bg-primary/20 rounded-full blur-[120px]"></div>
+                <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-[100px]"></div>
+                
+                <div class="relative z-10 max-w-3xl">
+                    <div class="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 text-primary dark:text-primary-light text-[10px] font-bold uppercase tracking-[0.2em]">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        Archivo Fotográfico
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-7xl font-black italic uppercase tracking-tighter text-slate-900 dark:text-white mb-6 leading-[0.85] drop-shadow-sm dark:drop-shadow-2xl" data-i18n="archivo_visual_tematico">
+                        ARCHIVO VISUAL<br/>TEMÁTICO
+                    </h1>
+                    <p class="text-slate-600 dark:text-gray-400 text-lg md:text-xl mb-0 leading-relaxed font-light max-w-xl" data-i18n="hero_fotos_desc">
+                        Explore nuestra colección exhaustiva de historia acorazada, desde los pioneers de la Primera Guerra Mundial hasta los modernos tanques de batalla principales.
+                    </p>
                 </div>
+
+                <!-- Imagen decorativa integrada sutilmente -->
+                <div class="absolute right-0 bottom-0 top-0 w-1/2 opacity-15 dark:opacity-25 pointer-events-none hidden lg:block overflow-hidden">
+                    <img src="../recursos/images/museo-tanques/galeria/tiger.png" 
+                        class="h-full w-full object-cover grayscale contrast-125 brightness-75 scale-110" 
+                        style="mask-image: radial-gradient(circle at center, black, transparent 80%);"
+                        alt="">
+                </div>
+            </div>
+
+            <!-- CUADRÍCULA DE FOTOS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Foto 1: Tiger -->
+                <div onclick="openGalleryModal('tiger')" class="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/20 transition-all duration-500">
+                    <img src="../recursos/images/museo-tanques/galeria/tiger.png" alt="Tiger I" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050b18] via-[#050b18]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="bg-primary text-[10px] font-bold px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-widest text-white shadow-lg">PREMIUM</span>
+                            <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Panzer VI Tiger I</h3>
+                            <div class="flex items-center gap-2 text-primary-light text-xs font-bold uppercase tracking-widest mb-4">
+                                <span>Alemania</span>
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                <span>1942</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="flex items-center gap-2 text-white/70 text-sm font-medium">
+                                    <span class="material-symbols-outlined text-lg">photo_library</span>
+                                    12 Fotos
+                                </span>
+                                <div class="h-4 w-px bg-white/20"></div>
+                                <span class="text-primary-light text-sm font-bold uppercase flex items-center gap-1 group/btn">
+                                    Ver Galería
+                                    <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foto 2: Sherman -->
+                <div onclick="openGalleryModal('sherman')" class="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/20 transition-all duration-500">
+                    <img src="../recursos/images/museo-tanques/galeria/sherman.png" alt="M4 Sherman" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050b18] via-[#050b18]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="bg-amber-500 text-[10px] font-bold px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-widest text-white shadow-lg">HISTÓRICO</span>
+                            <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">M4 Sherman</h3>
+                            <div class="flex items-center gap-2 text-primary-light text-xs font-bold uppercase tracking-widest mb-4">
+                                <span>EE.UU.</span>
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                <span>1944</span>
+                            </div>
+                            <span class="text-primary-light text-sm font-bold uppercase flex items-center gap-1">
+                                Ver Galería
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foto 3: T-34 -->
+                <div onclick="openGalleryModal('t34')" class="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/20 transition-all duration-500">
+                    <img src="../recursos/images/museo-tanques/galeria/t34.png" alt="T-34-85" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050b18] via-[#050b18]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="bg-red-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-widest text-white shadow-lg">RELIQUIA</span>
+                            <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">T-34-85</h3>
+                            <div class="flex items-center gap-2 text-primary-light text-xs font-bold uppercase tracking-widest mb-4">
+                                <span>Unión Soviética</span>
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                <span>1944</span>
+                            </div>
+                            <span class="text-primary-light text-sm font-bold uppercase flex items-center gap-1">
+                                Ver Galería
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foto 4: Panther -->
+                <div onclick="openGalleryModal('panther')" class="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/20 transition-all duration-500">
+                    <img src="../recursos/images/museo-tanques/galeria/panther.png" alt="Panther" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050b18] via-[#050b18]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="bg-indigo-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-widest text-white shadow-lg">LIMITADA</span>
+                            <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Panther Ausf. G</h3>
+                            <div class="flex items-center gap-2 text-primary-light text-xs font-bold uppercase tracking-widest mb-4">
+                                <span>Alemania</span>
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                <span>1944</span>
+                            </div>
+                            <span class="text-primary-light text-sm font-bold uppercase flex items-center gap-1">
+                                Ver Galería
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foto 5: Leopard -->
+                <div onclick="openGalleryModal('leopard')" class="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/20 transition-all duration-500">
+                    <img src="../recursos/images/museo-tanques/galeria/leopard.png" alt="Leopard 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050b18] via-[#050b18]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="bg-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-widest text-white shadow-lg">MODERNO</span>
+                            <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Leopard 2A7</h3>
+                            <div class="flex items-center gap-2 text-primary-light text-xs font-bold uppercase tracking-widest mb-4">
+                                <span>Alemania</span>
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                <span>2014</span>
+                            </div>
+                            <span class="text-primary-light text-sm font-bold uppercase flex items-center gap-1">
+                                Ver Galería
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foto 6: Churchill -->
+                <div onclick="openGalleryModal('churchill')" class="group relative overflow-hidden rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 aspect-[4/3] cursor-pointer shadow-lg hover:shadow-primary/20 transition-all duration-500">
+                    <img src="../recursos/images/museo-tanques/galeria/churchill.png" alt="Churchill" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050b18] via-[#050b18]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <span class="bg-cyan-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 inline-block uppercase tracking-widest text-white shadow-lg">CLÁSICO</span>
+                            <h3 class="text-white font-black text-2xl uppercase tracking-tighter mb-1">Churchill Mk VII</h3>
+                            <div class="flex items-center gap-2 text-primary-light text-xs font-bold uppercase tracking-widest mb-4">
+                                <span>Reino Unido</span>
+                                <span class="w-1 h-1 rounded-full bg-white/30"></span>
+                                <span>1943</span>
+                            </div>
+                            <span class="text-primary-light text-sm font-bold uppercase flex items-center gap-1">
+                                Ver Galería
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL DE GALERÍA (ESTRUCTURA PREMIUM TIPO HANGAR) -->
+            <div id="gallery-modal" class="fixed inset-0 z-[200] hidden items-center justify-center p-0 md:p-6 lg:p-10 transition-opacity duration-500 opacity-0 pointer-events-none">
+                <!-- Overlay con desenfoque extremo -->
+                <div class="absolute inset-0 bg-slate-950/95 backdrop-blur-2xl" onclick="closeGalleryModal()"></div>
+                
+                <!-- Contenido del Modal -->
+                <div id="modal-content" class="relative w-full h-[100dvh] md:h-[90vh] md:max-w-[95vw] bg-white dark:bg-slate-900 rounded-none md:rounded-2xl border-none md:border border-slate-200 dark:border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden transition-all duration-500 transform scale-50 opacity-0">
+                    
+                    <!-- Header (Estructura idéntica a ficha_tanque.html) -->
+                    <div class="flex flex-wrap items-center justify-between p-2 md:p-4 border-b border-slate-200 dark:border-white/5 bg-white dark:bg-slate-800/50 backdrop-blur-md sticky top-0 z-50 gap-y-1">
+                        
+                        <!-- Brand Group -->
+                        <div class="flex items-center gap-2 md:gap-3 flex-grow min-w-0 pr-2">
+                             <div class="w-8 h-8 md:w-11 md:h-11 rounded-full bg-primary flex-shrink-0 flex items-center justify-center text-white shadow-md shadow-primary/40">
+                                 <span class="material-symbols-outlined text-[20px] md:text-[26px]">photo_library</span>
+                             </div>
+                            <div class="min-w-0">
+                                <h3 id="modal-tank-name" class="text-slate-900 dark:text-white font-bold uppercase tracking-wider text-[11px] sm:text-sm md:text-base truncate">NOMBRE TANQUE</h3>
+                                <p id="modal-tank-origin" class="text-slate-500 dark:text-slate-400 text-[8px] md:text-[10px] uppercase tracking-[0.2em] truncate">ARCHIVO VISUAL</p>
+                            </div>
+                        </div>
+
+                         <div class="flex items-center order-2 md:order-3 ml-2">
+                             <button onclick="closeGalleryModal()" class="util-btn group w-10 h-10 md:w-11 md:h-11 flex items-center justify-center text-slate-900 dark:text-white hover:text-red-500 transition-colors" data-tooltip="Cerrar">
+                                 <span class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:rotate-90 transition-transform">close</span>
+                             </button>
+                         </div>
+
+                        <!-- Utility Buttons Group -->
+                        <div class="w-full md:w-auto flex items-center justify-around md:justify-end gap-1 md:gap-2 order-3 md:order-2 px-0">
+                            <!-- Compartir -->
+                            <button class="util-btn group w-10 h-10 md:w-10 md:h-10 flex items-center justify-center transition-all active:scale-95 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white" data-tooltip="Compartir">
+                                <span class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:scale-110 transition-transform">share</span>
+                            </button>
+
+                            <div class="util-divider bg-slate-300 dark:bg-white/10 opacity-50 md:opacity-100"></div>
+
+                            <!-- Descargar (Nueva posición para DESCARGAR TODAS) -->
+                            <button class="util-btn group w-10 h-10 md:w-10 md:h-10 flex items-center justify-center transition-all active:scale-95 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white" data-tooltip="Descargar Todo">
+                                <span class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:scale-110 transition-transform">download</span>
+                            </button>
+
+                            <div class="util-divider bg-slate-300 dark:bg-white/10 opacity-50 md:opacity-100"></div>
+
+                            <!-- Información -->
+                            <button class="util-btn group w-10 h-10 md:w-10 md:h-10 flex items-center justify-center transition-all active:scale-95 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white" data-tooltip="Información">
+                                <span class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:scale-110 transition-transform">info</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Visualizador Principal -->
+                    <div class="flex-grow relative bg-slate-100 dark:bg-[#05080f] flex items-center justify-center overflow-hidden">
+                        <img id="modal-main-img" src="" class="max-w-full max-h-full object-contain transition-all duration-500 scale-95 opacity-0">
+                        
+                        <!-- Navegación Flotante -->
+                        <button onclick="prevImage()" class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-900/40 border border-white/5 text-white backdrop-blur-xl flex items-center justify-center hover:bg-primary transition-all z-20 shadow-2xl group active:scale-90">
+                            <span class="material-symbols-outlined text-2xl md:text-3xl group-hover:-translate-x-1 transition-transform">chevron_left</span>
+                        </button>
+                        <button onclick="nextImage()" class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-900/40 border border-white/5 text-white backdrop-blur-xl flex items-center justify-center hover:bg-primary transition-all z-20 shadow-2xl group active:scale-90">
+                            <span class="material-symbols-outlined text-2xl md:text-3xl group-hover:translate-x-1 transition-transform">chevron_right</span>
+                        </button>
+
+                        <!-- Indicador de Cantidad -->
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/5 text-[9px] font-bold text-white/70 uppercase tracking-widest pointer-events-none">
+                            <span id="current-photo-idx">1</span> / <span id="total-photos-idx">12</span>
+                        </div>
+                    </div>
+
+                    <!-- Footer: Fotos Relacionadas -->
+                    <div class="p-4 md:p-5 border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/80">
+                        <div id="modal-thumbnails" class="flex gap-3 overflow-x-auto scrollbar-hide pb-1 snap-x justify-center">
+                            <!-- Thumbnails dynamic -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN CARGAR MÁS -->
+            <div class="mt-16 text-center">
+                <button class="group relative px-12 py-4 bg-transparent border border-white/20 hover:border-primary rounded-full text-white font-bold uppercase tracking-widest overflow-hidden transition-all text-xs">
+                    <span class="relative z-10">Cargar más resultados</span>
+                    <div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                </button>
+            </div>
+
+            <script>
+                const tankGalleries = {
+                    'tiger': {
+                        name: 'Panzer VI Tiger I',
+                        origin: 'Alemania, 1942',
+                        images: [
+                            '../recursos/images/museo-tanques/galeria/tiger.png',
+                            '../recursos/images/museo-tanques/galeria/tiger_1.png',
+                            '../recursos/images/museo-tanques/galeria/tiger_2.png',
+                            '../recursos/images/museo-tanques/galeria/tiger_3.png'
+                        ]
+                    },
+                    'sherman': {
+                        name: 'M4 Sherman',
+                        origin: 'EE.UU., 1944',
+                        images: ['../recursos/images/museo-tanques/galeria/sherman.png']
+                    },
+                    't34': {
+                        name: 'T-34-85',
+                        origin: 'Unión Soviética, 1944',
+                        images: ['../recursos/images/museo-tanques/galeria/t34.png']
+                    },
+                    'panther': {
+                        name: 'Panther Ausf. G',
+                        origin: 'Alemania, 1944',
+                        images: ['../recursos/images/museo-tanques/galeria/panther.png']
+                    },
+                    'leopard': {
+                        name: 'Leopard 2A7',
+                        origin: 'Alemania, 2014',
+                        images: ['../recursos/images/museo-tanques/galeria/leopard.png']
+                    },
+                    'churchill': {
+                        name: 'Churchill Mk VII',
+                        origin: 'Reino Unido, 1943',
+                        images: ['../recursos/images/museo-tanques/galeria/churchill.png']
+                    }
+                };
+
+                let currentTank = null;
+                let currentIndex = 0;
+
+                function openGalleryModal(tankId) {
+                    currentTank = tankGalleries[tankId];
+                    currentIndex = 0;
+                    if (!currentTank) return;
+
+                    document.getElementById('modal-tank-name').textContent = currentTank.name;
+                    document.getElementById('modal-tank-origin').textContent = currentTank.origin;
+                    document.getElementById('total-photos-idx').textContent = currentTank.images.length;
+                    
+                    const thumbContainer = document.getElementById('modal-thumbnails');
+                    thumbContainer.innerHTML = '';
+                    
+                    currentTank.images.forEach((img, idx) => {
+                        const thumb = document.createElement('div');
+                        thumb.className = `w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden cursor-pointer border-2 transition-all flex-shrink-0 snap-center ${idx === 0 ? 'border-primary shadow-lg shadow-primary/20 scale-105' : 'border-transparent opacity-60 hover:opacity-100'}`;
+                        thumb.innerHTML = `<img src="${img}" class="w-full h-full object-cover">`;
+                        thumb.onclick = (e) => {
+                            e.stopPropagation();
+                            setImage(idx);
+                        };
+                        thumbContainer.appendChild(thumb);
+                    });
+
+                    setImage(0);
+                    const modal = document.getElementById('gallery-modal');
+                    const modalContent = document.getElementById('modal-content');
+                    
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    // Forzar reflow para animación
+                    modal.offsetHeight;
+                    
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-50');
+                    modalContent.classList.add('scale-100', 'opacity-100');
+                    
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeGalleryModal() {
+                    const modal = document.getElementById('gallery-modal');
+                    const modalContent = document.getElementById('modal-content');
+                    
+                    modal.classList.add('opacity-0', 'pointer-events-none');
+                    modalContent.classList.remove('scale-100', 'opacity-100');
+                    modalContent.classList.add('scale-50');
+                    
+                    setTimeout(() => {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    }, 500);
+                    
+                    document.body.style.overflow = '';
+                }
+
+                function setImage(index) {
+                    currentIndex = index;
+                    const mainImg = document.getElementById('modal-main-img');
+                    document.getElementById('current-photo-idx').textContent = currentIndex + 1;
+                    
+                    // Animación de cambio
+                    mainImg.classList.remove('opacity-100', 'scale-100');
+                    mainImg.classList.add('opacity-0', 'scale-95');
+                    
+                    setTimeout(() => {
+                        mainImg.src = currentTank.images[currentIndex];
+                        mainImg.onload = () => {
+                            mainImg.classList.remove('opacity-0', 'scale-95');
+                            mainImg.classList.add('opacity-100', 'scale-100');
+                        };
+                    }, 250);
+
+                    // Actualizar thumbnails
+                    const thumbs = document.getElementById('modal-thumbnails').children;
+                    for (let i = 0; i < thumbs.length; i++) {
+                        if (i === currentIndex) {
+                            thumbs[i].classList.add('border-primary', 'shadow-lg', 'shadow-primary/20', 'scale-105');
+                            thumbs[i].classList.remove('border-transparent', 'opacity-60');
+                            // Scroll suave al thumbnail activo
+                            thumbs[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        } else {
+                            thumbs[i].classList.remove('border-primary', 'shadow-lg', 'shadow-primary/20', 'scale-105');
+                            thumbs[i].classList.add('border-transparent', 'opacity-60');
+                        }
+                    }
+                }
+
+                function nextImage() {
+                    let next = currentIndex + 1;
+                    if (next >= currentTank.images.length) next = 0;
+                    setImage(next);
+                }
+
+                function prevImage() {
+                    let prev = currentIndex - 1;
+                    if (prev < 0) prev = currentTank.images.length - 1;
+                    setImage(prev);
+                }
+
+                // Keyboard support
+                document.addEventListener('keydown', (e) => {
+                    const modal = document.getElementById('gallery-modal');
+                    if (modal.classList.contains('hidden')) return;
+                    if (e.key === 'Escape') closeGalleryModal();
+                    if (e.key === 'ArrowRight') nextImage();
+                    if (e.key === 'ArrowLeft') prevImage();
+                });
+            </script>
+
+            <!-- BOTÓN CARGAR MÁS -->
+            <div class="mt-16 text-center">
+                <button class="group relative px-12 py-4 bg-transparent border border-white/20 hover:border-primary rounded-full text-white font-bold uppercase tracking-widest overflow-hidden transition-all">
+                    <span class="relative z-10">Cargar más resultados</span>
+                    <div class="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                </button>
             </div>
 
         </div>

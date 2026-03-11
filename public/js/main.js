@@ -138,6 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Intentamos inicializar los sidebars si ya están en el DOM (como en index.html)
     initializeSidebars();
+    
+    // Motor de giro del Favicon (Compatible con Chrome)
+    initFaviconAnimation();
+    
+    // Título dinámico tipo marquesina
+    initTitleMarquee();
 });
 
 // Listener para el evento de carga de componentes (para subpáginas)
@@ -155,6 +161,12 @@ window.addEventListener('componentsReady', () => {
         if (!isMusicPlaying) b.classList.remove('playing');
         else b.classList.add('playing');
     });
+
+    // Iniciar animación del favicon
+    initFaviconAnimation();
+    
+    // Título dinámico
+    initTitleMarquee();
 });
 
 // Theme toggle
@@ -467,7 +479,12 @@ window.open3DModal = function (btn) {
         mv.id = 'active-model-viewer';
         mv.src = modelUrl;
         mv.alt = `3D Model of ${tankId}`;
-        mv.autoRotate = true;
+        // Auto-rotate disabled by default (the toggle button starts it)
+        mv.autoRotate = false;
+        mv.removeAttribute('auto-rotate');
+        mv.setAttribute('interaction-prompt', 'auto');
+        mv.setAttribute('auto-rotate-delay', '0');
+        mv.setAttribute('rotation-per-second', '20deg');
         mv.cameraControls = true;
         mv.ar = true;
         mv.arModes = "webxr scene-viewer quick-look";
@@ -554,4 +571,173 @@ window.activateAR = function () {
     }
 };
 
+window.toggleAutoRotate = function () {
+    const mv = document.getElementById('active-model-viewer') || document.querySelector('model-viewer');
+    const btn = document.getElementById('btn-modal-autorotate');
+    const icon = btn ? btn.querySelector('.material-symbols-outlined') : null;
+
+    if (mv) {
+        if (mv.hasAttribute('auto-rotate')) {
+            // STOP ROTATION
+            mv.removeAttribute('auto-rotate');
+            if (icon) icon.textContent = 'play_arrow';
+            // Show hand hint again
+            mv.setAttribute('interaction-prompt', 'auto');
+        } else {
+            // START ROTATION
+            mv.setAttribute('auto-rotate', '');
+            if (icon) icon.textContent = 'stop';
+            // Hide hand hint
+            mv.setAttribute('interaction-prompt', 'none');
+            // Extra kickstart for some browsers
+            if ('autoRotate' in mv) mv.autoRotate = true;
+        }
+    } else {
+        console.warn("[3D Modal] No active 3D model found to toggle rotation.");
+    }
+};
+
+/**
+ * Comparte el recurso actual (URL) usando la API nativa de compartir
+ * o copia el enlace al portapapeles como fallback.
+ */
+window.shareResource = async function () {
+    const shareData = {
+        title: document.title,
+        text: '¡Mira este increíble tanque en 3D!',
+        url: window.location.href
+    };
+
+    try {
+        if (navigator.share) {
+            await navigator.share(shareData);
+        } else {
+            // Fallback: Copiar al portapapeles
+            await navigator.clipboard.writeText(window.location.href);
+
+            // Feedback visual en el botón
+            const btn = document.getElementById('btn-modal-share');
+            if (btn) {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                const originalIcon = icon.textContent;
+                const originalTooltip = btn.getAttribute('data-tooltip');
+
+                icon.textContent = 'check';
+                btn.setAttribute('data-tooltip', '¡Copiado!');
+                btn.classList.add('text-green-500');
+
+                setTimeout(() => {
+                    icon.textContent = originalIcon;
+                    btn.setAttribute('data-tooltip', originalTooltip);
+                    btn.classList.remove('text-green-500');
+                }, 2000);
+            }
+        }
+    } catch (err) {
+        console.log('Error o cancelación al compartir:', err);
+    }
+};
+
+/**
+ * Descarga el modelo 3D (GLB) directamente.
+ */
+window.downloadModel = function () {
+    const main = document.getElementById('main-detail-tank');
+    if (!main) return;
+
+    const modelUrl = main.getAttribute('data-tank-model');
+    if (!modelUrl) {
+        console.warn("[3D Modal] No se encontró la URL del modelo para descargar.");
+        return;
+    }
+
+    // Crear un link temporal y simular click
+    const link = document.createElement('a');
+    link.href = modelUrl;
+
+    // Extraer nombre del archivo de la URL
+    const fileName = modelUrl.split('/').pop() || 'tank-model.glb';
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Feedback visual en el botón
+    const btn = document.getElementById('btn-modal-download');
+    if (btn) {
+        const icon = btn.querySelector('.material-symbols-outlined');
+        const originalIcon = icon.textContent;
+        icon.textContent = 'check_circle';
+        btn.classList.add('text-green-500');
+
+        setTimeout(() => {
+            icon.textContent = originalIcon;
+            btn.classList.remove('text-green-500');
+        }, 2000);
+    }
+};
+
+/**
+ * Motor de giro del Favicon (Compatible con Chrome)
+ * Crea un canvas invisible para rotar el logo y actualizar el link icon.
+ */
+function initFaviconAnimation() {
+    const favicon = document.getElementById('favicon');
+    if (!favicon) return;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 32;
+    canvas.height = 32;
+    const ctx = canvas.getContext('2d');
+    
+    const img = new Image();
+    const isSubPage = window.location.pathname.includes('/museo-tanques/') || window.location.pathname.includes('/casa-historica/');
+    const basePath = isSubPage ? '../../' : ''; 
+    img.src = basePath + 'recursos/images/index/favicon_pestaña.svg';
+
+    let angle = 0;
+    const rotationSpeed = 0.5; 
+
+    img.onload = () => {
+        function animate() {
+            ctx.clearRect(0, 0, 32, 32);
+            
+            ctx.beginPath();
+            ctx.arc(16, 16, 16, 0, Math.PI * 2);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+
+            ctx.save();
+            ctx.translate(16, 16);
+            ctx.rotate((angle * Math.PI) / 180);
+            ctx.drawImage(img, -14, -14, 28, 28); 
+            ctx.restore();
+
+            favicon.href = canvas.toDataURL('image/png');
+            
+            angle = (angle + rotationSpeed) % 360;
+            requestAnimationFrame(animate);
+        }
+        animate();
+    };
+}
+
+/**
+ * Título dinámico tipo marquesina
+ * Hace que el texto del título se desplace lateralmente.
+ */
+function initTitleMarquee() {
+    if (window.titleMarqueeInterval) clearInterval(window.titleMarqueeInterval);
+
+    let titleText = document.title;
+    if (titleText.length < 15) return;
+
+    titleText += "        "; 
+    
+    window.titleMarqueeInterval = setInterval(() => {
+        titleText = titleText.substring(1) + titleText.substring(0, 1);
+        document.title = titleText;
+    }, 400);
+}
 
