@@ -19,7 +19,7 @@ function walk(dir) {
 const files = walk('./public');
 files.forEach(file => {
     let content = fs.readFileSync(file, 'utf8');
-    const updated = content.replace(/main\.js\?v=[^"']+/g, 'main.js?v=306');
+    const updated = content.replace(/main\.js\?v=[^"']+/g, 'main.js?v=307');
     if (content !== updated) {
         fs.writeFileSync(file, updated, 'utf8');
         console.log(`Updated: ${file}`);
