@@ -139,11 +139,13 @@ const AuthManager = {
         btn.innerText = 'Procesando...';
         btn.disabled = true;
 
+        const captchaToken = typeof turnstile !== 'undefined' ? turnstile.getResponse() : null;
+
         try {
             if (this.isSignUp) {
-                await this.signUp(email, password, username);
+                await this.signUp(email, password, username, captchaToken);
             } else {
-                await this.login(email, password);
+                await this.login(email, password, captchaToken);
             }
         } finally {
             btn.disabled = false;
@@ -151,11 +153,22 @@ const AuthManager = {
         }
     },
 
-    async login(email, password) {
+    async login(email, password, captchaToken = null) {
         if (!window.sb) return;
-        const { data, error } = await window.sb.auth.signInWithPassword({ email, password });
+        
+        const options = {};
+        if (captchaToken) options.captchaToken = captchaToken;
+
+        const { data, error } = await window.sb.auth.signInWithPassword({ 
+            email, 
+            password,
+            options: options
+        });
+
         if (error) {
             alert('Error: ' + error.message);
+            // Si hay error, es bueno resetear el captcha para que el usuario pueda reintentar
+            if (typeof turnstile !== 'undefined') turnstile.reset();
         } else {
             this.hideModal();
         }
@@ -180,15 +193,23 @@ const AuthManager = {
         }
     },
 
-    async signUp(email, password, username) {
+    async signUp(email, password, username, captchaToken = null) {
         if (!window.sb) return;
+        
+        const options = { 
+            data: { full_name: username } 
+        };
+        if (captchaToken) options.captchaToken = captchaToken;
+
         const { data, error } = await window.sb.auth.signUp({
             email,
             password,
-            options: { data: { full_name: username } }
+            options: options
         });
+
         if (error) {
             alert('Error: ' + error.message);
+            if (typeof turnstile !== 'undefined') turnstile.reset();
         } else {
             alert('¡Registro exitoso! Por favor verifica tu correo electrónico.');
             this.toggleMode(); // Volver a login
