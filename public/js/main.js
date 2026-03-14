@@ -144,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Título dinámico tipo marquesina
     initTitleMarquee();
+
+    // Cargar el cursor de tanque personalizado (Solo PC)
+    initTankCursorLoader();
 });
 
 // Listener para el evento de carga de componentes (para subpáginas)
@@ -741,3 +744,21 @@ function initTitleMarquee() {
     }, 400);
 }
 
+/**
+ * Carga dinámicamente los recursos del cursor de tanque
+ */
+function initTankCursorLoader() {
+    const root = document.body.getAttribute('data-root') || './';
+    const VERSION = '310'; // Bumping to 310 to ensure mobile cache refresh
+    
+    // 1. Cargar el CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${root}css/tank-cursor.css?v=${VERSION}`;
+    document.head.appendChild(link);
+    
+    // 2. Cargar el Script
+    const script = document.createElement('script');
+    script.src = `${root}js/tank-cursor.js?v=${VERSION}`;
+    document.head.appendChild(script);
+}

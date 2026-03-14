@@ -32,38 +32,160 @@
     <script src="../js/supabase/client.js"></script>
     <script src="../js/supabase/auth.js"></script>
     <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/realtime.js?v=309"></script>
+    <script src="../js/supabase/realtime.js?v=310?v=310"></script>
     <script src="../js/supabase/ui-bridge.js"></script>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
+<body class="bg-[#020617] font-sans text-slate-200 overflow-x-hidden min-h-screen flex flex-col" data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- Navbar/Sidebar components -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
-    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
+    <style>
+        .instruction-card {
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .instruction-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-border {
+            position: relative;
+            background: #0f172a;
+            border-radius: 1.5rem;
+        }
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(45deg, #3b82f6, transparent, #3b82f6);
+            border-radius: 1.5rem;
+            z-index: -1;
+            opacity: 0.2;
+        }
+    </style>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
-
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="tutorial">Tutorial</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
+    <main class="flex-grow pt-[120px] pb-24 px-4 lg:px-12">
+        <div class="max-w-[1200px] mx-auto">
+            
+            <!-- Header Section -->
+            <header class="text-center mb-20 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-[10px] font-black uppercase tracking-[0.3em]">
+                    <span class="material-symbols-outlined text-sm">school</span>
+                    Academia de Blindados
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black italic text-white uppercase tracking-tighter leading-tight" data-i18n="tutorial_titulo">CENTRO DE INSTRUCCIÓN</h1>
+                <p class="text-slate-500 font-medium text-lg max-w-2xl mx-auto">Domina el campo de batalla, responde con precisión y escribe tu nombre en el Muro de la Gloria.</p>
             </header>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="tutorial">Tutorial</h2>
-                    <p class="text-gray-400">Guía de aprendizaje para las misiones y el sistema de puntos.</p>
+            <!-- Tutorial Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Rule 1: Objectives -->
+                <div class="instruction-card p-10 rounded-[2.5rem] space-y-6">
+                    <div class="w-16 h-16 bg-blue-600/10 border border-blue-600/20 rounded-2xl flex items-center justify-center text-blue-500">
+                        <span class="material-symbols-outlined text-3xl font-bold">military_tech</span>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="step-number text-4xl font-black italic">01.</span>
+                        <h2 class="text-2xl font-black text-white uppercase italic">Las Misiones</h2>
+                        <p class="text-slate-400 leading-relaxed text-sm">Explora las exhibiciones del museo y desbloquea misiones tácticas. Cada desafío pondrá a prueba tus conocimientos sobre blindados, historia y estrategia militar.</p>
+                    </div>
+                    <ul class="space-y-3 pt-4">
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></span>
+                            Identifica los tanques históricos
+                        </li>
+                        <li class="flex items-center gap-3 text-xs font-bold text-slate-300">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                            Completa los cuestionarios de cada Hangar
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Rule 2: Scoring -->
+                <div class="instruction-card p-10 rounded-[2.5rem] space-y-6">
+                    <div class="w-16 h-16 bg-green-600/10 border border-green-600/20 rounded-2xl flex items-center justify-center text-green-500">
+                        <span class="material-symbols-outlined text-3xl font-bold">score</span>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="step-number text-4xl font-black italic">02.</span>
+                        <h2 class="text-2xl font-black text-white uppercase italic">Suma de Puntos</h2>
+                        <p class="text-slate-400 leading-relaxed text-sm">Tu puntuación no depende solo de acertar, sino de cómo lo haces. La eficiencia es clave para ser un comandante de élite.</p>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4 pt-4">
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-[10px] font-black text-slate-500 uppercase">Respuesta Correcta</span>
+                                <span class="text-xs font-black text-green-400">+100 pts</span>
+                            </div>
+                            <div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-green-500/50 w-full"></div>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-[10px] font-black text-slate-500 uppercase">Bono de Velocidad</span>
+                                <span class="text-xs font-black text-blue-400">Hasta +50 pts</span>
+                            </div>
+                            <div class="h-1 w-full bg-slate-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-blue-500/50 w-[60%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rule 3: Ranking -->
+                <div class="instruction-card p-10 rounded-[2.5rem] space-y-6">
+                    <div class="w-16 h-16 bg-gold-600/10 border border-gold-600/20 rounded-2xl flex items-center justify-center text-[#d4af37]">
+                        <span class="material-symbols-outlined text-3xl font-bold">emoji_events</span>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="step-number text-4xl font-black italic">03.</span>
+                        <h2 class="text-2xl font-black text-white uppercase italic">El Ranking</h2>
+                        <p class="text-slate-400 leading-relaxed text-sm">Acumula puntos totales para ascender en los Grados Militares. Solo los 100 mejores aparecen en la clasificación global.</p>
+                    </div>
+                    <div class="flex gap-2 pt-4">
+                        <div class="flex-1 text-center bg-slate-900 border border-white/5 py-3 rounded-xl">
+                            <p class="text-[8px] font-black text-slate-500 uppercase">Bronce</p>
+                            <p class="text-xs font-black text-slate-300">Iniciado</p>
+                        </div>
+                        <div class="flex-1 text-center bg-slate-900 border border-blue-500/30 py-3 rounded-xl">
+                            <p class="text-[8px] font-black text-blue-400 uppercase">Plata</p>
+                            <p class="text-xs font-black text-slate-300">Experto</p>
+                        </div>
+                        <div class="flex-1 text-center bg-slate-900 border border-gold-500/30 py-3 rounded-xl shadow-[0_0_15px_rgba(212,175,55,0.1)]">
+                            <p class="text-[8px] font-black text-[#d4af37] uppercase">Oro</p>
+                            <p class="text-xs font-black text-white uppercase">Supremo</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-20 p-12 gradient-border text-center space-y-8 relative overflow-hidden group">
+                <div class="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="space-y-3 relative z-10">
+                    <h3 class="text-3xl font-black uppercase italic text-white">¿Misión cumplida?</h3>
+                    <p class="text-slate-400 max-w-xl mx-auto">Tus puntos se guardan automáticamente en tu perfil militar cada vez que completas una misión.</p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 relative z-10">
+                    <a href="7.1misiones.html" class="px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all shadow-xl shadow-blue-600/20 active:scale-95">Ir a Misiones</a>
+                    <a href="7.2ranking.html" class="px-10 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-2xl font-black uppercase tracking-widest text-xs transition-all active:scale-95">Ver Ranking</a>
                 </div>
             </div>
 
@@ -73,10 +195,10 @@
     <!-- FOOTER CARGADO DINÁMICAMENTE -->
     <div data-include="tanques/footer"></div>
 
-    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
     <script>
         window.addEventListener('componentsReady', () => {
             setTimeout(() => {
+                if (window.i18n) window.i18n.updateUI();
                 if (window.StatsManager) {
                     window.StatsManager.updateUI();
                     window.StatsManager.subscribeRealtime();

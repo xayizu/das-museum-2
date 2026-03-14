@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -32,7 +32,7 @@
     <script src="../js/supabase/client.js"></script>
     <script src="../js/supabase/auth.js"></script>
     <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/realtime.js?v=309"></script>
+    <script src="../js/supabase/realtime.js?v=310?v=310"></script>
     <script src="../js/supabase/ui-bridge.js"></script>
 </head>
 
@@ -45,28 +45,146 @@
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
+    <!-- SISTEMA DE AUDIO -->
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
-
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
-
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="sugerencias">Sugerencias</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
+    <main class="flex-grow pt-[110px] md:pt-[100px] pb-24 px-4 lg:px-12">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Hero Header Style -->
+            <header class="mb-16 text-center md:text-left">
+                <div class="inline-flex px-4 py-1.5 bg-primary/20 border border-primary/30 text-primary-light text-[10px] font-black tracking-[0.2em] rounded-full uppercase mb-6" data-i18n="modulo_comunicacion">
+                    Módulo de Comunicación
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter uppercase text-white leading-none font-space mb-4">
+                    <span data-i18n="buzon_de">Buzón de</span> <span class="text-primary-light" data-i18n="sugerencias">Sugerencias</span>
+                </h1>
+                <p class="text-slate-400 max-w-2xl text-lg font-light leading-relaxed" data-i18n="sugerencias_intro">
+                    Tu opinión es el combustible que impulsa nuestra mejora. Comparte tus ideas, reporta problemas o propón nuevas exhibiciones para fortalecer el Museo de Tanques.
+                </p>
             </header>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="sugerencias">Sugerencias</h2>
-                    <p class="text-gray-400">Buzón de sugerencias para mejorar nuestro servicio.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Columna Formulario (7) -->
+                <div class="lg:col-span-7">
+                    <section class="bg-card-dark border border-white/5 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
+                        <!-- Decorative glow -->
+                        <div class="absolute -top-24 -right-24 size-64 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-all duration-700"></div>
+                        
+                        <form id="suggestionForm" class="relative z-10 space-y-8">
+                            <!-- Categoría -->
+                            <div class="space-y-4">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-2" data-i18n="categoria_titulo">Seleccione Categoría</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    <label class="cursor-pointer group/item">
+                                        <input type="radio" name="category" value="exhibit" class="hidden peer" checked>
+                                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-900/50 border border-white/5 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+                                            <span class="material-symbols-outlined text-2xl mb-2 text-slate-500 group-hover/item:text-primary transition-colors peer-checked:text-primary">museum</span>
+                                            <span class="text-[8px] font-black uppercase text-slate-400" data-i18n="cat_exhibicion">Exhibición</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer group/item">
+                                        <input type="radio" name="category" value="service" class="hidden peer">
+                                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-900/50 border border-white/5 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+                                            <span class="material-symbols-outlined text-2xl mb-2 text-slate-500 group-hover/item:text-primary transition-colors peer-checked:text-primary">person_celebrate</span>
+                                            <span class="text-[8px] font-black uppercase text-slate-400" data-i18n="cat_servicio">Servicio</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer group/item">
+                                        <input type="radio" name="category" value="digital" class="hidden peer">
+                                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-900/50 border border-white/5 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+                                            <span class="material-symbols-outlined text-2xl mb-2 text-slate-500 group-hover/item:text-primary transition-colors peer-checked:text-primary">devices</span>
+                                            <span class="text-[8px] font-black uppercase text-slate-400" data-i18n="cat_plataforma">Plataforma</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer group/item">
+                                        <input type="radio" name="category" value="other" class="hidden peer">
+                                        <div class="flex flex-col items-center justify-center p-4 rounded-2xl bg-slate-900/50 border border-white/5 peer-checked:border-primary peer-checked:bg-primary/10 transition-all">
+                                            <span class="material-symbols-outlined text-2xl mb-2 text-slate-500 group-hover/item:text-primary transition-colors peer-checked:text-primary">more_horiz</span>
+                                            <span class="text-[8px] font-black uppercase text-slate-400" data-i18n="cat_otro">Otro</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Campos de Texto -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-2" data-i18n="nombre_rango">Nombre / Rango</label>
+                                    <input type="text" placeholder="Ej: Cte. Ramírez" class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-primary focus:ring-0 transition-all outline-none">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-2" data-i18n="correo_contacto">Correo de Contacto</label>
+                                    <input type="email" placeholder="email@ejemplo.com" class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-primary focus:ring-0 transition-all outline-none">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-2" data-i18n="asunto_informe">Asunto del Informe</label>
+                                <input type="text" placeholder="Resumen breve..." class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-primary focus:ring-0 transition-all outline-none">
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-[9px] font-black uppercase tracking-widest text-slate-500 ml-2" data-i18n="mensaje_sugerencia">Mensaje / Sugerencia</label>
+                                <textarea rows="5" placeholder="Escriba aquí los detalles de su sugerencia..." class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-primary focus:ring-0 transition-all outline-none resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full group relative p-1 rounded-2xl overflow-hidden active:scale-95 transition-transform">
+                                <div class="absolute inset-0 bg-gradient-to-r from-primary via-blue-400 to-primary animate-[spin_4s_linear_infinite]"></div>
+                                <div class="relative bg-slate-950 px-8 py-5 rounded-2xl flex items-center justify-center gap-3">
+                                    <span class="font-black uppercase italic tracking-widest text-white text-lg" data-i18n="btn_enviar_informe">ENVIAR INFORME</span>
+                                    <span class="material-symbols-outlined text-white transition-transform group-hover:translate-x-2">send</span>
+                                </div>
+                            </button>
+                        </form>
+                    </section>
+                </div>
+
+                <!-- Columna Info (5) -->
+                <div class="lg:col-span-5 space-y-8">
+                    
+                    <!-- Stats / Info Card -->
+                    <div class="bg-card-dark border border-white/5 rounded-[2rem] p-8 space-y-6">
+                        <div class="flex items-center gap-4">
+                            <span class="material-symbols-outlined text-primary text-3xl">info</span>
+                            <h3 class="text-xl font-black uppercase italic tracking-tight text-white" data-i18n="por_que_participar">¿Por qué participar?</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="participar_desc">
+                            Su retroalimentación es revisada directamente por el Comando del Museo. Cada sugerencia implementada contribuye a la preservación del patrimonio militar.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-white/5">
+                                <span class="material-symbols-outlined text-accent-gold">check_circle</span>
+                                <div>
+                                    <h4 class="text-xs font-black uppercase text-white mb-1" data-i18n="impacto_real">Impacto Real</h4>
+                                    <p class="text-[10px] text-slate-500" data-i18n="impacto_real_desc">Más de 50 mejoras tácticas implementadas este año basadas en usuarios.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/30 border border-white/5">
+                                <span class="material-symbols-outlined text-primary">visibility</span>
+                                <div>
+                                    <h4 class="text-xs font-black uppercase text-white mb-1" data-i18n="transparencia">Transparencia</h4>
+                                    <p class="text-[10px] text-slate-500" data-i18n="transparencia_desc">Recibirá una respuesta de nuestro personal especializado en un plazo de 48h.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Image / Tank Silhouette -->
+                    <div class="relative h-64 rounded-[2rem] overflow-hidden group">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYGoKPl13n2PeI1HeswtAdN0QPWZq7OvpwLqoyH9y8ORL-RbUNv-JFazQzt-TGiJ66uRjrQSh8DObLwEjZPD0Rh7Zmr5KhyTbAzDRI8M5y-4GgskEAjoYJJhKORG0YCBqOlBguohsvz5hGPcYSPct05tndHTDt0UgvoVD0Ch9JtUpVSGlxKRzgjY5YJvhV6YdyAcIy4c1xwxRz8cEQbnPXViaVO5SoX4mrVGfJJyhh_FOmhUkim8k65n5XArVYF1rlZQW6s-TPvsqH" 
+                             class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-60 transition-all duration-700" alt="Tank Detail">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6">
+                            <p class="text-[9px] font-black uppercase tracking-[0.3em] text-primary" data-i18n="seguridad_confianza">Seguridad y Confianza</p>
+                            <h4 class="text-xl font-black italic uppercase text-white" data-i18n="canal_oficial">Canal Oficial</h4>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
     </main>
 
@@ -81,7 +199,31 @@
                     window.StatsManager.updateUI();
                     window.StatsManager.subscribeRealtime();
                 }
+                if (window.i18n) window.i18n.updateUI();
             }, 300);
+        });
+
+        // Simulación de envío
+        document.getElementById('suggestionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalContent = btn.innerHTML;
+            
+            // Texto traducido para "Informe Enviado"
+            const successText = window.i18n ? window.i18n.get('informe_enviado') : 'INFORME ENVIADO';
+
+            btn.innerHTML = `
+                <div class="relative bg-slate-950 px-8 py-5 rounded-2xl flex items-center justify-center gap-3">
+                    <span class="font-black uppercase italic tracking-widest text-green-400">${successText}</span>
+                    <span class="material-symbols-outlined text-green-400">check_circle</span>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                e.target.reset();
+                if (window.i18n) window.i18n.updateUI();
+            }, 3000);
         });
     </script>
 </body>

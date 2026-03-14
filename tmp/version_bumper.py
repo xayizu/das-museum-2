@@ -14,8 +14,8 @@ def update_version(root_dir, old_version, new_version):
     count = 0
     for root, dirs, files in os.walk(root_dir):
         for file in files:
-            if file.endswith('.html'):
-                file_path = os.path.join(root, file)
+            file_path = os.path.join(root, file)
+            if file.endswith('.html') or file.endswith('main.js'):
                 content = None
                 encodings = ['utf-8', 'latin-1', 'cp1252']
                 
@@ -32,6 +32,10 @@ def update_version(root_dir, old_version, new_version):
                     for pattern, replacement in patterns:
                         new_content = pattern.sub(replacement, new_content)
                     
+                    # Special case for main.js VERSION constant
+                    if file.endswith('main.js'):
+                        new_content = re.sub(f"const VERSION = '{old_version}'", f"const VERSION = '{new_version}'", new_content)
+
                     if new_content != content:
                         for enc in encodings:
                             try:
@@ -45,5 +49,5 @@ def update_version(root_dir, old_version, new_version):
     print(f"Total de archivos actualizados: {count}")
 
 if __name__ == "__main__":
-    # La versión actual detectada era 308, subimos a 309
-    update_version('public', '308', '309')
+    # La versión actual detectada era 309, subimos a 310
+    update_version('public', '309', '310')

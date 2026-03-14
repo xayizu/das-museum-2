@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Biblioteca | MUSEO DE TANQUES</title>
+    <title>Biblioteca Digital | MUSEO DE TANQUES</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -15,72 +15,294 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Project Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../js/config.js?v=1.4"></script>
 
     <!-- Estilos específicos del proyecto -->
     <script src="../js/config.js?v=1.3"></script>
     <link href="../css/main.css?v=1.3" rel="stylesheet" />
 
+    <style>
+        .book-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            perspective: 1000px;
+        }
+
+        .book-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .book-cover-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .book-card:hover .book-cover-container {
+            transform: rotateY(-15deg) scale(1.05);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px 12px 12px 4px;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+            background: #1e293b;
+        }
+
+        .book-spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 100%);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .category-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            padding: 4px 10px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        /* PDF Modal Styles */
+        #pdf-modal {
+            transition: all 0.3s ease;
+        }
+
+        .pdf-content {
+            width: 95vw;
+            height: 90vh;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
     <!-- Scripts de Funcionalidad -->
     <script defer src="../js/i18n.js?v=1.3"></script>
     <script defer src="../js/main.js?v=307"></script>
     <script defer src="../js/components-loader.js?v=1.3"></script>
-
-    <!-- Supabase integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase/client.js"></script>
-    <script src="../js/supabase/auth.js"></script>
-    <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/realtime.js?v=309"></script>
-    <script src="../js/supabase/ui-bridge.js"></script>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
+<body class="bg-background-dark font-display text-slate-100 overflow-x-hidden min-h-screen flex flex-col" data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
-    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
-
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
+    <main class="flex-grow pt-[110px] md:pt-[100px]">
+        
+        <!-- Hero Section -->
+        <section class="relative px-6 py-20">
+            <div class="hero-pattern"></div>
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent blur-3xl opacity-30"></div>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="max-w-3xl mb-16">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="w-12 h-[2px] bg-primary"></span>
+                        <span class="text-primary font-mono tracking-widest text-sm uppercase">Acervo Documental</span>
+                    </div>
+                    <h1 class="text-5xl md:text-8xl font-black italic uppercase tracking-tighter text-white mb-6 leading-[0.85]" data-i18n="hero_biblioteca_titulo">
+                        ARCHIVO Y<br/>DOCUMENTACIÓN
+                    </h1>
+                    <p class="text-slate-400 text-lg md:text-xl leading-relaxed font-light max-w-2xl" data-i18n="hero_biblioteca_desc">
+                        Acceda a manuales técnicos, registros históricos y literatura militar especializada sobre el desarrollo blindado.
+                    </p>
+                </div>
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="biblioteca">Biblioteca</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
+                <!-- Grid de Libros -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    
+                    <!-- Libro 1 -->
+                    <div class="book-card rounded-3xl p-6 flex flex-col group cursor-pointer" onclick="openPdfModal('../recursos/documentos/manual-tiger-1.pdf', 'Manual Técnico: Tiger I')">
+                        <div class="book-cover-container mb-6">
+                            <img src="https://images.unsplash.com/photo-1544648151-18683bd1f596?auto=format&fit=crop&q=80&w=400" alt="Manual Tiger I" class="book-cover">
+                            <div class="book-spine"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 rounded-xl">
+                                <span class="material-symbols-outlined text-white text-5xl">menu_book</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <span class="category-tag mb-2" data-i18n="lib_tipo_manual">MANUAL TÉCNICO</span>
+                            <h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors leading-tight">Panzerkampfwagen VI Ausf. E: Service & Maintenance</h3>
+                        </div>
+                        
+                        <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500 uppercase">PDF • 124 PAGS</span>
+                            <button class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                                <span data-i18n="btn_leer_ahora">Leer ahora</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="biblioteca">Biblioteca</h2>
-                    <p class="text-gray-400">Documentación y libros del complejo militar.</p>
+                    <!-- Libro 2 -->
+                    <div class="book-card rounded-3xl p-6 flex flex-col group cursor-pointer" onclick="openPdfModal('../recursos/documentos/historia-sherman.pdf', 'Crónicas del Sherman')">
+                        <div class="book-cover-container mb-6">
+                            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=400" alt="Historia Sherman" class="book-cover">
+                            <div class="book-spine"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 rounded-xl">
+                                <span class="material-symbols-outlined text-white text-5xl">menu_book</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <span class="category-tag mb-2" data-i18n="lib_tipo_historia">REGISTRO HISTÓRICO</span>
+                            <h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors leading-tight">Steel Giants: The American M4 Sherman in Europe</h3>
+                        </div>
+                        
+                        <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500 uppercase">PDF • 86 PAGS</span>
+                            <button class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                                <span data-i18n="btn_leer_ahora">Leer ahora</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Libro 3 -->
+                    <div class="book-card rounded-3xl p-6 flex flex-col group cursor-pointer" onclick="openPdfModal('../recursos/documentos/evolucion-blindaje.pdf', 'Evolución del Blindaje')">
+                        <div class="book-cover-container mb-6">
+                            <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=400" alt="Técnicas de Blindaje" class="book-cover">
+                            <div class="book-spine"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 rounded-xl">
+                                <span class="material-symbols-outlined text-white text-5xl">menu_book</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <span class="category-tag mb-2" data-i18n="lib_tipo_revista">REVISTA ESPECIALIZADA</span>
+                            <h3 class="text-xl font-bold text-white group-hover:text-primary transition-colors leading-tight">Armor Magazine: Composite Materials & Future Design</h3>
+                        </div>
+                        
+                        <div class="mt-auto pt-6 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-[10px] font-mono text-slate-500 uppercase">PDF • 42 PAGS</span>
+                            <button class="text-primary font-bold text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                                <span data-i18n="btn_leer_ahora">Leer ahora</span>
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Libro 4 (Placeholder) -->
+                    <div class="book-card rounded-3xl p-6 flex flex-col group cursor-pointer opacity-80 border-dashed" onclick="openPdfModal('#', 'Próximamente')">
+                        <div class="book-cover-container mb-6">
+                            <div class="book-cover w-full h-full bg-slate-900 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-slate-700 text-6xl">add_notes</span>
+                            </div>
+                            <div class="book-spine"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="category-tag mb-2 opacity-50">MANUAL</span>
+                            <h3 class="text-xl font-bold text-slate-600 italic leading-tight">Próxima publicación disponible pronto...</h3>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PDF Modal -->
+    <div id="pdf-modal" class="fixed inset-0 z-[100] hidden bg-black/95 items-center justify-center px-4">
+        <div class="pdf-content rounded-3xl overflow-hidden flex flex-col relative">
+            
+            <!-- Barra Superior del Modal -->
+            <div class="p-6 bg-slate-900 border-b border-white/10 flex items-center justify-between">
+                <div>
+                    <h2 id="pdf-title" class="text-xl font-bold text-white uppercase tracking-tight italic">LECTOR DE ARCHIVO</h2>
+                    <p class="text-[10px] font-mono text-primary uppercase tracking-widest mt-1">SISTEMA CUSTODIO DE DOCUMENTACIÓN</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button onclick="closePdfModal()" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-red-500/20 text-white hover:text-red-500 transition-all flex items-center justify-center">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
                 </div>
             </div>
 
+            <!-- Contenedor del Iframe -->
+            <div class="flex-grow bg-slate-800">
+                <iframe id="pdf-viewer" class="w-full h-full border-none" src=""></iframe>
+            </div>
+
+            <!-- Footer del Modal -->
+            <div class="p-4 bg-slate-900 flex items-center justify-between text-[10px] font-mono text-slate-500 px-8">
+                <span>DOCUMENTO PARA USO INVESTIGATIVO</span>
+                <span class="text-primary-light">MUSEO DE TANQUES © 2026</span>
+            </div>
         </div>
-    </main>
+    </div>
 
     <!-- FOOTER CARGADO DINÁMICAMENTE -->
     <div data-include="tanques/footer"></div>
 
-    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
     <script>
+        function openPdfModal(url, titleText) {
+            const modal = document.getElementById('pdf-modal');
+            const iframe = document.getElementById('pdf-viewer');
+            const title = document.getElementById('pdf-title');
+
+            if (url === '#') return;
+
+            // En un entorno real, Google Docs Viewer o PDF.js sería mejor
+            // Aquí usamos el visor nativo del navegador
+            iframe.src = url;
+            title.textContent = titleText;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePdfModal() {
+            const modal = document.getElementById('pdf-modal');
+            const iframe = document.getElementById('pdf-viewer');
+            
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = '';
+            iframe.src = '';
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePdfModal();
+        });
+
         window.addEventListener('componentsReady', () => {
             setTimeout(() => {
-                if (window.StatsManager) {
-                    window.StatsManager.updateUI();
-                    window.StatsManager.subscribeRealtime();
-                }
+                if (window.i18n) window.i18n.updateUI();
             }, 300);
         });
     </script>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Audios | MUSEO DE TANQUES</title>
+    <title>Archivo de Audio | MUSEO DE TANQUES</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -15,72 +15,301 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Project Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../js/config.js?v=1.4"></script>
 
     <!-- Estilos específicos del proyecto -->
     <script src="../js/config.js?v=1.3"></script>
     <link href="../css/main.css?v=1.3" rel="stylesheet" />
 
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .audio-wave-container {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            height: 20px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            background: #3b82f6;
+            border-radius: 1px;
+            height: 40%;
+            transition: height 0.2s ease;
+        }
+
+        .playing .wave-bar {
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { height: 40%; }
+            50% { height: 100%; }
+        }
+
+        .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+
+        .hero-glow {
+            position: absolute;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+
     <!-- Scripts de Funcionalidad -->
     <script defer src="../js/i18n.js?v=1.3"></script>
     <script defer src="../js/main.js?v=307"></script>
     <script defer src="../js/components-loader.js?v=1.3"></script>
-
-    <!-- Supabase integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase/client.js"></script>
-    <script src="../js/supabase/auth.js"></script>
-    <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/realtime.js?v=309"></script>
-    <script src="../js/supabase/ui-bridge.js"></script>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col" data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
-    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
-
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
+    <main class="flex-grow pt-[110px] md:pt-[100px]">
+        
+        <!-- Hero Section -->
+        <section class="relative px-6 py-20 overflow-hidden">
+            <div class="hero-glow -top-20 -left-20"></div>
+            <div class="hero-glow bottom-0 -right-20" style="background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, rgba(0,0,0,0) 70%);"></div>
+            
+            <div class="max-w-7xl mx-auto relative">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                    <div class="max-w-3xl">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="h-px w-8 bg-primary"></span>
+                            <span class="text-primary font-mono tracking-widest text-sm uppercase">Archivo Sonoro</span>
+                        </div>
+                        <h1 class="text-5xl md:text-8xl font-black italic uppercase tracking-tighter text-slate-900 dark:text-white mb-6 leading-[0.85] drop-shadow-2xl" data-i18n="hero_audios_titulo">
+                            RELATOS Y<br/>SONIDOS DE GUERRA
+                        </h1>
+                        <p class="text-slate-600 dark:text-gray-400 text-lg md:text-xl leading-relaxed font-light max-w-xl" data-i18n="hero_audios_desc">
+                            Escuche el rugido de los motores Maybach, testimonios de veteranos y la atmósfera sonora de los campos de batalla históricos.
+                        </p>
+                    </div>
+                </div>
 
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="audios">Audios</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
+                <!-- Audio Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Audio Card 1 -->
+                    <div class="glass-card rounded-3xl p-6 flex flex-col group">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                                <span class="material-symbols-outlined text-3xl">engine</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500 block mb-1" data-i18n="audio_tipo_mantenimiento">MANTENIMIENTO</span>
+                                <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400">02:45</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Motor Maybach HL230</h3>
+                        <p class="text-gray-500 text-sm mb-8 line-clamp-2">Arranque y ralentí de un motor original de Tiger I restaurado en nuestros talleres.</p>
+                        
+                        <div class="mt-auto flex items-center justify-between gap-4">
+                            <div class="flex-grow">
+                                <div class="audio-wave-container" id="wave-1">
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                </div>
+                            </div>
+                            <button onclick="toggleAudio(this, 'wave-1')" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
+                                <span class="material-symbols-outlined fill-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
 
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="audios">Audios</h2>
-                    <p class="text-gray-400">Audios de motores, combates y entrevistas.</p>
+                    <!-- Audio Card 2 -->
+                    <div class="glass-card rounded-3xl p-6 flex flex-col group">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                                <span class="material-symbols-outlined text-3xl">record_voice_over</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500 block mb-1" data-i18n="audio_tipo_testimonio">TESTIMONIO</span>
+                                <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400">05:12</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Batalla de El Alamein</h3>
+                        <p class="text-gray-500 text-sm mb-8 line-clamp-2">Testimonio inédito de un comandante de división sobre la logística en el desierto.</p>
+                        
+                        <div class="mt-auto flex items-center justify-between gap-4">
+                            <div class="flex-grow">
+                                <div class="audio-wave-container" id="wave-2">
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                </div>
+                            </div>
+                            <button onclick="toggleAudio(this, 'wave-2')" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
+                                <span class="material-symbols-outlined fill-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Card 3 -->
+                    <div class="glass-card rounded-3xl p-6 flex flex-col group">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                                <span class="material-symbols-outlined text-3xl">surround_sound</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500 block mb-1" data-i18n="audio_tipo_ambiente">AMBIENTE</span>
+                                <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400">03:30</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Campo de Entrenamiento 1944</h3>
+                        <p class="text-gray-500 text-sm mb-8 line-clamp-2">Recreación sonora 3D de un campo de entrenamiento de blindados en Europa Central.</p>
+                        
+                        <div class="mt-auto flex items-center justify-between gap-4">
+                            <div class="flex-grow">
+                                <div class="audio-wave-container" id="wave-3">
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                </div>
+                            </div>
+                            <button onclick="toggleAudio(this, 'wave-3')" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
+                                <span class="material-symbols-outlined fill-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Card 4 -->
+                    <div class="glass-card rounded-3xl p-6 flex flex-col group">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                                <span class="material-symbols-outlined text-3xl">music_note</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500 block mb-1" data-i18n="audio_tipo_marcha">MARCHA MILITAR</span>
+                                <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400">04:20</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Los Granaderos</h3>
+                        <p class="text-gray-500 text-sm mb-8 line-clamp-2">Interpretación musical de la marcha tradicional, grabada con instrumentos de época.</p>
+                        
+                        <div class="mt-auto flex items-center justify-between gap-4">
+                            <div class="flex-grow">
+                                <div class="audio-wave-container" id="wave-4">
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                </div>
+                            </div>
+                            <button onclick="toggleAudio(this, 'wave-4')" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
+                                <span class="material-symbols-outlined fill-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Audio Card 5 -->
+                    <div class="glass-card rounded-3xl p-6 flex flex-col group">
+                        <div class="flex items-start justify-between mb-8">
+                            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                                <span class="material-symbols-outlined text-3xl">shield_with_heart</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-gray-500 block mb-1" data-i18n="audio_tipo_audioguia">AUDIOGUIA</span>
+                                <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400">12:30</span>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">Recorrido: Sala WWII</h3>
+                        <p class="text-gray-500 text-sm mb-8 line-clamp-2">Guía narrada completa para la sala principal de la Segunda Guerra Mundial.</p>
+                        
+                        <div class="mt-auto flex items-center justify-between gap-4">
+                            <div class="flex-grow">
+                                <div class="audio-wave-container" id="wave-5">
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                    <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+                                </div>
+                            </div>
+                            <button onclick="toggleAudio(this, 'wave-5')" class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
+                                <span class="material-symbols-outlined fill-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </section>
 
-        </div>
     </main>
 
     <!-- FOOTER CARGADO DINÁMICAMENTE -->
     <div data-include="tanques/footer"></div>
 
-    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
+    <!-- AUDIO SYSTEM SCRIPT -->
     <script>
+        let currentPlaying = null;
+        let currentWaveId = null;
+
+        function toggleAudio(btn, waveId) {
+            const container = document.getElementById(waveId);
+            const icon = btn.querySelector('span');
+
+            // Reset other playing audios (UI only since we don't have real files yet)
+            if (currentWaveId && currentWaveId !== waveId) {
+                const prevContainer = document.getElementById(currentWaveId);
+                const prevBtn = prevContainer.closest('.glass-card').querySelector('button span');
+                prevContainer.classList.remove('playing');
+                prevBtn.textContent = 'play_arrow';
+            }
+
+            if (container.classList.contains('playing')) {
+                container.classList.remove('playing');
+                icon.textContent = 'play_arrow';
+                currentWaveId = null;
+            } else {
+                container.classList.add('playing');
+                icon.textContent = 'pause';
+                currentWaveId = waveId;
+                
+                // Simulate audio visual randomness
+                const bars = container.querySelectorAll('.wave-bar');
+                bars.forEach(bar => {
+                    bar.style.animationDuration = (0.5 + Math.random()) + 's';
+                });
+            }
+        }
+
         window.addEventListener('componentsReady', () => {
             setTimeout(() => {
-                if (window.StatsManager) {
-                    window.StatsManager.updateUI();
-                    window.StatsManager.subscribeRealtime();
-                }
+                if (window.i18n) window.i18n.updateUI();
             }, 300);
         });
     </script>

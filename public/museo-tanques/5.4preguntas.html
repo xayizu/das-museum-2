@@ -15,73 +15,202 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Project Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../js/config.js?v=1.4"></script>
 
-    <!-- Estilos específicos del proyecto -->
-    <script src="../js/config.js?v=1.3"></script>
-    <link href="../css/main.css?v=1.3" rel="stylesheet" />
+    <!-- Estilos locales para el FAQ -->
+    <style>
+        .hero-gradient {
+            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.95)), 
+                              url('https://lh3.googleusercontent.com/aida-public/AB6AXuDAPNWlG9fA3HK7p6LobABNFxtNcWaOJCQh06lv6A_zdz5r7DAHWoioOPKucIdwck3sLuWwoYJzn1zqUa_YpNqYcZVvo1GpdHIKyYu7cu2lHl_akFbI7AIXL-6xE-IjQG3BROqtPtF7w3_-dsdzkkScUBYjvgJ9OMQCwXMW2K7Eel0t6Hpcxl4ngkQVnBhnbPoEyCIaxrn-fMyzuIaGejwXTy-u4zHxtOSegUsEi72KOtju3UBqkcYYVpx8WYH6JtfOOybhrJNbsDWn');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-sidebar {
+            background: rgba(23, 34, 54, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-card {
+            background: rgba(23, 34, 54, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .faq-card:hover {
+            border-color: #3b82f6;
+            background: rgba(23, 34, 54, 0.6);
+        }
+
+        details summary::-webkit-details-marker { display: none; }
+        
+        .cat-btn.active {
+            @apply bg-primary text-white shadow-lg shadow-primary/20;
+        }
+    </style>
 
     <!-- Scripts de Funcionalidad -->
+    <link href="../css/main.css?v=1.3" rel="stylesheet" />
     <script defer src="../js/i18n.js?v=1.3"></script>
     <script defer src="../js/main.js?v=307"></script>
     <script defer src="../js/components-loader.js?v=1.3"></script>
-
-    <!-- Supabase integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase/client.js"></script>
-    <script src="../js/supabase/auth.js"></script>
-    <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/realtime.js?v=309"></script>
-    <script src="../js/supabase/ui-bridge.js"></script>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
+<body class="bg-background-dark font-display text-slate-200 overflow-x-hidden min-h-screen flex flex-col" data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- COMPONENTES DINÁMICOS -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
-    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
+    <main class="flex-grow pt-[110px] md:pt-[100px]">
+        
+        <!-- Hero Section -->
+        <div class="hero-gradient h-[400px] flex items-center justify-center text-center p-8">
+            <div class="max-w-4xl space-y-6">
+                <span class="text-primary font-mono tracking-[0.3em] text-xs uppercase bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20 backdrop-blur-md" data-i18n="faq_titulo">CENTRO DE AYUDA</span>
+                <h1 class="text-6xl md:text-8xl font-black italic uppercase tracking-tighter text-white leading-none">
+                    PREGUNTAS<br/><span class="text-primary-light">FRECUENTES</span>
+                </h1>
+                <p class="text-slate-300 text-lg md:text-xl font-light" data-i18n="hero_horarios_desc">
+                    Resolvemos tus dudas operativas para que tu visita al museo sea una misión exitosa.
+                </p>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
-
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="preguntas_frecuentes_menu">Preguntas Frecuentes</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
-
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="preguntas_frecuentes_menu">Preguntas
-                        Frecuentes</h2>
-                    <p class="text-gray-400">Respuestas a las dudas más comunes de nuestros visitantes.</p>
+                <!-- Buscador -->
+                <div class="mt-12 max-w-2xl mx-auto relative group">
+                    <input type="text" class="w-full bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-2xl px-14 py-5 text-lg text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-2xl" placeholder="Escribe tu duda aquí...">
+                    <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 text-2xl group-focus-within:text-primary transition-colors">search</span>
+                    <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-xl font-bold uppercase text-xs tracking-widest transition-all">Buscar</button>
                 </div>
             </div>
-
         </div>
+
+        <!-- Layout de Contenido -->
+        <div class="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row gap-12">
+            
+            <!-- Sidebar de Categorías -->
+            <aside class="w-full lg:w-1/4">
+                <div class="glass-sidebar p-2 rounded-[2.5rem] sticky top-[130px] shadow-2xl">
+                    <nav class="flex flex-col gap-1">
+                        <button class="cat-btn active flex items-center justify-between px-6 py-4 rounded-3xl transition-all group">
+                            <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">info</span>
+                                <span class="font-bold text-sm uppercase tracking-widest" data-i18n="faq_cat_general">General</span>
+                            </div>
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+                        </button>
+                        <button class="cat-btn flex items-center gap-4 px-6 py-4 rounded-3xl text-slate-500 hover:bg-white/5 hover:text-white transition-all group">
+                            <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">security</span>
+                            <span class="font-bold text-sm uppercase tracking-widest" data-i18n="faq_cat_acceso">Seguridad</span>
+                        </button>
+                        <button class="cat-btn flex items-center gap-4 px-6 py-4 rounded-3xl text-slate-500 hover:bg-white/5 hover:text-white transition-all group">
+                            <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">school</span>
+                            <span class="font-bold text-sm uppercase tracking-widest" data-i18n="faq_cat_educacion">Institutos</span>
+                        </button>
+                        <button class="cat-btn flex items-center gap-4 px-6 py-4 rounded-3xl text-slate-500 hover:bg-white/5 hover:text-white transition-all group">
+                            <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">history_edu</span>
+                            <span class="font-bold text-sm uppercase tracking-widest" data-i18n="faq_cat_patrimonio">Patrimonio</span>
+                        </button>
+                    </nav>
+
+                    <!-- Ayuda Card -->
+                    <div class="mt-8 mx-2 mb-2 p-8 rounded-[2rem] bg-gradient-to-br from-primary/20 to-transparent border border-primary/20 relative overflow-hidden group">
+                        <span class="material-symbols-outlined absolute -right-6 -bottom-6 text-9xl text-white/5 group-hover:text-primary/10 transition-colors">support_agent</span>
+                        <h4 class="text-white font-black italic uppercase text-xs mb-2 relative z-10">¿Aún con dudas?</h4>
+                        <p class="text-[10px] text-slate-400 leading-relaxed mb-6 relative z-10 italic">Nuestros mediadores tácticos están listos para asistirte vía correo electrónico.</p>
+                        <button class="relative z-10 w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-white font-bold text-[10px] uppercase tracking-widest transition-all">Contactar</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Lista de Preguntas -->
+            <div class="w-full lg:w-3/4 space-y-12">
+                
+                <!-- Categoría: General -->
+                <section class="space-y-6">
+                    <div class="flex items-center gap-6 mb-10">
+                        <div class="w-12 h-[2px] bg-primary"></div>
+                        <h2 class="text-3xl font-black italic uppercase text-white tracking-widest" data-i18n="faq_cat_general">Información General</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <details class="group faq-card rounded-3xl overflow-hidden active:border-primary/50 transition-all" open>
+                            <summary class="flex justify-between items-center p-8 cursor-pointer list-none text-white font-bold italic tracking-tight hover:text-primary-light transition-colors">
+                                <span class="text-lg" data-i18n="faq_p1">¿El ingreso tiene algún costo?</span>
+                                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-8 pb-8 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6 animate-fadeIn" data-i18n="faq_r1">
+                                Ninguno. El acceso es 100% gratuito para todo el público nacional y extranjero. El Museo de Tanques es un espacio de difusión histórica institucional.
+                            </div>
+                        </details>
+
+                        <details class="group faq-card rounded-3xl overflow-hidden active:border-primary/50 transition-all">
+                            <summary class="flex justify-between items-center p-8 cursor-pointer list-none text-white font-bold italic tracking-tight hover:text-primary-light transition-colors">
+                                <span class="text-lg" data-i18n="faq_p6">¿Cómo puedo llegar al museo?</span>
+                                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-8 pb-8 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6" data-i18n="faq_r6">
+                                Las líneas de bus 1, 4 y 12 tienen paradas oficiales justo frente al recinto de la Brigada Galápagos en Riobamba. También contamos con parqueo vigilado para vehículos particulares.
+                            </div>
+                        </details>
+
+                        <details class="group faq-card rounded-3xl overflow-hidden active:border-primary/50 transition-all">
+                            <summary class="flex justify-between items-center p-8 cursor-pointer list-none text-white font-bold italic tracking-tight hover:text-primary-light transition-colors">
+                                <span class="text-lg" data-i18n="faq_p4">¿Cuentan con parqueadero?</span>
+                                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-8 pb-8 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6" data-i18n="faq_r4">
+                                Sí, disponemos de una amplia zona de parqueo interno vigilado por personal militar para su total tranquilidad durante el recorrido.
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <!-- Categoría: Seguridad -->
+                <section class="space-y-6 pt-10">
+                    <div class="flex items-center gap-6 mb-10">
+                        <div class="w-12 h-[2px] bg-primary"></div>
+                        <h2 class="text-3xl font-black italic uppercase text-white tracking-widest" data-i18n="faq_cat_acceso">Seguridad y Normas</h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <details class="group faq-card rounded-3xl overflow-hidden active:border-primary/50 transition-all">
+                            <summary class="flex justify-between items-center p-8 cursor-pointer list-none text-white font-bold italic tracking-tight hover:text-primary-light transition-colors">
+                                <span class="text-lg" data-i18n="faq_p2">¿Qué documentos debo presentar?</span>
+                                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-8 pb-8 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6" data-i18n="faq_r2">
+                                Para ciudadanos nacionales, es indispensable portar su cédula de identidad original. Visitantes extranjeros deben presentar su pasaporte físico vigente en la Guardia de Prevención.
+                            </div>
+                        </details>
+
+                        <details class="group faq-card rounded-3xl overflow-hidden active:border-primary/50 transition-all">
+                            <summary class="flex justify-between items-center p-8 cursor-pointer list-none text-white font-bold italic tracking-tight hover:text-primary-light transition-colors">
+                                <span class="text-lg" data-i18n="faq_p3">¿Se puede subir a las unidades?</span>
+                                <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180">expand_more</span>
+                            </summary>
+                            <div class="px-8 pb-8 text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6" data-i18n="faq_r3">
+                                No está permitido escalar o subir a los blindados por razones de seguridad estructural y para evitar caídas accidentales. Puede acercarse lo suficiente para fotografías memorables.
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
     </main>
 
-    <!-- FOOTER CARGADO DINÁMICAMENTE -->
+    <!-- FOOTER DINÁMICO -->
     <div data-include="tanques/footer"></div>
 
-    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
     <script>
         window.addEventListener('componentsReady', () => {
             setTimeout(() => {
-                if (window.StatsManager) {
-                    window.StatsManager.updateUI();
-                    window.StatsManager.subscribeRealtime();
-                }
+                if (window.i18n) window.i18n.updateUI();
             }, 300);
         });
     </script>

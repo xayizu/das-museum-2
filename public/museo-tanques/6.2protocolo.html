@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Protocolo | MUSEO DE TANQUES</title>
+    <title>Protocolo y Seguridad | MUSEO DE TANQUES</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
@@ -15,73 +15,281 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS & Project Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="../js/config.js?v=1.4"></script>
 
-    <!-- Estilos específicos del proyecto -->
-    <script src="../js/config.js?v=1.3"></script>
+    <!-- Estilos locales -->
+    <style>
+        .prot-hero {
+            background-image: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.95)), 
+                              url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ9X6LgU69lI-R-YjV6A9Oa-y0Y_X-R8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x_X8n-L-8k_l-x');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .protocol-line {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .protocol-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background: #3b82f6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+
+        .alert-panel {
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(59, 130, 246, 0.05),
+                rgba(59, 130, 246, 0.05) 10px,
+                rgba(59, 130, 246, 0.1) 10px,
+                rgba(59, 130, 246, 0.1) 20px
+            );
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 1.5rem;
+        }
+    </style>
+
+    <!-- Scripts Base -->
     <link href="../css/main.css?v=1.3" rel="stylesheet" />
-
-    <!-- Scripts de Funcionalidad -->
     <script defer src="../js/i18n.js?v=1.3"></script>
     <script defer src="../js/main.js?v=307"></script>
     <script defer src="../js/components-loader.js?v=1.3"></script>
-
-    <!-- Supabase integration -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase/client.js"></script>
-    <script src="../js/supabase/auth.js"></script>
-    <script src="../js/supabase/stats.js"></script>
-    <script src="../js/supabase/realtime.js?v=309"></script>
-    <script src="../js/supabase/ui-bridge.js"></script>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
+<body class="bg-background-dark font-display text-slate-200 min-h-screen flex flex-col" data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- COMPONENTES DINÁMICOS -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
-    <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
-        <div class="max-w-[1200px] mx-auto py-12">
-
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="protocolo">Protocolo</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
-
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="protocolo">Protocolo</h2>
-                    <p class="text-gray-400">Normas y protocolos de seguridad durante la visita.</p>
+    <main class="flex-grow pt-[110px] md:pt-[100px] pb-24 px-6 md:px-10">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <!-- Hero Header -->
+            <div class="prot-hero h-[400px] rounded-[3rem] flex items-center justify-center text-center p-8 overflow-hidden relative shadow-2xl">
+                <div class="absolute inset-0 bg-blue-900/10 pointer-events-none"></div>
+                <div class="relative z-10 max-w-4xl space-y-8">
+                    <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-primary/20 border border-primary/30 backdrop-blur-md mx-auto">
+                        <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                        <span class="font-mono text-[10px] tracking-[0.4em] text-white uppercase" data-i18n="protocolo_hero_titulo">PROTOCOLO OFICIAL</span>
+                    </div>
+                    <h1 class="text-6xl md:text-9xl font-black italic uppercase tracking-tighter text-white leading-[0.85] drop-shadow-2xl">
+                        CÓDIGO DE<br/><span class="text-primary-light">SEGURIDAD</span>
+                    </h1>
+                    <p class="text-slate-300 text-lg md:text-2xl font-light max-w-3xl mx-auto leading-relaxed" data-i18n="protocolo_hero_desc">
+                        Lineamientos establecidos para la correcta interacción con el material bélico y la presencia en recintos militares.
+                    </p>
                 </div>
             </div>
 
+            <!-- Grilla de Protocolos -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Navegación lateral (L) -->
+                <aside class="lg:col-span-4 space-y-8">
+                    <div class="glass-card p-10 h-fit sticky top-[130px] space-y-8">
+                        <h3 class="text-2xl font-black italic text-white uppercase tracking-tight border-b border-white/5 pb-6">Directivas del Museo</h3>
+                        <nav class="space-y-2">
+                            <a href="#id" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all group">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">fingerprint</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-white" data-i18n="prot_cat_identidad">Identificación</span>
+                            </a>
+                            <a href="#zones" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all group">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">distance</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-white" data-i18n="prot_cat_restricciones">Áreas Críticas</span>
+                            </a>
+                            <a href="#conduct" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all group">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">military_tech</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-white" data-i18n="prot_cat_comportamiento">Conducta</span>
+                            </a>
+                            <a href="#emergency" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-white/5 transition-all group">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">emergency</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-slate-400 group-hover:text-white" data-i18n="prot_cat_emergencias">Emergencias</span>
+                            </a>
+                        </nav>
+
+                        <!-- Panel de Alerta -->
+                        <div class="alert-panel p-6 space-y-4">
+                            <div class="flex items-center gap-3 text-primary-light">
+                                <span class="material-symbols-outlined text-sm">warning</span>
+                                <span class="text-[9px] font-mono uppercase tracking-widest">Aviso Operacional</span>
+                            </div>
+                            <p class="text-[10px] text-slate-400 leading-relaxed italic">
+                                El incumplimiento de estos protocolos puede derivar en la expulsión inmediata del recinto militar 11-BCB Galápagos.
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Contenido Principal (R) -->
+                <div class="lg:col-span-8 space-y-20">
+                    
+                    <!-- Verificación de Identidad -->
+                    <section id="id" class="scroll-mt-32 space-y-10">
+                        <div class="flex items-end justify-between border-b border-white/5 pb-8">
+                            <div class="space-y-4">
+                                <h2 class="text-4xl font-black italic text-white uppercase tracking-tighter" data-i18n="prot_id_titulo">REQUISITOS DE FILTRO</h2>
+                                <p class="text-sm text-slate-500 max-w-lg" data-i18n="prot_id_desc">Verificación obligatoria de antecedentes y base de datos antes del acceso táctico.</p>
+                            </div>
+                            <span class="text-7xl font-black italic text-white/5 select-none">01</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="glass-card p-8 bg-white/[0.02]">
+                                <h4 class="text-primary-light font-mono text-[10px] tracking-widest uppercase mb-4">Personal Civil</h4>
+                                <ul class="space-y-4">
+                                    <li class="protocol-line text-xs text-slate-400">Presentación de Cédula de Identidad original (física).</li>
+                                    <li class="protocol-line text-xs text-slate-400">Inscripción en la bitácora de la Guardia Nro. 1.</li>
+                                    <li class="protocol-line text-xs text-slate-400">Revisión de pertenencias y seguridad electrónica.</li>
+                                </ul>
+                            </div>
+                            <div class="glass-card p-8 bg-white/[0.02]">
+                                <h4 class="text-primary-light font-mono text-[10px] tracking-widest uppercase mb-4">Personal Extranjero</h4>
+                                <ul class="space-y-4">
+                                    <li class="protocol-line text-xs text-slate-400">Pasaporte original con visa vigente (si aplica).</li>
+                                    <li class="protocol-line text-xs text-slate-400">Registro de nacionalidad y tiempo de estadía.</li>
+                                    <li class="protocol-line text-xs text-slate-400">Acompañamiento por mediador táctico obligatorio.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Áreas Restringidas -->
+                    <section id="zones" class="scroll-mt-32 space-y-10">
+                        <div class="flex items-end justify-between border-b border-white/5 pb-8">
+                            <div class="space-y-4">
+                                <h2 class="text-4xl font-black italic text-white uppercase tracking-tighter" data-i18n="prot_rest_titulo">ZONAS TÁCTICAS</h2>
+                                <p class="text-sm text-slate-500 max-w-lg" data-i18n="prot_rest_desc">Límites espaciales establecidos para la seguridad nacional y la integridad del visitante.</p>
+                            </div>
+                            <span class="text-7xl font-black italic text-white/5 select-none">02</span>
+                        </div>
+
+                        <div class="glass-card p-10 overflow-hidden relative group">
+                            <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/20 rounded-full blur-[100px] group-hover:bg-primary/40 transition-colors"></div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-4 text-primary">
+                                        <span class="material-symbols-outlined">do_not_disturb_on</span>
+                                        <h4 class="font-bold uppercase tracking-widest text-sm text-white">Zonas Prohibidas</h4>
+                                    </div>
+                                    <ul class="space-y-6">
+                                        <li class="flex gap-4">
+                                            <span class="text-primary font-bold italic">01.</span>
+                                            <p class="text-xs text-slate-400 leading-relaxed">Hangares de mantenimiento activo y talleres de armamento.</p>
+                                        </li>
+                                        <li class="flex gap-4">
+                                            <span class="text-primary font-bold italic">02.</span>
+                                            <p class="text-xs text-slate-400 leading-relaxed">Zonas de vivienda de personal militar y casinos de oficiales.</p>
+                                        </li>
+                                        <li class="flex gap-4">
+                                            <span class="text-primary font-bold italic">03.</span>
+                                            <p class="text-xs text-slate-400 leading-relaxed">Depósitos de munición y polvorines periféricos.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-4 text-green-500">
+                                        <span class="material-symbols-outlined">check_circle</span>
+                                        <h4 class="font-bold uppercase tracking-widest text-sm text-white">Zonas Autorizadas</h4>
+                                    </div>
+                                    <ul class="space-y-6">
+                                        <li class="flex gap-4">
+                                            <span class="text-green-500 font-bold italic">01.</span>
+                                            <p class="text-xs text-slate-400 leading-relaxed">Hangar de Exhibición Histórica y Patio de Tanques.</p>
+                                        </li>
+                                        <li class="flex gap-4">
+                                            <span class="text-green-500 font-bold italic">02.</span>
+                                            <p class="text-xs text-slate-400 leading-relaxed">Senderos de Monumentalismo y Monumento al Blindado.</p>
+                                        </li>
+                                        <li class="flex gap-4">
+                                            <span class="text-green-500 font-bold italic">03.</span>
+                                            <p class="text-xs text-slate-400 leading-relaxed">Área de Biblioteca y Archivo Histórico.</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Código de Conducta -->
+                    <section id="conduct" class="scroll-mt-32 space-y-10">
+                        <div class="flex items-end justify-between border-b border-white/5 pb-8">
+                            <div class="space-y-4">
+                                <h2 class="text-4xl font-black italic text-white uppercase tracking-tighter" data-i18n="prot_cond_titulo">CÓDIGO DE CONDUCTA</h2>
+                                <p class="text-sm text-slate-500 max-w-lg" data-i18n="prot_cond_desc">Comportamiento esperado dentro de una unidad militar operativa.</p>
+                            </div>
+                            <span class="text-7xl font-black italic text-white/5 select-none">03</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="glass-card p-8 flex flex-col gap-6 items-center text-center">
+                                <span class="material-symbols-outlined text-4xl text-primary">priority_high</span>
+                                <h5 class="text-xs font-black uppercase tracking-widest text-white">Respeto Militar</h5>
+                                <p class="text-[10px] text-slate-500 leading-relaxed">Se debe mantener un trato respetuoso hacia el personal de guardia y oficiales.</p>
+                            </div>
+                            <div class="glass-card p-8 flex flex-col gap-6 items-center text-center">
+                                <span class="material-symbols-outlined text-4xl text-primary">touch_app</span>
+                                <h5 class="text-xs font-black uppercase tracking-widest text-white">Material Bélico</h5>
+                                <p class="text-[10px] text-slate-500 leading-relaxed">Prohibido subir, golpear o modificar cualquier componente de los blindados.</p>
+                            </div>
+                            <div class="glass-card p-8 flex flex-col gap-6 items-center text-center">
+                                <span class="material-symbols-outlined text-4xl text-primary">volume_off</span>
+                                <h5 class="text-xs font-black uppercase tracking-widest text-white">Contaminación</h5>
+                                <p class="text-[10px] text-slate-500 leading-relaxed">Controlar el nivel de volumen y no arrojar desechos fuera de contenedores.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     </main>
 
-    <!-- FOOTER CARGADO DINÁMICAMENTE -->
+    <!-- FOOTER DINÁMICO -->
     <div data-include="tanques/footer"></div>
 
-    <!-- INICIALIZACIÓN DE SISTEMAS POST-CARGA -->
     <script>
         window.addEventListener('componentsReady', () => {
             setTimeout(() => {
-                if (window.StatsManager) {
-                    window.StatsManager.updateUI();
-                    window.StatsManager.subscribeRealtime();
-                }
+                if (window.i18n) window.i18n.updateUI();
             }, 300);
+        });
+
+        // Smooth scroll para anclas
+        document.querySelectorAll('aside nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 120,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
