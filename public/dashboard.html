@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Mi Panel | MUSEOS TAPI</title>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="recursos/images/index/favicon_pestaña.svg?v=1.1" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="js/config.js"></script>
+    <link href="css/main.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --dashboard-bg: #0b1120;
+            --sidebar-bg: #0f172a;
+            --accent-blue: #0032A0;
+            --bright-blue: #3b82f6;
+        }
+
+        body {
+            background-color: var(--dashboard-bg);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 50, 160, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 100% 100%, rgba(0, 50, 160, 0.1) 0%, transparent 25%);
+            background-attachment: fixed;
+        }
+
+        .sidebar-item.active {
+            background: linear-gradient(90deg, var(--accent-blue) 0%, rgba(0, 50, 160, 0) 100%);
+            border-left: 4px solid var(--bright-blue);
+            color: white;
+            box-shadow: inset 5px 0 15px -5px rgba(59, 130, 246, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 50, 160, 0.2);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+
+        .section-content { display: none; animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .section-content.active { display: block; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .hud-scanline {
+            position: fixed; top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(59, 130, 246, 0.05); animation: scanline 10s linear infinite; pointer-events: none; z-index: 100;
+        }
+        @keyframes scanline { 0% { top: 0%; } 100% { top: 100%; } }
+
+        /* Mobile Adjustments */
+        #mobile-sidebar-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        #mobile-sidebar-overlay.active { opacity: 1; pointer-events: auto; }
+        
+        aside { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        
+        @media (max-width: 768px) {
+            aside { position: fixed; top: 0; left: 0; height: 100%; width: 280px; z-index: 50; transform: translateX(-100%); }
+            aside.open { transform: translateX(0); }
+        }
+    </style>
+</head>
+
+<body class="font-display text-slate-200 overflow-hidden h-screen flex">
+    <div class="hud-scanline"></div>
+    
+    <!-- Mobile Overlay -->
+    <div id="mobile-sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"></div>
+
+    <!-- SIDEBAR -->
+    <aside id="main-sidebar" class="bg-slate-900/90 border-r border-white/5 flex flex-col z-50">
+        <div class="p-8 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="recursos/images/tapi-logo.svg" alt="TAPI" class="h-8 w-auto invert brightness-200 group-hover:rotate-12 transition-all">
+                <span class="text-xl font-black tracking-tighter text-white">DASHBOARD</span>
+            </a>
+            <button onclick="toggleSidebar()" class="md:hidden text-slate-400">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <nav class="flex-1 px-4 space-y-8 overflow-y-auto custom-scrollbar">
+            <!-- Navegación Principal de Regreso -->
+            <div class="mb-6">
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-black text-primary hover:bg-primary/10 transition-all group border border-primary/20 bg-primary/5">
+                    <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Volver al Museo
+                </a>
+            </div>
+
+            <div>
+                <p class="px-4 text-[9px] font-black text-slate-600 uppercase tracking-[0.3em] mb-4">Operaciones</p>
+                <div class="space-y-1">
+                    <button onclick="switchSection('dashboard')" class="sidebar-item active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">dashboard_customize</span>
+                        Inicio
+                    </button>
+                    <button onclick="switchSection('missions')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">quiz</span>
+                        Misiones y Desafíos
+                    </button>
+                    <button onclick="switchSection('ranking')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">leaderboard</span>
+                        Ranking Global
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <p class="px-4 text-[9px] font-black text-slate-600 uppercase tracking-[0.3em] mb-4">Personal</p>
+                <div class="space-y-1">
+                    <button onclick="switchSection('profile')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">badge</span>
+                        Mi Perfil
+                    </button>
+                    <button onclick="switchSection('achievements')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">military_tech</span>
+                        Mis Logros
+                    </button>
+                    <button onclick="switchSection('settings')" class="sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-bold text-slate-400 hover:text-white transition-all group">
+                        <span class="material-symbols-outlined text-lg group-hover:scale-110 transition-transform">settings</span>
+                        Configuración
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="p-6 border-t border-white/5 bg-black/20">
+            <button onclick="AuthManager.logout()" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-red-400 hover:bg-red-500/10 transition-all border border-red-500/10">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                Salir del Sistema
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col overflow-hidden relative">
+        <!-- TOPBAR -->
+        <header class="h-16 md:h-20 border-b border-white/5 flex items-center justify-between px-4 md:px-10 bg-slate-900/40 backdrop-blur-xl z-30">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleSidebar()" class="md:hidden util-btn size-10 flex items-center justify-center bg-white/5 rounded-lg border border-white/10 text-white">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div>
+                    <h2 id="section-title" class="text-lg md:text-2xl font-black uppercase tracking-tighter text-white">Mi Panel</h2>
+                    <p id="section-subtitle" class="hidden md:block text-[9px] font-bold text-slate-500 uppercase tracking-widest mt-1">Nivel de Acceso: Usuario Destacado</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden sm:flex flex-col text-right">
+                    <span id="user-display-name" class="font-bold text-sm text-white italic">Cargando...</span>
+                    <span id="user-display-rank" class="text-[9px] text-bright-blue uppercase font-black tracking-widest">Recluta</span>
+                </div>
+                <div id="user-display-avatar" class="size-10 md:size-12 rounded-full border-2 border-primary overflow-hidden bg-slate-800 flex items-center justify-center shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined text-primary text-xl">account_circle</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- SECTIONS WRAPPER -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-10 custom-scrollbar relative">
+            
+            <!-- SECTION: DASHBOARD -->
+            <section id="section-dashboard" class="section-content active">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
+                    <div class="glass-card rounded-2xl p-6 bg-gradient-to-br from-primary to-blue-900 border-none shadow-2xl">
+                        <p class="text-[9px] font-black uppercase tracking-widest text-white/60 mb-1">Puntos de Usuario</p>
+                        <h4 id="user-total-points" class="text-3xl font-black text-white italic">--</h4>
+                        <div class="mt-4 flex items-center gap-2">
+                             <div class="h-1 flex-1 bg-white/20 rounded-full overflow-hidden">
+                                 <div class="h-full bg-white w-[65%]"></div>
+                             </div>
+                             <span class="text-[8px] font-black text-white/50">LVL 4</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6">
+                        <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Misiones Completadas</p>
+                        <h4 class="text-3xl font-black text-white italic">14 / 50</h4>
+                        <p class="text-[8px] mt-2 text-green-500 font-black tracking-widest">▲ 2 ESTA SEMANA</p>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6">
+                        <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Precisión de Fuego</p>
+                        <h4 class="text-3xl font-black text-white italic">92%</h4>
+                        <div class="mt-4 flex gap-1">
+                            <div class="h-1 w-full bg-bright-blue/30 rounded-full"><div class="h-full bg-bright-blue w-[92%] rounded-full"></div></div>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6">
+                        <p class="text-[9px] font-black uppercase tracking-widest text-slate-500 mb-1">Logros Obtenidos</p>
+                        <h4 class="text-3xl font-black text-white italic">05</h4>
+                        <p class="text-[8px] mt-2 text-accent-gold font-black tracking-widest uppercase">RANGO: EXPERTO</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                    <!-- Missions -->
+                    <div class="xl:col-span-2 space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xs font-black uppercase tracking-[0.3em] text-white flex items-center gap-2">
+                                <span class="material-symbols-outlined text-bright-blue">rocket_launch</span>
+                                Prioritarios: Desafíos Semanales
+                            </h3>
+                            <button onclick="switchSection('missions')" class="text-[9px] font-black text-primary hover:text-white transition-all uppercase tracking-widest">Ver Todas las Misiones</button>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass-card rounded-3xl p-6 border-l-4 border-bright-blue relative group overflow-hidden">
+                                <span class="bg-blue-500/10 text-bright-blue text-[8px] font-black px-2 py-1 rounded border border-blue-500/20 uppercase tracking-widest">Activo</span>
+                                <h4 class="text-xl font-black text-white mt-4 mb-2">Desarrollo de Blindaje</h4>
+                                <p class="text-xs text-slate-500 italic mb-6">Investiga los nuevos compuestos de acero reforzado del Panzer IV.</p>
+                                <button class="w-full py-3 bg-slate-800 hover:bg-bright-blue text-white rounded-xl text-[9px] font-black uppercase tracking-widest transition-all">Empezar Misión</button>
+                            </div>
+                            <div class="glass-card rounded-3xl p-6 border-l-4 border-red-500 bg-red-950/5">
+                                <span class="bg-red-500/10 text-red-500 text-[8px] font-black px-2 py-1 rounded border border-red-500/20 uppercase tracking-widest">Urgente</span>
+                                <h4 class="text-xl font-black text-white mt-4 mb-2">Fuga de Información</h4>
+                                <p class="text-xs text-slate-500 italic mb-6">Un agente enemigo ha interceptado planos tácticos. ¡Recupéralos!</p>
+                                <button class="w-full py-3 bg-red-600/20 hover:bg-red-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest transition-all border border-red-500/30">Investigar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mini Ranking -->
+                    <div class="glass-card rounded-3xl overflow-hidden border border-white/5 flex flex-col h-fit">
+                        <div class="bg-primary/20 p-6 flex items-center justify-between border-b border-white/5">
+                            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-white">Top del Museo</h3>
+                            <span class="material-symbols-outlined text-accent-gold size-8 flex items-center justify-center bg-black/40 rounded-full border border-accent-gold/20">workspace_premium</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-white/5 rounded-2xl">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-accent-gold font-black italic">01</span>
+                                    <img src="https://ui-avatars.com/api/?name=Alexander&background=c5a065&color=fff" class="size-8 rounded-full border border-accent-gold">
+                                    <span class="text-xs font-bold text-white italic">Gral. Alexander</span>
+                                </div>
+                                <span class="text-[9px] font-mono text-slate-600">156k</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-bright-blue/5 border border-bright-blue/20 rounded-2xl">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-bright-blue font-black italic">14</span>
+                                    <div id="user-rank-mini-avatar" class="size-8 rounded-full border border-bright-blue bg-slate-800 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-xs text-bright-blue">person</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-white italic">Tú</span>
+                                </div>
+                                <span class="text-[9px] font-mono text-bright-blue font-bold user-points-val">--</span>
+                            </div>
+                            <button onclick="switchSection('ranking')" class="w-full text-center py-2 text-[9px] font-black uppercase tracking-widest text-slate-500 hover:text-white transition-all">Ver Cuadro Completo</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: MISSIONS -->
+            <section id="section-missions" class="section-content text-center py-20 max-w-4xl mx-auto space-y-8">
+                <div class="glass-card p-12 rounded-[50px] relative overflow-hidden bg-gradient-to-br from-bright-blue/20 to-transparent border-bright-blue/20">
+                    <span class="material-symbols-outlined text-8xl text-white mb-6 animate-pulse">explore</span>
+                    <h1 class="text-5xl font-black uppercase tracking-tighter text-white">Próximos Desafíos</h1>
+                    <p class="text-slate-400 italic text-lg max-w-xl mx-auto">Nuevas actividades de historia y acertijos se desbloquearán en la Temporada 1.</p>
+                    <div class="mt-12 flex justify-center gap-6 flex-wrap">
+                        <div class="bg-black/60 px-8 py-5 rounded-3xl border border-white/10 shadow-xl">
+                            <p class="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-1">Próximo Evento</p>
+                            <p class="text-xl font-black text-bright-blue">12 DÍAS</p>
+                        </div>
+                        <div class="bg-black/60 px-8 py-5 rounded-3xl border border-white/10 shadow-xl">
+                            <p class="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-1">Premios Totales</p>
+                            <p class="text-xl font-black text-accent-gold">2.5M XP</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- SECTION: RANKING -->
+             <section id="section-ranking" class="section-content space-y-8 max-w-5xl mx-auto">
+                 <div class="glass-card rounded-3xl overflow-hidden">
+                     <div class="p-8 border-b border-white/5 bg-slate-800/20 flex flex-col md:flex-row justify-between md:items-center gap-4">
+                         <div>
+                             <h3 class="text-3xl font-black uppercase tracking-tighter text-white italic">Tabla de Clasificación</h3>
+                             <p class="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mt-1">Los usuarios con mayor puntaje en la comunidad</p>
+                         </div>
+                         <div class="bg-slate-900/80 px-6 py-3 rounded-2xl border border-white/10">
+                            <p class="text-[9px] font-black text-slate-600 uppercase tracking-widest">Nuestra Posición</p>
+                            <p class="text-2xl font-black text-bright-blue italic">#14</p>
+                         </div>
+                     </div>
+                     <div class="overflow-x-auto p-4 md:p-8">
+                         <table class="w-full text-left border-separate border-spacing-y-3">
+                             <thead>
+                                 <tr class="text-[10px] font-black uppercase text-slate-600 tracking-widest">
+                                     <th class="px-6 py-2">Rango</th>
+                                     <th class="px-6 py-2">Usuario</th>
+                                     <th class="px-6 py-2">Distinciones</th>
+                                     <th class="px-6 py-2 text-right">Puntos Totales</th>
+                                 </tr>
+                             </thead>
+                             <tbody class="text-sm">
+                                 <tr class="bg-accent-gold/5 rounded-2xl overflow-hidden border border-accent-gold/20">
+                                     <td class="px-6 py-5 rounded-l-2xl text-accent-gold font-black italic text-xl">01</td>
+                                     <td class="px-6 py-5 flex items-center gap-4">
+                                         <img src="https://ui-avatars.com/api/?name=Alexander&background=c5a065&color=fff" class="size-10 rounded-full border-2 border-accent-gold">
+                                         <span class="text-white font-black italic">Gral. Alexander</span>
+                                     </td>
+                                     <td class="px-6 py-5"><span class="bg-accent-gold/20 text-accent-gold px-3 py-1 rounded text-[9px] font-black uppercase">Legendario</span></td>
+                                     <td class="px-6 py-5 rounded-r-2xl text-right font-mono text-accent-gold font-bold">156,420</td>
+                                 </tr>
+                                 <tr class="bg-primary/10 border border-primary/20 rounded-2xl">
+                                     <td class="px-6 py-5 rounded-l-2xl text-bright-blue font-black italic text-xl">14</td>
+                                     <td class="px-6 py-5 flex items-center gap-4">
+                                         <div class="size-10 rounded-full border-2 border-bright-blue bg-slate-800 flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-bright-blue">person</span>
+                                         </div>
+                                         <span class="text-white font-black italic">Tú</span>
+                                     </td>
+                                     <td class="px-6 py-5"><span class="bg-bright-blue/20 text-bright-blue px-3 py-1 rounded text-[9px] font-black uppercase user-rank-label">Cargando...</span></td>
+                                     <td class="px-6 py-5 rounded-r-2xl text-right font-mono text-bright-blue font-bold user-points-val">--</td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             </section>
+
+            <!-- SECTION: PROFILE -->
+            <section id="section-profile" class="section-content space-y-8 max-w-4xl mx-auto">
+                <div class="glass-card rounded-[40px] p-8 md:p-12 flex flex-col md:flex-row gap-8 md:gap-12 items-center">
+                    <div class="relative group">
+                        <div id="profile-avatar-xl" class="size-40 md:size-52 rounded-full border-4 border-primary overflow-hidden bg-slate-800 flex items-center justify-center shadow-2xl relative z-10">
+                            <span class="material-symbols-outlined text-7xl text-primary">account_circle</span>
+                        </div>
+                        <div class="absolute inset-0 bg-primary rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-all"></div>
+                        <button class="absolute bottom-4 right-4 z-20 size-12 bg-bright-blue text-white rounded-full border-4 border-slate-900 shadow-xl flex items-center justify-center hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-xl">upload</span>
+                        </button>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h3 id="profile-name-xl" class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2">--</h3>
+                        <p id="profile-email-xl" class="text-slate-500 font-mono italic mb-6">--</p>
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                             <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-400">Desde: Marzo 2026</span>
+                             <span class="bg-white/5 border border-white/10 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-400">Regional: Ecuador</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass-card rounded-3xl p-8">
+                        <h4 class="text-xs font-black uppercase tracking-widest text-primary mb-8 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-lg">edit_note</span>
+                            Información Personal
+                        </h4>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-[9px] font-black text-slate-600 uppercase tracking-widest mb-2 ml-1">Nombre Público</label>
+                                <input type="text" id="input-alias" class="w-full bg-black/40 border border-white/10 rounded-2xl px-5 py-4 text-sm focus:border-primary outline-none transition-all text-white">
+                            </div>
+                            <button class="w-full py-4 bg-slate-800 hover:bg-primary text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all">Guardar Cambios</button>
+                        </form>
+                    </div>
+                    <div class="glass-card rounded-3xl p-8 flex flex-col items-center justify-center text-center">
+                         <span class="material-symbols-outlined text-6xl text-slate-800 mb-4">qr_code_2</span>
+                         <h4 class="text-sm font-black text-white italic uppercase mb-2">MI CÓDIGO QR</h4>                         <p class="text-xs text-slate-600 max-w-[200px]">Usa este código para compartir tu perfil con otros usuarios.</p>                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: ACHIEVEMENTS -->
+            <section id="section-achievements" class="section-content space-y-12">
+                <div class="text-center">
+                    <h3 class="text-5xl font-black uppercase tracking-tighter text-white mb-4 italic">Mis Logros y Premios</h3>                    <p class="text-slate-500 uppercase font-black text-[9px] tracking-[0.3em]">Resumen de Actividad del Usuario</p>                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Medalla 1 -->
+                    <div class="glass-card rounded-[40px] p-8 relative group">
+                        <div class="size-20 bg-primary/20 border border-primary/30 rounded-3xl flex items-center justify-center mb-8 shadow-2xl group-hover:rotate-6 transition-all">
+                             <span class="material-symbols-outlined text-5xl text-primary">award_star</span>
+                        </div>
+                        <h4 class="text-xl font-black text-white italic mb-2">Recluta Fiel</h4>
+                        <p class="text-[10px] text-slate-500 italic leading-relaxed">Otorgada por el ingreso satisfactorio al sistema de comando del Museo.</p>
+                        <div class="mt-8 flex items-center gap-2 text-green-500">
+                             <span class="material-symbols-outlined text-sm">check_circle</span>
+                             <span class="text-[9px] font-black uppercase tracking-widest">Desbloqueado</span>
+                        </div>
+                    </div>
+                    <!-- Medalla 2 -->
+                    <div class="glass-card rounded-[40px] p-8 bg-slate-900/40 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-help group">
+                        <div class="size-20 bg-slate-800 rounded-3xl flex items-center justify-center mb-8 border border-white/5">
+                             <span class="material-symbols-outlined text-5xl text-slate-600">visibility</span>
+                        </div>
+                        <h4 class="text-xl font-black text-slate-400 italic mb-2">Vigilancia Nocturna</h4>
+                        <p class="text-[10px] text-slate-700 italic leading-relaxed">Accede al complejo después de las 22:00 horas en 3 días consecutivos.</p>
+                        <div class="mt-8 flex items-center gap-2 text-slate-600">
+                             <span class="material-symbols-outlined text-sm">lock</span>
+                             <span class="text-[9px] font-black uppercase tracking-widest">Bloqueado</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- SECTION: SETTINGS -->
+             <section id="section-settings" class="section-content max-w-2xl mx-auto space-y-6">
+                <div class="glass-card rounded-3xl shadow-2xl overflow-hidden">
+                    <div class="p-6 bg-slate-800/40 border-b border-white/5 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">tune</span>
+                        <h4 class="text-[10px] font-black uppercase tracking-widest text-white">Preferencias de Interfaz</h4>                    </div>
+                    <div class="p-8 space-y-10">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-white italic">Música de Fondo</p>                                <p class="text-[9px] text-slate-600 font-bold uppercase tracking-widest mt-1">Sincronizar música de fondo automáticamente</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:bg-bright-blue after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:size-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-bold text-white italic">Efectos Visuales</p>                                <p class="text-[9px] text-slate-600 font-bold uppercase tracking-widest mt-1">Activar scanlines y glows en la interfaz</p>
+                            </div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" checked class="sr-only peer">
+                                <div class="w-11 h-6 bg-slate-800 rounded-full peer peer-checked:bg-bright-blue after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:size-5 after:transition-all peer-checked:after:translate-x-full"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-3xl overflow-hidden border-red-900/20">
+                    <div class="p-6 bg-red-950/20 border-b border-red-900/10 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-red-500">security</span>
+                        <h4 class="text-[10px] font-black uppercase tracking-widest text-red-500">Seguridad de la Cuenta</h4>                    </div>
+                    <div class="p-8 space-y-4">
+                        <button class="w-full flex items-center justify-between p-5 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-all font-bold text-sm text-white italic">
+                            Cambiar Contraseña                            <span class="material-symbols-outlined text-slate-600 text-sm">arrow_forward</span>
+                        </button>
+                        <button class="w-full flex items-center justify-between p-5 bg-red-600/5 rounded-2xl border border-red-600/10 hover:bg-red-600/20 transition-all font-bold text-sm text-red-500 italic">
+                            Eliminar mi Cuenta permanentemente                            <span class="material-symbols-outlined text-red-600 text-sm">dangerous</span>
+                        </button>
+                    </div>
+                </div>
+             </section>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="js/supabase/client.js"></script>
+    <script src="js/supabase/auth.js"></script>
+
+    <script>
+        // --- Sidebar Logic ---
+        function toggleSidebar() {
+            const sidebar = document.getElementById('main-sidebar');
+            const overlay = document.getElementById('mobile-sidebar-overlay');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+        }
+
+        // --- Section Navigation ---
+        function switchSection(sectionId) {
+            // Close mobile sidebar if open
+            if(window.innerWidth < 768) {
+                document.getElementById('main-sidebar').classList.remove('open');
+                document.getElementById('mobile-sidebar-overlay').classList.remove('active');
+            }
+
+            // Tabs
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(sectionId)) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Content
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            const activeSec = document.getElementById(`section-${sectionId}`);
+            if(activeSec) activeSec.classList.add('active');
+
+            // Header titles
+            const titles = {
+                'dashboard': ['Mi Panel', 'Resumen General de Actividades'],                'missions': ['Misiones y Desafíos', 'Actividades del Museo Disponibles'],                'ranking': ['Tabla de Honor', 'Los mejores usuarios de la comunidad'],                'profile': ['Configuración de Perfil', 'Gestión de datos y Avatar'],                'achievements': ['Mis Logros', 'Premios y medallas recolectadas'],                'settings': ['Configuración', 'Preferencias de Música e Interfaz']            };
+
+            if(titles[sectionId]) {
+                document.getElementById('section-title').innerText = titles[sectionId][0];
+                document.getElementById('section-subtitle').innerText = titles[sectionId][1];
+            }
+            
+            // Scroll to top
+            document.querySelector('.flex-1.overflow-y-auto').scrollTop = 0;
+        }
+
+        // --- Music Logic ---
+        let bgMusic = null;
+        let isMusicPlaying = false;
+
+        function toggleMusic() {
+            if (!bgMusic) {
+                bgMusic = new Audio('recursos/audios/index/ambient.mp3');
+                bgMusic.loop = true;
+                bgMusic.volume = 0.3;
+            }
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                isMusicPlaying = false;
+            } else {
+                bgMusic.play().catch(e => console.warn("Audio blocked", e));
+                isMusicPlaying = true;
+            }
+        }
+
+        // --- Data Integration ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkSb = setInterval(() => {
+                if (window.sb) {
+                    clearInterval(checkSb);
+                    initDashboard();
+                }
+            }, 200);
+            setTimeout(() => clearInterval(checkSb), 10000);
+
+            // Audio checkbox sync
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const label = e.target.closest('div').querySelector('p').innerText;
+                    if(label.includes('Música')) toggleMusic();
+                });
+            });
+        });
+
+        async function initDashboard() {
+            const { data: { session } } = await window.sb.auth.getSession();
+            if (!session) { window.location.href = 'index.html'; return; }
+
+            updateUI(session.user);
+            
+            window.sb.auth.onAuthStateChange((event, session) => {
+                if(session) updateUI(session.user);
+                else window.location.href = 'index.html';
+            });
+
+            const hash = window.location.hash.replace('#', '');
+            if(hash && ['dashboard','missions','ranking','profile','achievements','settings'].includes(hash)) {
+                switchSection(hash);
+            }
+        }
+
+        function updateUI(user) {
+            const name = user.user_metadata.full_name || 'Agente TAPI';
+            const email = user.email;
+            const avatar = user.user_metadata.avatar_url;
+
+            document.querySelectorAll('#user-display-name, #profile-name-xl').forEach(el => el.innerText = name);
+            document.querySelectorAll('#profile-email-xl').forEach(el => el.innerText = email);
+            
+            const aliasInput = document.getElementById('input-alias');
+            if(aliasInput) aliasInput.value = name;
+
+            if (avatar) {
+                const img = `<img src="${avatar}" class="w-full h-full object-cover">`;
+                document.querySelectorAll('#user-display-avatar, #profile-avatar-xl, #user-rank-mini-avatar').forEach(el => {
+                    if(el) el.innerHTML = img;
+                });
+            }
+
+            const points = '14,250';
+            const rank = 'Comandante';
+            const ptsEl = document.getElementById('user-total-points');
+            if(ptsEl) ptsEl.innerText = points;
+            document.querySelectorAll('.user-points-val').forEach(el => el.innerText = points);
+            document.querySelectorAll('.user-rank-label').forEach(el => el.innerText = rank);
+            const rnkEl = document.getElementById('user-display-rank');
+            if(rnkEl) rnkEl.innerText = rank;
+        }
+    </script>
+</body>
+</html>

@@ -99,6 +99,18 @@ html, body {
     }
 }
 
+/* Scroll Reveal Global Styles */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .footer-fusion-tanks {
     background: linear-gradient(135deg, #0032a0 0%, #05080f 50%, #ffffff 100%);
     background-size: 200% 200%;
@@ -992,4 +1004,23 @@ html.theme-transitioning *::after {
         transform: scale(2.5);
         opacity: 0;
     }
-}
+}
+
+/* Swap Button Animation */
+@keyframes swap-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+.animate-swap {
+    display: inline-block;
+}
+
+.util-btn:hover .animate-swap {
+    animation: swap-spin 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+

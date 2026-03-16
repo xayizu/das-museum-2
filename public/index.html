@@ -47,10 +47,10 @@
         rel="stylesheet" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="js/config.js?v=392"></script>
-    <link href="css/main.css?v=392" rel="stylesheet" />
-    <script defer src="js/i18n.js?v=392"></script>
-    <script defer src="js/main.js?v=392"></script>
+    <script src="js/config.js?v=393"></script>
+    <link href="css/main.css?v=393" rel="stylesheet" />
+    <script defer src="js/i18n.js?v=393"></script>
+    <script defer src="js/main.js?v=393"></script>
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -603,25 +603,13 @@
                                 </div>
                             </div>
 
-                            <!-- Links -->
+                            <!-- Centralized Link -->
                             <div class="py-2">
-                                <a href="perfil.html"
+                                <a href="dashboard.html"
                                     class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
                                     <span
-                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">person</span>
-                                    <span data-i18n="ver_perfil">Ver mi Perfil</span>
-                                </a>
-                                <a href="mis-logros.html"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
-                                    <span
-                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">military_tech</span>
-                                    <span data-i18n="mis_logros">Mis Logros</span>
-                                </a>
-                                <a href="configuracion.html"
-                                    class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
-                                    <span
-                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">settings</span>
-                                    <span data-i18n="configuracion">Configuración</span>
+                                        class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform text-primary">dashboard_customize</span>
+                                    <span data-i18n="dashboard_táctico">Dashboard Táctico</span>
                                 </a>
                             </div>
 
@@ -1745,10 +1733,11 @@
     <script src="js/supabase/auth.js?v=1.1"></script>
     <script src="js/supabase/stats.js?v=1.1"></script>
     <script src="js/supabase/leaderboard.js?v=1.1"></script>
-    <script src="js/supabase/realtime.js?v=392?v=310?v=310"></script>
+    <script src="js/supabase/news.js?v=1.1"></script>
+    <script src="js/supabase/realtime.js?v=393?v=393?v=393?v=393?v=393"></script>
 
     <!-- 3. Bridge (Initialization) -->
-    <script src="js/supabase/ui-bridge.js?v=392"></script>
+    <script src="js/supabase/ui-bridge.js?v=393"></script>
 
     <script>
         /**
@@ -1793,7 +1782,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Check if already shown in this session (optional)
             // if (!sessionStorage.getItem('news_shown')) {
-            openNewsModal();
+            // openNewsModal(); // Movido a ui-bridge.js para cargar datos primero
             //     sessionStorage.setItem('news_shown', 'true');
             // }
         });

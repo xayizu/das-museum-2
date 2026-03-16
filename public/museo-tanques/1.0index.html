@@ -2,6 +2,10 @@
 <html class="dark" lang="es">
 
 <head>
+    <link id="favicon" rel="icon" type="image/svg+xml" href="../recursos/images/index/favicon_pestaña.svg?v=1.1" />
+    <link rel="icon" type="image/png" sizes="48x48" href="../recursos/images/index/favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../recursos/images/index/favicon-144.png" />
+
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Inicio | MUSEO DE TANQUES</title>
@@ -9,11 +13,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&family=Noto+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -24,7 +25,7 @@
 
     <!-- Scripts de Funcionalidad -->
     <script defer src="../js/i18n.js?v=1.4"></script>
-    <script defer src="../js/main.js?v=310"></script>
+    <script defer src="../js/main.js?v=393"></script>
     <script defer src="../js/components-loader.js?v=1.4"></script>
 
     <!-- Supabase integration -->
@@ -32,43 +33,510 @@
     <script src="../js/supabase/client.js?v=1.1"></script>
     <script src="../js/supabase/auth.js?v=1.1"></script>
     <script src="../js/supabase/stats.js?v=1.1"></script>
-    <script src="../js/supabase/realtime.js?v=392?v=310?v=310"></script>
+    <script src="../js/supabase/realtime.js?v=393?v=393?v=393"></script>
     <script src="../js/supabase/ui-bridge.js?v=1.1"></script>
+
+    <style>
+        .hero-shimmer {
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0) 0%, rgba(59, 130, 246, 0.1) 50%, rgba(59, 130, 246, 0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .tactical-border {
+            position: relative;
+        }
+
+        .tactical-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 20px; height: 20px;
+            border-top: 2px solid #3b82f6;
+            border-left: 2px solid #3b82f6;
+        }
+
+        .tactical-border::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 20px; height: 20px;
+            border-bottom: 2px solid #3b82f6;
+            border-right: 2px solid #3b82f6;
+        }
+
+        .card-glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-glass:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sector-number {
+            font-family: 'Share Tech Mono', monospace;
+            -webkit-text-stroke: 1px rgba(59, 130, 246, 0.5);
+            color: transparent;
+            font-size: 8rem;
+            line-height: 1;
+            opacity: 0.1;
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+            z-index: 0;
+        }
+
+        .luxury-gradient {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+        }
+    </style>
 </head>
 
-<body
-    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col"
-    data-root="../">
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden min-h-screen flex flex-col" data-root="../">
 
-    <!-- COMPONENTES CARGADOS DINÁMICAMENTE (Tanques - Blue Theme) -->
+    <!-- COMPONENTES CARGADOS DINÁMICAMENTE -->
     <div data-include="tanques/sidebar"></div>
     <div class="overlay fixed inset-0 z-[90]" id="left-overlay" onclick="toggleLeftMenu()"></div>
     <div data-include="tanques/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botón del Topbar) -->
+    <!-- SISTEMA DE AUDIO -->
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-grow pt-[110px] md:pt-[100px] px-[10px]">
-        <div class="max-w-[1200px] mx-auto py-12">
-
-            <header class="mb-12 pb-6">
-                <h1 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2"
-                    data-i18n="inicio_menu">Inicio</h1>
-                <p class="uppercase tracking-widest text-xs font-bold text-primary" data-i18n="museo_de_tanques_title">
-                    MUSEO DE TANQUES</p>
-            </header>
-
-            <!-- ESPACIO PARA EL CONTENIDO -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                    <h2 class="text-xl font-bold text-primary mb-4" data-i18n="bienvenidos">Bienvenidos</h2>
-                    <p class="text-gray-400">Esta página utiliza el sistema de componentes dinámicos con todas las
-                        funciones del museo principal activas (música, estadísticas, idiomas y redes sociales).</p>
-                </div>
+    <main class="flex-grow pt-[110px] md:pt-[100px]">
+        
+        <!-- HERO SECTION (ESTADO: COMPLETO) -->
+        <section class="relative h-[90vh] min-h-[700px] flex items-center justify-center overflow-hidden px-4">
+            <div class="absolute inset-0 z-0">
+                <img src="../recursos/images/museo-tanques/1.0index/hero.png" alt="Museo de Tanques Hero" class="w-full h-full object-cover brightness-[0.4] scale-105 animate-slow-zoom">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/50 to-background-dark"></div>
             </div>
 
-        </div>
+            <div class="relative z-10 max-w-[1200px] w-full text-center">
+                <div class="inline-block px-4 py-1 mb-6 border border-primary/30 rounded-full bg-primary/5 backdrop-blur-sm hero-shimmer">
+                    <span class="text-[10px] uppercase font-black tracking-[0.4em] text-primary">Sector 7G | Blindados Pesados</span>
+                </div>
+                <h1 class="text-6xl md:text-9xl font-black uppercase tracking-tighter text-white mb-6 leading-none">
+                    ACERO <span class="text-primary italic">VIVO</span><br>HISTORIA <span class="text-primary italic">REAL</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+                    La mayor colección digital de blindados del mundo. Un viaje táctico a través del tiempo y la tecnología.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="4.1hangar.html" class="px-12 py-5 bg-primary hover:bg-white text-white hover:text-primary font-black uppercase tracking-widest transition-all rounded-sm flex items-center justify-center gap-3 group shadow-xl shadow-primary/20">
+                        <span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">explore</span>
+                        Ingresar al Hangar
+                    </a>
+                    <a href="#sector-01" class="px-12 py-5 border border-white/20 hover:border-primary text-white hover:text-primary font-black uppercase tracking-widest transition-all rounded-sm flex items-center justify-center gap-3 backdrop-blur-md">
+                        <span class="material-symbols-outlined text-xl">expand_more</span>
+                        Explorar Sectores
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Bottom Stats Bar -->
+            <div class="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-xl border-t border-white/5 py-8">
+                <div class="max-w-[1200px] mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
+                    <div class="text-center">
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Visitantes Globales</span>
+                        <span class="text-3xl font-mono font-black text-white" id="stat-visits">0</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Unidades en Hangar</span>
+                        <span class="text-3xl font-mono font-black text-white" id="stat-tanks">124</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Misiones Activas</span>
+                        <span class="text-3xl font-mono font-black text-white">42</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Nivel de Seguridad</span>
+                        <span class="text-3xl font-mono font-black text-primary">MAX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTOR 01: TOUR VIRTUAL -->
+        <section id="sector-01" class="relative py-32 luxury-gradient overflow-hidden reveal">
+            <span class="sector-number">01</span>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="order-2 lg:order-1 space-y-8">
+                        <div class="flex items-center gap-4">
+                            <span class="w-12 h-px bg-primary"></span>
+                            <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Inmersión Digital</span>
+                        </div>
+                        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight text-white leading-tight">
+                            TOUR VIRTUAL<br><span class="text-primary italic">360 GRADOS</span>
+                        </h2>
+                        <p class="text-slate-400 text-lg leading-relaxed font-medium">
+                            Explore nuestras instalaciones desde cualquier lugar del mundo. Nuestra tecnología de escaneo permite una visión detallada de cada sector del museo, permitiéndole caminar entre los gigantes de acero como si estuviera allí.
+                        </p>
+                        <a href="2.0tour.html" class="inline-flex items-center gap-4 px-10 py-5 bg-white text-black font-black uppercase text-xs tracking-[0.2em] hover:bg-primary hover:text-white transition-all group">
+                            Iniciar Recorrido
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">view_in_ar</span>
+                        </a>
+                    </div>
+                    <div class="order-1 lg:order-2 relative">
+                        <div class="tactical-border p-3 bg-slate-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="../recursos/images/museo-tanques/1.0index/tour_preview.png" alt="Tour Virtual" class="w-full h-auto rounded-xl brightness-90 group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <!-- UI Elements Overlays -->
+                        <div class="absolute -top-6 -right-6 animate-bounce">
+                            <div class="size-20 rounded-full bg-primary flex items-center justify-center border-4 border-slate-950 shadow-2xl">
+                                <span class="material-symbols-outlined text-white text-3xl">360</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTOR 02: EL MUSEO (Nuestra Institución) -->
+        <section id="sector-02" class="relative py-32 bg-slate-950/50 reveal">
+            <span class="sector-number">02</span>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <div class="text-center mb-20">
+                    <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Nuestra Identidad</span>
+                    <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight text-white mt-4italic">EL MUSEO</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- NOSOTROS -->
+                    <a href="3.1nosotros.html" class="card-glass p-8 rounded-3xl group">
+                        <span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">info</span>
+                        <h3 class="text-xl font-black text-white uppercase mb-2">Nosotros</h3>
+                        <p class="text-slate-500 text-sm mb-6">Conozca la historia detrás de nuestra institución y quiénes somos.</p>
+                        <span class="text-[10px] font-black text-primary uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">Saber Más →</span>
+                    </a>
+                    <!-- MISION Y VISION -->
+                    <a href="3.2mision.html" class="card-glass p-8 rounded-3xl group">
+                        <span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">target</span>
+                        <h3 class="text-xl font-black text-white uppercase mb-2">Misión y Visión</h3>
+                        <p class="text-slate-500 text-sm mb-6">Nuestros objetivos y la visión de preservación histórica que nos guía.</p>
+                        <span class="text-[10px] font-black text-primary uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">Saber Más →</span>
+                    </a>
+                    <!-- VIDEO -->
+                    <a href="3.3video.html" class="card-glass p-8 rounded-3xl group">
+                        <span class="material-symbols-outlined text-primary text-4xl mb-6 group-hover:scale-110 transition-transform">play_circle</span>
+                        <h3 class="text-xl font-black text-white uppercase mb-2">Video Institucional</h3>
+                        <p class="text-slate-500 text-sm mb-6">Una mirada cinematográfica a nuestras colecciones y valores.</p>
+                        <span class="text-[10px] font-black text-primary uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">Ver Video →</span>
+                    </a>
+                    <!-- HISTORIA -->
+                    <a href="3.4historia.html" class="card-glass p-8 rounded-3xl group lg:col-span-2 relative overflow-hidden">
+                        <div class="absolute inset-0 z-0 opacity-20">
+                            <img src="../recursos/images/museo-tanques/1.0index/history_preview.png" class="w-full h-full object-cover">
+                        </div>
+                        <div class="relative z-10 w-2/3">
+                            <h3 class="text-2xl font-black text-white uppercase mb-2">Historía del Museo</h3>
+                            <p class="text-slate-400 text-sm mb-6">Desde los cimientos del edificio hasta la digitalización masiva actual.</p>
+                            <span class="text-[10px] font-black text-primary uppercase tracking-widest group-hover:translate-x-2 transition-transform inline-block">Explorar Línea del Tiempo →</span>
+                        </div>
+                    </a>
+                    <!-- MAPA -->
+                    <a href="3.7mapa.html" class="card-glass p-8 rounded-3xl group flex flex-col justify-center items-center text-center">
+                        <div class="size-20 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-primary text-4xl">map</span>
+                        </div>
+                        <h3 class="text-xl font-black text-white uppercase mb-2">Mapa del Museo</h3>
+                        <p class="text-slate-500 text-[11px] uppercase tracking-widest font-bold">Navegación Táctica</p>
+                    </a>
+                </div>
+
+                <!-- SECCIÓN NOTICIAS Y MENSAJE (Highlights) -->
+                <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-white/5 pt-12">
+                    <div class="space-y-4">
+                        <h4 class="text-sm font-black text-primary uppercase tracking-widest">Noticias Recientes</h4>
+                        <a href="3.6noticias.html" class="block group">
+                            <p class="text-white font-bold leading-snug group-hover:text-primary transition-colors">Nueva exhibición de tanques de la Guerra Fría inaugurada este mes.</p>
+                            <p class="text-slate-500 text-xs mt-1">HACE 2 DÍAS</p>
+                        </a>
+                    </div>
+                    <div>
+                         <h4 class="text-sm font-black text-primary uppercase tracking-widest mb-4">Mensaje del Comando</h4>
+                         <blockquote class="text-slate-400 italic font-medium border-l-2 border-primary pl-6 py-2">
+                             "La historia es el blindaje del presente. Nuestra misión es que nadie olvide el sacrificio y la ingeniería que forjaron el mundo."
+                             <footer class="text-white font-bold mt-4 not-italic text-xs uppercase tracking-widest">— Gral. Alexander</footer>
+                         </blockquote>
+                         <a href="3.5mensaje.html" class="mt-6 inline-block text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-widest transition-colors">Leer Mensaje Completo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTOR 03: GALERIA (Bento Grid Mejorado) -->
+        <section id="sector-03" class="relative py-32 reveal">
+            <span class="sector-number">03</span>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div>
+                        <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Archivo de Datos</span>
+                        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white italic">LA GALERÍA</h2>
+                        <p class="text-slate-500 uppercase font-black text-[10px] tracking-[0.4em] mt-2">Registros visuales, técnicos y sonoros</p>
+                    </div>
+                    <a href="4.1hangar.html" class="text-[10px] font-black text-primary hover:text-white transition-all uppercase tracking-[0.3em] flex items-center gap-2">
+                        Ver Hangar Completo <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
+                    <!-- HANGAR (Main Focus - 6 cols) -->
+                    <a href="4.1hangar.html" class="md:col-span-6 md:row-span-2 group relative overflow-hidden rounded-[40px] border border-white/10">
+                        <img src="../recursos/images/museo-tanques/1.0index/hero.png" alt="Hangar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 brightness-50 group-hover:brightness-75">
+                        <div class="absolute inset-x-0 bottom-0 p-10 bg-gradient-to-t from-black via-black/60 to-transparent">
+                            <span class="bg-primary text-white text-[9px] font-black px-3 py-1 rounded inline-block mb-4 uppercase tracking-[0.2em]">Exhibición Principal</span>
+                            <h3 class="text-4xl font-black text-white uppercase italic mb-2">Hangar Digital</h3>
+                            <p class="text-sm text-slate-300 italic max-w-sm mb-6">Modelos HD, fichas técnicas interactivas y comparativas de blindaje.</p>
+                            <div class="flex items-center gap-4">
+                                <span class="text-[10px] font-black text-white uppercase tracking-widest group-hover:text-primary transition-colors">Explorar Unidades</span>
+                                <div class="h-px flex-1 bg-white/20"></div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- FOTOS (3 cols) -->
+                    <a href="4.2fotos.html" class="md:col-span-3 group relative overflow-hidden rounded-[30px] border border-white/10">
+                        <img src="../recursos/images/museo-tanques/1.0index/gallery.png" alt="Fotos" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-50">
+                        <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-xl font-black text-white uppercase italic">Fotos</h3>
+                            <p class="text-[10px] text-slate-300 uppercase font-bold tracking-widest mt-1">Archivos Históricos</p>
+                        </div>
+                    </a>
+
+                    <!-- VIDEOS (3 cols) -->
+                    <a href="4.3videos.html" class="md:col-span-3 group relative overflow-hidden rounded-[30px] border border-white/10">
+                         <div class="absolute inset-0 bg-slate-900 group-hover:bg-slate-800 transition-colors"></div>
+                         <div class="absolute inset-0 flex items-center justify-center">
+                             <span class="material-symbols-outlined text-6xl text-primary/30 group-hover:text-primary transition-all">videocam</span>
+                         </div>
+                        <div class="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black to-transparent">
+                            <h3 class="text-xl font-black text-white uppercase italic">Videos</h3>
+                            <p class="text-[10px] text-slate-300 uppercase font-bold tracking-widest mt-1">Documentales Técnicos</p>
+                        </div>
+                    </a>
+
+                    <!-- MODELOS 3D (4 cols) -->
+                    <a href="4.5modelos3d.html" class="md:col-span-4 group relative overflow-hidden rounded-[30px] border border-white/10">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-black"></div>
+                         <div class="absolute inset-0 flex items-center justify-center opacity-40 group-hover:opacity-100 transition-opacity">
+                             <span class="material-symbols-outlined text-8xl text-primary animate-pulse">deployed_code</span>
+                         </div>
+                        <div class="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black via-black/60 to-transparent">
+                            <h3 class="text-2xl font-black text-white uppercase italic">Modelos 3D</h3>
+                            <p class="text-[10px] text-slate-300 uppercase font-bold tracking-widest mt-1">Inspección de Realidad Aumentada</p>
+                        </div>
+                    </a>
+
+                    <!-- BIBLIOTECA & AUDIOS (2 cols) -->
+                    <div class="md:col-span-2 flex flex-col gap-6">
+                        <a href="4.4audios.html" class="flex-1 group relative overflow-hidden rounded-[30px] border border-white/10 bg-slate-900 p-6 flex flex-col justify-end">
+                             <span class="material-symbols-outlined text-primary text-3xl mb-auto">volume_up</span>
+                             <h4 class="text-sm font-black text-white uppercase italic">Audios</h4>
+                             <p class="text-[9px] text-slate-500 uppercase font-bold tracking-tight">Efectos y Narrativa</p>
+                        </a>
+                        <a href="4.6biblioteca.html" class="flex-1 group relative overflow-hidden rounded-[30px] border border-white/10 bg-white p-6 flex flex-col justify-end">
+                             <span class="material-symbols-outlined text-black text-3xl mb-auto">menu_book</span>
+                             <h4 class="text-sm font-black text-black uppercase italic">Biblioteca</h4>
+                             <p class="text-[9px] text-slate-400 uppercase font-bold tracking-tight">Literatura Militar</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTOR 04: CONTACTO Y HORARIOS -->
+        <section id="sector-04" class="relative py-32 bg-slate-950/30 reveal">
+            <span class="sector-number">04</span>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                     <div class="space-y-8">
+                        <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Operaciones de Campo</span>
+                        <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight text-white leading-tight">CONTACTO &<br><span class="text-primary italic">HORARIOS</span></h2>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <a href="5.1ubicacion.html" class="card-glass p-6 rounded-2xl flex items-center gap-4 group">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">location_on</span>
+                                <div>
+                                    <h5 class="text-white font-black text-xs uppercase">Ubicación</h5>
+                                    <p class="text-slate-500 text-[10px] uppercase font-bold">Ver en el Mapa</p>
+                                </div>
+                            </a>
+                            <a href="5.3sugerencias.html" class="card-glass p-6 rounded-2xl flex items-center gap-4 group">
+                                <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">stylus_note</span>
+                                <div>
+                                    <h5 class="text-white font-black text-xs uppercase tracking-wider">Sugerencias</h5>
+                                    <p class="text-slate-500 text-[10px] uppercase font-bold">Feedback Directo</p>
+                                </div>
+                            </a>
+                        </div>
+                        <a href="5.4preguntas.html" class="card-glass p-6 rounded-2xl group flex justify-between items-center">
+                             <div class="flex items-center gap-4">
+                                <span class="material-symbols-outlined text-primary">quiz</span>
+                                <h5 class="text-white font-black text-xs uppercase">Preguntas Frecuentes (FAQ)</h5>
+                             </div>
+                             <span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">navigate_next</span>
+                        </a>
+                     </div>
+
+                     <!-- HORARIOS (Prominent Card) -->
+                     <div class="card-glass p-12 rounded-[50px] border-t-8 border-primary relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-full h-full bg-primary/5 luxury-gradient"></div>
+                        <div class="relative z-10">
+                            <div class="size-16 rounded-2xl bg-primary flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(59,130,246,0.5)]">
+                                <span class="material-symbols-outlined text-white text-4xl">schedule</span>
+                            </div>
+                            <h3 class="text-3xl font-black uppercase text-white mb-8 italic">ACCESO A INSTALACIONES</h3>
+                            <div class="space-y-6">
+                                <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                                    <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">LUNES A VIERNES</span>
+                                    <span class="text-white font-mono font-black text-xl">09:00 — 18:00</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                                    <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">SÁBADOS Y DOMINGOS</span>
+                                    <span class="text-white font-mono font-black text-xl">10:00 — 20:00</span>
+                                </div>
+                                <div class="flex justify-between items-center bg-primary/10 p-4 rounded-xl border border-primary/20">
+                                    <span class="text-primary font-black uppercase text-xs tracking-widest">ESTADO ACTUAL</span>
+                                    <span class="text-green-500 font-black flex items-center gap-2">
+                                        <div class="pulse-dot bg-green-500"></div>
+                                        OPERATIVO
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="5.2horarios.html" class="mt-10 block text-center py-4 border border-white/10 rounded-full font-black text-[10px] uppercase tracking-[0.3em] text-slate-400 hover:text-white hover:border-primary transition-all">Ver Calendario Completo</a>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTOR 05: SERVICIOS -->
+        <section id="sector-05" class="relative py-32 luxury-gradient reveal">
+            <span class="sector-number">05</span>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <div class="text-center mb-20">
+                    <span class="text-xs font-black uppercase tracking-[0.4em] text-primary">Exclusividad Táctica</span>
+                    <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tight text-white mt-4 italic">NUESTROS SERVICIOS</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- RESERVAR VISITA -->
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-primary to-blue-600 rounded-[40px] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                        <div class="relative card-glass p-12 rounded-[40px] border border-white/10 h-full flex flex-col items-center text-center">
+                            <div class="mb-8 p-6 bg-slate-900 rounded-3xl group-hover:scale-110 transition-transform duration-500">
+                                <span class="material-symbols-outlined text-primary text-6xl">qr_code_2</span>
+                            </div>
+                            <h3 class="text-3xl font-black text-white uppercase mb-4 italic">Reserva de Visita</h3>
+                            <p class="text-slate-400 mb-10 leading-relaxed font-medium">Gestione su acceso de forma digital. Acceda a pases rápidos, tours guiados por expertos y experiencias VIP exclusivas.</p>
+                            <a href="6.1reservar.html" class="mt-auto w-full py-5 bg-primary text-white font-black uppercase tracking-[0.2em] rounded-2xl hover:brightness-110 transition-all shadow-xl shadow-primary/20">Programar Misión</a>
+                        </div>
+                    </div>
+
+                    <!-- PROTOCOLO -->
+                    <div class="relative group">
+                        <div class="relative card-glass p-12 rounded-[40px] border border-white/10 h-full flex flex-col items-center text-center overflow-hidden">
+                            <div class="absolute inset-0 z-0 opacity-10">
+                                <img src="../recursos/images/museo-tanques/1.0index/services_preview.png" class="w-full h-full object-cover">
+                            </div>
+                            <div class="relative z-10 h-full flex flex-col items-center">
+                                <div class="mb-8 p-6 bg-slate-900 rounded-3xl group-hover:scale-110 transition-transform duration-500">
+                                    <span class="material-symbols-outlined text-primary text-6xl">gavel</span>
+                                </div>
+                                <h3 class="text-3xl font-black text-white uppercase mb-4 italic">Protocolo de Seguridad</h3>
+                                <p class="text-slate-400 mb-10 leading-relaxed font-medium">Reglas de comportamiento, medidas de seguridad y protocolos sanitarios para garantizar una visita segura para todos los agentes.</p>
+                                <a href="6.2protocolo.html" class="mt-auto w-full py-5 border border-white/10 text-white font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-white hover:text-black transition-all">Leer Protocolos</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTOR 06: JUEGOS DE GUERRA (Social & Fun) -->
+        <section id="sector-06" class="relative py-32 bg-background-dark reveal">
+            <span class="sector-number">06</span>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+                <div class="bg-slate-900/50 rounded-[60px] p-12 md:p-24 border border-white/5 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-1/2 h-full bg-primary/5 blur-[120px] -z-10"></div>
+                    <div class="flex flex-col lg:flex-row gap-20 items-center">
+                        <div class="flex-1 space-y-10 text-center lg:text-left">
+                            <div class="space-y-4">
+                                <span class="text-xs font-black uppercase tracking-[0.4em] text-accent-gold">Competición Global</span>
+                                <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tight text-white leading-none">JUEGOS DE<br><span class="text-accent-gold italic text-7xl md:text-9xl">GUERRA</span></h2>
+                            </div>
+                            <p class="text-slate-400 text-xl leading-relaxed font-medium">
+                                En el Museo de Tanques, usted no es solo un espectador, es un recluta. Supere misiones, responda trivias técnicas y compita por el honor de aparecer en nuestro Ránking de Élite.
+                            </p>
+                            <div class="flex flex-wrap gap-6 justify-center lg:justify-start">
+                                <a href="7.1misiones.html" class="px-12 py-5 bg-accent-gold text-black font-black uppercase text-xs tracking-[0.3em] hover:bg-white transition-all rounded-xl flex items-center gap-3 shadow-2xl shadow-accent-gold/20">
+                                    <span class="material-symbols-outlined">rocket_launch</span>
+                                    Empezar Misiones
+                                </a>
+                                <a href="7.3tutorial.html" class="px-12 py-5 border border-white/10 text-white font-black uppercase text-xs tracking-[0.3em] hover:border-primary transition-all rounded-xl flex items-center gap-3">
+                                    <span class="material-symbols-outlined">help</span>
+                                    Manual de Campo
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Mini Ranking Preview (Interactive Look) -->
+                        <div class="w-full max-w-sm space-y-6 relative">
+                             <div class="absolute -top-10 -left-10 animate-pulse text-accent-gold/30">
+                                <span class="material-symbols-outlined text-[120px]">leaderboard</span>
+                             </div>
+                             <div class="relative z-10 space-y-4">
+                                <a href="7.2ranking.html" class="block group">
+                                    <div class="flex items-center justify-between p-7 bg-accent-gold/10 border border-accent-gold/20 rounded-[30px] transition-all group-hover:scale-105">
+                                        <div class="flex items-center gap-5">
+                                            <span class="text-3xl font-black text-accent-gold italic">01</span>
+                                            <img src="https://ui-avatars.com/api/?name=Alexander&background=c5a065&color=fff" class="size-14 rounded-full border-2 border-accent-gold">
+                                            <span class="font-black text-white italic text-lg">Gral. Alexander</span>
+                                        </div>
+                                        <span class="font-mono text-accent-gold font-black text-lg">156k</span>
+                                    </div>
+                                </a>
+                                <div class="flex items-center justify-between p-6 bg-white/5 border border-white/5 rounded-[30px] opacity-60">
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-2xl font-black text-slate-500 italic">02</span>
+                                        <div class="size-12 rounded-full bg-slate-800 border-2 border-white/10"></div>
+                                        <span class="font-black text-white italic">Cpt. Fox</span>
+                                    </div>
+                                    <span class="font-mono text-slate-400 font-bold">142k</span>
+                                </div>
+                                <div class="text-center pt-4">
+                                    <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.5em]">Actualizado en tiempo real</p>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- FOOTER CARGADO DINÁMICAMENTE -->
@@ -82,13 +550,30 @@
                     window.StatsManager.updateUI();
                     window.StatsManager.subscribeRealtime();
                 }
+                
+                // Animación de los stats al entrar
+                const stats = [
+                    { id: 'stat-visits', target: 24890 },
+                    { id: 'stat-tanks', target: 124 }
+                ];
+                
+                stats.forEach(s => {
+                    const el = document.getElementById(s.id);
+                    if(el) {
+                        let current = 0;
+                        const increment = Math.ceil(s.target / 100);
+                        const interval = setInterval(() => {
+                            current += increment;
+                            if(current >= s.target) {
+                                current = s.target;
+                                clearInterval(interval);
+                            }
+                            el.innerText = current.toLocaleString();
+                        }, 15);
+                    }
+                });
             }, 300);
         });
     </script>
 </body>
-
 </html>
-
-
-
-

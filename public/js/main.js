@@ -156,6 +156,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lógica de alternancia si estamos en index
     initMascotSwitcher();
+
+    // Iniciar interactividad global (Scroll Reveal & Smooth Scroll)
+    initializeGlobalInteractions();
 });
 
 // Listener para el evento de carga de componentes (para subpáginas)
@@ -182,6 +185,9 @@ window.addEventListener('componentsReady', () => {
 
     // Asegurar que el scroll progress esté activo tras carga de componentes
     initScrollProgress();
+
+    // Re-escaneo de elementos reveal tras carga dinámica
+    initializeGlobalInteractions();
 });
 
 // Theme toggle
@@ -708,7 +714,7 @@ function initFaviconAnimation() {
 
     const img = new Image();
     const isSubPage = window.location.pathname.includes('/museo-tanques/') || window.location.pathname.includes('/casa-historica/');
-    const basePath = isSubPage ? '../../' : '';
+    const basePath = isSubPage ? '../' : '';
     img.src = basePath + 'recursos/images/index/favicon_pestaña.svg';
 
     let angle = 0;
@@ -767,7 +773,7 @@ function initTankCursorLoader() {
     if (!isIndex && !inTanques) return; // Solo en esas páginas
 
     const root = document.body.getAttribute('data-root') || './';
-    const VERSION = '392'; // Territory Passing Update
+    const VERSION = '393'; // Territory Passing Update
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -790,7 +796,7 @@ function initHorseCursorLoader() {
     if (!isIndex && !inCasa) return; // Solo index y casa histórica
 
     const root = document.body.getAttribute('data-root') || './';
-    const VERSION = '392'; // Territory Passing Update
+    const VERSION = '393'; // Territory Passing Update
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -871,3 +877,48 @@ function initScrollProgress() {
     updateScrollProgress();
 }
 
+// --- GLOBAL INTERACTIONS (Scroll Reveal & Smooth Scroll) ---
+function initializeGlobalInteractions() {
+    // 1. Scroll Reveal Logic
+    const reveals = document.querySelectorAll('.reveal');
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Una vez revelado, dejamos de observar para ahorrar recursos
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // 2. Smooth Scroll for Internal Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Evitamos doble listener si ya se inicializó
+        if (anchor.dataset.smoothScrollInit) return;
+        anchor.dataset.smoothScrollInit = "true";
+
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '') return;
+
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const offset = 100; // Ajuste por el topbar fijo
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}

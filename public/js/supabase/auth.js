@@ -66,12 +66,13 @@ const AuthManager = {
         }
     },
 
+
     /**
      * Manejo del botón de perfil en el Topbar
      */
     handleUserButtonClick() {
         if (this.currentUser) {
-            this.toggleDropdown();
+            window.location.href = 'dashboard.html';
         } else {
             this.showModal();
         }
@@ -133,7 +134,7 @@ const AuthManager = {
         e.preventDefault();
         const email = document.getElementById('auth-email').value;
         const password = document.getElementById('auth-password').value;
-        const username = document.getElementById('auth-username').value;
+        const username = document.getElementById('auth-username') ? document.getElementById('auth-username').value : '';
         const btn = document.getElementById('auth-submit-btn');
 
         btn.innerText = 'Procesando...';
@@ -215,6 +216,7 @@ const AuthManager = {
             this.toggleMode(); // Volver a login
         }
     },
+
 
     async logout() {
         if (!window.sb) return;

@@ -29,6 +29,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (window.LeaderboardManager) {
             await window.LeaderboardManager.fetchTopScores();
         }
+        
+        // 5. Cargar Noticias dinámicas
+        if (window.NewsManager) {
+            const latestNews = await window.NewsManager.fetchLatestNews();
+            if (latestNews) {
+                window.NewsManager.updateModalUI(latestNews);
+                // Solo abrimos el modal si hay una noticia activa
+                if (window.openNewsModal) window.openNewsModal();
+            }
+        }
 
         // 5. Escuchar carga de componentes dinámicos para re-actualizar UI
         window.addEventListener('componentsReady', async () => {

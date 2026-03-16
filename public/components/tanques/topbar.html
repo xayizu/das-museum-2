@@ -25,11 +25,11 @@
 
         <!-- Live Indicator (Responsive) -->
         <div class="absolute right-4 top-5 md:static md:right-auto md:top-auto z-20">
-            <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full" 
-                data-i18n-tooltip="tooltip_live_users" 
-                data-tooltip="En Vivo">
+            <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full"
+                data-i18n-tooltip="tooltip_live_users" data-tooltip="En Vivo">
                 <div class="pulse-dot"></div>
-                <span id="live-users-count" class="live-users-count text-[10px] font-black text-green-500/80 font-mono">1</span>
+                <span id="live-users-count"
+                    class="live-users-count text-[10px] font-black text-green-500/80 font-mono">1</span>
             </div>
         </div>
 
@@ -48,13 +48,19 @@
             <!-- Selector de Museo -->
             <a aria-label="Ir a Casa Histórica" class="util-btn group" data-i18n-tooltip="tooltip_goto_casa"
                 data-tooltip="Ir a Casa Histórica" href="casa-historica/1.0index.html">
-                <svg class="size-6 group-hover:scale-110 transition-transform" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <rect fill="currentColor" height="7" rx="1.5" stroke="none" width="7" x="2" y="2"></rect>
-                    <rect fill="currentColor" height="7" rx="1.5" stroke="none" width="7" x="15" y="15"></rect>
-                    <path d="M12 11V5h6"></path>
-                    <path d="M18 2.5l3 3-3 3z" fill="currentColor" stroke="none"></path>
-                    <path d="M12 13v6H6"></path>
-                    <path d="M6 15.5l-3 3 3 3z" fill="currentColor" stroke="none"></path>
+                <svg class="size-6 animate-swap transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Square (Bottom Left Corner) - Size 9x9 -->
+                    <rect x="0" y="15" width="9" height="9" rx="1.5" fill="currentColor" />
+                    <!-- Circle (Top Right Corner) - Size 9x9 (r=4.5) -->
+                    <circle cx="19.5" cy="4.5" r="4.5" fill="currentColor" />
+                    
+                    <!-- Arrow 1 (Elbow in Top Left Corner) -->
+                    <path d="M4.5 11 V 4.5 H 11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M9.5 1.5 L 14 4.5 L 9.5 7.5 Z" fill="currentColor" />
+                    
+                    <!-- Arrow 2 (Elbow in Bottom Right Corner) -->
+                    <path d="M19.5 13 V 19.5 H 13" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14.5 16.5 L 10 19.5 L 14.5 22.5 Z" fill="currentColor" />
                 </svg>
             </a>
             <div class="util-divider"></div>
@@ -109,17 +115,11 @@
                         </div>
                     </div>
                     <div class="py-2">
-                        <a href="perfil.html"
+                        <a href="dashboard.html"
                             class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
                             <span
-                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">person</span>
-                            <span data-i18n="ver_perfil">Ver mi Perfil</span>
-                        </a>
-                        <a href="mis-logros.html"
-                            class="flex items-center gap-3 px-4 py-3 text-sm text-slate-300 hover:bg-slate-800/50 transition-colors group">
-                            <span
-                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform">military_tech</span>
-                            <span data-i18n="mis_logros">Mis Logros</span>
+                                class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform text-primary">dashboard_customize</span>
+                            <span data-i18n="dashboard_táctico">Dashboard Táctico</span>
                         </a>
                     </div>
                     <div class="border-t border-slate-800 py-2">
