@@ -47,10 +47,10 @@
         rel="stylesheet" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="js/config.js?v=1.4"></script>
-    <link href="css/main.css?v=1.4" rel="stylesheet" />
-    <script defer src="js/i18n.js?v=1.4"></script>
-    <script defer src="js/main.js?v=310"></script>
+    <script src="js/config.js?v=392"></script>
+    <link href="css/main.css?v=392" rel="stylesheet" />
+    <script defer src="js/i18n.js?v=392"></script>
+    <script defer src="js/main.js?v=392"></script>
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -519,7 +519,7 @@
             </a>
         </div>
     </aside>
-    <div class="relative flex flex-col pt-[105px] md:pt-[70px] bg-military-dark">
+    <div class="relative flex flex-col pt-[79px] md:pt-[74px] bg-military-dark">
         <!-- ======================================================================== -->
         <!-- ======================================================================== -->
         <!-- 4. BARRA  SUPERIOR ESTRUCTURADA (Topbar Global) -->
@@ -527,7 +527,7 @@
         <!-- ======================================================================== -->
         <div class="topbar-global topbar-main footer-fusion !fixed">
             <div
-                class="topbar-container relative z-10 w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
+                class="topbar-container relative z-10 w-full flex flex-col md:flex-row justify-between items-center p-[10px] min-h-[64px] md:h-[70px] gap-2 md:gap-0">
                 <!-- Left: Branding -->
                 <a class="topbar-brand shrink-0" href="./index.html">
                     <img alt="Logo" class="h-10 md:h-12 w-auto invert brightness-200" data-i18n-alt="logo"
@@ -541,17 +541,17 @@
 
                 <!-- Center: Live Indicator -->
                 <div class="absolute right-4 top-5 md:static md:right-auto md:top-auto z-20">
-                    <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full" 
-                        data-i18n-tooltip="tooltip_live_users" 
-                        data-tooltip="En Vivo">
+                    <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full"
+                        data-i18n-tooltip="tooltip_live_users" data-tooltip="En Vivo">
                         <div class="pulse-dot"></div>
 
-                        <span id="live-users-count" class="text-[10px] font-black text-green-500/80 font-mono">1</span>
+                        <span id="live-users-count"
+                            class="live-users-count text-[10px] font-black text-green-500/80 font-mono">1</span>
                     </div>
                 </div>
 
                 <!-- Right: Utilities -->
-                <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end mt-4 md:mt-0">
+                <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end m-0">
                     <button aria-label="Buscar" class="util-btn search-toggle" data-i18n-tooltip="tooltip_search"
                         data-tooltip="Búsqueda Global" onclick="window.handleSearch()"><span
                             class="material-symbols-outlined">search</span></button>
@@ -799,56 +799,74 @@
             </div>
         </div>
     </div>
-    <div id="news-modal" onclick="if(event.target === this) closeNewsModal()" class="fixed inset-0 z-[250] hidden items-center justify-center p-6 md:p-10 bg-black/85 backdrop-blur-sm opacity-0 transition-opacity duration-500">
-        <div id="news-modal-content" class="relative w-full max-w-2xl max-h-[85vh] md:max-h-[90vh] bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden transition-all duration-500 transform scale-90 opacity-0">
-            
+    <div id="news-modal" onclick="if(event.target === this) closeNewsModal()"
+        class="fixed inset-0 z-[250] hidden items-center justify-center p-6 md:p-10 bg-black/85 backdrop-blur-sm opacity-0 transition-opacity duration-500">
+        <div id="news-modal-content"
+            class="relative w-full max-w-2xl max-h-[85vh] md:max-h-[90vh] bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden transition-all duration-500 transform scale-90 opacity-0">
+
             <!-- Header (Premium Consistency) -->
-            <div class="flex items-center justify-between p-3 md:p-4 border-b border-slate-200 dark:border-white/5 bg-white dark:bg-slate-800/50 backdrop-blur-md">
+            <div
+                class="flex items-center justify-between p-3 md:p-4 border-b border-slate-200 dark:border-white/5 bg-white dark:bg-slate-800/50 backdrop-blur-md">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary flex items-center justify-center text-white shadow-md shadow-primary/40">
+                    <div
+                        class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-primary flex items-center justify-center text-white shadow-md shadow-primary/40">
                         <span class="material-symbols-outlined text-[24px] md:text-[26px]">campaign</span>
                     </div>
                     <div>
-                        <h3 class="text-slate-900 dark:text-white font-black uppercase tracking-widest text-xs md:text-sm" data-i18n="anuncio_importante">Anuncio Importante</h3>
-                        <p class="text-[9px] md:text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest" data-i18n="actualizacion_museo">Noticias del Complejo</p>
+                        <h3 class="text-slate-900 dark:text-white font-black uppercase tracking-widest text-xs md:text-sm"
+                            data-i18n="anuncio_importante">Anuncio Importante</h3>
+                        <p class="text-[9px] md:text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest"
+                            data-i18n="actualizacion_museo">Noticias del Complejo</p>
                     </div>
                 </div>
-                <button onclick="closeNewsModal()" class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center text-slate-900 dark:text-white hover:text-red-500 transition-colors group">
-                    <span class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:rotate-90 transition-transform">close</span>
+                <button onclick="closeNewsModal()"
+                    class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center text-slate-900 dark:text-white hover:text-red-500 transition-colors group">
+                    <span
+                        class="material-symbols-outlined text-[26px] md:text-[28px] group-hover:rotate-90 transition-transform">close</span>
                 </button>
             </div>
 
             <!-- Body (Future-proof for images) -->
             <div class="flex-grow overflow-y-auto custom-scrollbar p-5 md:p-8 space-y-4 md:space-y-6">
                 <!-- Image Header (Premium Banner) -->
-                <div class="w-full h-32 md:h-64 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden mb-4 md:mb-6 shadow-inner border border-slate-200 dark:border-white/5 group-banner">
-                    <img src="recursos/images/index/news_banner.png" 
-                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-                         alt="Museo en Construcción">
+                <div
+                    class="w-full h-32 md:h-64 bg-slate-100 dark:bg-slate-800 rounded-xl overflow-hidden mb-4 md:mb-6 shadow-inner border border-slate-200 dark:border-white/5 group-banner">
+                    <img src="recursos/images/index/news_banner.png"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                        alt="Museo en Construcción">
                 </div>
                 <div class="flex flex-col items-center text-center space-y-3 md:space-y-4">
-                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-1">
+                    <div
+                        class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-1">
                         <span class="material-symbols-outlined text-primary text-4xl md:text-5xl">construction</span>
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight" data-i18n="sitio_en_construccion">Sitio en Construcción</h2>
+                    <h2 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tight"
+                        data-i18n="sitio_en_construccion">Sitio en Construcción</h2>
                     <div class="h-1 w-20 bg-primary rounded-full"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed max-w-md" data-i18n="msg_construccion">
-                        Estamos trabajando arduamente en cada detalle para brindarte la mejor experiencia digital del Complejo Museístico. 
+                    <p class="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed max-w-md"
+                        data-i18n="msg_construccion">
+                        Estamos trabajando arduamente en cada detalle para brindarte la mejor experiencia digital del
+                        Complejo Museístico.
                     </p>
-                    
-                    <div class="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-5 w-full mt-4">
-                        <span class="text-[10px] text-primary font-black uppercase tracking-[0.2em] mb-2 block" data-i18n="despliegue_estimado">Fecha Estimada de Despliegue</span>
+
+                    <div
+                        class="bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-5 w-full mt-4">
+                        <span class="text-[10px] text-primary font-black uppercase tracking-[0.2em] mb-2 block"
+                            data-i18n="despliegue_estimado">Fecha Estimada de Despliegue</span>
                         <div class="flex items-center justify-center gap-3">
                             <span class="material-symbols-outlined text-slate-400">event</span>
-                            <span class="text-xl md:text-2xl font-black text-slate-900 dark:text-white" data-i18n="fecha_final">23 DE ABRIL, 2026</span>
+                            <span class="text-xl md:text-2xl font-black text-slate-900 dark:text-white"
+                                data-i18n="fecha_final">23 DE ABRIL, 2026</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Footer (Premium Consistency) -->
-            <div class="p-4 bg-white dark:bg-slate-950/50 border-t border-slate-200 dark:border-white/5 flex justify-center">
-                <button onclick="closeNewsModal()" class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all shadow-lg shadow-primary/20">
+            <div
+                class="p-4 bg-white dark:bg-slate-950/50 border-t border-slate-200 dark:border-white/5 flex justify-center">
+                <button onclick="closeNewsModal()"
+                    class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-xl font-black uppercase tracking-widest text-xs transition-all shadow-lg shadow-primary/20">
                     Entendido
                 </button>
             </div>
@@ -893,7 +911,7 @@
 
             <!-- Content Overlay -->
             <div
-                class="absolute bottom-0 left-0 w-full z-20 flex flex-col justify-end p-4 pb-6 md:p-16 md:pb-16 items-start">
+                class="absolute bottom-0 left-0 w-full h-[224.5px] z-20 flex flex-col justify-end p-4 pb-6 md:p-16 md:pb-16 items-start">
                 <div class="max-w-md transform transition-all duration-500 scale-75 origin-bottom-left md:scale-100">
                     <div class="inline-block bg-primary/90 text-white text-xs font-bold px-3 py-1 rounded mb-4 uppercase tracking-widest"
                         data-i18n="exhibicin_actual">
@@ -965,7 +983,7 @@
 
             <!-- Content Overlay -->
             <div
-                class="absolute bottom-0 right-0 w-full z-20 flex flex-col justify-end p-4 pb-6 md:p-16 md:pb-16 items-end text-right">
+                class="absolute bottom-0 right-0 w-full h-[224.5px] z-20 flex flex-col justify-end p-4 pb-6 md:p-16 md:pb-16 items-end text-right">
                 <div class="max-w-md transform transition-all duration-500 scale-75 origin-bottom-right md:scale-100">
                     <div class="inline-block bg-white/90 text-slate-800 text-xs font-bold px-3 py-1 rounded mb-4 uppercase tracking-widest shadow-sm"
                         data-i18n="coleccin_permanente">
@@ -1004,7 +1022,7 @@
             class="absolute inset-0 bg-gradient-to-b from-military-dark to-[#0a0c10] opacity-0 dark:opacity-100 transition-opacity duration-700 pointer-events-none">
         </div>
 
-        <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+        <div class="max-w-[1400px] mx-auto px-[10px] relative z-10">
             <!-- Header with Title and Filters -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
                 <div class="flex items-center gap-5">
@@ -1255,7 +1273,7 @@
     <!-- ======================================================================== -->
     <section
         class="relative z-40 bg-white dark:bg-black/80 py-12 border-t border-slate-100 dark:border-white/10 transition-colors duration-500">
-        <div class="max-w-[1400px] mx-auto px-6">
+        <div class="max-w-[1400px] mx-auto px-[10px]">
             <h4 class="text-center dark:text-white/40 text-gray-800 text-xs font-black uppercase tracking-[0.2em] mb-8 transition-colors"
                 data-i18n="aliados_estratégicos">Aliados
                 Estratégicos</h4>
@@ -1306,7 +1324,7 @@
     <footer class="footer-fusion relative z-50 mt-auto pt-5">
         <!-- Animated Breathing Border at the top of the footer -->
         <div class="footer-fusion-border"></div>
-        <div class="max-w-[1400px] mx-auto px-6 pb-4 pt-5">
+        <div class="max-w-[1400px] mx-auto p-[10px]">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-4 text-left">
                 <!-- Branding (Wider column) -->
                 <div class="col-span-1 md:col-span-4">
@@ -1567,7 +1585,7 @@
         <!-- Copyright -->
         <div class="bg-black py-4 border-t border-white/5">
             <div
-                class="max-w-[1400px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest gap-4">
+                class="max-w-[1400px] mx-auto px-[10px] flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 uppercase tracking-widest gap-4">
                 <p data-i18n="2026_museos_tapi_todos_los_derechos">© 2026 Museos TAPI. Todos los derechos
                     reservados.</p>
                 <div class="flex gap-6">
@@ -1585,7 +1603,6 @@
     <!-- 9. SCRIPTS GLOBALES (Initialization) -->
     <!-- ======================================================================== -->
     <!-- ======================================================================== -->
-    <script defer src="js/index.js?v=1.1"></script>
     <script>
         /**
          * Toggles the visibility of a sub-menu in the left sidebar.
@@ -1728,10 +1745,10 @@
     <script src="js/supabase/auth.js?v=1.1"></script>
     <script src="js/supabase/stats.js?v=1.1"></script>
     <script src="js/supabase/leaderboard.js?v=1.1"></script>
-    <script src="js/supabase/realtime.js?v=310?v=310"></script>
-    
+    <script src="js/supabase/realtime.js?v=392?v=310?v=310"></script>
+
     <!-- 3. Bridge (Initialization) -->
-    <script src="js/supabase/ui-bridge.js?v=1.1"></script>
+    <script src="js/supabase/ui-bridge.js?v=392"></script>
 
     <script>
         /**
@@ -1740,7 +1757,7 @@
         function openNewsModal() {
             const modal = document.getElementById('news-modal');
             const content = document.getElementById('news-modal-content');
-            
+
             if (!modal || !content) return;
 
             // Prevent scroll on body
@@ -1748,7 +1765,7 @@
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
+
             // Small delay for transition
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
@@ -1759,7 +1776,7 @@
         function closeNewsModal() {
             const modal = document.getElementById('news-modal');
             const content = document.getElementById('news-modal-content');
-            
+
             if (!modal || !content) return;
 
             content.classList.add('scale-90', 'opacity-0');
@@ -1776,7 +1793,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Check if already shown in this session (optional)
             // if (!sessionStorage.getItem('news_shown')) {
-                openNewsModal();
+            openNewsModal();
             //     sessionStorage.setItem('news_shown', 'true');
             // }
         });

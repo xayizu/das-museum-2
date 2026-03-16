@@ -49,5 +49,5 @@ def update_version(root_dir, old_version, new_version):
     print(f"Total de archivos actualizados: {count}")
 
 if __name__ == "__main__":
-    # La versión actual detectada era 309, subimos a 310
-    update_version('public', '309', '310')
+    # La versión actual detectada era 391, subimos a 392
+    update_version('public', '391', '392')

@@ -11,11 +11,12 @@ class TankCursor {
         this.barrelGroup = null;
         this.moveTimeout = null;
         this.isActive = false;
+        this.isEnabled = true; // For switching logic
 
         // Positioning & Rotation
-        this.mouse = { x: 0, y: 0 }; 
-        this.pos = { x: 0, y: 0 };   
-        this.renderPos = { x: 0, y: 0 }; 
+        this.mouse = { x: 0, y: 0 };
+        this.pos = { x: 0, y: 0 };
+        this.renderPos = { x: 0, y: 0 };
         this.lastPos = { x: 0, y: 0 };
         this.bodyRot = 0;
         this.turretRot = 0;
@@ -34,7 +35,8 @@ class TankCursor {
         this.BODY_SMOOTHING = 0.08;
         this.TURRET_SMOOTHING = 0.06;
         this.OFFSET_DIST = 60; // Keep distance from cursor
-        this.IDLE_THRESHOLD = 3000; 
+        this.IDLE_THRESHOLD = 3000;
+        this.lastEnableTime = 0;
     }
 
     init() {
@@ -43,10 +45,10 @@ class TankCursor {
         this.injectHTML();
         this.setupElements();
         this.setupListeners();
-        
+
         this.renderPos.x = window.innerWidth / 2;
         this.renderPos.y = window.innerHeight / 2;
-        
+
         this.animate();
 
         this.isActive = true;
@@ -100,7 +102,7 @@ class TankCursor {
     handleMouseMove(e) {
         this.mouse.x = e.clientX;
         this.mouse.y = e.clientY;
-        
+
         this.pos.x = e.clientX;
         this.pos.y = e.clientY;
 
@@ -116,7 +118,7 @@ class TankCursor {
                 this.targetTurretRot = 0;
             }
 
-            if (Math.random() > 0.8) {
+            if (this.isEnabled && Math.random() > 0.8) {
                 this.spawnSmoke(this.renderPos.x, this.renderPos.y, -dx * 1.5, -dy * 1.5);
                 this.spawnDust(this.renderPos.x, this.renderPos.y, -dx * 1.2, -dy * 0.8);
             }
@@ -134,19 +136,21 @@ class TankCursor {
         const loop = () => {
             if (!this.isActive) return;
 
+            if (this.cursor) {
+                this.cursor.style.display = this.isEnabled ? 'block' : 'none';
+            }
+
             // TANK "PET" LOGIC: Follow or Flee to maintain OFFSET_DIST
             const dx_m = this.mouse.x - this.renderPos.x;
             const dy_m = this.mouse.y - this.renderPos.y;
             const dist_m = Math.sqrt(dx_m * dx_m + dy_m * dy_m);
 
             // If the distance is not the offset, we move the tank
-            // This covers both trailing behind AND moving away if the mouse is on top
             if (Math.abs(dist_m - this.OFFSET_DIST) > 2) {
-                // Safeguard against division by zero if mouse is exactly on tank
                 const safetyDist = dist_m < 0.1 ? 0.1 : dist_m;
                 const tX = this.mouse.x - (dx_m / safetyDist) * this.OFFSET_DIST;
                 const tY = this.mouse.y - (dy_m / safetyDist) * this.OFFSET_DIST;
-                
+
                 const vx = tX - this.renderPos.x;
                 const vy = tY - this.renderPos.y;
                 const moveDist = Math.sqrt(vx * vx + vy * vy);
@@ -154,16 +158,18 @@ class TankCursor {
                 if (moveDist > 0.1) {
                     this.renderPos.x += vx * this.POS_SMOOTHING;
                     this.renderPos.y += vy * this.POS_SMOOTHING;
-                    this.cursor.classList.add('is-moving');
+                    if (this.isEnabled) this.cursor.classList.add('is-moving');
                 } else {
-                    this.cursor.classList.remove('is-moving');
+                    if (this.isEnabled) this.cursor.classList.remove('is-moving');
                 }
             } else {
-                this.cursor.classList.remove('is-moving');
+                if (this.isEnabled) this.cursor.classList.remove('is-moving');
             }
 
-            this.cursor.style.left = `${this.renderPos.x}px`;
-            this.cursor.style.top = `${this.renderPos.y}px`;
+            if (this.cursor) {
+                this.cursor.style.left = `${this.renderPos.x}px`;
+                this.cursor.style.top = `${this.renderPos.y}px`;
+            }
 
             // Body Rotation
             let bDiff = this.targetBodyRot - this.bodyRot;
@@ -187,7 +193,7 @@ class TankCursor {
                     this.targetTurretRot = this.idleRotation;
                 } else {
                     this.targetTurretRot = 0;
-                    this.idleRotation *= 0.95; 
+                    this.idleRotation *= 0.95;
                 }
             } else {
                 this.targetTurretRot = 0;
@@ -208,20 +214,20 @@ class TankCursor {
     }
 
     fire() {
-        if (!this.muzzleFlash) return;
+        if (!this.isEnabled || !this.muzzleFlash || (Date.now() - this.lastEnableTime < 150)) return;
         this.muzzleFlash.classList.remove('firing');
         void this.muzzleFlash.offsetWidth;
         this.muzzleFlash.classList.add('firing');
 
         if (this.barrelGroup) {
             this.barrelGroup.classList.remove('recoil');
-            void this.barrelGroup.offsetWidth; 
+            void this.barrelGroup.offsetWidth;
             this.barrelGroup.classList.add('recoil');
         }
 
-        const scale = 0.75; 
+        const scale = 0.75;
+        const muzzleDist = 52 * scale;
         const totalRad = (this.bodyRot + this.turretRot) * (Math.PI / 180);
-        const muzzleDist = 45 * scale; 
 
         const muzzleX = this.renderPos.x + Math.sin(totalRad) * muzzleDist;
         const muzzleY = this.renderPos.y - Math.cos(totalRad) * muzzleDist;
@@ -233,7 +239,7 @@ class TankCursor {
             const smokeDX = Math.sin(totalRad) * (40 + Math.random() * 20);
             const smokeDY = -Math.cos(totalRad) * (40 + Math.random() * 20);
             setTimeout(() => {
-                this.spawnSmoke(muzzleX, muzzleY, smokeDX + (Math.random()-0.5)*20, smokeDY + (Math.random()-0.5)*20);
+                this.spawnSmoke(muzzleX, muzzleY, smokeDX + (Math.random() - 0.5) * 20, smokeDY + (Math.random() - 0.5) * 20);
             }, i * 15);
         }
     }
@@ -241,7 +247,7 @@ class TankCursor {
     spawnProjectile(x, y, rad) {
         const shell = document.createElement('div');
         shell.className = 'tank-projectile';
-        
+
         let curX = x;
         let curY = y;
         const speed = 25; // High velocity
@@ -260,7 +266,7 @@ class TankCursor {
             shell.style.transform = `translate(${curX}px, ${curY}px) rotate(${rotation}deg)`;
 
             // Remove if out of screen
-            if (curX < -100 || curX > window.innerWidth + 100 || 
+            if (curX < -100 || curX > window.innerWidth + 100 ||
                 curY < -100 || curY > window.innerHeight + 100) {
                 shell.remove();
             } else {
@@ -287,8 +293,8 @@ class TankCursor {
         p.className = 'dust-particle';
         p.style.left = `${x}px`;
         p.style.top = `${y}px`;
-        p.style.setProperty('--dx', `${dx + (Math.random()-0.5)*20}px`);
-        p.style.setProperty('--dy', `${dy + (Math.random()-0.5)*10}px`);
+        p.style.setProperty('--dx', `${dx + (Math.random() - 0.5) * 20}px`);
+        p.style.setProperty('--dy', `${dy + (Math.random() - 0.5) * 10}px`);
         document.body.appendChild(p);
         setTimeout(() => p.remove(), 700);
     }
@@ -310,7 +316,21 @@ class TankCursor {
             el.dataset.tankSensor = "true";
         });
     }
+
+    setEnabled(enabled) {
+        if (enabled && !this.isEnabled) {
+            this.lastEnableTime = Date.now();
+        }
+        this.isEnabled = enabled;
+        if (this.cursor) {
+            this.cursor.style.display = enabled ? 'block' : 'none';
+            if (!enabled) {
+                this.isMoving = false;
+            }
+        }
+    }
 }
+
 
 // Start
 window.tankCursor = new TankCursor();
@@ -319,3 +339,4 @@ if (document.readyState === 'loading') {
 } else {
     window.tankCursor.init();
 }
+

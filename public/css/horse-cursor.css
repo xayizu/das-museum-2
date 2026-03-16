@@ -1,0 +1,1775 @@
+/* ================================================================
+   HORSE CURSOR v9 — Geometría y animaciones tomadas verbatim del
+   preloader (public/preloader/caballo/style.css).
+   Solo se cambia el font-size base y los selectores para el cursor.
+   ================================================================ */
+
+/* ── Paleta y escala ─────────────────────────────────────────── */
+#horse-cursor {
+    --color-horse: rgba(115, 75, 45, 1);
+    --color-horse-back: rgba(85, 55, 30, 1);
+    --color-hair: rgba(35, 20, 10, 1);
+    --color-hoof: rgba(10, 5, 0, 1);
+
+    --speed: 0.85s;
+    --delay-gap: 8;
+
+    /* ══════════════════════════════════════
+       ★ ESCALA — editar solo aquí
+       ══════════════════════════════════════
+       Aumenta --horse-size-px para un caballo más grande.
+       --horse-aspect-ratio controla ancho/alto.            */
+    --horse-size-px: 120px;
+    --horse-scale: 1.0;
+    --horse-aspect-ratio: 1.52;
+
+    --horse-width: var(--horse-size-px);
+    --horse-height: calc(var(--horse-width) / var(--horse-aspect-ratio));
+}
+
+/* ── Contenedor fijo ─────────────────────────────────────────── */
+#horse-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    will-change: left, top;
+}
+
+#horse-cursor.active {
+    opacity: 1;
+}
+
+/* ── Unidad con sombra ───────────────────────────────────────── */
+.horse-unit {
+    position: absolute;
+    transform: translate(-50%, -60%) scale(var(--horse-scale, 1));
+    transform-origin: center bottom;
+    filter:
+        blur(0.4px)
+        drop-shadow(1px 4px 3px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 6px rgba(210, 150, 60, 0.15));
+    will-change: transform, filter;
+}
+
+/* ── Wrapper: font-size proporcional al tamaño ───────────────── */
+.caballo-wrapper {
+    position: relative;
+    font-size: calc(var(--horse-width) / 3.8);
+    /* igual que preloader: 22vmin → 3.8rem */
+    width: var(--horse-width);
+    height: var(--horse-height);
+}
+
+/* ── Partes ──────────────────────────────────────────────────── */
+.caballo-wrapper>* {
+    position: absolute;
+    top: var(--part-y, 0);
+    left: var(--part-x, 0);
+    width: var(--part-width, 10px);
+    height: var(--part-height, 10px);
+    border-radius: var(--part-radius, 0);
+    transform: rotate(var(--part-rotate, 0deg));
+    transform-origin: var(--part-origin, 50% 50%);
+    animation-delay: var(--delay, 0s) !important;
+    box-sizing: border-box;
+    /* Suavizado de transición entre estados (IDLE -> GALOPE) */
+    transition: transform 0.6s ease-in-out, top 0.6s ease-in-out, left 0.6s ease-in-out;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.caballo-wrapper>* *,
+.caballo-wrapper>* *::after,
+.caballo-wrapper>* *::before {
+    position: absolute;
+    box-sizing: border-box;
+    background-color: var(--color-horse);
+    top: var(--shape-y, 0);
+    left: var(--shape-x, 0);
+    width: var(--shape-width, 10px);
+    height: var(--shape-height, 10px);
+    border-radius: var(--shape-radius, 0);
+    transform: rotate(var(--shape-rotate, 0deg));
+    transform-origin: var(--shape-origin, 50% 50%);
+    animation-delay: var(--delay, 0s) !important;
+}
+
+/* ================================================================
+   ANATOMÍA — valores VERBATIM del preloader
+   ================================================================ */
+
+/* HEAD */
+.cabeza {
+    --part-width: 20%;
+    --part-height: 15%;
+    --part-x: -1%;
+    --part-y: 3%;
+    --part-origin: 100% 50%;
+    --part-rotate: -40deg;
+    border: none;
+}
+
+.cabeza .craneo {
+    --shape-width: 55%;
+    --shape-height: 80%;
+    --shape-radius: 50%;
+    --shape-x: 43%;
+    --shape-y: 10%;
+    --shape-rotate: 40deg;
+}
+
+.cabeza .ojo {
+    background-color: var(--color-horse-back) !important;
+    --shape-width: 10%;
+    --shape-height: 10%;
+    --shape-radius: 30% 100%;
+    --shape-x: 45%;
+    --shape-y: 20%;
+    --shape-rotate: 0deg;
+}
+
+.cabeza .cara {
+    --shape-width: 47%;
+    --shape-height: 70%;
+    --shape-y: 8%;
+    --shape-x: 14%;
+    --shape-rotate: -5deg;
+}
+
+.cabeza .nariz {
+    --shape-x: 0%;
+    --shape-y: 11.7%;
+    --shape-width: 24%;
+    --shape-height: 35%;
+    --shape-radius: 50%;
+    --shape-rotate: -12deg;
+}
+
+.cabeza .mandibula {
+    --shape-width: 49%;
+    --shape-height: 100%;
+    --shape-x: 40%;
+    --shape-y: 37%;
+    --shape-radius: 45%;
+    transform: skew(0deg) rotate(40deg);
+}
+
+.cabeza .labio {
+    --shape-rotate: 40deg;
+    --shape-x: -3%;
+    --shape-y: 28%;
+    --shape-radius: 30%;
+    --shape-width: 12%;
+    --shape-height: 25%;
+}
+
+.cabeza .barbilla {
+    --shape-width: 15%;
+    --shape-height: 40%;
+    --shape-y: 31%;
+    --shape-x: 2%;
+    --shape-radius: 30%;
+    --shape-rotate: 40deg;
+}
+
+.cabeza .barbilla::after {
+    content: '';
+    --shape-width: 130%;
+    --shape-height: 180%;
+    --shape-radius: 0;
+    --shape-x: 123%;
+    --shape-y: -95%;
+    --shape-rotate: 70deg;
+}
+
+.cabeza .oreja {
+    --shape-width: 20%;
+    --shape-height: 25%;
+    --shape-y: 19%;
+    --shape-x: 78%;
+    --shape-radius: 50%;
+    --shape-rotate: -10deg;
+    --shape-origin: 0% 50%;
+}
+
+.cabeza .oreja::after {
+    content: '';
+    --shape-width: 90%;
+    --shape-height: 70%;
+    --shape-y: 10%;
+    --shape-x: 65%;
+    --shape-radius: 40%;
+    --shape-rotate: -30deg;
+}
+
+.cabeza .oreja::before {
+    content: '';
+    --shape-width: 110%;
+    --shape-height: 80%;
+    --shape-y: -30%;
+    --shape-x: 1%;
+    --shape-radius: 0%;
+    --shape-rotate: -5deg;
+}
+
+/* NECK */
+.cuello {
+    --part-width: 30%;
+    --part-height: 25%;
+    --part-x: 5%;
+    --part-y: 35%;
+    --part-origin: 90% 50%;
+    --part-rotate: 45deg;
+    border: none;
+}
+
+.cuello .debajo {
+    --shape-height: 40%;
+    --shape-width: 16%;
+    --shape-radius: 50%;
+    --shape-x: 11%;
+    --shape-y: 55%;
+    --shape-rotate: -19deg;
+    background-color: transparent;
+    border-top: 0.07rem outset var(--color-horse);
+}
+
+.cuello .frente {
+    --shape-width: 75%;
+    --shape-height: 55%;
+    --shape-radius: 50%;
+    --shape-y: 28%;
+    --shape-x: 7%;
+    --shape-rotate: 20deg;
+}
+
+.cuello .parte-superior {
+    --shape-x: 10%;
+    --shape-y: 5%;
+    --shape-width: 50%;
+    --shape-height: 25%;
+    --shape-radius: 50% / 20%;
+    --shape-rotate: 0deg;
+}
+
+.cuello .parte-superior::after {
+    content: '';
+    --shape-x: 50%;
+    --shape-y: -10%;
+    --shape-width: 70%;
+    --shape-height: 50%;
+    --shape-radius: 0%;
+    --shape-rotate: -5deg;
+}
+
+.cuello .base {
+    --shape-width: 50%;
+    --shape-height: 30%;
+    --shape-x: 20%;
+    --shape-y: 10%;
+    --shape-radius: 30%;
+    --shape-rotate: -10deg;
+}
+
+.cuello .hombro {
+    --shape-width: 50%;
+    --shape-height: 30%;
+    --shape-x: 48%;
+    --shape-y: -2%;
+    --shape-rotate: -20deg;
+    --shape-radius: 50%;
+}
+
+/* BODY */
+.cuerpo {
+    --part-width: 55%;
+    --part-height: 33%;
+    --part-x: 20%;
+    --part-y: 30%;
+    --part-origin: 10% 50%;
+    border: none;
+}
+
+.cuerpo .seccion {
+    --shape-width: 94%;
+    --shape-height: 90%;
+    --shape-x: 40%;
+    --shape-y: 5%;
+    --shape-origin: 10% 30%;
+    --shape-radius: 50% 0 20% 20%;
+    --shape-rotate: -9deg;
+}
+
+.cuerpo .seccion.ultimo {
+    --shape-radius: 45%;
+}
+
+.cuerpo .seccion.ultimo::after {
+    content: none;
+}
+
+.cuerpo>.seccion {
+    --shape-x: 4%;
+    --shape-y: 4%;
+    --shape-width: 32%;
+    --shape-height: 92%;
+    --shape-rotate: 10deg;
+    --shape-origin: 50% 50%;
+    --shape-radius: 45%;
+}
+
+.cuerpo>.seccion::after {
+    content: '';
+    --shape-height: 70%;
+    --shape-width: 202%;
+    --shape-x: 40%;
+    --shape-y: 48%;
+    --shape-rotate: -23deg;
+    --shape-origin: 0% 100%;
+    --shape-radius: 50%;
+}
+
+.cuerpo .parte-trasera {
+    --shape-x: 60%;
+    --shape-y: -10%;
+    --shape-width: 38%;
+    --shape-height: 70%;
+    --shape-origin: 0 0;
+    --shape-rotate: 8deg;
+    --shape-radius: 40% 50% 50%;
+}
+
+/* TAIL */
+.cola {
+    --part-width: 35%;
+    --part-height: 18%;
+    --part-x: 67%;
+    --part-y: 28%;
+    --part-rotate: 10deg;
+    --part-origin: 0% 50%;
+    border: none;
+}
+
+.cola .inicio-cola {
+    --shape-width: 35%;
+    --shape-height: 30%;
+    --shape-rotate: 4deg;
+    --shape-origin: 10% 50%;
+    --shape-radius: 20% / 50%;
+    background-color: var(--color-hair);
+}
+
+.cola .seccion {
+    --shape-width: 100%;
+    --shape-height: 90%;
+    --shape-rotate: 15deg;
+    --shape-origin: 0% 50%;
+    --shape-radius: 30% / 50%;
+    --shape-y: -25%;
+    --shape-x: 60%;
+    background-color: var(--color-hair);
+}
+
+.cola .seccion::after {
+    content: '';
+    --shape-width: 170%;
+    --shape-height: 120%;
+    --shape-rotate: 6deg;
+    --shape-origin: 0% 50%;
+    --shape-radius: 50%;
+    --shape-y: -10%;
+    --shape-x: 0%;
+    background-color: transparent;
+    box-shadow: -0.068rem 0.022rem 0 0 var(--color-hair);
+}
+
+.cola .seccion::before {
+    content: '';
+    --shape-width: 130%;
+    --shape-height: 100%;
+    --shape-rotate: -20deg;
+    --shape-origin: 0% 50%;
+    --shape-radius: 50%;
+    --shape-y: 0%;
+    --shape-x: 50%;
+    background-color: transparent;
+    box-shadow: -0.068rem 0.045rem 0 0 var(--color-hair);
+}
+
+.cola .inicio-cola>.seccion {
+    --shape-width: 50%;
+    --shape-height: 170%;
+}
+
+.cola .seccion>*>* {
+    --shape-rotate: 0deg;
+    --shape-height: 80%;
+}
+
+.cola .seccion>*>*>*>* {
+    --shape-rotate: -25deg;
+    --shape-height: 40%;
+}
+
+/* FRONT LEG */
+.pata-delantera {
+    --part-width: 15%;
+    --part-height: 60%;
+    --part-x: 20%;
+    --part-y: 40%;
+    --part-origin: 100% 50%;
+    border: none;
+}
+
+.pata-delantera.derecha {
+    --color-horse: var(--color-horse-back);
+    --delay: calc(0s - var(--speed) / var(--delay-gap));
+}
+
+.pata-delantera .hombro {
+    --shape-x: 20%;
+    --shape-width: 80%;
+    --shape-height: 35%;
+    --shape-origin: 100% 50%;
+    --shape-radius: 30% 30% 30% 50%;
+    --shape-rotate: 0deg;
+}
+
+.pata-delantera .superior {
+    --shape-x: 40%;
+    --shape-y: 60%;
+    --shape-width: 40%;
+    --shape-height: 80%;
+    --shape-origin: 40% 10%;
+    --shape-radius: 30% 30% 50% 50%;
+    --shape-rotate: 0deg;
+}
+
+.pata-delantera .superior::before {
+    content: '';
+    --shape-x: 5%;
+    --shape-radius: 20%;
+    --shape-rotate: 0deg;
+}
+
+.pata-delantera .superior::after {
+    content: '';
+    --shape-x: 40%;
+    --shape-y: 60%;
+    --shape-height: 78%;
+    --shape-radius: 40%;
+    --shape-rotate: 5deg;
+}
+
+.pata-delantera .rodilla {
+    --shape-x: 15%;
+    --shape-y: 120%;
+    --shape-width: 55%;
+    --shape-height: 55%;
+    --shape-radius: 45%;
+    --shape-origin: 40% 20%;
+    --shape-rotate: 0deg;
+}
+
+.pata-delantera .rodilla::before {
+    content: '';
+    --shape-x: 0%;
+    --shape-y: 60%;
+    --shape-width: 30%;
+    --shape-height: 40%;
+    --shape-radius: 30%;
+    --shape-rotate: 0deg;
+}
+
+.pata-delantera .inferior {
+    --shape-x: 04%;
+    --shape-y: 80%;
+    --shape-width: 65%;
+    --shape-height: 120%;
+    --shape-radius: 5%;
+    --shape-rotate: 10deg;
+}
+
+.pata-delantera .tobillo {
+    --shape-x: -20%;
+    --shape-y: 60%;
+    --shape-width: 170%;
+    --shape-height: 45%;
+    --shape-radius: 50%;
+    --shape-rotate: 20deg;
+}
+
+.pata-delantera .pie {
+    --shape-x: -25%;
+    --shape-y: 69%;
+    --shape-width: 120%;
+    --shape-height: 200%;
+    --shape-radius: 0%;
+    --shape-rotate: 35deg;
+    clip-path: polygon(0% 0%, 80% 0%, 65% 20%, 63% 30%, 70% 45%, 75% 55%, 46% 90%, 35% 95%, 10% 70%, 5% 50%, 10% 25%);
+}
+
+.pata-delantera .pezuna {
+    --shape-x: 40%;
+    --shape-y: 52%;
+    --shape-width: 100%;
+    --shape-height: 50%;
+    --shape-radius: 0%;
+    --shape-rotate: 65deg;
+    background-color: var(--color-hoof);
+}
+
+/* BACK LEG */
+.pata-trasera {
+    --part-width: 20%;
+    --part-height: 70%;
+    --part-x: 60%;
+    --part-y: 30%;
+    --part-origin: 100% 50%;
+    border: none;
+}
+
+.pata-trasera.derecha {
+    --color-horse: var(--color-horse-back);
+    --delay: calc(0s - var(--speed) / var(--delay-gap));
+}
+
+.pata-trasera .parte-superior {
+    --shape-height: 20%;
+    --shape-width: 75%;
+    --shape-radius: 45%;
+    --shape-rotate: 25deg;
+    --shape-x: -8%;
+    background-color: transparent;
+}
+
+.pata-trasera .parte-superior::after {
+    content: '';
+    --shape-height: 140%;
+    --shape-width: 44%;
+    --shape-radius: 50% / 30%;
+    --shape-rotate: -19deg;
+    --shape-x: 55%;
+    --shape-y: 20%;
+    --shape-origin: 50% 10%;
+}
+
+.pata-trasera .parte-superior::before {
+    content: '';
+    --shape-height: 150%;
+    --shape-width: 80%;
+    --shape-radius: 50% / 60%;
+    --shape-rotate: -60deg;
+    --shape-x: 24%;
+    --shape-y: 58%;
+}
+
+.pata-trasera .muslo {
+    --shape-height: 140%;
+    --shape-width: 30%;
+    --shape-radius: 45% / 20%;
+    --shape-rotate: -35deg;
+    --shape-x: 75%;
+    --shape-y: 172%;
+    --shape-origin: 50% 0%;
+}
+
+.pata-trasera .muslo::before {
+    content: '';
+    --shape-height: 80%;
+    --shape-width: 100%;
+    --shape-radius: 50%;
+    --shape-rotate: -10deg;
+    --shape-x: -66%;
+    --shape-y: -10%;
+    --shape-origin: 50% 0%;
+}
+
+.pata-trasera .muslo::after {
+    content: '';
+    --shape-height: 40%;
+    --shape-width: 50%;
+    --shape-radius: 50%;
+    --shape-rotate: 20deg;
+    --shape-x: 110%;
+    --shape-y: 23%;
+    --shape-origin: 50% 50%;
+    background-color: transparent;
+    box-shadow: -1.2% 0.5% 0 0 var(--color-horse);
+}
+
+.pata-trasera .pierna-inferior {
+    --shape-height: 100%;
+    --shape-width: 60%;
+    --shape-radius: 50% / 10%;
+    --shape-rotate: 25deg;
+    --shape-x: 65%;
+    --shape-y: 75%;
+    --shape-origin: 50% 0%;
+}
+
+.pata-trasera .pierna-inferior::after {
+    content: '';
+    --shape-height: 60%;
+    --shape-width: 190%;
+    --shape-radius: 50%;
+    --shape-rotate: -25deg;
+    --shape-x: -155%;
+    --shape-y: 8%;
+    --shape-origin: 50% 50%;
+    background-color: transparent;
+    box-shadow: 0.045rem 0.006rem 0 0 var(--color-horse);
+}
+
+.pata-trasera .pie {
+    --shape-x: -60%;
+    --shape-y: 80%;
+    --shape-width: 180%;
+    --shape-height: 60%;
+    --shape-radius: 0%;
+    --shape-rotate: 15deg;
+    clip-path: polygon(90% 0%, 95% 10%, 100% 20%, 100% 30%, 60% 45%, 60% 55%, 70% 62%, 80% 65%, 80% 70%, 15% 95%, 10% 50%, 15% 25%, 30% 10%, 70% 0%);
+}
+
+.pata-trasera .pezuna {
+    --shape-x: -10%;
+    --shape-y: 65%;
+    --shape-width: 100%;
+    --shape-height: 100%;
+    --shape-radius: 0%;
+    --shape-rotate: -25deg;
+    background-color: var(--color-hoof);
+}
+
+/* ── Override de colores ─────────────────────────────────────── */
+.pata-trasera .parte-superior {
+    background-color: transparent !important;
+}
+
+.cola .inicio-cola,
+.cola .seccion {
+    background-color: var(--color-hair);
+}
+
+.cabeza .ojo {
+    background-color: var(--color-horse-back) !important;
+}
+
+.pata-delantera .pezuna,
+.pata-trasera .pezuna {
+    background-color: var(--color-hoof) !important;
+}
+
+/* ================================================================
+   TRANSICIONES — para las clases grazing / animar
+   ================================================================ */
+.cuello,
+.cabeza,
+.cola {
+    transition: transform 1.2s ease-in-out;
+}
+
+/* ================================================================
+   ESTADO GRAZING (idle 5 s)
+   ================================================================ */
+.grazing .cuello {
+    transform: rotate(-25deg) !important;
+    /* Agacha el cuello hacia el suelo */
+    transition: transform 1.5s ease-in-out;
+}
+
+.grazing .cabeza {
+    /* Ajuste experto: rotación + traslación calculada para seguir la punta del cuello */
+    /* La traslación en 'em' asegura que sea proporcional al tamaño del caballo */
+    transform: rotate(-90deg) translate(-1.0em, -0.4em) !important;
+    transition: transform 1.5s ease-in-out;
+}
+
+.grazing .cola {
+    transform: rotate(25deg) !important;
+    /* Levanta un poco la cola al agacharse */
+}
+
+.grazing .cabeza .mandibula {
+    animation: chew 0.85s ease-in-out infinite alternate;
+}
+
+@keyframes chew {
+    from {
+        transform: skew(0deg) rotate(40deg);
+    }
+
+    to {
+        transform: skew(4deg) rotate(46deg);
+    }
+}
+
+/* ================================================================
+   ANIMACIONES DE GALOPE — tomadas verbatim del preloader
+   ================================================================ */
+
+/* BODY */
+@keyframes body {
+
+    0%,
+    100% {
+        transform: rotate(8deg) translateX(2%) translateY(-5%);
+    }
+
+    9% {
+        transform: rotate(4deg) translateX(2%) translateY(0%);
+    }
+
+    18.1% {
+        transform: rotate(1deg) translateX(0%) translateY(5%);
+    }
+
+    27.2% {
+        transform: rotate(1deg) translateX(2%) translateY(0%) scaleX(0.92);
+    }
+
+    36.3% {
+        transform: rotate(0deg) translateX(2%) translateY(-2%) scaleX(0.9);
+    }
+
+    45.4% {
+        transform: rotate(2deg) translateX(2%) translateY(-3%) scaleX(0.9);
+    }
+
+    54.5% {
+        transform: rotate(3deg) translateX(2%) translateY(-5%) scaleX(0.9);
+    }
+
+    63.6% {
+        transform: rotate(4deg) translateX(0%) translateY(-4%) scaleX(0.9);
+    }
+
+    72.7% {
+        transform: rotate(4.5deg) translateX(0%) translateY(-3%) scaleX(0.95);
+    }
+
+    81.8% {
+        transform: rotate(6.5deg) translateX(0%) translateY(-5%) scaleX(0.95);
+    }
+
+    90.9% {
+        transform: rotate(10deg) translateX(0%) translateY(-14%);
+    }
+}
+
+.caballo-wrapper.animar .cuerpo {
+    animation: body var(--speed) linear infinite;
+}
+
+/* FRONT SHOULDER */
+@keyframes front-shoulder {
+
+    0%,
+    100% {
+        transform: rotate(20deg) translateX(0%) translateY(6%);
+    }
+
+    8.3% {
+        transform: rotate(8deg) translateX(-10%) translateY(0%);
+    }
+
+    16.6% {
+        transform: rotate(0deg) translateX(-12%) translateY(-3%);
+    }
+
+    24.9% {
+        transform: rotate(0deg) translateX(10%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(-30deg) translateX(7%) translateY(-12%);
+    }
+
+    41.6% {
+        transform: rotate(-30deg) translateX(11%) translateY(-10%);
+    }
+
+    49.9% {
+        transform: rotate(-20deg) translateX(10%) translateY(0%);
+    }
+
+    58.3% {
+        transform: rotate(-10deg) translateX(30%) translateY(-5%);
+    }
+
+    66.6% {
+        transform: rotate(15deg) translateX(25%) translateY(5%);
+    }
+
+    74.9% {
+        transform: rotate(0deg) translateX(0%) translateY(0%);
+    }
+
+    83.3% {
+        transform: rotate(0deg) translateX(0%) translateY(0%);
+    }
+
+    91.6% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+}
+
+.caballo-wrapper.animar .pata-delantera .hombro {
+    animation: front-shoulder var(--speed) linear infinite;
+}
+
+/* FRONT UPPER */
+@keyframes front-upper {
+
+    0%,
+    100% {
+        transform: rotate(50deg) translateX(30%) translateY(8%);
+    }
+
+    8.3% {
+        transform: rotate(45deg) translateX(40%) translateY(10%);
+    }
+
+    16.6% {
+        transform: rotate(33deg) translateX(25%) translateY(10%);
+    }
+
+    24.9% {
+        transform: rotate(0deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(18deg) translateX(7%) translateY(10%);
+    }
+
+    41.6% {
+        transform: rotate(-8deg) translateX(-30%) translateY(15%);
+    }
+
+    49.9% {
+        transform: rotate(-4deg) translateX(-20%) translateY(10%);
+    }
+
+    58.3% {
+        transform: rotate(20deg) translateX(17%) translateY(10%);
+    }
+
+    66.6% {
+        transform: rotate(30deg) translateX(20%) translateY(-10%);
+    }
+
+    74.9% {
+        transform: rotate(75deg) translateX(40%) translateY(-15%);
+    }
+
+    83.3% {
+        transform: rotate(85deg) translateX(15%) translateY(-10%);
+    }
+
+    91.6% {
+        transform: rotate(55deg) translateX(25%) translateY(-5%);
+    }
+}
+
+.caballo-wrapper.animar .pata-delantera .superior {
+    animation: front-upper var(--speed) linear infinite;
+}
+
+/* FRONT KNEE */
+@keyframes front-knee {
+
+    0%,
+    100% {
+        transform: rotate(-15deg) translateX(0%) translateY(0%);
+    }
+
+    8.3% {
+        transform: rotate(-10deg) translateX(0%) translateY(0%);
+    }
+
+    16.6% {
+        transform: rotate(-12deg) translateX(0%) translateY(0%);
+    }
+
+    24.9% {
+        transform: rotate(-20deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(-55deg) translateX(-25%) translateY(10%);
+    }
+
+    41.6% {
+        transform: rotate(-35deg) translateX(0%) translateY(-10%);
+    }
+
+    49.9% {
+        transform: rotate(-28deg) translateX(0%) translateY(0%);
+    }
+
+    58.3% {
+        transform: rotate(-90deg) translateX(-22%) translateY(0%);
+    }
+
+    66.6% {
+        transform: rotate(-95deg) translateX(-30%) translateY(0%);
+    }
+
+    74.9% {
+        transform: rotate(-98deg) translateX(-10%) translateY(0%);
+    }
+
+    83.3% {
+        transform: rotate(-80deg) translateX(-20%) translateY(8%);
+    }
+
+    91.6% {
+        transform: rotate(-50deg) translateX(-30%) translateY(10%);
+    }
+}
+
+.caballo-wrapper.animar .pata-delantera .rodilla {
+    animation: front-knee var(--speed) linear infinite;
+}
+
+/* FRONT LOWER */
+@keyframes front-lower {
+
+    0%,
+    100% {
+        transform: rotate(-25deg) translateX(20%) translateY(0%);
+    }
+
+    8.3% {
+        transform: rotate(10deg) translateX(0%) translateY(-10%);
+    }
+
+    16.6% {
+        transform: rotate(10deg) translateX(0%) translateY(0%);
+    }
+
+    24.9% {
+        transform: rotate(12deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(-12deg) translateX(7%) translateY(-12%);
+    }
+
+    41.6% {
+        transform: rotate(0deg) translateX(0%) translateY(-10%);
+    }
+
+    49.9% {
+        transform: rotate(-23deg) translateX(20%) translateY(-20%);
+    }
+
+    58.3% {
+        transform: rotate(0deg) translateX(0%) translateY(-30%);
+    }
+
+    66.6% {
+        transform: rotate(-15deg) translateX(30%) translateY(-20%);
+    }
+
+    74.9% {
+        transform: rotate(-15deg) translateX(0%) translateY(0%);
+    }
+
+    83.3% {
+        transform: rotate(-15deg) translateX(15%) translateY(0%);
+    }
+
+    91.6% {
+        transform: rotate(-10deg) translateX(20%) translateY(-30%);
+    }
+}
+
+.caballo-wrapper.animar .pata-delantera .inferior {
+    animation: front-lower var(--speed) linear infinite;
+}
+
+/* FRONT ANKLE */
+@keyframes front-ankle {
+
+    0%,
+    100% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+
+    8.3% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+
+    16.6% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+
+    24.9% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(15deg) translateX(10%) translateY(0%);
+    }
+
+    41.6% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+
+    49.9% {
+        transform: rotate(0deg) translateX(0%) translateY(0%);
+    }
+
+    58.3% {
+        transform: rotate(0deg) translateX(0%) translateY(-20%);
+    }
+
+    66.6% {
+        transform: rotate(-30deg) translateX(0%) translateY(0%);
+    }
+
+    74.9% {
+        transform: rotate(-30deg) translateX(0%) translateY(0%);
+    }
+
+    83.3% {
+        transform: rotate(-10deg) translateX(0%) translateY(-20%);
+    }
+
+    91.6% {
+        transform: rotate(20deg) translateX(0%) translateY(0%);
+    }
+}
+
+.caballo-wrapper.animar .pata-delantera .tobillo {
+    animation: front-ankle var(--speed) linear infinite;
+}
+
+/* FRONT FOOT */
+@keyframes front-foot {
+
+    0%,
+    100% {
+        transform: rotate(-28deg) translateX(40%) translateY(0%);
+    }
+
+    8.3% {
+        transform: rotate(-15deg) translateX(50%) translateY(0%);
+    }
+
+    16.6% {
+        transform: rotate(-11deg) translateX(35%) translateY(0%);
+    }
+
+    24.9% {
+        transform: rotate(50deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(-10deg) translateX(50%) translateY(0%);
+    }
+
+    41.6% {
+        transform: rotate(-36deg) translateX(50%) translateY(0%);
+    }
+
+    49.9% {
+        transform: rotate(-30deg) translateX(32%) translateY(0%);
+    }
+
+    58.3% {
+        transform: rotate(-30deg) translateX(45%) translateY(0%);
+    }
+
+    66.6% {
+        transform: rotate(-30deg) translateX(50%) translateY(0%);
+    }
+
+    74.9% {
+        transform: rotate(-30deg) translateX(50%) translateY(0%);
+    }
+
+    83.3% {
+        transform: rotate(-30deg) translateX(50%) translateY(0%);
+    }
+
+    91.6% {
+        transform: rotate(-50deg) translateX(50%) translateY(10%);
+    }
+}
+
+.caballo-wrapper.animar .pata-delantera .pie {
+    animation: front-foot var(--speed) linear infinite;
+}
+
+/* BACK TOP */
+@keyframes back-top {
+
+    0%,
+    100% {
+        transform: rotate(0deg) translateX(-5%) translateY(50%);
+    }
+
+    8.3% {
+        transform: rotate(-5deg) translateX(-7%) translateY(38%);
+    }
+
+    16.6% {
+        transform: rotate(-10deg)translateX(-14%) translateY(30%);
+    }
+
+    24.9% {
+        transform: rotate(25deg) translateX(0%) translateY(10%);
+    }
+
+    33.3% {
+        transform: rotate(32deg) translateX(-18%) translateY(25%);
+    }
+
+    41.6% {
+        transform: rotate(45deg) translateX(-5%) translateY(20%);
+    }
+
+    49.9% {
+        transform: rotate(65deg) translateX(10%) translateY(35%);
+    }
+
+    58.3% {
+        transform: rotate(65deg) translateX(10%) translateY(40%);
+    }
+
+    66.6% {
+        transform: rotate(75deg) translateX(20%) translateY(40%);
+    }
+
+    74.9% {
+        transform: rotate(70deg) translateX(20%) translateY(45%);
+    }
+
+    83.3% {
+        transform: rotate(60deg) translateX(25%) translateY(40%);
+    }
+
+    91.6% {
+        transform: rotate(30deg) translateX(10%) translateY(40%);
+    }
+}
+
+.caballo-wrapper.animar .pata-trasera .parte-superior {
+    animation: back-top var(--speed) linear infinite;
+}
+
+/* BACK THIGH */
+@keyframes back-thigh {
+
+    0%,
+    100% {
+        transform: rotate(-45deg) translateX(-30%) translateY(-10%);
+    }
+
+    8.3% {
+        transform: rotate(-45deg) translateX(-30%) translateY(-8%);
+    }
+
+    16.6% {
+        transform: rotate(-43deg) translateX(-35%) translateY(-10%);
+    }
+
+    24.9% {
+        transform: rotate(-95deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(-115deg) translateX(0%) translateY(10%);
+    }
+
+    41.6% {
+        transform: rotate(-130deg) translateX(20%) translateY(-5%);
+    }
+
+    49.9% {
+        transform: rotate(-130deg) translateX(10%) translateY(0%);
+    }
+
+    58.3% {
+        transform: rotate(-90deg) translateX(80%) translateY(-20%);
+    }
+
+    66.6% {
+        transform: rotate(-85deg) translateX(0%) translateY(-20%);
+    }
+
+    74.9% {
+        transform: rotate(-65deg) translateX(5%) translateY(-10%);
+    }
+
+    83.3% {
+        transform: rotate(-65deg) translateX(10%) translateY(-10%);
+    }
+
+    91.6% {
+        transform: rotate(-75deg) translateX(-20%) translateY(-15%);
+    }
+}
+
+.caballo-wrapper.animar .pata-trasera .muslo {
+    animation: back-thigh var(--speed) linear infinite;
+}
+
+/* BACK LOWER LEG */
+@keyframes back-lower-leg {
+
+    0%,
+    100% {
+        transform: rotate(40deg) translateX(0%) translateY(0%);
+    }
+
+    8.3% {
+        transform: rotate(30deg) translateX(-30%) translateY(0%);
+    }
+
+    16.6% {
+        transform: rotate(28deg) translateX(-40%) translateY(0%);
+    }
+
+    24.9% {
+        transform: rotate(47deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(78deg) translateX(0%) translateY(5%);
+    }
+
+    41.6% {
+        transform: rotate(110deg) translateX(40%) translateY(10%);
+    }
+
+    49.9% {
+        transform: rotate(115deg) translateX(50%) translateY(5%);
+    }
+
+    58.3% {
+        transform: rotate(90deg) translateX(30%) translateY(5%);
+    }
+
+    66.6% {
+        transform: rotate(76deg) translateX(0%) translateY(0%);
+    }
+
+    74.9% {
+        transform: rotate(50deg) translateX(-40%) translateY(-4%);
+    }
+
+    83.3% {
+        transform: rotate(40deg) translateX(-20%) translateY(-5%);
+    }
+
+    91.6% {
+        transform: rotate(70deg) translateX(0%) translateY(0%);
+    }
+}
+
+.caballo-wrapper.animar .pata-trasera .pierna-inferior {
+    animation: back-lower-leg var(--speed) linear infinite;
+}
+
+/* BACK FOOT */
+@keyframes back-foot {
+
+    0%,
+    100% {
+        transform: rotate(40deg) translateX(0%) translateY(-20%);
+    }
+
+    8.3% {
+        transform: rotate(20deg) translateX(10%) translateY(-20%);
+    }
+
+    16.6% {
+        transform: rotate(-65deg) translateX(0%) translateY(0%);
+    }
+
+    24.9% {
+        transform: rotate(-70deg) translateX(0%) translateY(0%);
+    }
+
+    33.3% {
+        transform: rotate(-60deg) translateX(20%) translateY(-10%);
+    }
+
+    41.6% {
+        transform: rotate(-80deg) translateX(0%) translateY(0%);
+    }
+
+    49.9% {
+        transform: rotate(-70deg) translateX(0%) translateY(0%);
+    }
+
+    58.3% {
+        transform: rotate(-60deg) translateX(10%) translateY(-10%);
+    }
+
+    66.6% {
+        transform: rotate(-43deg) translateX(20%) translateY(-10%);
+    }
+
+    74.9% {
+        transform: rotate(-13deg) translateX(5%) translateY(-10%);
+    }
+
+    83.3% {
+        transform: rotate(8deg) translateX(5%) translateY(-15%);
+    }
+
+    91.6% {
+        transform: rotate(20deg) translateX(15%) translateY(-20%);
+    }
+}
+
+.caballo-wrapper.animar .pata-trasera .pie {
+    animation: back-foot var(--speed) linear infinite;
+}
+
+/* NECK */
+@keyframes neck {
+
+    0%,
+    100% {
+        transform: scaleX(1) rotate(40deg) translateX(0%) translateY(-10%);
+    }
+
+    16.6% {
+        transform: scaleX(1) rotate(40deg) translateX(6%) translateY(-10%);
+    }
+
+    33.3% {
+        transform: scaleX(0.9) rotate(45deg) translateX(3%) translateY(5%);
+    }
+
+    49.9% {
+        transform: scaleX(0.85) rotate(45deg) translateX(3%) translateY(-5%);
+    }
+
+    66.6% {
+        transform: scaleX(0.85) rotate(40deg) translateX(0%) translateY(-15%);
+    }
+
+    83.3% {
+        transform: scaleX(1) rotate(35deg) translateX(0%) translateY(-15%);
+    }
+}
+
+.caballo-wrapper.animar .cuello {
+    animation: neck var(--speed) linear infinite;
+}
+
+/* HEAD */
+@keyframes head {
+
+    0%,
+    100% {
+        transform: rotate(-45deg) translateX(-5%) translateY(10%);
+    }
+
+    16.6% {
+        transform: rotate(-45deg) translateX(0%) translateY(15%);
+    }
+
+    33.3% {
+        transform: rotate(-40deg) translateX(5%) translateY(23%);
+    }
+
+    49.9% {
+        transform: rotate(-36deg) translateX(15%) translateY(35%);
+    }
+
+    66.6% {
+        transform: rotate(-42deg) translateX(5%) translateY(35%);
+    }
+
+    83.3% {
+        transform: rotate(-45deg) translateX(-15%) translateY(10%);
+    }
+}
+
+.caballo-wrapper.animar .cabeza {
+    animation: head var(--speed) linear infinite;
+}
+
+/* EAR */
+@keyframes ear {
+
+    0%,
+    100% {
+        transform: rotate(25deg);
+    }
+
+    16.6% {
+        transform: rotate(28deg);
+    }
+
+    33.3% {
+        transform: rotate(24deg);
+    }
+
+    49.9% {
+        transform: rotate(30deg);
+    }
+
+    66.6% {
+        transform: rotate(35deg);
+    }
+
+    83.3% {
+        transform: rotate(35deg);
+    }
+}
+
+.caballo-wrapper.animar .oreja {
+    animation: ear var(--speed) linear infinite;
+}
+
+/* TAIL */
+@keyframes tail {
+
+    0%,
+    100% {
+        transform: rotate(-10deg) translateX(-5%) translateY(38%);
+    }
+
+    16.6% {
+        transform: rotate(-10deg) translateX(-5%) translateY(28%);
+    }
+
+    33.3% {
+        transform: rotate(-10deg) translateX(-10%) translateY(10%);
+    }
+
+    49.9% {
+        transform: rotate(-10deg) translateX(-10%) translateY(10%);
+    }
+
+    66.6% {
+        transform: rotate(-10deg) translateX(-10%) translateY(18%);
+    }
+
+    83.3% {
+        transform: rotate(-10deg) translateX(-10%) translateY(25%);
+    }
+}
+
+.caballo-wrapper.animar .cola {
+    animation: tail var(--speed) linear infinite;
+}
+
+@keyframes tail-section-1 {
+
+    0%,
+    100% {
+        transform: rotate(15deg);
+    }
+
+    16.6% {
+        transform: rotate(15deg);
+    }
+
+    33.3% {
+        transform: rotate(12deg);
+    }
+
+    49.9% {
+        transform: rotate(5deg);
+    }
+
+    66.6% {
+        transform: rotate(0deg);
+    }
+
+    83.3% {
+        transform: rotate(5deg);
+    }
+}
+
+.caballo-wrapper.animar .cola .seccion {
+    animation: tail-section-1 var(--speed) linear infinite;
+}
+
+@keyframes tail-section-2 {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    16.6% {
+        transform: rotate(4deg);
+    }
+
+    33.3% {
+        transform: rotate(15deg);
+    }
+
+    49.9% {
+        transform: rotate(30deg);
+    }
+
+    66.6% {
+        transform: rotate(10deg);
+    }
+
+    83.3% {
+        transform: rotate(-5deg);
+    }
+}
+
+.caballo-wrapper.animar .cola .seccion>*>* {
+    animation: tail-section-2 var(--speed) linear infinite;
+}
+
+/* ================================================================
+   ANIMACIONES IDLE — respiración y cola
+   ================================================================ */
+@keyframes idle-breath {
+
+    0%,
+    100% {
+        transform: scaleY(1) translateY(0px);
+    }
+
+    50% {
+        transform: scaleY(1.03) translateY(-1px);
+    }
+}
+
+@keyframes idle-tail {
+
+    0%,
+    100% {
+        transform: rotate(-12deg) translateX(-5%) translateY(15%);
+    }
+
+    50% {
+        transform: rotate(-20deg) translateX(-10%) translateY(5%);
+    }
+}
+
+.caballo-wrapper:not(.animar):not(.grazing) .cuerpo {
+    animation: idle-breath 2.6s ease-in-out infinite;
+    transform-origin: 50% 100%;
+}
+
+.caballo-wrapper:not(.animar):not(.grazing) .cola {
+    animation: idle-tail 3.2s ease-in-out infinite;
+}
+
+/* ── Retraso para patas traseras (efecto depth) ──────────────── */
+.caballo-wrapper .pata-delantera.derecha>* {
+    animation-delay: calc(0s - var(--speed)/var(--delay-gap)) !important;
+}
+
+.caballo-wrapper .pata-trasera.derecha>* {
+    animation-delay: calc(0s - var(--speed)/var(--delay-gap)) !important;
+}
+
+/* ================================================================
+   POLVO DE PATAS
+   ================================================================ */
+.horse-dust-particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999996;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(195, 158, 95, .7) 0%, rgba(175, 130, 65, 0) 70%);
+    animation: dust 0.55s ease-out forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes dust {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: .7;
+    }
+
+    100% {
+        transform: translate(var(--dx, 18px), var(--dy, -12px)) scale(2.6);
+        opacity: 0;
+    }
+}
+
+/* ================================================================
+   BOÑIGA
+   ================================================================ */
+.horse-dung-pile {
+    position: fixed;
+    width: 14px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 999997;
+    transform: translateX(-50%);
+    opacity: 1;
+    user-select: none;
+    animation: dung-drop .32s cubic-bezier(.175, .885, .32, 1.275) forwards;
+}
+
+.dung-shape {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.dung-layer {
+    background-color: #6b442b;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: -2px;
+    /* Superposición */
+}
+
+.dung-layer.l1 {
+    width: 100%;
+    height: 35%;
+    position: relative;
+    z-index: 1;
+}
+
+.dung-layer.l2 {
+    width: 75%;
+    height: 30%;
+    position: relative;
+    z-index: 2;
+}
+
+.dung-layer.l3 {
+    width: 45%;
+    height: 35%;
+    border-radius: 50% 50% 50% 50%;
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(135deg, #7a4f32, #5a3a24);
+}
+
+
+@keyframes dung-drop {
+    from {
+        transform: translateX(-50%) translateY(-30px) scale(.35);
+        /* Ajustado al nuevo dropDistance de 30 */
+        opacity: .2;
+    }
+
+    to {
+        transform: translateX(-50%) translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.horse-dung-pile.fading {
+    animation: dung-fade-out 3s ease-in-out forwards;
+}
+
+@keyframes dung-fade-out {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        /* Elevación muy suave y desaparición total por opacidad */
+        transform: translateX(-50%) translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.horse-dung-shadow {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999996;
+    width: 10px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .22);
+    transform: translateX(-50%);
+    transition: opacity 3s ease-in-out;
+    animation: shadow-appear .32s ease-out forwards;
+}
+
+@keyframes shadow-appear {
+    from {
+        transform: translateX(-50%) scale(0.2);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.horse-dung-shadow.fading {
+    opacity: 0;
+}
+
+/* ================================================================
+   PASTO (GRASS) - Premium Version
+   ================================================================ */
+.horse-grass {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999995;
+    width: 32px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transform: translate(-50%, -50%); 
+}
+
+.horse-grass.future {
+    filter: saturate(0.5) opacity(0.7);
+    animation: grass-grow-slow 2s ease-out forwards;
+}
+
+.horse-grass .blade {
+    width: 3px;
+    height: 60%;
+    background: linear-gradient(to top, #2e7d32, #4caf50);
+    border-radius: 6px 6px 0 0;
+    transform-origin: bottom;
+    margin: 0 1px;
+    /* Aparece creciendo y el vaivén empieza después */
+    animation: grass-grow 1.2s ease-out forwards, grass-sway 3s 1.2s ease-in-out infinite alternate;
+}
+
+.horse-grass .blade:nth-child(1) { height: 75%; animation-delay: -0.2s; transform: rotate(-5deg); }
+.horse-grass .blade:nth-child(2) { height: 100%; animation-delay: -0.5s; background: linear-gradient(to top, #1b5e20, #66bb6a); }
+.horse-grass .blade:nth-child(3) { height: 85%; animation-delay: -1.2s; transform: rotate(5deg); }
+
+.horse-grass.eating .blade {
+    animation: grass-eaten 1.2s ease-in forwards !important;
+}
+
+@keyframes grass-sway {
+    from { transform: rotate(-5deg); }
+    to { transform: rotate(12deg); }
+}
+
+@keyframes grass-grow {
+    0% { transform: scaleY(0); opacity: 0; }
+    70% { transform: scaleY(0.8) skewX(10deg); opacity: 1; }
+    100% { transform: scaleY(1) skewX(0deg); opacity: 1; }
+}
+
+@keyframes grass-grow-slow {
+    0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes grass-eaten {
+    0% { transform: scaleY(1); opacity: 1; }
+    30% { transform: scaleY(0.8) skewX(10deg); opacity: 1; }
+    100% { transform: scaleY(0); opacity: 0; }
+}

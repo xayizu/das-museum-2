@@ -1,7 +1,7 @@
 <!-- Topbar (Museo de Tanques - Blue/White Theme) -->
 <div class="topbar-global topbar-main footer-fusion-tanks !fixed">
     <div
-        class="topbar-container relative z-[60] w-full flex flex-col md:flex-row justify-between items-center px-6 py-3 md:py-2 min-h-[64px] md:h-[70px] gap-2 md:gap-0">
+        class="topbar-container relative z-[60] w-full flex flex-col md:flex-row justify-between items-center p-[10px] min-h-[64px] md:h-[70px] gap-2 md:gap-0">
         <!-- Left: Branding & Back -->
         <div
             class="w-full md:w-auto flex items-center justify-center md:justify-start relative z-[60] mb-2 md:mb-0 px-14 md:px-0">
@@ -21,26 +21,19 @@
                 </div>
             </a>
 
-            <!-- Right side of branding container: Live Indicator (Mobile only) -->
-            <div class="absolute right-0 md:hidden z-20">
-                <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full" 
-                    data-i18n-tooltip="tooltip_live_users" 
-                    data-tooltip="En Vivo">
-                    <div class="pulse-dot"></div>
-                    <span id="live-users-count" class="text-[10px] font-black text-green-500/80 font-mono">1</span>
-                </div>
-            </div>
         </div>
 
-        <!-- Center: Live Indicator (Desktop only) -->
-        <div class="hidden md:block z-20">
+        <!-- Live Indicator (Responsive) -->
+        <div class="absolute right-4 top-5 md:static md:right-auto md:top-auto z-20">
             <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full" 
                 data-i18n-tooltip="tooltip_live_users" 
                 data-tooltip="En Vivo">
                 <div class="pulse-dot"></div>
-                <span id="live-users-count" class="text-[10px] font-black text-green-500/80 font-mono">1</span>
+                <span id="live-users-count" class="live-users-count text-[10px] font-black text-green-500/80 font-mono">1</span>
             </div>
         </div>
+
+
 
         <!-- Right: Utilities -->
         <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end relative z-[60]">
@@ -55,7 +48,14 @@
             <!-- Selector de Museo -->
             <a aria-label="Ir a Casa Histórica" class="util-btn group" data-i18n-tooltip="tooltip_goto_casa"
                 data-tooltip="Ir a Casa Histórica" href="casa-historica/1.0index.html">
-                <span class="material-symbols-outlined group-hover:scale-110 transition-transform">castle</span>
+                <svg class="size-6 group-hover:scale-110 transition-transform" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect fill="currentColor" height="7" rx="1.5" stroke="none" width="7" x="2" y="2"></rect>
+                    <rect fill="currentColor" height="7" rx="1.5" stroke="none" width="7" x="15" y="15"></rect>
+                    <path d="M12 11V5h6"></path>
+                    <path d="M18 2.5l3 3-3 3z" fill="currentColor" stroke="none"></path>
+                    <path d="M12 13v6H6"></path>
+                    <path d="M6 15.5l-3 3 3 3z" fill="currentColor" stroke="none"></path>
+                </svg>
             </a>
             <div class="util-divider"></div>
             <button aria-label="Buscar" class="util-btn search-toggle" data-i18n-tooltip="tooltip_search"

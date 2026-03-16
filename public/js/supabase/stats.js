@@ -111,20 +111,23 @@ const StatsManager = {
      * Utilidad para inyectar números con formato (Dual mode: full & short)
      */
     setNumber(id, val) {
-        // Soporte para modo dual (index.html)
-        const fullEl = document.getElementById(`${id}-full`);
-        const shortEl = document.getElementById(`${id}-short`);
+        const formattedFull = Number(val).toLocaleString();
+        const formattedShort = this.formatShort(val);
 
-        if (fullEl) fullEl.innerText = Number(val).toLocaleString();
-        if (shortEl) shortEl.innerText = this.formatShort(val);
+        // Update all elements with [id]-full
+        document.querySelectorAll(`#${id}-full, .${id}-full`).forEach(el => {
+            el.innerText = formattedFull;
+        });
 
-        // Soporte para modo simple (legacy)
-        const el = document.getElementById(id);
-        if (el) {
-            // Se muestra siempre el número completo con formato local (ej: 1,240)
-            // cumpliendo el pedido de tener números íntegros tanto en escritorio como en móvil.
-            el.innerText = Number(val).toLocaleString();
-        }
+        // Update all elements with [id]-short
+        document.querySelectorAll(`#${id}-short, .${id}-short`).forEach(el => {
+            el.innerText = formattedShort;
+        });
+
+        // Update all elements with the direct ID or Class
+        document.querySelectorAll(`#${id}, .${id}`).forEach(el => {
+            el.innerText = formattedFull;
+        });
     },
 
     formatShort(num) {

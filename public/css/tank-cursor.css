@@ -147,11 +147,14 @@
 /* Commander's Hatch - Circular */
 .turret-hatch {
     position: absolute;
-    top: 22px;   /* Slightly behind the barrel start */
-    left: 4px;   /* Slightly to the left of center */
+    top: 22px;
+    /* Slightly behind the barrel start */
+    left: 4px;
+    /* Slightly to the left of center */
     width: 9px;
     height: 9px;
-    background: var(--tank-secondary); /* Match the dark green square base */
+    background: var(--tank-secondary);
+    /* Match the dark green square base */
     border: 2px solid var(--tank-border);
     border-radius: 50%;
     z-index: 5;
@@ -263,13 +266,15 @@
 }
 
 /* Dynamic Particles - Fixed Size */
-.smoke-particle, .dust-particle {
+.smoke-particle,
+.dust-particle {
     position: fixed;
     pointer-events: none;
     border-radius: 50%;
-    z-index: 9999; 
+    z-index: 9999;
     will-change: transform, opacity;
-    width: 15px; /* Base size for smoke */
+    width: 15px;
+    /* Base size for smoke */
     height: 15px;
 }
 
@@ -280,9 +285,11 @@
 }
 
 .dust-particle {
-    width: 10px; /* Base size for dust */
+    width: 10px;
+    /* Base size for dust */
     height: 10px;
-    background: rgba(139, 115, 85, 0.6); /* Sandy color */
+    background: rgba(139, 115, 85, 0.6);
+    /* Sandy color */
     filter: blur(2px);
     animation: dust-fade 0.7s ease-out forwards;
 }

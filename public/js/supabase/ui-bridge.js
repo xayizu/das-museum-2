@@ -30,6 +30,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             await window.LeaderboardManager.fetchTopScores();
         }
 
+        // 5. Escuchar carga de componentes dinámicos para re-actualizar UI
+        window.addEventListener('componentsReady', async () => {
+            if (window.StatsManager) {
+                await window.StatsManager.updateUI();
+            }
+        });
+
         console.log('✨ Museos TAPI: Sistemas sincronizados.');
     }, 500);
 });

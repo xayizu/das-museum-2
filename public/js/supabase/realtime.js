@@ -32,6 +32,11 @@ const ActivityManager = {
             }
         });
 
+        // Escuchar cuando se cargan componentes dinámicos
+        window.addEventListener('componentsReady', () => {
+            this.pulse();
+        });
+
         console.log('🚀 Monitor de visitantes Hiper-Real activado (10s)');
     },
 
@@ -56,11 +61,12 @@ const ActivityManager = {
     },
 
     updateUI(count) {
-        const countElement = document.getElementById('live-users-count');
-        if (countElement) {
-            // Un pequeño efecto visual: si es 0, mostramos al menos 1 (el usuario actual)
+        const countElements = document.querySelectorAll('.live-users-count, #live-users-count');
+        if (countElements.length > 0) {
             const displayCount = count || 1;
-            countElement.innerText = displayCount;
+            countElements.forEach(el => {
+                el.innerText = displayCount;
+            });
         }
     }
 };

@@ -138,15 +138,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Intentamos inicializar los sidebars si ya están en el DOM (como en index.html)
     initializeSidebars();
-    
+
     // Motor de giro del Favicon (Compatible con Chrome)
     initFaviconAnimation();
-    
+
     // Título dinámico tipo marquesina
     initTitleMarquee();
 
+    // Iniciar el scroll progress bar horizontal
+    initScrollProgress();
+
     // Cargar el cursor de tanque personalizado (Solo PC)
     initTankCursorLoader();
+
+    // Cargar el cursor de caballo (Solo en Casa Histórica y Index)
+    initHorseCursorLoader();
+
+    // Lógica de alternancia si estamos en index
+    initMascotSwitcher();
 });
 
 // Listener para el evento de carga de componentes (para subpáginas)
@@ -167,9 +176,12 @@ window.addEventListener('componentsReady', () => {
 
     // Iniciar animación del favicon
     initFaviconAnimation();
-    
+
     // Título dinámico
     initTitleMarquee();
+
+    // Asegurar que el scroll progress esté activo tras carga de componentes
+    initScrollProgress();
 });
 
 // Theme toggle
@@ -693,19 +705,19 @@ function initFaviconAnimation() {
     canvas.width = 32;
     canvas.height = 32;
     const ctx = canvas.getContext('2d');
-    
+
     const img = new Image();
     const isSubPage = window.location.pathname.includes('/museo-tanques/') || window.location.pathname.includes('/casa-historica/');
-    const basePath = isSubPage ? '../../' : ''; 
+    const basePath = isSubPage ? '../../' : '';
     img.src = basePath + 'recursos/images/index/favicon_pestaña.svg';
 
     let angle = 0;
-    const rotationSpeed = 0.5; 
+    const rotationSpeed = 0.5;
 
     img.onload = () => {
         function animate() {
             ctx.clearRect(0, 0, 32, 32);
-            
+
             ctx.beginPath();
             ctx.arc(16, 16, 16, 0, Math.PI * 2);
             ctx.fillStyle = '#ffffff';
@@ -714,11 +726,11 @@ function initFaviconAnimation() {
             ctx.save();
             ctx.translate(16, 16);
             ctx.rotate((angle * Math.PI) / 180);
-            ctx.drawImage(img, -14, -14, 28, 28); 
+            ctx.drawImage(img, -14, -14, 28, 28);
             ctx.restore();
 
             favicon.href = canvas.toDataURL('image/png');
-            
+
             angle = (angle + rotationSpeed) % 360;
             requestAnimationFrame(animate);
         }
@@ -736,8 +748,8 @@ function initTitleMarquee() {
     let titleText = document.title;
     if (titleText.length < 15) return;
 
-    titleText += "        "; 
-    
+    titleText += "        ";
+
     window.titleMarqueeInterval = setInterval(() => {
         titleText = titleText.substring(1) + titleText.substring(0, 1);
         document.title = titleText;
@@ -745,20 +757,117 @@ function initTitleMarquee() {
 }
 
 /**
- * Carga dinámicamente los recursos del cursor de tanque
+ * Carga dinámicamente los recursos del cursor de tanque.
+ * Solo se activa en: index.html  y  /museo-tanques/
  */
 function initTankCursorLoader() {
+    const path = window.location.pathname;
+    const isIndex = path === '/' || path.endsWith('/index.html') || path.endsWith('/public/');
+    const inTanques = path.includes('/museo-tanques/');
+    if (!isIndex && !inTanques) return; // Solo en esas páginas
+
     const root = document.body.getAttribute('data-root') || './';
-    const VERSION = '310'; // Bumping to 310 to ensure mobile cache refresh
-    
-    // 1. Cargar el CSS
+    const VERSION = '392'; // Territory Passing Update
+
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${root}css/tank-cursor.css?v=${VERSION}`;
     document.head.appendChild(link);
-    
-    // 2. Cargar el Script
+
     const script = document.createElement('script');
     script.src = `${root}js/tank-cursor.js?v=${VERSION}`;
     document.head.appendChild(script);
 }
+
+/**
+ * Carga dinámicamente los recursos del cursor de caballo.
+ * Solo se activa en: /casa-historica/ y el index
+ */
+function initHorseCursorLoader() {
+    const path = window.location.pathname;
+    const isIndex = path === '/' || path.endsWith('/index.html') || path.endsWith('/public/');
+    const inCasa = path.includes('/casa-historica/');
+    if (!isIndex && !inCasa) return; // Solo index y casa histórica
+
+    const root = document.body.getAttribute('data-root') || './';
+    const VERSION = '392'; // Territory Passing Update
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = `${root}css/horse-cursor.css?v=${VERSION}`;
+    document.head.appendChild(link);
+
+    const script = document.createElement('script');
+    script.src = `${root}js/horse-cursor.js?v=${VERSION}`;
+    document.head.appendChild(script);
+}
+
+/**
+ * Alterna entre mascotas según la posición física de la MASCOTA respecto al divisor VS.
+ */
+function initMascotSwitcher() {
+    const path = window.location.pathname;
+    const isIndex = path === '/' || path.endsWith('/index.html') || path.endsWith('/public/');
+    if (!isIndex) return;
+
+    const checkMascotPositions = () => {
+        const divider = document.getElementById('vs-divider');
+        if (!divider) return;
+
+        const isMobile = window.innerWidth < 768;
+        const rect = divider.getBoundingClientRect();
+        const midX = rect.left + rect.width / 2;
+        const midY = rect.top + rect.height / 2;
+
+        // Controlamos el TANQUE
+        if (window.tankCursor && window.tankCursor.renderPos) {
+            const tankOnLeft = isMobile ? window.tankCursor.renderPos.y < midY : window.tankCursor.renderPos.x < midX;
+            if (window.tankCursor.isEnabled !== tankOnLeft) {
+                window.tankCursor.setEnabled(tankOnLeft);
+                // Si el tanque se apaga, nos aseguramos que el caballo sepa que puede entrar
+            }
+        }
+
+        // Controlamos el CABALLO
+        if (window.horseCursorInstance && window.horseCursorInstance.renderPos) {
+            const horseOnRight = isMobile ? window.horseCursorInstance.renderPos.y > midY : window.horseCursorInstance.renderPos.x > midX;
+            if (window.horseCursorInstance.isEnabled !== horseOnRight) {
+                window.horseCursorInstance.setEnabled(horseOnRight);
+            }
+        }
+    };
+
+    // Usamos un intervalo ligero para chequear posición física
+    // Frecuencia de 30ms para que se sienta instantáneo al ojo
+    setInterval(checkMascotPositions, 30);
+
+    // Initial check con un pequeño delay para asegurar que los scripts de las mascotas hayan corrido
+    setTimeout(() => {
+        checkMascotPositions();
+    }, 600);
+}
+
+/**
+ * Inicializa la barra de progreso de scroll horizontal en la parte superior
+ */
+function initScrollProgress() {
+    if (document.querySelector('.scroll-progress-container')) return;
+
+    const container = document.createElement('div');
+    container.className = 'scroll-progress-container';
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress-bar';
+    container.appendChild(bar);
+    document.body.appendChild(container);
+
+    const updateScrollProgress = () => {
+        const winScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+        bar.style.width = scrolled + "%";
+    };
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true });
+    updateScrollProgress();
+}
+

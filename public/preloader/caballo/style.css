@@ -1016,6 +1016,8 @@ label {
 	width: var(--horse-width);
 	height: var(--horse-height);
 	border: 0px solid var(--outlines);
+	filter: blur(0.4px);
+	will-change: filter;
 }
 
 .🐴 *,
