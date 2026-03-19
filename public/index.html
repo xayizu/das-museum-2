@@ -3,10 +3,13 @@
 <html class="dark" lang="es">
 
 <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>MUSEOS TAPI | Complejo Museístico de Tanques y Casa Histórica</title>
-    <link id="favicon" rel="icon" type="image/svg+xml" href="recursos/images/index/favicon_pestaña.svg?v=1.1" />
+    <link rel="icon" type="image/svg+xml" href="recursos/images/index/favicon_static.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="recursos/images/index/favicon-48.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="recursos/images/index/favicon-144.png" />
 
@@ -47,13 +50,23 @@
         rel="stylesheet" />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="js/config.js?v=393"></script>
-    <link href="css/main.css?v=393" rel="stylesheet" />
-    <script defer src="js/i18n.js?v=393"></script>
-    <script defer src="js/main.js?v=393"></script>
+    <script src="js/config.js?v=405"></script>
+    <link href="css/main.css?v=405" rel="stylesheet" />
+    <script defer src="js/i18n.js?v=405"></script>
+    <script defer src="js/main.js?v=405"></script>
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Structured Data for Logo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.museostapi.com/",
+      "logo": "https://www.museostapi.com/recursos/images/index/favicon-144.png"
+    }
+    </script>
 
 </head>
 
@@ -65,7 +78,10 @@
         ========================================================================
         Usa "Ctrl + F" para buscar el número del grupo (Ej: "6.1")
         
-        1. CABECERA Y METADATOS (Head & CSS) (En la etiqueta <head>)
+        1. CABECERA Y METADATOS (Head & CSS) (En la etiqueta <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">)
         2. CAPAS OSCURAS (Overlays)
         3. MENÚS LATERALES (Sidebars)
             3.1 Menú Izquierdo (Museo de Tanques)
@@ -539,16 +555,7 @@
                     </div>
                 </a>
 
-                <!-- Center: Live Indicator -->
-                <div class="absolute right-4 top-5 md:static md:right-auto md:top-auto z-20">
-                    <div class="util-btn flex items-center gap-2 px-3 py-1 bg-green-500/5 border border-green-500/10 rounded-full"
-                        data-i18n-tooltip="tooltip_live_users" data-tooltip="En Vivo">
-                        <div class="pulse-dot"></div>
 
-                        <span id="live-users-count"
-                            class="live-users-count text-[10px] font-black text-green-500/80 font-mono">1</span>
-                    </div>
-                </div>
 
                 <!-- Right: Utilities -->
                 <div class="topbar-utils w-full md:w-auto flex justify-between md:justify-end m-0">
@@ -1467,103 +1474,73 @@
             </div>
             <!-- Stats Bar -->
             <!-- Stats Bar: Complex Statistics -->
-            <div class="mt-2">
-                <div
-                    class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white/5 p-4 rounded-xl backdrop-blur-md border border-white/5">
-
-                    <!-- Header Status (Compact) -->
-                    <div
-                        class="flex items-center gap-4 border-b lg:border-b-0 lg:border-r border-white/10 pb-3 lg:pb-0 lg:pr-6 w-full lg:w-auto">
-                        <div class="pulse-dot flex-shrink-0"></div>
-
-                        <div class="flex flex-col">
-                            <span class="text-white font-black text-[11px] uppercase tracking-widest leading-none"
-                                data-i18n="estadísticas_del_complejo">Estadísticas</span>
-                            <span class="text-[8px] text-gray-500 uppercase font-bold tracking-widest"
-                                data-i18n="registro_actualizado">En tiempo real</span>
-                        </div>
-                    </div>
-
-                    <!-- Statistics Grid (Compact) -->
-                    <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 pl-0 lg:pl-6 w-full">
-
-                        <!-- Stat 1: Tanks -->
-                        <div class="flex items-center gap-3 group">
-                            <div
-                                class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                                <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
-                            </div>
-                            <div class="min-w-0">
-                                <span
-                                    class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
-                                    data-i18n="vehculos_y_armas">Blindados</span>
-                                <span
-                                    class="text-xl font-display font-black text-white group-hover:text-primary transition-colors">
-                                    <span id="stat-vehicles-full">...</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Stat 2: Archive -->
-                        <div class="flex items-center gap-3 group">
-                            <div
-                                class="size-10 rounded-lg bg-accent-gold/20 flex items-center justify-center text-accent-gold group-hover:bg-accent-gold group-hover:text-white transition-all duration-300">
-                                <span class="material-symbols-outlined text-xl">account_balance</span>
-                            </div>
-                            <div class="text-left min-w-0">
-                                <span
-                                    class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
-                                    data-i18n="piezas_de_archivo">Archivo</span>
-                                <span
-                                    class="text-xl font-display font-black text-white group-hover:text-accent-gold transition-colors">
-                                    <span id="stat-archives-full">...</span>
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Stat 3: Visitors -->
-                        <div class="flex items-center gap-4 group border-l-0 md:border-l border-white/10 md:pl-6">
-                            <div
-                                class="size-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
-                                <span class="material-symbols-outlined text-xl">groups</span>
-                            </div>
-                            <div class="min-w-0">
-                                <span
-                                    class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-1 truncate"
-                                    data-i18n="visitantes">Flujo de Visitantes</span>
-                                <div class="flex items-center gap-5">
-                                    <div class="flex flex-col items-center">
-                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                            data-i18n="diario">Hoy</span>
-                                        <span class="text-sm font-display font-bold text-white">
-                                            <span id="stat-visitors-daily-full">...</span>
-                                        </span>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                            data-i18n="semanal">Semana</span>
-                                        <span class="text-sm font-display font-bold text-white">
-                                            <span id="stat-visitors-weekly-full">...</span>
-                                        </span>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                            data-i18n="mensual">Mes</span>
-                                        <span class="text-sm font-display font-bold text-white">
-                                            <span id="stat-visitors-monthly-full">...</span>
-                                        </span>
-                                    </div>
-                                    <div class="flex flex-col items-center">
-                                        <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                            data-i18n="total">Total</span>
-                                        <span class="text-sm font-display font-bold text-white">
-                                            <span id="stat-visitors-total-full">...</span>
-                                        </span>
-                                    </div>
+            <!-- Stats Bar: Premium Tactical Analytics -->
+            <div class="mt-6">
+                <div class="relative group/stats overflow-hidden">
+                    <!-- Dynamic Glow effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 via-green-500/10 to-primary/20 rounded-2xl blur-xl opacity-0 group-hover/stats:opacity-100 transition duration-1000"></div>
+                    
+                    <div class="relative flex flex-row items-center justify-between bg-slate-900/60 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl overflow-x-auto custom-scrollbar whitespace-nowrap md:overflow-hidden p-2 lg:px-6 h-auto md:h-16 gap-3 md:gap-6">
+                        
+                        <!-- Section 1: Live Monitoring (Active) -->
+                        <div class="flex items-center gap-3 shrink-0">
+                            <span class="material-symbols-outlined text-gray-400 text-xl">person</span>
+                            <div class="flex flex-col leading-none">
+                                <span class="text-[8px] text-gray-400 uppercase font-black tracking-widest" data-i18n="registro_actualizado">En tiempo real</span>
+                                <div class="flex items-center gap-2">
+                                    <span id="live-users-count-full" class="live-users-count text-white font-mono font-black text-xl">...</span>
+                                    <span class="text-green-500 font-black text-[10px] uppercase animate-pulse" data-i18n="en_vivo">VIVO</span>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Divider -->
+                        <div class="w-px h-8 bg-white/10 shrink-0"></div>
+
+                        <!-- Ayer -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                 <span class="text-[8px] text-gray-500 uppercase font-black" data-i18n="ayer">Ayer</span>
+                                 <span id="stat-visitors-yesterday-full" class="text-sm font-mono font-bold text-gray-300">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Hoy -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                  <span class="text-[8px] text-primary uppercase font-black" data-i18n="diario">Hoy</span>
+                                  <span id="stat-visitors-daily-full" class="text-sm font-mono font-bold text-white">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Semana -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                  <span class="text-[8px] text-gray-500 uppercase font-black" data-i18n="semanal">Semana</span>
+                                  <span id="stat-visitors-weekly-full" class="text-sm font-mono font-bold text-white">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Mes -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                  <span class="text-[8px] text-gray-500 uppercase font-black" data-i18n="mensual">Mes</span>
+                                  <span id="stat-visitors-monthly-full" class="text-sm font-mono font-bold text-white">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Total -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none items-end">
+                                  <span class="text-[8px] text-gray-400 uppercase font-black" data-i18n="total">Total</span>
+                                  <span id="stat-visitors-total-full" class="text-base font-mono font-black text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">...</span>
+                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1729,15 +1706,15 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <!-- 2. Museos TAPI - Core Modules -->
-    <script src="js/supabase/client.js?v=1.1"></script>
-    <script src="js/supabase/auth.js?v=1.1"></script>
-    <script src="js/supabase/stats.js?v=1.1"></script>
-    <script src="js/supabase/leaderboard.js?v=1.1"></script>
-    <script src="js/supabase/news.js?v=1.1"></script>
-    <script src="js/supabase/realtime.js?v=393?v=393?v=393?v=393?v=393"></script>
+    <script src="js/supabase/client.js?v=405"></script>
+    <script src="js/supabase/auth.js?v=405"></script>
+    <script src="js/supabase/stats.js?v=405"></script>
+    <script src="js/supabase/leaderboard.js?v=405"></script>
+    <script src="js/supabase/news.js?v=405"></script>
+    <script src="js/supabase/realtime.js?v=405"></script>
 
     <!-- 3. Bridge (Initialization) -->
-    <script src="js/supabase/ui-bridge.js?v=393"></script>
+    <script src="js/supabase/ui-bridge.js?v=405"></script>
 
     <script>
         /**

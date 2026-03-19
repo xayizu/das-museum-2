@@ -219,7 +219,7 @@ class HorseCursor {
       lastTime = now;
 
       this.updateMovement(dt);
-      
+
       if (this.isEnabled) {
         this.updateAnimations(dt);
       } else {

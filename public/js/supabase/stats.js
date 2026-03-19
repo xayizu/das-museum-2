@@ -49,22 +49,17 @@ const StatsManager = {
     async updateUI() {
         if (!window.sb) return;
 
-        // 1. Obtener Stats Globales (Vehículos y Archivos)
-        const { data: globalStats } = await window.sb
-            .from('complejo_stats')
-            .select('*')
-            .single();
-
-        if (globalStats) {
-            this.setNumber('stat-vehicles', globalStats.vehicles_count);
-            this.setNumber('stat-archives', globalStats.archives_count);
-        }
-
         // --- CÁLCULO DE FECHAS ---
         const now = new Date();
 
         // Hoy (00:00:00 de hoy)
         const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+        
+        // Ayer (00:00:00 de ayer) - Para el filtro de ayer
+        const yesterdayDate = new Date(now);
+        yesterdayDate.setDate(now.getDate() - 1);
+        const startOfYesterday = new Date(yesterdayDate.getFullYear(), yesterdayDate.getMonth(), yesterdayDate.getDate(), 0, 0, 0, 0).toISOString();
+        const endOfYesterday = new Date(yesterdayDate.getFullYear(), yesterdayDate.getMonth(), yesterdayDate.getDate(), 23, 59, 59, 999).toISOString();
 
         // Semanal (Lunes de esta semana 00:00:00)
         const day = now.getDay();
@@ -74,6 +69,15 @@ const StatsManager = {
 
         // Mensual (Día 1 de este mes 00:00:00)
         const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+
+        // 1. Obtener Visitas de AYER
+        const { count: yesterdayCount } = await window.sb
+            .from('visitor_logs')
+            .select('*', { count: 'exact', head: true })
+            .gte('visited_at', startOfYesterday)
+            .lte('visited_at', endOfYesterday);
+
+        this.setNumber('stat-visitors-yesterday', yesterdayCount || 0);
 
         // 2. Obtener Visitas de HOY
         const { count: dayCount } = await window.sb
@@ -145,14 +149,6 @@ const StatsManager = {
      */
     subscribeRealtime() {
         if (!window.sb) return;
-
-        window.sb
-            .channel('public:complejo_stats')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'complejo_stats' }, payload => {
-                console.log('🔄 Actualización Realtime recibida:', payload);
-                this.updateUI();
-            })
-            .subscribe();
 
         window.sb
             .channel('public:visitor_logs')

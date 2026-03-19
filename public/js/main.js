@@ -773,7 +773,7 @@ function initTankCursorLoader() {
     if (!isIndex && !inTanques) return; // Solo en esas páginas
 
     const root = document.body.getAttribute('data-root') || './';
-    const VERSION = '393'; // Territory Passing Update
+    const VERSION = '405'; // Territory Passing Update
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -796,7 +796,7 @@ function initHorseCursorLoader() {
     if (!isIndex && !inCasa) return; // Solo index y casa histórica
 
     const root = document.body.getAttribute('data-root') || './';
-    const VERSION = '393'; // Territory Passing Update
+    const VERSION = '405'; // Territory Passing Update
 
     const link = document.createElement('link');
     link.rel = 'stylesheet';

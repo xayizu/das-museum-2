@@ -1,12 +1,92 @@
 :root {
+    /* ----------------------------------------------------
+       GENERAL & COLORES
+       ---------------------------------------------------- */
+    --cursor-scale: 0.75;
     --tank-primary: #5d7347;
     --tank-secondary: #8ba86e;
     --tank-accent: #c5d6af;
     --tank-border: #2d381f;
-    /* Dark green border */
     --tank-shadow: rgba(0, 0, 0, 0.4);
     --tank-glow: rgba(139, 168, 110, 0.3);
-    --cursor-scale: 0.75;
+
+    /* ----------------------------------------------------
+       CUERPO (Body/Chassis Container) 
+       ---------------------------------------------------- */
+    --bo-x: 0px;
+    --bo-y: -10px;
+    --bo-w: 60px;
+    --bo-h: 70px;
+    --bo-sc: 1;
+
+    /* ----------------------------------------------------
+       CHASSIS (Parte central verde) 
+       ---------------------------------------------------- */
+    --ch-x: 10px;
+    --ch-y: 5px;
+    --ch-w: 38px;
+    --ch-h: 60px;
+    --ch-sc: 1;
+    /* Escala Chassis */
+
+    /* ----------------------------------------------------
+       TORRETA (Turret)
+       ---------------------------------------------------- */
+    --tu-x: -1px;
+    --tu-y: 24px;
+    --tu-w: 27px;
+    --tu-h: 35px;
+    --tu-sc: 1;
+    /* Escala Torreta */
+
+    /* ----------------------------------------------------
+       CAÑÓN (Barrel)
+       ---------------------------------------------------- */
+    --ba-x: 0px;
+    --ba-y: 27px;
+    --ba-w: 7px;
+    --ba-h: 45px;
+    --ba-sc: 1;
+    /* Escala Cañón */
+
+    /* ----------------------------------------------------
+       ORUGAS IZQUIERDA (Left Tread)
+       ---------------------------------------------------- */
+    --tr-lx: 3px;
+    --tr-ly: 0px;
+    --tr-lw: 15px;
+    --tr-lh: 100%;
+    --tr-lsc: 1;
+
+    /* ----------------------------------------------------
+       ORUGAS DERECHA (Right Tread)
+       ---------------------------------------------------- */
+    --tr-rx: 4px;
+    --tr-ry: 0px;
+    --tr-rw: 15px;
+    --tr-rh: 100%;
+    --tr-rsc: 1;
+
+    /* ----------------------------------------------------
+       DETALLES (Hatch & Lights & Muzzle)
+       ---------------------------------------------------- */
+    --ha-x: 4px;
+    --ha-y: 10px;
+    --ha-sc: 1;
+    /* Escotilla */
+    --fl-x: -1px;
+    --fl-y: -1px;
+    --fl-sc: 0.5;
+    /* Luces Amarillas */
+    --rl-x: -1px;
+    --rl-y: -1px;
+    --rl-sc: 0.5;
+    /* Luces Rojas */
+    --mu-x: 0px;
+    --mu-y: -1px;
+    --mu-w: 6px;
+    --mu-h: 4px;
+    --mu-sc: 1;
 }
 
 /* Global cursor setup */
@@ -35,9 +115,9 @@
 /* The Body - AMX-13 Profile */
 .tank-body {
     position: absolute;
-    transform: translate(-50%, -10px);
-    width: 50px;
-    height: 70px;
+    transform: translate(calc(-50% + var(--bo-x, 0px)), var(--bo-y, -10px)) rotate(var(--rot-b, 0deg)) scale(var(--bo-sc, 1));
+    width: var(--bo-w, 60px);
+    height: var(--bo-h, 70px);
 }
 
 /* Sleek Treads */
@@ -83,28 +163,36 @@
 }
 
 .left-tread {
-    left: 0;
+    left: var(--tr-lx, 0px);
+    top: var(--tr-ly, 0px);
+    width: var(--tr-lw, 12px);
+    height: var(--tr-lh, 100%);
+    transform: scale(var(--tr-lsc, 1));
 }
 
 .right-tread {
-    right: 0;
+    right: var(--tr-rx, 0px);
+    top: var(--tr-ry, 0px);
+    width: var(--tr-rw, 12px);
+    height: var(--tr-rh, 100%);
+    transform: scale(var(--tr-rsc, 1));
 }
 
-/* Modern Chassis */
+/* Chassis Independiente */
 .chassis {
     position: absolute;
-    top: 5px;
-    left: 8px;
-    width: 34px;
-    height: 60px;
+    top: var(--ch-y, 5px);
+    left: var(--ch-x, 10px);
+    width: var(--ch-w, 42px);
+    height: var(--ch-h, 60px);
     background: linear-gradient(145deg, var(--tank-secondary), var(--tank-primary));
     border-radius: 4px;
     border: 2px solid var(--tank-border);
-    /* Added dark border */
     box-shadow:
         inset 1px 1px 2px rgba(255, 255, 255, 0.3),
         inset -1px -1px 2px rgba(0, 0, 0, 0.3);
     z-index: 2;
+    transform: scale(var(--ch-sc, 1));
 }
 
 /* Front Details (Minimalist) */
@@ -120,14 +208,55 @@
     clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
 }
 
+/* Tank Lights - Front (Yellow) & Rear (Red) */
+.light {
+    position: absolute;
+    width: 5px;
+    height: 2px;
+    border-radius: 1px;
+    z-index: 5;
+}
+
+.front-light-l,
+.front-light-r {
+    top: var(--fl-y, -1px);
+    background: #fffb00;
+    box-shadow: 0 0 8px #fffb00, 0 0 12px rgba(255, 251, 0, 0.4);
+    transform: scale(var(--fl-sc, 1));
+}
+
+.front-light-l {
+    left: var(--fl-x, 4px);
+}
+
+.front-light-r {
+    right: var(--fl-x, 4px);
+}
+
+.rear-light-l,
+.rear-light-r {
+    bottom: var(--rl-y, -1px);
+    background: #ff2a00;
+    box-shadow: 0 0 8px #ff2a00, 0 0 12px rgba(255, 42, 0, 0.4);
+    transform: scale(var(--rl-sc, 1));
+}
+
+.rear-light-l {
+    left: var(--rl-x, 6px);
+}
+
+.rear-light-r {
+    right: var(--rl-x, 6px);
+}
+
 /* Oscillating Turret - Premium Rear Mount */
 .turret {
     position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 28px;
-    height: 40px;
+    top: var(--tu-y, 20px);
+    left: calc(50% + var(--tu-x, 0px));
+    transform: translateX(-50%) rotate(var(--rot-t, 0deg)) scale(var(--tu-sc, 1));
+    width: var(--tu-w, 28px);
+    height: var(--tu-h, 40px);
     z-index: 3;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
 }
@@ -147,9 +276,9 @@
 /* Commander's Hatch - Circular */
 .turret-hatch {
     position: absolute;
-    top: 22px;
+    top: var(--ha-y, 22px);
     /* Slightly behind the barrel start */
-    left: 4px;
+    left: var(--ha-x, 4px);
     /* Slightly to the left of center */
     width: 9px;
     height: 9px;
@@ -159,17 +288,17 @@
     border-radius: 50%;
     z-index: 5;
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+    transform: scale(var(--ha-sc, 1));
 }
 
 /* Robust Barrel */
 .barrel-group {
     position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 50px;
-    /* Reduced length from 70px */
+    bottom: var(--ba-y, 25px);
+    left: calc(50% + var(--ba-x, 0px));
+    transform: translateX(-50%) scale(var(--ba-sc, 1));
+    width: var(--ba-w, 8px);
+    height: var(--ba-h, 50px);
     z-index: 4;
 }
 
@@ -186,16 +315,15 @@
 .barrel-tube::after {
     content: '';
     position: absolute;
-    top: -4px;
-    left: -2px;
-    width: 10px;
-    /* Reduced width */
-    height: 6px;
-    /* Reduced height */
+    top: var(--mu-y, -4px);
+    left: var(--mu-x, -1px);
+    width: var(--mu-w, 10px);
+    height: var(--mu-h, 6px);
     background: var(--tank-primary);
     clip-path: polygon(20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%, 0% 50%);
     box-shadow: 0 0 10px var(--tank-glow);
     border: 1px solid var(--tank-border);
+    transform: scale(var(--mu-sc, 1));
 }
 
 /* Muzzle Flash - Restored Cone Shape */
@@ -281,7 +409,8 @@
 .smoke-particle {
     background: rgba(200, 200, 200, 0.5);
     filter: blur(4px);
-    animation: smoke-fade 0.8s ease-out forwards;
+    transform: translate(-50%, -50%);
+    /* Ensure initial centering */
 }
 
 .dust-particle {
@@ -295,8 +424,13 @@
 }
 
 @keyframes particle-fade {
-    to {
-        transform: translate(var(--dx), var(--dy)) scale(2);
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(2);
         opacity: 0;
     }
 }
@@ -334,7 +468,7 @@
     }
 
     100% {
-        transform: translate(var(--dx, 0px), var(--dy, -50px)) scale(3.5);
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(3.5);
         opacity: 0;
     }
 }
@@ -346,7 +480,7 @@
     }
 
     100% {
-        transform: translate(var(--dx, 0px), var(--dy, 0px)) scale(2);
+        transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) scale(2);
         opacity: 0;
     }
 }

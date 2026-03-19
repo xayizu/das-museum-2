@@ -140,93 +140,72 @@
             </div>
         </div>
 
-        <!-- Stats Bar: Full Responsive Statistics (Matching Index essence) -->
-        <div class="mt-2">
-            <div
-                class="flex flex-col lg:flex-row justify-between items-center gap-4 bg-white/5 p-4 rounded-xl backdrop-blur-md border border-white/5">
-
-                <!-- Header Status -->
-                <div
-                    class="flex items-center gap-4 border-b lg:border-b-0 lg:border-r border-white/10 pb-3 lg:pb-0 lg:pr-6 w-full lg:w-auto">
-                    <div class="pulse-dot flex-shrink-0"></div>
-
-                    <div class="flex flex-col">
-                        <span class="text-white font-black text-[11px] uppercase tracking-widest leading-none"
-                            data-i18n="estadísticas_del_complejo">Estadísticas</span>
-                        <span class="text-[8px] text-gray-500 uppercase font-bold tracking-widest"
-                            data-i18n="registro_actualizado">En tiempo real</span>
-                    </div>
-                </div>
-
-                <!-- Statistics Grid -->
-                <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 pl-0 lg:pl-6 w-full">
-
-                    <!-- Stat 1: Tanks -->
-                    <div class="flex items-center gap-3 group">
-                        <div
-                            class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                            <span class="material-symbols-outlined text-xl">precision_manufacturing</span>
-                        </div>
-                        <div class="min-w-0">
-                            <span
-                                class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
-                                data-i18n="vehculos_y_armas">Blindados</span>
-                            <span id="stat-vehicles"
-                                class="block text-xl font-display font-black text-white group-hover:text-primary transition-colors">...</span>
-                        </div>
-                    </div>
-
-                    <!-- Stat 2: Archive -->
-                    <div class="flex items-center gap-3 group">
-                        <div
-                            class="size-10 rounded-lg bg-accent-gold/20 flex items-center justify-center text-accent-gold group-hover:bg-accent-gold group-hover:text-white transition-all duration-300">
-                            <span class="material-symbols-outlined text-xl">account_balance</span>
-                        </div>
-                        <div class="text-left min-w-0">
-                            <span
-                                class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-0.5 truncate"
-                                data-i18n="piezas_de_archivo">Archivo</span>
-                            <span id="stat-archives"
-                                class="block text-xl font-display font-black text-white group-hover:text-accent-gold transition-colors">...</span>
-                        </div>
-                    </div>
-
-                    <!-- Stat 3: Visitors -->
-                    <div class="flex items-center gap-4 group border-l-0 md:border-l border-white/10 md:pl-6">
-                        <div
-                            class="size-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300">
-                            <span class="material-symbols-outlined text-xl">groups</span>
-                        </div>
-                        <div class="min-w-0">
-                            <span
-                                class="block text-[9px] text-gray-400 uppercase font-black tracking-widest mb-1 truncate"
-                                data-i18n="visitantes">Flujo de Visitantes</span>
-                            <div class="flex items-center gap-5">
-                                <div class="flex flex-col items-center">
-                                    <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                        data-i18n="diario">Hoy</span>
-                                    <span id="stat-visitors-daily"
-                                        class="text-sm font-display font-bold text-white">...</span>
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                        data-i18n="semanal">Semana</span>
-                                    <span id="stat-visitors-weekly"
-                                        class="text-sm font-display font-bold text-white">...</span>
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                        data-i18n="mensual">Mes</span>
-                                    <span id="stat-visitors-monthly"
-                                        class="text-sm font-display font-bold text-white">...</span>
-                                </div>
-                                <div class="flex flex-col items-center">
-                                    <span class="text-[7px] text-white/30 uppercase font-black leading-tight"
-                                        data-i18n="total">Total</span>
-                                    <span id="stat-visitors-total"
-                                        class="text-sm font-display font-bold text-white">...</span>
+            <!-- Stats Bar: Premium Tactical Analytics -->
+            <div class="mt-6">
+                <div class="relative group/stats overflow-hidden">
+                    <!-- Dynamic Glow effect -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-primary/20 via-green-500/10 to-primary/20 rounded-2xl blur-xl opacity-0 group-hover/stats:opacity-100 transition duration-1000"></div>
+                    
+                    <div class="relative flex flex-row items-center justify-between bg-slate-900/60 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-2xl overflow-x-auto custom-scrollbar whitespace-nowrap md:overflow-hidden p-2 lg:px-6 h-auto md:h-16 gap-3 md:gap-6">
+                        
+                        <!-- Section 1: Live Monitoring (Active) -->
+                        <div class="flex items-center gap-3 shrink-0">
+                            <span class="material-symbols-outlined text-gray-400 text-xl">person</span>
+                            <div class="flex flex-col leading-none">
+                                <span class="text-[8px] text-gray-400 uppercase font-black tracking-widest" data-i18n="registro_actualizado">En tiempo real</span>
+                                <div class="flex items-center gap-2">
+                                    <span id="live-users-count" class="live-users-count text-white font-mono font-black text-xl">...</span>
+                                    <span class="text-green-500 font-black text-[10px] uppercase animate-pulse" data-i18n="en_vivo">VIVO</span>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="w-px h-8 bg-white/10 shrink-0"></div>
+
+                        <!-- Ayer -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                 <span class="text-[8px] text-gray-500 uppercase font-black" data-i18n="ayer">Ayer</span>
+                                 <span id="stat-visitors-yesterday" class="text-sm font-mono font-bold text-gray-300">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Hoy -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                  <span class="text-[8px] text-primary uppercase font-black" data-i18n="diario">Hoy</span>
+                                  <span id="stat-visitors-daily" class="text-sm font-mono font-bold text-white">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Semana -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                  <span class="text-[8px] text-gray-500 uppercase font-black" data-i18n="semanal">Semana</span>
+                                  <span id="stat-visitors-weekly" class="text-sm font-mono font-bold text-white">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Mes -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none">
+                                  <span class="text-[8px] text-gray-500 uppercase font-black" data-i18n="mensual">Mes</span>
+                                  <span id="stat-visitors-monthly" class="text-sm font-mono font-bold text-white">...</span>
+                             </div>
+                        </div>
+
+                        <!-- Total -->
+                        <div class="flex items-center gap-2 shrink-0">
+                             <span class="material-symbols-outlined text-green-500 text-lg">person</span>
+                             <div class="flex flex-col leading-none items-end">
+                                  <span class="text-[8px] text-gray-400 uppercase font-black" data-i18n="total">Total</span>
+                                  <span id="stat-visitors-total" class="text-base font-mono font-black text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">...</span>
+                             </div>
                         </div>
                     </div>
                 </div>

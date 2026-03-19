@@ -2,7 +2,10 @@
 <html class="dark" lang="es">
 
 <head>
-    <link id="favicon" rel="icon" type="image/svg+xml" href="../recursos/images/index/favicon_pestaña.svg?v=1.1" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/svg+xml" href="../recursos/images/index/favicon_static.svg" />
     <link rel="icon" type="image/png" sizes="48x48" href="../recursos/images/index/favicon-48.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../recursos/images/index/favicon-144.png" />
 
@@ -25,21 +28,21 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
     <!-- Estilos especficos del proyecto -->
-    <script src="../js/config.js?v=1.4"></script>
-    <link href="../css/main.css?v=1.4" rel="stylesheet" />
+    <script src="../js/config.js?v=405"></script>
+    <link href="../css/main.css?v=405" rel="stylesheet" />
 
     <!-- Scripts de Funcionalidad -->
-    <script defer src="../js/i18n.js?v=1.4"></script>
-    <script defer src="../js/main.js?v=393"></script>
-    <script defer src="../js/components-loader.js?v=1.4"></script>
+    <script defer src="../js/i18n.js?v=405"></script>
+    <script defer src="../js/main.js?v=405"></script>
+    <script defer src="../js/components-loader.js?v=405"></script>
 
     <!-- Supabase integration -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/supabase/client.js?v=1.1"></script>
-    <script src="../js/supabase/auth.js?v=1.1"></script>
-    <script src="../js/supabase/stats.js?v=1.1"></script>
-    <script src="../js/supabase/realtime.js?v=393?v=393?v=393?v=393?v=393"></script>
-    <script src="../js/supabase/ui-bridge.js?v=1.1"></script>
+    <script src="../js/supabase/client.js?v=405"></script>
+    <script src="../js/supabase/auth.js?v=405"></script>
+    <script src="../js/supabase/stats.js?v=405"></script>
+    <script src="../js/supabase/realtime.js?v=405"></script>
+    <script src="../js/supabase/ui-bridge.js?v=405"></script>
 </head>
 
 <body
@@ -49,8 +52,9 @@
     <!-- COMPONENTES CARGADOS DINMICAMENTE (Casa - Gold Theme) -->
     <div data-include="casa/topbar"></div>
 
-    <!-- SISTEMA DE AUDIO (Sincronizado con el botn del Topbar) -->
+    <!-- AUDIO SYSTEM -->
     <audio id="bg-music" loop src="../recursos/audio/background-military.mp3"></audio>
+
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="flex-grow pt-\[110px\] md:pt-[100px] px-6">
@@ -79,6 +83,8 @@
 
     <!-- INICIALIZACIN DE SISTEMAS POST-CARGA -->
     <script>
+
+
         window.addEventListener('componentsReady', () => {
             setTimeout(() => {
                 if (window.StatsManager) {

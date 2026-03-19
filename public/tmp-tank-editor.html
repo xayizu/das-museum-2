@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor Pro - Mascota Tanque</title>
+    <!-- Incluimos los estilos del sitio para que se vea IGUAL -->
+    <link rel="stylesheet" href="./css/main.css?v=405">
+    <link rel="stylesheet" href="./css/tank-cursor.css?v=405">
+    <style>
+        body {
+            background-color: #0d0f0d;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(30, 40, 20, 1) 0%, #050605 100%),
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        /* Contenedor para centrar el tanque */
+        #studio-viewport {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(165, 214, 167, 0.1);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(165, 214, 167, 0.05) 0%, transparent 70%);
+        }
+
+        /* Forzamos que el tanque sea visible y fijo */
+        #custom-cursor {
+            position: fixed !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            /* La escala viene del CSS --cursor-scale */
+            transform-origin: center center;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .controls {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(10, 15, 10, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--tank-accent, #a5d6a7);
+            z-index: 10000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(165, 214, 167, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 280px;
+        }
+
+        .controls h2 {
+            margin: 0 0 15px 0;
+            font-size: 1rem;
+            color: var(--tank-accent, #a5d6a7);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        button {
+            background: var(--tank-primary, #5d7347);
+            color: white;
+            border: 1px solid var(--tank-accent, #a5d6a7);
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            width: 100%;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        button:hover { 
+            background: var(--tank-accent, #a5d6a7); 
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .hint {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 15px;
+        }
+
+        code { background: #1a1a1a; color: #a5d6a7; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(165, 214, 167, 0.2); }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <h2>TNK-STUDIO</h2>
+        <button onclick="forceReload()">🔄 RECARGAR DISEÑO</button>
+        <div class="hint">
+            <strong>Modo Edición Directa:</strong><br>
+            1. Edita <code>tank-cursor.css</code> a tu gusto.<br>
+            2. Guarda el archivo.<br>
+            3. Pulsa el botón de arriba.<br><br>
+            El tanque se verá <strong>exactamente</strong> como en el sitio final.
+        </div>
+    </div>
+
+    <div id="studio-viewport"></div>
+
+    <script src="./js/tank-cursor.js?v=405"></script>
+    <script>
+        function forceReload() {
+            // Recargamos ignorando la caché para ver los cambios del CSS al instante
+            window.location.href = window.location.pathname + '?t=' + Date.now();
+        }
+
+        // Configuración para el visor
+        window.addEventListener('load', () => {
+            if (!window.tankCursor) return;
+            
+            const tc = window.tankCursor;
+            
+            // Inmovilizamos y centramos
+            tc.handleMouseMove = () => {}; 
+            
+            function centerTank() {
+                tc.renderPos.x = window.innerWidth / 2;
+                tc.renderPos.y = window.innerHeight / 2;
+                tc.mouse.x = tc.renderPos.x;
+                tc.mouse.y = tc.renderPos.y;
+                tc.bodyRot = 90; // Mirando a la derecha
+                tc.targetBodyRot = 90;
+                tc.isMoving = false;
+                tc.lastMoveTime = Date.now() + 99999999; // Evitamos que desaparezca
+                
+                if (tc.element) {
+                    tc.element.classList.add('active');
+                }
+            }
+
+            centerTank();
+            setInterval(centerTank, 30); // Mantenemos el centro
+        });
+    </script>
+</body>
+</html>

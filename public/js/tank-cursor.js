@@ -64,7 +64,12 @@ class TankCursor {
                     <div class="tank-body">
                         <div class="tread left-tread"></div>
                         <div class="tread right-tread"></div>
-                        <div class="chassis"></div>
+                        <div class="chassis">
+                            <div class="light front-light-l"></div>
+                            <div class="light front-light-r"></div>
+                            <div class="light rear-light-l"></div>
+                            <div class="light rear-light-r"></div>
+                        </div>
                         <div class="turret">
                             <div class="turret-cap"></div>
                             <div class="turret-hatch"></div>
@@ -205,8 +210,12 @@ class TankCursor {
             while (tDiff < -180) tDiff += 360;
             this.turretRot += tDiff * this.TURRET_SMOOTHING;
 
-            if (this.tankBody) this.tankBody.style.transform = `translate(-50%, -10px) rotate(${this.bodyRot}deg)`;
-            if (this.turret) this.turret.style.transform = `translateX(-50%) rotate(${this.turretRot}deg)`;
+            if (this.tankBody) {
+                this.tankBody.style.setProperty('--rot-b', `${this.bodyRot}deg`);
+            }
+            if (this.turret) {
+                this.turret.style.setProperty('--rot-t', `${this.turretRot}deg`);
+            }
 
             requestAnimationFrame(loop);
         };
@@ -226,21 +235,38 @@ class TankCursor {
         }
 
         const scale = 0.75;
-        const muzzleDist = 52 * scale;
         const totalRad = (this.bodyRot + this.turretRot) * (Math.PI / 180);
 
-        const muzzleX = this.renderPos.x + Math.sin(totalRad) * muzzleDist;
-        const muzzleY = this.renderPos.y - Math.cos(totalRad) * muzzleDist;
+        // CALIBRATED MUZZLE POSITION
+        // Body center is at renderPos.x, renderPos.y + (25 * scale)
+        // Turret pivot is at body center + displacement along body rotation axis
+        // The turret is 10px behind the body center in the AMX-13 profile
+        const bodyRad = this.bodyRot * (Math.PI / 180);
+        
+        // Pivot point of the turret relative to the body center
+        // When bodyRot is 0 (up), turret is 10px below center
+        const pivotX = this.renderPos.x + Math.sin(bodyRad) * (10 * scale);
+        const pivotY = this.renderPos.y + (25 * scale) + Math.cos(bodyRad) * (10 * scale);
+
+        // Muzzle distance from turret pivot (58 pixels at scale 1)
+        const muzzleDist = 58 * scale; 
+
+        // Total rotation is world rotation (angle from vertical)
+        const muzzleX = pivotX + Math.sin(totalRad) * muzzleDist;
+        const muzzleY = pivotY - Math.cos(totalRad) * muzzleDist;
 
         // Spawn Projectile (Bullet)
         this.spawnProjectile(muzzleX, muzzleY, totalRad);
 
-        for (let i = 0; i < 6; i++) {
-            const smokeDX = Math.sin(totalRad) * (40 + Math.random() * 20);
-            const smokeDY = -Math.cos(totalRad) * (40 + Math.random() * 20);
+        // Spawn Muzzle Smoke
+        for (let i = 0; i < 8; i++) {
+            const spread = (Math.random() - 0.5) * 0.4;
+            const smokeDX = Math.sin(totalRad + spread) * (50 + Math.random() * 30);
+            const smokeDY = -Math.cos(totalRad + spread) * (50 + Math.random() * 30);
+            
             setTimeout(() => {
-                this.spawnSmoke(muzzleX, muzzleY, smokeDX + (Math.random() - 0.5) * 20, smokeDY + (Math.random() - 0.5) * 20);
-            }, i * 15);
+                this.spawnSmoke(muzzleX, muzzleY, smokeDX, smokeDY);
+            }, i * 20);
         }
     }
 
@@ -257,13 +283,13 @@ class TankCursor {
 
         shell.style.left = `0px`;
         shell.style.top = `0px`;
-        shell.style.transform = `translate(${curX}px, ${curY}px) rotate(${rotation}deg)`;
+        shell.style.transform = `translate(${curX}px, ${curY}px) rotate(${rotation}deg) translate(-50%, -50%)`;
         document.body.appendChild(shell);
 
         const moveShell = () => {
             curX += vx;
             curY += vy;
-            shell.style.transform = `translate(${curX}px, ${curY}px) rotate(${rotation}deg)`;
+            shell.style.transform = `translate(${curX}px, ${curY}px) rotate(${rotation}deg) translate(-50%, -50%)`;
 
             // Remove if out of screen
             if (curX < -100 || curX > window.innerWidth + 100 ||
